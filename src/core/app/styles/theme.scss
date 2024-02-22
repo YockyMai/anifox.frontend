@@ -1,20 +1,97 @@
 :root {
-  /* COLORS */
+  /* colors */
   --background-color: 241, 245, 249;
+  --background-color-900: 24, 33, 54;
+  --background-color-800: 29, 40, 66;
+  --background-color-700: 35, 48, 79;
+  --background-color-600: 40, 56, 92;
+  --background-color-500: 45, 63, 105;
+  --background-color-400: 50, 70, 117;
+  --background-color-300: 56, 79, 133;
+  --background-color-200: 63, 89, 150;
+  --background-color-100: 69, 97, 163;
+
   --foreground-color: 226, 232, 240;
-  --orange-color: 242, 157, 89;
+  --foreground-color-900: 36, 50, 71;
+  --foreground-color-800: 36, 50, 71;
+  --foreground-color-700: 42, 59, 84;
+  --foreground-color-600: 48, 68, 97;
+  --foreground-color-500: 57, 81, 115;
+  --foreground-color-400: 65, 92, 130;
+  --foreground-color-300: 71, 101, 143;
+  --foreground-color-200: 78, 110, 156;
+  --foreground-color-100: 84, 119, 168;
 
-  /* COMMON COLORS */
+  --orange-color: 253, 186, 116;
+
+  /* common vars */
   --green-color: 34, 197, 94;
-
   --container-width-xl: 1400px;
-
   --header-height: 60px;
+
+  --font-xxl: 1.5rem;
+  --font-xl: 1.25rem;
+  --font-lg: 1.125rem;
+  --font-md: 1rem;
+  --font-sm: 0.875rem;
+  --font-xs: 0.75rem;
+
+  --radius-xl: 0.75rem;
+  --radius-lg: 0.5rem;
+  --radius-md: 0.25rem;
+  --radius-sm: 0.125rem;
 }
 
-.dark {
-  /* COLORS */
+.site-theme-slate {
+  /* colors */
   --background-color: 17, 24, 39;
+  --background-color-900: 24, 33, 54;
+  --background-color-800: 29, 40, 66;
+  --background-color-700: 35, 48, 79;
+  --background-color-600: 40, 56, 92;
+  --background-color-500: 45, 63, 105;
+  --background-color-400: 50, 70, 117;
+  --background-color-300: 56, 79, 133;
+  --background-color-200: 63, 89, 150;
+  --background-color-100: 69, 97, 163;
+
   --foreground-color: 30, 41, 59;
+  --foreground-color-900: 36, 50, 71;
+  --foreground-color-800: 36, 50, 71;
+  --foreground-color-700: 42, 59, 84;
+  --foreground-color-600: 48, 68, 97;
+  --foreground-color-500: 57, 81, 115;
+  --foreground-color-400: 65, 92, 130;
+  --foreground-color-300: 71, 101, 143;
+  --foreground-color-200: 78, 110, 156;
+  --foreground-color-100: 84, 119, 168;
+
+  --orange-color: 253, 186, 116;
+}
+
+.site-theme-dark {
+  /* colors */
+  --background-color: 17, 24, 39;
+  --background-color-900: 24, 33, 54;
+  --background-color-800: 29, 40, 66;
+  --background-color-700: 35, 48, 79;
+  --background-color-600: 40, 56, 92;
+  --background-color-500: 45, 63, 105;
+  --background-color-400: 50, 70, 117;
+  --background-color-300: 56, 79, 133;
+  --background-color-200: 63, 89, 150;
+  --background-color-100: 69, 97, 163;
+
+  --foreground-color: 30, 41, 59;
+  --foreground-color-900: 36, 50, 71;
+  --foreground-color-800: 36, 50, 71;
+  --foreground-color-700: 42, 59, 84;
+  --foreground-color-600: 48, 68, 97;
+  --foreground-color-500: 57, 81, 115;
+  --foreground-color-400: 65, 92, 130;
+  --foreground-color-300: 71, 101, 143;
+  --foreground-color-200: 78, 110, 156;
+  --foreground-color-100: 84, 119, 168;
+
   --orange-color: 253, 186, 116;
 }
