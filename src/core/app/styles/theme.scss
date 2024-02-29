@@ -22,24 +22,33 @@
   --foreground-color-200: 78, 110, 156;
   --foreground-color-100: 84, 119, 168;
 
-  --orange-color: 253, 186, 116;
+  --orange-color: 204, 131, 71;
+
+  --title-color: 15, 23, 42;
+  --text-color: 30, 41, 59;
+  --dimmed-color: 71 85 105;
 
   /* common vars */
+  --white-color: 255, 255, 255;
+  --red-color: 239, 68, 68;
+
   --green-color: 34, 197, 94;
   --container-width-xl: 1400px;
   --header-height: 60px;
+  --sidebar-width: 60px;
 
   --font-xxl: 1.5rem;
   --font-xl: 1.25rem;
-  --font-lg: 1.125rem;
-  --font-md: 1rem;
-  --font-sm: 0.875rem;
-  --font-xs: 0.75rem;
+  --font-lg: 1rem;
+  --font-md: 0.875rem;
+  --font-sm: 0.75rem;
 
   --radius-xl: 0.75rem;
   --radius-lg: 0.5rem;
   --radius-md: 0.25rem;
   --radius-sm: 0.125rem;
+
+  --translation-duration: 0.15s;
 }
 
 .site-theme-slate {
@@ -66,7 +75,11 @@
   --foreground-color-200: 78, 110, 156;
   --foreground-color-100: 84, 119, 168;
 
-  --orange-color: 253, 186, 116;
+  --orange-color: 252, 155, 76;
+
+  --title-color: 255, 255, 255;
+  --text-color: 148, 163, 184;
+  --dimmed-color: 106, 119, 138;
 }
 
 .site-theme-dark {
@@ -93,5 +106,9 @@
   --foreground-color-200: 78, 110, 156;
   --foreground-color-100: 84, 119, 168;
 
-  --orange-color: 253, 186, 116;
+  --orange-color: 252, 155, 76;
+
+  --title-color: 255, 255, 255;
+  --text-color: 148, 163, 184;
+  --dimmed-color: 106, 119, 138;
 }

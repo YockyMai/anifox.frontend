@@ -1,2 +1,13 @@
-export { AnimeLayout } from './anime.layout.tsx'
-export { AnimePage } from './anime.page.tsx'
+import { lazy } from 'react'
+
+export const AnimePage = lazy(() =>
+  import('./anime.tsx').then((module) => ({
+    default: module.AnimePage,
+  })),
+)
+
+export const AnimeLayout = lazy(() =>
+  import('./anime.layout.tsx').then((module) => ({
+    default: module.AnimeLayout,
+  })),
+)

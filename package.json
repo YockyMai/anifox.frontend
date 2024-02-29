@@ -10,13 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@anifox/ui": "^0.0.1",
+    "@anifox/ui": "file:.yalc/@anifox/ui",
+    "@tabler/icons-react": "^2.47.0",
     "@tanstack/react-query": "^5.17.19",
     "clsx": "^2.1.0",
     "compose-function": "^3.0.3",
     "i18next": "^23.10.0",
+    "i18next-browser-languagedetector": "^7.2.0",
+    "i18next-http-backend": "^2.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^14.0.5",
     "react-router-dom": "^6.21.3",
     "sass": "^1.71.0"
   },

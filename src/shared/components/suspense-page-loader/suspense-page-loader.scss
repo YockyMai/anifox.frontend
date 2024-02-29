@@ -1,0 +1,12 @@
+.page-loader {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &__image {
+    width: 12rem;
+    height: 12rem;
+    margin: 0 auto;
+  }
+}

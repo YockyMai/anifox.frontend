@@ -1,4 +1,4 @@
-import './main.styles.pcss'
+import './main.scss'
 
 export const MainPage = () => {
   return <div></div>

@@ -1,0 +1,15 @@
+.menu-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__button {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    transition: var(--translation-duration);
+    &:hover {
+      background-color: rgb(var(--foreground-color));
+    }
+  }
+}

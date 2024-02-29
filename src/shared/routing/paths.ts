@@ -1,4 +1,4 @@
-export const ROUTES = {
+export const Routes = {
   MAIN: '/',
   HOME: '/home',
   CATALOG: '/anime',

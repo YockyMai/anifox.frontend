@@ -1,9 +1,11 @@
 import { Route, Routes } from 'react-router-dom'
+
 import { AnimeLayout, AnimePage } from '@/pages/anime'
 import { CatalogPage } from '@/pages/catalog'
+
 import { MainLayout, MainPage } from './main'
 
-export const Routing = () => {
+export const Pages = () => {
   return (
     <Routes>
       <Route path={'/'} element={<MainLayout />}>

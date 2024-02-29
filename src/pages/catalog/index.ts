@@ -1,1 +1,7 @@
-export * from './catalog.page.tsx'
+import { lazy } from 'react'
+
+export const CatalogPage = lazy(() =>
+  import('./catalog').then((module) => ({
+    default: module.CatalogPage,
+  })),
+)

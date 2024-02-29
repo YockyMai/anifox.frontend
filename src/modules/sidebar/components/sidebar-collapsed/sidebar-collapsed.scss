@@ -1,0 +1,8 @@
+.sidebar-collapsed {
+  background-color: var(--foreground-color);
+  width: var(--sidebar-width);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

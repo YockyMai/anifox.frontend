@@ -1,3 +1,1 @@
-import App from './app.tsx'
-
-export { App }
+export { App } from './app'

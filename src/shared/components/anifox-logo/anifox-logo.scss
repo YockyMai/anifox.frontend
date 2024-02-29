@@ -1,0 +1,30 @@
+.anifox-logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  &__image {
+    height: calc(var(--header-height) - 15px);
+    width: auto;
+  }
+
+  &__text {
+    display: flex;
+    p {
+      font-size: var(--font-xxl);
+      transition: var(--translation-duration);
+      font-weight: 700;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      &:first-child {
+        color: #f6898a;
+      }
+      &:last-child {
+        color: #fdc65f;
+      }
+    }
+  }
+}
