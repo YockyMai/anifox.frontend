@@ -10,7 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@anifox/ui": "file:.yalc/@anifox/ui",
+    "@anifox/hooks": "^1.0.0",
+    "@anifox/ui": "^0.0.3",
     "@tabler/icons-react": "^2.47.0",
     "@tanstack/react-query": "^5.17.19",
     "clsx": "^2.1.0",
