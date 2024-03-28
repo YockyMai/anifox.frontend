@@ -2,6 +2,9 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  &:focus {
+    outline: none;
+  }
 
   &__image {
     height: calc(var(--header-height) - 15px);
@@ -16,7 +19,13 @@
       font-weight: 700;
 
       &:hover {
-        transform: scale(1.1);
+        &:last-child {
+          color: #f6898a;
+        }
+        &:first-child {
+          color: #fdc65f;
+        }
+        transition: all 0.1s ease-in-out;
       }
 
       &:first-child {
