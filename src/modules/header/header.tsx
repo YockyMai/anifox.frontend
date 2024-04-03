@@ -1,4 +1,4 @@
-import { AnifoxLogo } from '@/shared/components'
+import { AnifoxLogo } from '@anifox/ui'
 
 import './header.scss'
 
