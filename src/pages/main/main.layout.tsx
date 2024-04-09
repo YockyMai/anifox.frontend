@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom'
 
 import { Header } from '@/modules/header'
-import { Sidebar } from '@/modules/sidebar'
 
 import './main.layout.scss'
 
@@ -10,7 +9,6 @@ export const MainLayout = () => {
     <div className={'main-layout'}>
       <Header />
       <div className={'main-layout__content'}>
-        {/* <Sidebar /> */}
         <main>
           <Outlet />
         </main>

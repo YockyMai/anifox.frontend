@@ -1,17 +1,16 @@
 import { ReactNode, useEffect } from 'react'
-import { resizeHandlers } from '@/shared/hooks'
+
+import { $resizeModel } from '@/shared/store/resize'
 
 export const withResizeObserver = (component: () => ReactNode) => () => {
-  const handleResize = () => {
-    resizeHandlers.forEach((handler) =>
-      handler({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      }),
-    )
-  }
-
   useEffect(() => {
+    const handleResize = () => {
+      $resizeModel.actions.onChangeWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      })
+    }
+
     window.addEventListener('resize', handleResize)
 
     return () => window.removeEventListener('resize', handleResize)
