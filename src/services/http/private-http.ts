@@ -10,7 +10,7 @@ export const privateHttp = axios.create({
 })
 
 privateHttp.interceptors.request.use((config) => {
-  const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY) || ''
+  const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY) ?? ''
 
   config.headers.Authorization = `Bearer ${accessToken}`
   return config
