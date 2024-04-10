@@ -1,0 +1,101 @@
+// this file no import in app, it serves for css variables autocomplete
+
+:root {
+  /* colors */
+  --background-color: 241, 245, 249;
+  --background-color-900: 24, 33, 54;
+  --background-color-800: 29, 40, 66;
+  --background-color-700: 35, 48, 79;
+  --background-color-600: 40, 56, 92;
+  --background-color-500: 45, 63, 105;
+  --background-color-400: 50, 70, 117;
+  --background-color-300: 56, 79, 133;
+  --background-color-200: 63, 89, 150;
+  --background-color-100: 69, 97, 163;
+
+  --foreground-color: 226, 232, 240;
+  --foreground-color-900: 36, 50, 71;
+  --foreground-color-800: 36, 50, 71;
+  --foreground-color-700: 42, 59, 84;
+  --foreground-color-600: 48, 68, 97;
+  --foreground-color-500: 57, 81, 115;
+  --foreground-color-400: 65, 92, 130;
+  --foreground-color-300: 71, 101, 143;
+  --foreground-color-200: 78, 110, 156;
+  --foreground-color-100: 84, 119, 168;
+
+  --orange-color: 253, 161, 114;
+
+  --title-color: 15, 23, 42;
+  --text-color: 30, 41, 59;
+  --dimmed-color: 71 85 105;
+
+  /* common colors */
+  --white-color: 255, 255, 255;
+  --black-color: 0, 0, 0;
+  --red-color: 239, 68, 68;
+  --green-color: 34, 197, 94;
+  --purple-color: 162, 107, 243;
+}
+
+.site-theme-slate {
+  /* colors */
+  --background-color: 17, 24, 39;
+  --background-color-900: 24, 33, 54;
+  --background-color-800: 29, 40, 66;
+  --background-color-700: 35, 48, 79;
+  --background-color-600: 40, 56, 92;
+  --background-color-500: 45, 63, 105;
+  --background-color-400: 50, 70, 117;
+  --background-color-300: 56, 79, 133;
+  --background-color-200: 63, 89, 150;
+  --background-color-100: 69, 97, 163;
+
+  --foreground-color: 30, 41, 59;
+  --foreground-color-900: 36, 50, 71;
+  --foreground-color-800: 36, 50, 71;
+  --foreground-color-700: 42, 59, 84;
+  --foreground-color-600: 48, 68, 97;
+  --foreground-color-500: 57, 81, 115;
+  --foreground-color-400: 65, 92, 130;
+  --foreground-color-300: 71, 101, 143;
+  --foreground-color-200: 78, 110, 156;
+  --foreground-color-100: 84, 119, 168;
+
+  --orange-color: 252, 155, 76;
+
+  --title-color: 255, 255, 255;
+  --text-color: 148, 163, 184;
+  --dimmed-color: 148, 163, 184;
+}
+
+.site-theme-dark {
+  /* colors */
+  --background-color: 17, 24, 39;
+  --background-color-900: 24, 33, 54;
+  --background-color-800: 29, 40, 66;
+  --background-color-700: 35, 48, 79;
+  --background-color-600: 40, 56, 92;
+  --background-color-500: 45, 63, 105;
+  --background-color-400: 50, 70, 117;
+  --background-color-300: 56, 79, 133;
+  --background-color-200: 63, 89, 150;
+  --background-color-100: 69, 97, 163;
+
+  --foreground-color: 30, 41, 59;
+  --foreground-color-900: 36, 50, 71;
+  --foreground-color-800: 36, 50, 71;
+  --foreground-color-700: 42, 59, 84;
+  --foreground-color-600: 48, 68, 97;
+  --foreground-color-500: 57, 81, 115;
+  --foreground-color-400: 65, 92, 130;
+  --foreground-color-300: 71, 101, 143;
+  --foreground-color-200: 78, 110, 156;
+  --foreground-color-100: 84, 119, 168;
+
+  --orange-color: 252, 155, 76;
+
+  --title-color: 255, 255, 255;
+  --text-color: 148, 163, 184;
+  --dimmed-color: 148, 163, 184;
+}
