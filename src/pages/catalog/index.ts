@@ -1,7 +1,3 @@
-import { lazy } from 'react'
+import { CatalogPage } from './catalog'
 
-export const CatalogPage = lazy(() =>
-  import('./catalog').then((module) => ({
-    default: module.CatalogPage,
-  })),
-)
+export default CatalogPage
