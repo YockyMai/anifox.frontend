@@ -1,6 +1,8 @@
 {
   "home": {},
-  "catalog": {},
+  "catalog": {
+    "page-title": "Anime list"
+  },
   "anime": {},
   "auth": {},
   "common": {}

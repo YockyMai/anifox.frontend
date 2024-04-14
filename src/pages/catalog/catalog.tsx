@@ -1,3 +1,9 @@
+import { CatalogPageHelmet } from './catalog.helmet'
+
 export const CatalogPage = () => {
-  return <div></div>
+  return (
+    <div>
+      <CatalogPageHelmet />
+    </div>
+  )
 }

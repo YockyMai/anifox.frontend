@@ -1,3 +1,9 @@
+import { AnimePageHelmet } from './anime.helmet'
+
 export const AnimePage = () => {
-  return <div></div>
+  return (
+    <div>
+      <AnimePageHelmet />
+    </div>
+  )
 }

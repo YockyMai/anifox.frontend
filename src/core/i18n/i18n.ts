@@ -2,6 +2,8 @@ import i18n from 'i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import Backend from 'i18next-http-backend'
 
+import { config } from '@/config'
+
 import { Languages } from './i18n.interface'
 
 i18n
@@ -9,11 +11,11 @@ i18n
   .use(LanguageDetector)
   .init({
     fallbackLng: Languages.RU,
-    debug: true,
+    debug: config.IS_DEV_MODE,
 
     interpolation: {
-      escapeValue: false, // not needed for react as it escapes by default
-    },
+      escapeValue: false // not needed for react as it escapes by default
+    }
   })
 
 export default i18n
