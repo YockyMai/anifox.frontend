@@ -1,9 +1,10 @@
 .site_header {
-  --header-color: 30, 41, 59;
+  --header-height: 2.5em;
 
   height: var(--header-height);
   background-color: rgb(var(--foreground-color));
   display: grid;
+  align-items: center;
   padding: 0px 1rem;
   grid-template-columns: var(--sidebar-width) auto;
 }

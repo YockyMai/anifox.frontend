@@ -1,20 +1,27 @@
 import { Route, Routes } from 'react-router-dom'
 
-import { AnimeLayout, AnimePage } from '@/pages/anime'
-import { CatalogPage } from '@/pages/catalog'
-
-import { MainLayout, MainPage } from './main'
+import { PAGE_URLS } from './pages.const'
+import { PAGES } from './pages.routes'
 
 export const Pages = () => {
   return (
     <Routes>
-      <Route path={'/'} element={<MainLayout />}>
-        <Route index element={<MainPage />} />
-        <Route path={'anime'}>
-          <Route index element={<CatalogPage />} />
-          <Route path={'title/:animeUrl'} element={<AnimeLayout />}>
-            <Route index element={<AnimePage />} />
+      <Route path={PAGE_URLS.HOME} element={<PAGES.HOME.LAYOUT />}>
+        <Route index element={<PAGES.HOME.PAGE />} />
+        <Route path={PAGE_URLS.CATALOG.ROOT}>
+          <Route index element={<PAGES.CATALOG.ROOT.PAGE />} />
+          <Route
+            path={PAGE_URLS.CATALOG.ANIME.ROOT}
+            element={<PAGES.CATALOG.ANIME.ROOT.LAYOUT />}
+          >
+            <Route index element={<PAGES.CATALOG.ANIME.ROOT.LAYOUT />} />
           </Route>
+        </Route>
+        <Route path={PAGE_URLS.SIGN_UP} element={<PAGES.SIGN_UP.LAYOUT />}>
+          <Route index element={<PAGES.SIGN_UP.PAGE />} />
+        </Route>
+        <Route path={PAGE_URLS.LOGIN} element={<PAGES.LOGIN.LAYOUT />}>
+          <Route index element={<PAGES.LOGIN.PAGE />} />
         </Route>
       </Route>
     </Routes>
