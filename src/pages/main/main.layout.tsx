@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 
+import { Footer } from '@/modules/footer'
 import { Header } from '@/modules/header'
 import { Sidebar } from '@/modules/sidebar'
 
@@ -15,6 +16,7 @@ export const MainLayout = () => {
           <Outlet />
         </main>
       </div>
+      <Footer />
     </div>
   )
 }

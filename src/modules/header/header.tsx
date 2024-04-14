@@ -1,11 +1,16 @@
-import { AnifoxLogo } from '@/shared/components'
+import { AnifoxLogo } from '@anifox/ui'
+import { Link } from 'react-router-dom'
+
+import { Routes } from '@/shared/routing/paths'
 
 import './header.scss'
 
 export const Header = () => {
   return (
     <header className="site_header">
-      <AnifoxLogo />
+      <Link to={Routes.MAIN}>
+        <AnifoxLogo />
+      </Link>
     </header>
   )
 }
