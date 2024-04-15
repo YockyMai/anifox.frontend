@@ -1,16 +1,16 @@
 export const PAGE_URLS = {
   HOME: '/',
   CATALOG: {
-    ROOT: '/anime',
+    ROOT: 'anime',
     ANIME: {
-      ROOT: '/anime/title/:animeUrl',
-      CHARACTERS: '/anime/title/:animeUrl/characters',
-      REVIEWS: '/anime/title/:animeUrl/reviews'
+      ROOT: 'title/:animeUrl',
+      CHARACTERS: 'title/:animeUrl/characters',
+      REVIEWS: 'title/:animeUrl/reviews'
     }
   },
   WATCH: `/watch/:animeUrl`,
   SETTINGS: '/settings',
   LOGIN: '/login',
-  SIGN_UP: '/sign-up',
+  SIGN_UP: '/signup',
   RIGHT_HOLDERS: '/right-holders'
 }
