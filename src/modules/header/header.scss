@@ -1,10 +1,30 @@
 .site_header {
-  --header-height: 2.5em;
+  position: fixed;
 
+  width: 100%;
+  left: 0;
+  top: 0;
   height: var(--header-height);
-  background-color: rgb(var(--foreground-color));
-  display: grid;
-  align-items: center;
-  padding: 0px 1rem;
-  grid-template-columns: var(--sidebar-width) auto;
+  background-color: rgb(var(--color-foreground));
+  z-index: 999;
+  transition: var(--transition-duration-md);
+  display: flex;
+  justify-content: center;
+
+  &__hidden {
+    transition: var(--transition-duration-md);
+    top: calc(var(--header-height) * -1);
+  }
+
+  &__transparent {
+    transition: var(--transition-duration-md);
+    background-color: rgb(var(--color-foreground), 0.1);
+  }
+
+  &__content {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

@@ -3,17 +3,17 @@ import { lazy } from 'react'
 export const ROUTES = {
   HOME: '/',
   CATALOG: {
-    ROOT: 'anime',
+    ROOT: '/anime',
     ANIME: {
-      ROOT: 'title/:animeUrl',
-      CHARACTERS: 'title/:animeUrl/characters',
-      REVIEWS: 'title/:animeUrl/reviews'
+      ROOT: '/anime/title/:animeUrl',
+      CHARACTERS: '/anime/title/:animeUrl/characters',
+      REVIEWS: '/anime/title/:animeUrl/reviews'
     }
   },
   WATCH: `/watch/:animeUrl`,
   SETTINGS: '/settings',
   LOGIN: '/login',
-  SIGNUP: '/signup',
+  SIGN_UP: '/signup',
   RIGHT_HOLDERS: '/right-holders'
 }
 
