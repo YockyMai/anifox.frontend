@@ -22,10 +22,13 @@ const API_URL = getEnvVar(
   IS_DEV_MODE ? EnvKeys.APP_DEV_API_URL : EnvKeys.APP_API_URL
 )
 
+const PROXY_HOST = getEnvVar(EnvKeys.PROXY_HOST)
+
 export const config = {
   LIGHTBOX_LICENSE_KEY,
   NODE_ENV,
   IS_DEV_MODE,
   IS_PROD_MODE,
-  API_URL
+  API_URL,
+  PROXY_HOST
 }
