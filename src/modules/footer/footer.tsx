@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-import './footer.scss'
+import './footer.css'
 
 export const Footer = () => {
   const { t } = useTranslation()

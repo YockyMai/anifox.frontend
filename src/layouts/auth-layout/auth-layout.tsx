@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 
-import './auth-layout.scss'
+import './auth-layout.css'
 
 export const AuthLayout = () => {
   return (

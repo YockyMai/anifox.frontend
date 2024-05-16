@@ -1,6 +1,6 @@
 import { ProgressBar } from '@anifox/ui'
 
-import './suspense-page-loader.scss'
+import './suspense-page-loader.css'
 
 export const SuspensePageLoader = () => {
   return (
