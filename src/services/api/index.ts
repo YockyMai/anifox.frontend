@@ -12,6 +12,7 @@ import { fetchFavoriteAnimeList } from './fetch-favorite-anime-list'
 import { fetchRelatedAnime } from './fetch-related-anime'
 import { fetchSimilarAnime } from './fetch-similar-anime'
 import { setAnimeStatus } from './set-anime-status'
+import { signup } from './sign-up'
 
 export const api = {
   fetchAnimeEpisodes,
@@ -27,7 +28,8 @@ export const api = {
   fetchSimilarAnime,
   fetchAnimeList,
   fetchAnimeRating,
-  setAnimeStatus
+  setAnimeStatus,
+  signup
 }
 
 // export types
@@ -79,3 +81,5 @@ export type { AnimeTranslation } from './fetch-anime-translation'
 export type { RelatedAnime } from './fetch-related-anime'
 
 export type { AnimeRating } from './fetch-anime-rating'
+
+export type { SignUpParams } from './sign-up'

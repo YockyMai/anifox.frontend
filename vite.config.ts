@@ -5,24 +5,28 @@ import { defineConfig } from 'vite'
 // https://vitejs.dev/config/
 
 export default defineConfig({
-  plugins: [
-    react()
-  ],
+  plugins: [react()],
   build: {
     modulePreload: false,
     target: 'esnext',
     minify: false,
-    cssCodeSplit: false,
+    cssCodeSplit: false
   },
   server: {
     watch: {
-      usePolling: true,
+      usePolling: true
     },
     host: true,
     strictPort: true,
     port: 8000,
+    proxy: {
+      '/api': {
+        secure: false,
+        target: 'http://anifox.org:12200/'
+      }
+    }
   },
   resolve: {
-    alias: [{ find: '@', replacement: path.resolve(__dirname, 'src/') }],
-  },
+    alias: [{ find: '@', replacement: path.resolve(__dirname, 'src/') }]
+  }
 })
