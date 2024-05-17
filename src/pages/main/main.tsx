@@ -1,5 +1,5 @@
-import './main.scss'
+import './main.css'
 
 export const MainPage = () => {
-  return <div></div>
+  return <div className='main-page'></div>
 }

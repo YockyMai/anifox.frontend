@@ -6,7 +6,7 @@ import { useStore } from 'zustand'
 
 import { ROUTES } from '@/pages/pages.routes'
 
-import './header.scss'
+import './header.css'
 import { $headerModel } from './model/header.model'
 
 export const Header = () => {

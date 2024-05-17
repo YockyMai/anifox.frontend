@@ -5,7 +5,7 @@ import { Footer } from '@/modules/footer'
 import { Header } from '@/modules/header'
 import { SuspensePageLoader } from '@/shared/components'
 
-import './main-layout.scss'
+import './main-layout.css'
 
 export const MainLayout = () => {
   return (
