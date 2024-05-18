@@ -1,10 +1,3 @@
 .site_footer {
-  --footer-height: 2.5em;
-
-  height: var(--footer-height);
-  background-color: rgb(var(--color-foreground));
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 1rem;
+  @apply flex items-start justify-between bg-slate-200 px-4 py-1;
 }

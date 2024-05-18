@@ -16,12 +16,11 @@ export type CreateModelOptions<
   }
 }
 
-export type ActionCreator<Fn> = Fn extends (
-  state: any,
-  payload: infer Payload
-) => any
-  ? (payload: Payload) => void
-  : (payload: any) => void
+export type ActionCreator<Fn> = Fn extends (state: any) => any
+  ? () => void
+  : Fn extends (state: any, payload: infer Payload) => any
+    ? (payload: Payload) => void
+    : never
 
 export type CaseModelAction<ActionFn extends ActionFunction<any>> = {
   [Key in keyof ActionFn]: ActionCreator<ActionFn[Key]>

@@ -5,7 +5,6 @@ export const CatalogPageHelmet = () => {
   const { t } = useTranslation()
 
   const title = t('catalog.page-title')
-  // TODO: разобраться с синхронизацией перевода i18n между frontend и ui проектами
 
   return <Helmet title={title} />
 }

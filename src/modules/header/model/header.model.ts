@@ -2,18 +2,20 @@ import { createModel } from '@/shared/lib/store'
 
 import { HeaderModel } from './header.interface'
 
-export const $headerModel = createModel<HeaderModel>({
-  initialState: {
-    isTransparent: false,
-    hidden: false,
-    color: null
-  },
+const initialState: HeaderModel = {
+  isTransparent: false,
+  isVisible: true,
+  color: null
+}
+
+export const $headerModel = createModel({
+  initialState,
   actions: {
     setIsTransparent: (state, transparent: boolean) => {
       state.isTransparent = transparent
     },
-    setHidden: (state, hidden: boolean) => {
-      state.hidden = hidden
+    changeVisibility: (state, isVisible: boolean) => {
+      state.isVisible = isVisible
     },
     changeHeaderColor: (state, color: string) => {
       state.color = color

@@ -7,7 +7,7 @@ const initialState: ResizeStore = {
   width: window.innerWidth
 }
 
-export const $resizeModel = createModel<ResizeStore>({
+export const $resizeModel = createModel({
   initialState,
   actions: {
     onChangeWindowSize: (state, payload: OnChangeWindowSizePayload) => {

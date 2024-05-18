@@ -7,19 +7,24 @@ import { useStore } from 'zustand'
 import { ROUTES } from '@/pages/pages.routes'
 
 import './header.css'
+import { useOnChangeHeaderVisibility } from './hooks'
 import { $headerModel } from './model/header.model'
 
 export const Header = () => {
   const { t } = useTranslation()
 
-  const { hidden, isTransparent, color } = useStore($headerModel.store)
+  const { isVisible, isTransparent, color } = useStore($headerModel.store)
+
+  useOnChangeHeaderVisibility((isVisible) =>
+    $headerModel.actions.changeVisibility(isVisible)
+  )
 
   return (
     <header
       className={clsx(
         'site_header',
         isTransparent && 'site_header__transparent',
-        hidden && 'site_header__hidden'
+        !isVisible && 'site_header__hidden'
       )}
       style={{ backgroundColor: color ? color : undefined }}
     >

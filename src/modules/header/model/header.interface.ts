@@ -1,5 +1,5 @@
 export type HeaderModel = {
   isTransparent: boolean
-  hidden: boolean
+  isVisible: boolean
   color: null | string
 }

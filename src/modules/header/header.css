@@ -1,30 +1,17 @@
 .site_header {
-  position: fixed;
-
-  width: 100%;
-  left: 0;
-  top: 0;
-  height: var(--header-height);
-  background-color: rgb(var(--color-foreground));
-  z-index: 999;
-  transition: var(--transition-duration-md);
-  display: flex;
-  justify-content: center;
+  @apply fixed left-0 top-0 z-50;
+  @apply flex h-16 w-full items-center justify-center bg-slate-200;
+  @apply transition-transform duration-300;
 
   &__hidden {
-    transition: var(--transition-duration-md);
-    top: calc(var(--header-height) * -1);
+    @apply -translate-y-full;
   }
 
   &__transparent {
-    transition: var(--transition-duration-md);
-    background-color: rgb(var(--color-foreground), 0.1);
+    @apply bg-slate-200/5;
   }
 
   &__content {
-    width: 50%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @apply flex w-1/2 items-start justify-between;
   }
 }
