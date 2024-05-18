@@ -12,8 +12,8 @@ dependencies:
     specifier: ^1.0.1
     version: 1.0.1
   '@anifox/ui':
-    specifier: ^1.3.0
-    version: 1.3.0(@tabler/icons-react@3.3.0)(@types/react-dom@18.2.18)(@types/react@18.2.48)(clsx@2.1.1)(embla-carousel@8.1.0)(react-dom@18.3.1)(react@18.3.1)
+    specifier: ^1.4.0
+    version: 1.4.0(@tabler/icons-react@3.3.0)(@types/react-dom@18.2.18)(@types/react@18.2.48)(clsx@2.1.1)(embla-carousel@8.1.0)(react-dom@18.3.1)(react@18.3.1)
   '@hookform/resolvers':
     specifier: ^3.3.4
     version: 3.3.4(react-hook-form@7.51.4)
@@ -165,8 +165,8 @@ packages:
     resolution: {integrity: sha512-a8OX4vAO93DDcX7SwJXddpbUW1vVQZKmD7EQEHoGipgVLYLELERrooJXWn5CSpOuWjZaDh4gYvlDeu8WydVQwQ==}
     dev: false
 
-  /@anifox/ui@1.3.0(@tabler/icons-react@3.3.0)(@types/react-dom@18.2.18)(@types/react@18.2.48)(clsx@2.1.1)(embla-carousel@8.1.0)(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-2TQ3uxuPgm+NYHAVRTbzL+JDi3aawcap1p5pZT/epzPOgeBLdXZ4u/BNNOl+HXQjkKRfjPQWtopUS2jGvRlmIw==}
+  /@anifox/ui@1.4.0(@tabler/icons-react@3.3.0)(@types/react-dom@18.2.18)(@types/react@18.2.48)(clsx@2.1.1)(embla-carousel@8.1.0)(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-+hkPtpO4ZNBTcAt9OkyGyOPp42TjjGo2QFBtMUSKBg57TXq1Ms0P8DNJ17k36xJXzLYPU1huHWx97GmLiWrySA==}
     peerDependencies:
       '@tabler/icons-react': ^3.3.0
       clsx: ^2.1.1
