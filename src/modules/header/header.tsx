@@ -1,4 +1,4 @@
-import { Button, AnifoxLogo, UISizes } from '@anifox/ui'
+import { Button, AnifoxLogo, Tabs } from '@anifox/ui'
 import { clsx } from 'clsx'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -6,8 +6,11 @@ import { useStore } from 'zustand'
 
 import { ROUTES } from '@/pages/pages.routes'
 
+import { RandomButton } from './components/random-button/random-button'
+import { SearchButton } from './components/search-button/search-button'
 import './header.css'
 import { useOnChangeHeaderVisibility } from './hooks'
+import { useHeaderLinks } from './hooks/use-header-links'
 import { $headerModel } from './model/header.model'
 
 export const Header = () => {
@@ -19,21 +22,37 @@ export const Header = () => {
     $headerModel.actions.changeVisibility(isVisible)
   )
 
+  const headerLinks = useHeaderLinks()
+
   return (
     <header
       className={clsx(
-        'site_header',
-        isTransparent && 'site_header__transparent',
-        !isVisible && 'site_header__hidden'
+        'site-header',
+        isTransparent && 'site-header__transparent',
+        !isVisible && 'site-header__hidden'
       )}
       style={{ backgroundColor: color ? color : undefined }}
     >
-      <div className='site_header__content'>
+      <div className='site-header__left-section'>
         <Link to={ROUTES.HOME}>
           <AnifoxLogo />
         </Link>
+
+        <nav className='site-header__nav'>
+          <Tabs
+            tabs={headerLinks.map(({ content, path }) => ({
+              content: <Link to={path}>{content}</Link>,
+              key: path
+            }))}
+          />
+        </nav>
+
+        <RandomButton />
+      </div>
+      <div className='site-header__left-section'>
+        <SearchButton />
         <Link to={ROUTES.SIGN_UP}>
-          <Button size={UISizes.MD} withRipple>
+          <Button variant='outline' color='light-blue' size='sm' withRipple>
             {t('Регистрация')}
           </Button>
         </Link>

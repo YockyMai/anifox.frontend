@@ -1,0 +1,20 @@
+.anime-sort {
+  @apply flex h-10 w-10 items-center justify-center;
+}
+
+.anime-sort__dropdown {
+  @apply flex flex-col rounded bg-slate-200 py-1 pl-3 pr-7;
+
+  &__option {
+    @apply py-1.5 text-left;
+    @apply transition-colors hover:text-slate-500;
+
+    &_active {
+      @apply text-orange-300 !important;
+    }
+
+    p {
+      @apply text-sm;
+    }
+  }
+}

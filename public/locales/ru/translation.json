@@ -15,5 +15,13 @@
       }
     }
   },
-  "common": {}
+  "header": {
+    "links-title": {
+      "new-anime": "Новинки",
+      "popular": "Популярное"
+    }
+  },
+  "common": {
+    "anime": "Аниме"
+  }
 }

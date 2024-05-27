@@ -10,7 +10,7 @@ export const SuspensePageLoader = () => {
         src={'/anifox-logo-text.webp'}
         className={'page-loader__image'}
       />
-      <ProgressBar />
+      <ProgressBar animationDuration={100} />
     </div>
   )
 }

@@ -1,9 +1,12 @@
+import { AnimeCatalog } from '@/modules/anime-catalog'
+
 import { CatalogPageHelmet } from './catalog.helmet'
 
 export const CatalogPage = () => {
   return (
-    <div>
+    <div className='mt-28'>
       <CatalogPageHelmet />
+      <AnimeCatalog />
     </div>
   )
 }

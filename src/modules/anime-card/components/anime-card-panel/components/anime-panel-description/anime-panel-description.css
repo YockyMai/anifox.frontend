@@ -1,0 +1,30 @@
+.anime-panel-description {
+  @apply my-2 flex overflow-hidden rounded bg-slate-200 dark:bg-slate-700;
+
+  &__title {
+    @apply flex items-center justify-center bg-purple-400;
+    @apply py-2 text-center text-xs text-white;
+
+    writing-mode: vertical-lr;
+  }
+
+  &__content {
+    @apply relative px-1 pb-5 pt-2 transition-all;
+
+    &_collapsed {
+      @apply max-h-[75px];
+    }
+  }
+
+  &__text {
+    @apply h-fit w-full text-xs text-slate-700 transition-all dark:text-slate-400;
+  }
+
+  &__show-button {
+    @apply absolute bottom-0 left-1/2 w-full -translate-x-1/2;
+  }
+
+  &__show-badge {
+    @apply py-0 text-xs;
+  }
+}

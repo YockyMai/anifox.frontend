@@ -6,7 +6,15 @@ export type AnimeMinimalAge = 18 | 16 | 12 | 6 | 0
 export type AnimeRatingMpa = 'PG' | 'PG-13' | 'R' | 'R+' | 'G'
 export type AnimeSeasons = 'Winter' | 'Spring' | 'Summer' | 'Fall'
 export type AnimeStatuses = 'Released' | 'Ongoing'
-export type AnimeOrderVariants = 'random' | 'popular' | 'views'
+export type AnimeOrderVariants =
+  | 'DateASCUpdate'
+  | 'DateDESCUpdate'
+  | 'DateAiredASC'
+  | 'DateAiredDESC'
+  | 'DateASCCreate'
+  | 'DateDESCCreate'
+  | 'ShikimoriRating'
+
 export type AnimeTypeVariants =
   | 'Movie'
   | 'Ona'
@@ -19,6 +27,7 @@ export type Anime = {
   url: string
   title: string
   image: AnimeImageVariants
+  description: string
   episodes_aired: number
   studio?: AnimeStudio[]
   season?: AnimeSeasons

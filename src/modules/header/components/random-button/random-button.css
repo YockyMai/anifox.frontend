@@ -1,0 +1,6 @@
+.random-button {
+  @apply flex items-center gap-1;
+  svg {
+    @apply h-5 w-5;
+  }
+}

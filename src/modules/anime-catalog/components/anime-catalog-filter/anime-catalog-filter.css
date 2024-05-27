@@ -1,0 +1,7 @@
+.anime-catalog-filter {
+  @apply mb-8 flex items-center justify-between;
+
+  &__left-section {
+    @apply flex items-end gap-3;
+  }
+}
