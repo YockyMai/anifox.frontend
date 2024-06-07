@@ -18,7 +18,8 @@ export const useGetAnimeList = (params: FetchAnimeListParams) =>
       params.type,
       params.years,
       params.translations,
-      params.studio
+      params.studio,
+      params.sort
     ],
     queryFn: async ({ pageParam = 0 }) => {
       const { data } = await api.fetchAnimeList({

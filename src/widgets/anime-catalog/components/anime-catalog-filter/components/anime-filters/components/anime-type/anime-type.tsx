@@ -1,8 +1,8 @@
 import { Select } from '@anifox/ui'
 import { useStore } from 'zustand'
 
-import { $animeCatalogFilterModel } from '@/modules/anime-catalog/model/anime-catalog-filter'
 import { AnimeTypeVariants } from '@/services/api'
+import { $animeCatalogFilterModel } from '@/widgets/anime-catalog/model/anime-catalog-filter'
 
 import { TYPE_OPTIONS } from './anime-type.const'
 

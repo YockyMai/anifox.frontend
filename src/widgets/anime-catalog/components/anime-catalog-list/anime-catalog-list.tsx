@@ -3,8 +3,8 @@ import { Fragment, Suspense, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { useStore } from 'zustand'
 
-import { AnimeCardSkeleton } from '@/modules/anime-card'
-import { AnimeCard } from '@/modules/anime-card'
+import { AnimeCardSkeleton } from '@/entity/anime/anime-card'
+import { AnimeCard } from '@/entity/anime/anime-card'
 import { useGetAnimeList } from '@/services/queries'
 
 import { $animeCatalogFilterModel } from '../../model/anime-catalog-filter'
@@ -18,13 +18,14 @@ export const AnimeCatalogList = () => {
     genres,
     minimal_age,
     rating_mpa,
-    orderBy,
+    order,
     season,
     status,
     type,
     years,
     translations,
-    studio
+    studio,
+    sort
   } = useStore($animeCatalogFilterModel.store)
 
   const {
@@ -43,7 +44,8 @@ export const AnimeCatalogList = () => {
     season,
     rating_mpa,
     minimal_age,
-    order: orderBy,
+    order,
+    sort,
     type,
     years,
     studio

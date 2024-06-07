@@ -4,16 +4,18 @@ import {
   AnimeOrderVariants,
   AnimeRatingMpa,
   AnimeSeasons,
+  AnimeSortDirection,
   AnimeStatuses,
   AnimeTranslation,
   AnimeTypeVariants
 } from '@/services/api'
 import { createModel } from '@/shared/lib/store'
 
+import { ANIME_SORT_DIRECTION } from './anime-catalog-filter.const'
 import { AnimeCatalogFilterState } from './anime-catalog-filter.interface'
 
 const initialState: AnimeCatalogFilterState = {
-  orderBy: null,
+  order: null,
   status: null,
   search: '',
   genres: [],
@@ -23,7 +25,8 @@ const initialState: AnimeCatalogFilterState = {
   type: null,
   years: [],
   translations: [],
-  studio: null
+  studio: null,
+  sort: ANIME_SORT_DIRECTION.DESC
 }
 
 export const $animeCatalogFilterModel = createModel({
@@ -35,8 +38,8 @@ export const $animeCatalogFilterModel = createModel({
     setStatus: (state, status: AnimeStatuses) => {
       state.status = status
     },
-    setOrderBy: (state, orderBy: AnimeOrderVariants) => {
-      state.orderBy = orderBy
+    setOrder: (state, order: AnimeOrderVariants) => {
+      state.order = order
     },
     addGenre: (state, genre: AnimeGenre) => {
       state.genres.push(genre)
@@ -86,6 +89,9 @@ export const $animeCatalogFilterModel = createModel({
     },
     setStudio: (state, studio: string) => {
       state.studio = studio
+    },
+    setSort: (state, sort: AnimeSortDirection) => {
+      state.sort = sort
     }
   }
 })

@@ -16,6 +16,7 @@ export const fetchAnimeList = async ({
   years,
   translations,
   studio,
+  sort,
   page
 }: FetchAnimeListParams) => {
   const params = {
@@ -28,7 +29,8 @@ export const fetchAnimeList = async ({
     ...(season && { season }),
     ...(order && { order }),
     ...(type && { type }),
-    ...(studio && { studio })
+    ...(studio && { studio }),
+    ...(sort && { sort })
   }
 
   const response = await publicHttp.get<Anime[]>(

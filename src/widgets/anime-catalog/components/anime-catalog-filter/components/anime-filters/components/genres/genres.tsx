@@ -2,8 +2,8 @@ import { MultiSelect } from '@anifox/ui'
 import { SelectOption } from '@anifox/ui/dist/components/select/select.interface'
 import { useStore } from 'zustand'
 
-import { $animeCatalogFilterModel } from '@/modules/anime-catalog/model/anime-catalog-filter'
 import { useGetAnimeGenres } from '@/services/queries'
+import { $animeCatalogFilterModel } from '@/widgets/anime-catalog/model/anime-catalog-filter'
 
 export const Genres = () => {
   const { data, isLoading } = useGetAnimeGenres()

@@ -1,4 +1,4 @@
-import { AnimeCatalog } from '@/modules/anime-catalog'
+import { AnimeCatalog } from '@/widgets/anime-catalog'
 
 import { CatalogPageHelmet } from './catalog.helmet'
 

@@ -50,7 +50,7 @@ export type {
   AnimeStatuses,
   AnimeTypeVariants,
   FetchAnimeListParams,
-  AnimeSort
+  AnimeSortDirection
 } from './fetch-anime-list'
 
 export type {

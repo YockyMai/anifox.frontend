@@ -4,7 +4,7 @@ import { IconSearch, IconX } from '@tabler/icons-react'
 import { useEffect, useState } from 'react'
 import { useStore } from 'zustand'
 
-import { $animeCatalogFilterModel } from '@/modules/anime-catalog/model/anime-catalog-filter'
+import { $animeCatalogFilterModel } from '@/widgets/anime-catalog/model/anime-catalog-filter'
 
 import './search.css'
 

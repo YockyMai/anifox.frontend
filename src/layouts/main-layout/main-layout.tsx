@@ -1,9 +1,9 @@
 import { Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
 
-import { Footer } from '@/modules/footer'
-import { Header } from '@/modules/header'
 import { SuspensePageLoader } from '@/shared/components'
+import { Footer } from '@/widgets/footer'
+import { Header } from '@/widgets/header'
 
 import './main-layout.css'
 

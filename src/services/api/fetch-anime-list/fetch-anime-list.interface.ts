@@ -6,14 +6,8 @@ export type AnimeMinimalAge = 18 | 16 | 12 | 6 | 0
 export type AnimeRatingMpa = 'PG' | 'PG-13' | 'R' | 'R+' | 'G'
 export type AnimeSeasons = 'Winter' | 'Spring' | 'Summer' | 'Fall'
 export type AnimeStatuses = 'Released' | 'Ongoing'
-export type AnimeOrderVariants =
-  | 'DateASCUpdate'
-  | 'DateDESCUpdate'
-  | 'DateAiredASC'
-  | 'DateAiredDESC'
-  | 'DateASCCreate'
-  | 'DateDESCCreate'
-  | 'ShikimoriRating'
+export type AnimeOrderVariants = 'Update' | 'Aired' | 'Released' | 'Random'
+export type AnimeSortDirection = 'Asc' | 'Desc'
 
 export type AnimeTypeVariants =
   | 'Movie'
@@ -51,6 +45,7 @@ export type FetchAnimeListParams = {
   season?: AnimeSeasons | null
   genres?: string[] | null
   order?: AnimeOrderVariants | null
+  sort?: AnimeSortDirection | null
   type?: AnimeTypeVariants | null
   years?: string[] | null
   translations?: string[] | null

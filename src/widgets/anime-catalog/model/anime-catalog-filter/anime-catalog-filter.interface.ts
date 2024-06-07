@@ -4,6 +4,7 @@ import {
   AnimeOrderVariants,
   AnimeRatingMpa,
   AnimeSeasons,
+  AnimeSortDirection,
   AnimeStatuses,
   AnimeTranslation,
   AnimeTypeVariants
@@ -12,7 +13,8 @@ import {
 export type AnimeCatalogFilterState = {
   search: string
   status: AnimeStatuses | null
-  orderBy: AnimeOrderVariants | null
+  order: AnimeOrderVariants | null
+  sort: AnimeSortDirection
   genres: AnimeGenre[]
   season: AnimeSeasons | null
   rating_mpa: AnimeRatingMpa | null

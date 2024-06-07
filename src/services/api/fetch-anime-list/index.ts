@@ -7,5 +7,6 @@ export type {
   AnimeSeasons,
   AnimeStatuses,
   AnimeTypeVariants,
-  FetchAnimeListParams
+  FetchAnimeListParams,
+  AnimeSortDirection
 } from './fetch-anime-list.interface'

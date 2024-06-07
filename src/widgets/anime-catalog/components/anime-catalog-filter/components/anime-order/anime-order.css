@@ -1,0 +1,35 @@
+.anime-order {
+  @apply flex h-10 w-10 items-center justify-center;
+}
+
+.anime-order__dropdown {
+  @apply flex flex-col overflow-hidden rounded bg-slate-800 drop-shadow-sm;
+
+  &__header {
+    @apply flex w-full items-center gap-8 bg-slate-700 px-2 py-2;
+    p {
+      @apply text-sm text-slate-50;
+    }
+  }
+
+  &__sort {
+    @apply flex items-center gap-3;
+
+    &__icon {
+      @apply text-slate-50;
+    }
+  }
+
+  &__option {
+    @apply px-2 py-1.5 text-left;
+    @apply transition-colors hover:text-slate-50;
+
+    &_active {
+      @apply bg-slate-900 text-slate-50;
+    }
+
+    p {
+      @apply text-sm;
+    }
+  }
+}
