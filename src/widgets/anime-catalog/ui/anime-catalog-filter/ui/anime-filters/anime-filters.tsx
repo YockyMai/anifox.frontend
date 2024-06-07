@@ -1,5 +1,5 @@
 import './anime-filters.css'
-import { AnimeType, Genres, Search } from './components'
+import { AnimeType, Genres, Search } from './ui'
 
 export const AnimeFilters = () => {
   const filters = [<Search />, <AnimeType />, <Genres />]

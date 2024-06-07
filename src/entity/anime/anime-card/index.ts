@@ -1,1 +1,1 @@
-export { AnimeCard, AnimeCardSkeleton } from './components'
+export { AnimeCard, AnimeCardSkeleton } from './ui'

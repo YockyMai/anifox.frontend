@@ -3,7 +3,7 @@ import { Image, UnstyledButton, Badge } from '@anifox/ui'
 import { getAnimeAccentColorStyles } from '../../helpers'
 import './anime-card-panel.css'
 import { AnimeCardPanelProps } from './anime-card-panel.interface'
-import { AnimePanelDescription } from './components'
+import { AnimePanelDescription } from './ui'
 
 export const AnimeCardPanel = ({ anime }: AnimeCardPanelProps) => {
   const cardAccentColorsStyles = getAnimeAccentColorStyles(

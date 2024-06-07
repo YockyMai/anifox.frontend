@@ -5,9 +5,9 @@ export const ROUTES = {
   CATALOG: {
     ROOT: '/anime',
     ANIME: {
-      ROOT: '/anime/title/:animeUrl',
-      CHARACTERS: '/anime/title/:animeUrl/characters',
-      REVIEWS: '/anime/title/:animeUrl/reviews'
+      ROOT: '/anime/:animeUrl',
+      CHARACTERS: '/anime/:animeUrl/characters',
+      REVIEWS: '/anime/:animeUrl/reviews'
     }
   },
   WATCH: `/watch/:animeUrl`,

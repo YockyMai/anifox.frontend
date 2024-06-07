@@ -6,12 +6,12 @@ import { useStore } from 'zustand'
 
 import { ROUTES } from '@/pages/pages.routes'
 
-import { RandomButton } from './components/random-button/random-button'
-import { SearchButton } from './components/search-button/search-button'
 import './header.css'
 import { useOnChangeHeaderVisibility } from './hooks'
 import { useHeaderLinks } from './hooks/use-header-links'
 import { $headerModel } from './model/header.model'
+import { RandomButton } from './ui/random-button/random-button'
+import { SearchButton } from './ui/search-button/search-button'
 
 export const Header = () => {
   const { t } = useTranslation()

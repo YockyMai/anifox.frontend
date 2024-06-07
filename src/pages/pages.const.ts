@@ -3,9 +3,9 @@ export const PAGE_URLS = {
   CATALOG: {
     ROOT: 'anime',
     ANIME: {
-      ROOT: 'title/:animeUrl',
-      CHARACTERS: 'title/:animeUrl/characters',
-      REVIEWS: 'title/:animeUrl/reviews'
+      ROOT: ':animeUrl',
+      CHARACTERS: ':animeUrl/characters',
+      REVIEWS: ':animeUrl/reviews'
     }
   },
   WATCH: `/watch/:animeUrl`,

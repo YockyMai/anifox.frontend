@@ -1,5 +1,5 @@
 import './anime-catalog-filter.css'
-import { AnimeFilters, AnimeOrder } from './components'
+import { AnimeFilters, AnimeOrder } from './ui'
 
 export const AnimeCatalogFilter = () => {
   return (

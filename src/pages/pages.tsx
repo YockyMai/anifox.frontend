@@ -14,7 +14,7 @@ export const Pages = () => {
             path={PAGE_URLS.CATALOG.ANIME.ROOT}
             element={<PAGES.CATALOG.ANIME.ROOT.LAYOUT />}
           >
-            <Route index element={<PAGES.CATALOG.ANIME.ROOT.LAYOUT />} />
+            <Route index element={<PAGES.CATALOG.ANIME.ROOT.PAGE />} />
           </Route>
         </Route>
         <Route path={PAGE_URLS.SIGN_UP} element={<PAGES.SIGN_UP.LAYOUT />}>

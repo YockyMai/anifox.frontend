@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { SidebarCollapsed } from './components/sidebar-collapsed'
+import { SidebarCollapsed } from './ui/sidebar-collapsed'
 
 export const Sidebar = () => {
   const [isCollapsed] = useState(true)
