@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@anifox/hooks": "^1.0.0",
-    "@anifox/tailwind-config": "^1.0.1",
+    "@anifox/tailwind-config": "^1.0.3",
     "@anifox/ui": "^1.4.4",
     "@hookform/resolvers": "^3.3.4",
     "@tabler/icons-react": "^3.3.0",

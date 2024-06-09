@@ -1,7 +1,26 @@
 .anime-catalog-filter {
-  @apply mb-8 flex items-center justify-between;
+  @apply fixed top-[--header-height] z-50;
+  @apply w-full pb-4 pt-10 transition-all duration-500;
+
+  &__container {
+    @apply container mx-auto flex items-center justify-between;
+  }
 
   &__left-section {
     @apply flex items-end gap-3;
+  }
+
+  &_sticky {
+    @apply bg-light/50 pt-2 drop-shadow-sm backdrop-blur-md transition-all duration-500;
+
+    .input__label,
+    .select__label,
+    .multi-select__label {
+      @apply text-slate-700 transition-colors duration-500 !important;
+    }
+  }
+
+  &_without-header {
+    @apply -translate-y-[--header-height] transition-all duration-500;
   }
 }

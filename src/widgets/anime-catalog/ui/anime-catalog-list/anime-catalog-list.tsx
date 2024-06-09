@@ -52,6 +52,23 @@ export const AnimeCatalogList = () => {
   })
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [
+    status,
+    season,
+    rating_mpa,
+    minimal_age,
+    order,
+    sort,
+    type,
+    years,
+    studio,
+    translations,
+    genres,
+    search
+  ])
+
+  useEffect(() => {
     if (loadMoreTriggerInView && !isFetchingNextPage && hasNextPage)
       fetchNextPage()
   }, [fetchNextPage, hasNextPage, isFetchingNextPage, loadMoreTriggerInView])

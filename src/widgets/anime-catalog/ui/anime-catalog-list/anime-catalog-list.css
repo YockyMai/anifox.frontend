@@ -1,6 +1,11 @@
 .catalog-list {
-  @apply relative grid grid-cols-[repeat(auto-fill,185px)] max-xl:grid-cols-[repeat(auto-fill,minmax(125px,1fr))] max-sm:grid-cols-[repeat(auto-fill,minmax(105px,1fr))];
+  /* grid styles */
+  @apply grid grid-cols-[repeat(auto-fill,185px)];
+  @apply max-xl:grid-cols-[repeat(auto-fill,minmax(125px,1fr))];
+  @apply max-sm:grid-cols-[repeat(auto-fill,minmax(105px,1fr))];
+
   @apply mx-auto justify-between gap-x-8 gap-y-6 max-sm:gap-x-4 max-sm:gap-y-3;
+  @apply container relative mt-52;
 
   &__load-more {
     @apply absolute bottom-96;

@@ -4,7 +4,7 @@ import { CatalogPageHelmet } from './catalog.helmet'
 
 export const CatalogPage = () => {
   return (
-    <div className='mt-28'>
+    <div>
       <CatalogPageHelmet />
       <AnimeCatalog />
     </div>

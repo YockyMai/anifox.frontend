@@ -3,3 +3,4 @@ export {
   USE_GET_ANIME_GENRE_KEY,
   useGetAnimeGenres
 } from './use-get-anime-genres'
+export { useGetAnime } from './use-get-anime'

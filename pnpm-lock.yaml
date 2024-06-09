@@ -12,8 +12,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@anifox/tailwind-config':
-        specifier: ^1.0.1
-        version: 1.0.1
+        specifier: ^1.0.3
+        version: 1.0.3
       '@anifox/ui':
         specifier: ^1.4.4
         version: 1.4.4(@tabler/icons-react@3.3.0(react@18.3.1))(@types/react-dom@18.2.18)(@types/react@18.2.48)(clsx@2.1.1)(embla-carousel@8.1.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -155,9 +155,6 @@ packages:
 
   '@anifox/hooks@1.0.0':
     resolution: {integrity: sha512-mq15b5xKvyfyRCXgoCd657C4m9gcGoLjpm/t0kNqLVUKXlS7wzfbBZCufP7IjTx9RPs29Imc4VKUQtFu3Gccrw==}
-
-  '@anifox/tailwind-config@1.0.1':
-    resolution: {integrity: sha512-a8OX4vAO93DDcX7SwJXddpbUW1vVQZKmD7EQEHoGipgVLYLELERrooJXWn5CSpOuWjZaDh4gYvlDeu8WydVQwQ==}
 
   '@anifox/tailwind-config@1.0.3':
     resolution: {integrity: sha512-qO58e4P96qtOJPSjwe5YRlfJm8XS3KWOPnq43dXgzzBY+tlt+iqhiZ1KueFXHteyVot4EsCkB0rcnSq04TM+LA==}
@@ -2290,8 +2287,6 @@ snapshots:
     dependencies:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-
-  '@anifox/tailwind-config@1.0.1': {}
 
   '@anifox/tailwind-config@1.0.3': {}
 
