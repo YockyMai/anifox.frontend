@@ -1,0 +1,40 @@
+.anime-card-skeleton {
+  @apply relative grid w-full grid-rows-[min-content_auto];
+  animation: show 0.15s ease-in;
+
+  @keyframes show {
+    0% {
+      opacity: 0;
+      transform: scale(0.92);
+    }
+    60% {
+      opacity: 1;
+    }
+    100% {
+      transform: none;
+    }
+  }
+
+  &__container {
+    &:before {
+      content: '';
+      @apply block h-0 w-0 pb-[142%];
+    }
+
+    @apply relative w-full overflow-hidden max-xl:h-auto xl:h-64;
+  }
+
+  &__image-loader {
+    @apply absolute left-0 top-0 h-full w-full animate-pulse rounded bg-slate-200 object-cover dark:bg-slate-800;
+  }
+
+  &__title-loader {
+    @apply mt-1 h-10 max-sm:h-8;
+    &:first-child {
+      @apply mb-1 h-4 w-full animate-pulse rounded bg-slate-200 dark:bg-slate-800 max-sm:h-3;
+    }
+    &:last-child {
+      @apply h-4 w-[40%] animate-pulse rounded bg-slate-200 dark:bg-slate-800 max-sm:h-3;
+    }
+  }
+}

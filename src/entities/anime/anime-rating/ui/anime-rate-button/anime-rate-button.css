@@ -1,0 +1,3 @@
+.anime-rate-button {
+  @apply flex items-center gap-1;
+}

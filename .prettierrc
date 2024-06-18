@@ -1,0 +1,14 @@
+{
+  "semi": false,
+  "singleQuote": true,
+  "arrowParens": "always",
+  "importOrderSeparation": true,
+  "tabWidth": 2,
+  "trailingComma": "none",
+  "jsxSingleQuote": true,
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
+  ],
+  "importOrder": ["<THIRD_PARTY_MODULES>", "^@/(.*)$", "^[../]", "^[./]"]
+}

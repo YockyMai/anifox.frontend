@@ -2,7 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 
 import { Anime, FetchAnimeListParams, api } from '@/services/api'
 
-export const useGetAnimeList = (params: FetchAnimeListParams) =>
+export const useAnimeListQuery = (params: FetchAnimeListParams) =>
   useInfiniteQuery<Anime[]>({
     queryKey: [
       'getAnimeList',
@@ -22,7 +22,7 @@ export const useGetAnimeList = (params: FetchAnimeListParams) =>
       params.sort
     ],
     queryFn: async ({ pageParam = 0 }) => {
-      const { data } = await api.fetchAnimeList({
+      const data = await api.fetchAnimeList({
         ...params,
         page: pageParam as number
       })
@@ -30,7 +30,8 @@ export const useGetAnimeList = (params: FetchAnimeListParams) =>
       return data
     },
     initialPageParam: 0,
-    getNextPageParam: (lastPage, allPages) =>
-      lastPage.length !== 0 ? allPages.length : undefined,
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.length !== 0 ? allPages.length : undefined
+    },
     refetchOnWindowFocus: false
   })

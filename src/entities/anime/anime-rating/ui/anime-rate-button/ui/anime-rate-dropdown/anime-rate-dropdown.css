@@ -1,0 +1,44 @@
+.rate-dropdown {
+  @apply w-full max-w-xs rounded-xl bg-slate-800 py-2 pl-3 pr-5;
+
+  &__rating {
+    @apply relative;
+
+    p {
+      @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xs text-white;
+    }
+
+    &_red {
+      @apply fill-red-300;
+    }
+
+    &_green {
+      @apply fill-green-400;
+    }
+
+    &_orange {
+      @apply fill-orange-300;
+    }
+  }
+
+  &__amount {
+    @apply text-sm;
+  }
+
+  &__row {
+    @apply grid grid-cols-[45px_auto] items-center gap-x-2;
+    @apply cursor-pointer select-none transition-transform hover:scale-[120%];
+  }
+
+  &__slide {
+    @apply relative h-4 w-full min-w-[10px] overflow-hidden rounded bg-slate-600;
+  }
+
+  &__count {
+    @apply absolute left-1 top-1/2 -translate-y-1/2 text-xs text-white;
+  }
+
+  &__fill-line {
+    @apply absolute left-0 top-0 h-full w-0;
+  }
+}

@@ -1,0 +1,7 @@
+.anime-filters {
+  @apply flex gap-3;
+
+  &__filter {
+    @apply w-56;
+  }
+}

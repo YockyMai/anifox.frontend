@@ -1,0 +1,29 @@
+.catalog-list {
+  /* grid styles */
+  @apply grid grid-cols-[repeat(auto-fill,185px)];
+  @apply max-xl:grid-cols-[repeat(auto-fill,minmax(125px,1fr))];
+  @apply max-sm:grid-cols-[repeat(auto-fill,minmax(105px,1fr))];
+
+  @apply mx-auto justify-between gap-x-8 gap-y-6 max-sm:gap-x-4 max-sm:gap-y-3;
+  @apply container relative mt-52;
+
+  &__load-more {
+    @apply absolute bottom-96;
+  }
+}
+
+.catalog-list-error {
+  @apply mt-52 flex items-center justify-center;
+
+  svg {
+    @apply mr-5 text-2xl text-red-500;
+  }
+}
+
+.catalog-list-empty {
+  @apply mt-52 flex items-center justify-center;
+
+  svg {
+    @apply mr-5 text-2xl;
+  }
+}

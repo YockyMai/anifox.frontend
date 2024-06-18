@@ -1,0 +1,6 @@
+.anime-filters__search {
+  @apply -mt-1;
+  input {
+    @apply placeholder:text-current;
+  }
+}

@@ -1,7 +1,12 @@
 import axios from 'axios'
 
-import { config } from '@/config'
+// class PublicHttp {
+
+//   get: () => {
+
+//   }
+// }
 
 export const publicHttp = axios.create({
-  baseURL: config.API_URL
+  baseURL: process.env.NEXT_PUBLIC_API_URL
 })

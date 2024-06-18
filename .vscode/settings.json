@@ -1,0 +1,20 @@
+{
+  "cSpell.words": [
+    "ANIFOX",
+    "clsx",
+    "colord",
+    "Embla",
+    "immer",
+    "Parens",
+    "SHIKIMORI",
+    "signup",
+    "tabler",
+    "tanstack",
+    "trivago",
+    "webp",
+    "zustand"
+  ],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
+}

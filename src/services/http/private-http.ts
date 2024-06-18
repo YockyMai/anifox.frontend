@@ -1,12 +1,10 @@
 import axios from 'axios'
 
-import { config } from '@/config'
-
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from './http.const'
 import { publicHttp } from './public-http'
 
 export const privateHttp = axios.create({
-  baseURL: config.API_URL
+  baseURL: process.env.NEXT_PUBLIC_API_URL
 })
 
 privateHttp.interceptors.request.use((config) => {
