@@ -1,2 +1,2 @@
-export { privateHttp } from './private-http'
+export { getPrivateHttp } from './private-http'
 export { publicHttp } from './public-http'

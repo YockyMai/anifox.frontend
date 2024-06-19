@@ -1,12 +1,5 @@
-import axios from 'axios'
+import { ApiClient } from '@/common/lib/api-client'
 
-// class PublicHttp {
-
-//   get: () => {
-
-//   }
-// }
-
-export const publicHttp = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL
+export const publicHttp = new ApiClient({
+  baseUrl: process.env.NEXT_PUBLIC_API_URL
 })

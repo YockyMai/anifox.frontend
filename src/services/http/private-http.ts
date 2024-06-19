@@ -1,44 +1,15 @@
-import axios from 'axios'
+'use server'
 
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from './http.const'
-import { publicHttp } from './public-http'
+import { ApiClient } from '@/common/lib/api-client'
 
-export const privateHttp = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL
-})
+import { ACCESS_TOKEN_KEY } from './http.const'
 
-privateHttp.interceptors.request.use((config) => {
-  const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY) ?? ''
+const cookies = require('next/headers').cookies()
 
-  config.headers.Authorization = `Bearer ${accessToken}`
-  return config
-})
-
-privateHttp.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    if (
-      error.response.status === 401 &&
-      error.config &&
-      !error.config._isRetry
-    ) {
-      error.config._isRetry = true
-      try {
-        const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY)
-
-        if (!refreshToken) return
-
-        const { data } = await publicHttp.get('/api/auth/refreshToken', {
-          params: { refreshToken }
-        })
-        localStorage.setItem(REFRESH_TOKEN_KEY, data.refreshToken)
-        localStorage.setItem(ACCESS_TOKEN_KEY, data.accessToken)
-
-        return publicHttp.request(error.config)
-      } catch (e) {
-        localStorage.removeItem(REFRESH_TOKEN_KEY)
-        localStorage.removeItem(ACCESS_TOKEN_KEY)
-      }
+export const getPrivateHttp = () =>
+  new ApiClient({
+    baseUrl: process.env.NEXT_PUBLIC_API_URL,
+    headers: {
+      Authorization: `Bearer ${cookies.get(ACCESS_TOKEN_KEY)?.value}`
     }
-  }
-)
+  })

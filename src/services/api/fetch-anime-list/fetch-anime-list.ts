@@ -36,8 +36,15 @@ export const fetchAnimeList = cache(
       ...(sort && { sort })
     }
 
-    const response = await fetch(
-      'http://localhost:12200/api/anime/?page=0&limit=48'
+    const response = await publicHttp.get(
+      `anime/${createArrayQueryParams([
+        { paramName: 'genres', array: genres },
+        { paramName: 'year', array: years },
+        { paramName: 'translation', array: translations }
+      ])}`,
+      {
+        params
+      }
     )
 
     // const response = await publicHttp.get<Anime[]>(
@@ -51,6 +58,6 @@ export const fetchAnimeList = cache(
     //   }
     // )
 
-    return response.json()
+    return response
   }
 )
