@@ -14,7 +14,7 @@ export const fetchAnimeEpisodes = async ({
   const response = await publicHttp.get<FetchAnimeEpisodesResponse>(
     `anime/${animeUrl}/episodes`,
     {
-      params: {
+      searchParams: {
         ...(page && { page }),
         ...(limit && { limit }),
         ...(sort && { sort })

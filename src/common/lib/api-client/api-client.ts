@@ -2,8 +2,12 @@ import path from 'path'
 import queryString from 'querystring'
 
 import {
-  ApiClientGetConfig,
+  ApiClientDeleteQueryConfig,
+  ApiClientGetQueryConfig,
   ApiClientOptions,
+  ApiClientPostQueryConfig,
+  ApiClientPutQueryConfig,
+  ApiClientQueryConfig,
   ApiClientResponse
 } from './api-client.interface'
 import { formatResponse } from './helpers/format-response'
@@ -23,31 +27,27 @@ export class ApiClient {
 
   public async get<T>(
     url: string,
-    config: ApiClientGetConfig = {}
+    config: ApiClientGetQueryConfig = {}
   ): Promise<ApiClientResponse<T>> {
-    const requestUrl = this.normalizeUrl(url)
+    const { searchParams, ...otherConfig } = config
 
-    const { params, ...otherConfig } = config
+    const requestUrl = this.normalizeUrl(url, searchParams)
 
-    const paramsString = queryString.stringify(params)
-    console.log(paramsString)
-    const response = await fetch(
-      requestUrl + paramsString.length ? `/?${paramsString}` : '',
-      {
-        headers: { ...this.headers, ...config.headers },
-        ...otherConfig
-      }
-    )
+    const response = await fetch(requestUrl, {
+      headers: { ...this.headers, ...config.headers },
+      ...otherConfig
+    })
 
-    return formatResponse<T>(response)
+    return await formatResponse<T>(response)
   }
 
   public async post<T>(
     url: string,
-    data: any = {},
-    config: RequestInit = {}
+    config: ApiClientPostQueryConfig = {}
   ): Promise<ApiClientResponse<T>> {
-    const requestUrl = this.normalizeUrl(url)
+    const { body, searchParams, ...otherConfig } = config
+
+    const requestUrl = this.normalizeUrl(url, searchParams)
 
     const response = await fetch(requestUrl, {
       method: 'POST',
@@ -56,50 +56,66 @@ export class ApiClient {
         ...this.headers,
         ...config.headers
       },
-      body: JSON.stringify(data),
-      ...config
+      body: JSON.stringify(body),
+      ...otherConfig
     })
 
-    return formatResponse<T>(response)
+    return await formatResponse<T>(response)
   }
 
   public async put<T>(
     url: string,
-    data: any = {},
-    config: RequestInit = {}
+    config: ApiClientPutQueryConfig = {}
   ): Promise<ApiClientResponse<T>> {
-    const response = await fetch(path.join(this.baseUrl, url), {
+    const { body, searchParams, ...otherConfig } = config
+
+    const requestUrl = this.normalizeUrl(url, searchParams)
+
+    const response = await fetch(requestUrl, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         ...this.headers,
         ...config.headers
       },
-      body: JSON.stringify(data),
-      ...config
+      body: JSON.stringify(body),
+      ...otherConfig
     })
 
-    return formatResponse<T>(response)
+    return await formatResponse<T>(response)
   }
 
   public async delete<T>(
     url: string,
-    config: RequestInit = {}
+    config: ApiClientDeleteQueryConfig = {}
   ): Promise<ApiClientResponse<T>> {
-    const response = await fetch(path.join(this.baseUrl, url), {
+    const { searchParams, ...otherConfig } = config
+
+    const requestUrl = this.normalizeUrl(url, searchParams)
+
+    const response = await fetch(requestUrl, {
       method: 'DELETE',
       headers: { ...this.headers, ...config.headers },
-      ...config
+      ...otherConfig
     })
 
-    return formatResponse<T>(response)
+    return await formatResponse<T>(response)
   }
 
-  private normalizeUrl(url: string) {
+  private normalizeUrl(url: string, searchParams: Record<string, any> = {}) {
+    let normalizedUrl = this.baseUrl + url
+
     if (this.baseUrl.endsWith('/') && url.startsWith('/')) {
-      return this.baseUrl + url.slice(1)
+      normalizedUrl = this.baseUrl + url.slice(1)
     }
 
-    return this.baseUrl + url
+    let resultUrl = new URL(normalizedUrl)
+
+    // append params
+    for (let [key, value] of Object.entries(searchParams)) {
+      resultUrl.searchParams.append(key, value)
+    }
+
+    return resultUrl.toString()
   }
 }

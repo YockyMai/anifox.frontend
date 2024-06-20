@@ -15,7 +15,7 @@ export const fetchFavoriteAnimeList = async ({
   const response = await privateHttp.get<FetchFavoriteAnimeListResponse>(
     `/users/anime/favorite/${status}`,
     {
-      params: {
+      searchParams: {
         limit,
         page
       }
