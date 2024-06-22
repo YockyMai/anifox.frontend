@@ -19,7 +19,7 @@ export const AnimeCatalogList = () => {
   const {
     data,
     isLoading,
-    isError,
+    error,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage
@@ -42,7 +42,7 @@ export const AnimeCatalogList = () => {
     [data]
   )
 
-  if (isError)
+  if (error)
     return (
       <div className='catalog-list-error'>
         <IconExclamationCircle />
@@ -55,7 +55,7 @@ export const AnimeCatalogList = () => {
       </div>
     )
 
-  if (data?.pages[0].length === 0 && !isLoading)
+  if (data?.pages[0].length === 0)
     return (
       <div className='catalog-list-empty'>
         <IconMoodSad />
@@ -71,7 +71,7 @@ export const AnimeCatalogList = () => {
   return (
     <div className='catalog-list'>
       {cards}
-      {isFetchingNextPage && hasNextPage && ANIME_CARD_LOADERS}
+      {((isFetchingNextPage && hasNextPage) || isLoading) && ANIME_CARD_LOADERS}
       <span className='catalog-list__load-more' ref={loadMoreTriggerRef} />
     </div>
   )
