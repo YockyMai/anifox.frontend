@@ -11,8 +11,7 @@ const makeQueryClient = () => {
   return new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: Infinity,
-        structuralSharing: false
+        staleTime: 60 * 1000
       }
     }
   })

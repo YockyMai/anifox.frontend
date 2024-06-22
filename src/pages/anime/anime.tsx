@@ -1,4 +1,3 @@
-import { api } from '@/services/api'
 import {
   AnimeCatalogFilter,
   AnimeCatalogList
@@ -6,7 +5,7 @@ import {
 
 export const AnimePage = async () => {
   return (
-    <div style={{ marginTop: 100 }}>
+    <div className='mt-[100]'>
       <AnimeCatalogFilter />
       <AnimeCatalogList />
     </div>

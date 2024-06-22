@@ -1,76 +1,48 @@
 'use client'
 
 import { IconExclamationCircle, IconMoodSad } from '@tabler/icons-react'
-import { useAtomValue } from 'jotai'
-import { Fragment, Suspense, useEffect } from 'react'
+import { Fragment, useEffect, useMemo } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-import { AnimeCard, AnimeCardSkeleton } from '@/entities/anime/anime-card'
+import { AnimeCard } from '@/entities/anime/anime-card'
 import { useAnimeListQuery } from '@/pages/anime/api/anime-list-query/anime-list-query-atom'
 
-import { $animeCatalogFilterAtoms } from '../../model'
+import { useAnimeListQueryParams } from '../../hooks'
+import { ANIME_CARD_LOADERS } from './anime-catalog-list.const'
 import './anime-catalog-list.css'
 
 export const AnimeCatalogList = () => {
   const [loadMoreTriggerRef, loadMoreTriggerInView] = useInView()
 
-  const genres = useAtomValue($animeCatalogFilterAtoms.genres)
-  const minimalAge = useAtomValue($animeCatalogFilterAtoms.minimalAge)
-  const order = useAtomValue($animeCatalogFilterAtoms.order)
-  const ratingMpa = useAtomValue($animeCatalogFilterAtoms.ratingMpa)
-  const search = useAtomValue($animeCatalogFilterAtoms.search)
-  const season = useAtomValue($animeCatalogFilterAtoms.season)
-  const status = useAtomValue($animeCatalogFilterAtoms.status)
-  const type = useAtomValue($animeCatalogFilterAtoms.type)
-  const years = useAtomValue($animeCatalogFilterAtoms.years)
-  const translations = useAtomValue($animeCatalogFilterAtoms.translations)
-  const studio = useAtomValue($animeCatalogFilterAtoms.studio)
-  const sort = useAtomValue($animeCatalogFilterAtoms.sort)
+  const animeListQueryParams = useAnimeListQueryParams()
+
   const {
     data,
     isLoading,
-    error,
+    isError,
     fetchNextPage,
-    isFetchingNextPage,
-    hasNextPage
-  } = useAnimeListQuery({
-    genres: genres.map(({ id }) => id),
-    minimal_age: minimalAge,
-    order,
-    rating_mpa: ratingMpa,
-    search,
-    season,
-    status,
-    type,
-    years,
-    translations: translations.map(({ id }) => id.toString()),
-    studio,
-    sort
-  })
+    hasNextPage,
+    isFetchingNextPage
+  } = useAnimeListQuery(animeListQueryParams)
 
   useEffect(() => {
     if (loadMoreTriggerInView && !isFetchingNextPage && hasNextPage)
       fetchNextPage()
   }, [fetchNextPage, hasNextPage, isFetchingNextPage, loadMoreTriggerInView])
 
-  const loaders = Array.from({ length: 6 }, (_, index) => (
-    <AnimeCardSkeleton key={index} />
-  ))
+  const cards = useMemo(
+    () =>
+      data?.pages.map((group, index) => (
+        <Fragment key={index}>
+          {group.map((anime) => (
+            <AnimeCard anime={anime} key={anime.url} />
+          ))}
+        </Fragment>
+      )),
+    [data]
+  )
 
-  const cards =
-    data?.pages && !isLoading
-      ? data.pages.map((group, index) => (
-          <Fragment key={index}>
-            {group.map((anime) => (
-              <AnimeCard anime={anime} key={anime.url} />
-            ))}
-          </Fragment>
-        ))
-      : Array.from({ length: 20 }, (_, index) => (
-          <AnimeCardSkeleton key={index} />
-        ))
-
-  if (error)
+  if (isError)
     return (
       <div className='catalog-list-error'>
         <IconExclamationCircle />
@@ -82,7 +54,8 @@ export const AnimeCatalogList = () => {
         </div>
       </div>
     )
-  if (data?.pages[0].length === 0)
+
+  if (data?.pages[0].length === 0 && !isLoading)
     return (
       <div className='catalog-list-empty'>
         <IconMoodSad />
@@ -98,7 +71,7 @@ export const AnimeCatalogList = () => {
   return (
     <div className='catalog-list'>
       {cards}
-      {isFetchingNextPage && hasNextPage && loaders}
+      {isFetchingNextPage && hasNextPage && ANIME_CARD_LOADERS}
       <span className='catalog-list__load-more' ref={loadMoreTriggerRef} />
     </div>
   )

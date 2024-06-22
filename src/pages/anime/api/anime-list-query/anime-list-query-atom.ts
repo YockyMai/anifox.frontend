@@ -5,7 +5,7 @@ import { Anime, FetchAnimeListParams, api } from '@/services/api'
 export const useAnimeListQuery = (params: FetchAnimeListParams) =>
   useInfiniteQuery<Anime[]>({
     queryKey: [
-      'getAnimeList',
+      'get-anime-list',
       params.genres,
       params.limit,
       params.minimal_age,
@@ -22,7 +22,7 @@ export const useAnimeListQuery = (params: FetchAnimeListParams) =>
       params.sort
     ],
     queryFn: async ({ pageParam = 0 }) => {
-      const data = await api.fetchAnimeList({
+      const { data } = await api.fetchAnimeList({
         ...params,
         page: pageParam as number
       })
@@ -30,8 +30,7 @@ export const useAnimeListQuery = (params: FetchAnimeListParams) =>
       return data
     },
     initialPageParam: 0,
-    getNextPageParam: (lastPage, allPages) => {
-      return lastPage.length !== 0 ? allPages.length : undefined
-    },
+    getNextPageParam: (lastPage, allPages) =>
+      lastPage.length !== 0 ? allPages.length : undefined,
     refetchOnWindowFocus: false
   })
