@@ -1,0 +1,29 @@
+'use client'
+
+import { useParams } from 'next/navigation'
+import { useMemo } from 'react'
+
+import { AnimePageParams } from '@/pages/anime/anime.interface'
+import { ROUTES } from '@/pages/pages.routes'
+import { useAnimeQuery } from '@/services/queries'
+
+import { AnimeInfoBlock } from '../anime-info-block'
+
+export const AnimeContentGenres = () => {
+  const { animeUrl } = useParams<AnimePageParams>()!
+  const { data } = useAnimeQuery(animeUrl)
+
+  const infos = useMemo(() => {
+    const genres = data?.genres ?? []
+
+    return genres.map(({ name, id }) => ({
+      element: name,
+      href: `${ROUTES.CATALOG.ROOT}?genre=${id}`,
+      key: id
+    }))
+  }, [data?.genres])
+
+  if (!data?.genres?.length) return null
+
+  return <AnimeInfoBlock title='Жанры: ' infos={infos} />
+}

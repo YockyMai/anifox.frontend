@@ -1,0 +1,37 @@
+.anime-content {
+  @apply relative bg-slate-200/80 pt-[--header-height] dark:bg-slate-800/80;
+
+  &__body {
+    @apply container relative z-10 mx-auto;
+    @apply grid grid-cols-[220px_auto] max-lg:grid-cols-[120px_auto];
+    @apply gap-6 pt-8 max-lg:gap-2 max-lg:px-2 lg:px-6 lg:pb-8;
+  }
+
+  &__poster {
+    @apply relative flex flex-col gap-y-1.5;
+
+    &__image {
+      @apply h-80 overflow-hidden rounded max-lg:h-44;
+    }
+
+    &__badge {
+      @apply absolute left-1 top-2;
+    }
+  }
+
+  &__info {
+    @apply flex flex-col gap-y-3 max-lg:justify-center;
+
+    &__top-section {
+      @apply flex flex-col justify-between gap-y-2;
+    }
+
+    &__title {
+      @apply flex flex-wrap gap-x-1.5;
+      h1 {
+        @apply dark:text-white;
+        @apply max-lg:text-lg;
+      }
+    }
+  }
+}

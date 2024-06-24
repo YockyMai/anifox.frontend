@@ -5,7 +5,7 @@ import { Fragment, useEffect, useMemo } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import { AnimeCard } from '@/entities/anime/anime-card'
-import { useAnimeListQuery } from '@/pages/anime/api/anime-list-query/anime-list-query-atom'
+import { useAnimeListQuery } from '@/pages/anime-catalog/api/anime-list-query/anime-list-query-atom'
 
 import { useAnimeListQueryParams } from '../../hooks'
 import { ANIME_CARD_LOADERS } from './anime-catalog-list.const'

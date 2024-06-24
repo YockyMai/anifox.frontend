@@ -3,7 +3,7 @@ import {
   AnimeCatalogList
 } from '@/widgets/anime-catalog/ui'
 
-export const AnimePage = async () => {
+export const AnimeCatalogPage = async () => {
   return (
     <div className='mt-[100]'>
       <AnimeCatalogFilter />

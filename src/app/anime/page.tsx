@@ -1,10 +1,10 @@
-import { AnimePage } from '@/pages/anime/anime'
-import { metadata } from '@/pages/anime/anime.metadata'
+import { AnimeCatalogPage } from '@/pages/anime-catalog'
+import { metadata } from '@/pages/anime-catalog/anime.metadata'
 
 export { metadata }
 
-const Anime = async () => {
-  return <AnimePage />
+const AnimeCatalog = async () => {
+  return <AnimeCatalogPage />
 }
 
-export default Anime
+export default AnimeCatalog

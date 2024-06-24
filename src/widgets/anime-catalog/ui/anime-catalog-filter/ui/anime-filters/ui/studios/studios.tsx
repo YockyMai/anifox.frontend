@@ -12,18 +12,16 @@ export const Studios = () => {
   const [studio, setStudio] = useAtom($animeCatalogFilterAtoms.studio)
 
   return (
-    <div>
-      <Select
-        value={studio}
-        onValueChange={(option) => setStudio(option ? option.value : null)}
-        isSearchable
-        isLoading={isLoading}
-        options={
-          data ? data?.map(({ id, name }) => ({ label: name, value: id })) : []
-        }
-        placeholder={'Любой'}
-        label={'Студия'}
-      />
-    </div>
+    <Select
+      value={studio}
+      onValueChange={(option) => setStudio(option ? option.value : null)}
+      isSearchable
+      isLoading={isLoading}
+      options={
+        data ? data?.map(({ name }) => ({ value: name, label: name })) : []
+      }
+      placeholder={'Любой'}
+      label={'Студия'}
+    />
   )
 }

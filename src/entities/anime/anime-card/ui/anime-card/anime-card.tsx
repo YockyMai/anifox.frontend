@@ -17,6 +17,7 @@ export const AnimeCard = ({ anime }: AnimeCardProps) => {
         closeDelay={80}
         position='right'
         unstyled
+        triggerClassName='anime-card__tooltip-trigger'
         label={<AnimeCardPanel anime={anime} />}
       >
         <div className='anime-card'>
@@ -26,10 +27,11 @@ export const AnimeCard = ({ anime }: AnimeCardProps) => {
             >
               <div className='anime-card__image__element'>
                 <Image
-                  fit={'cover'}
-                  width={'100%'}
-                  height={'100%'}
+                  fit='cover'
+                  width='100%'
+                  height='100%'
                   src={anime.image.medium}
+                  alt='Изображение отсутсвует'
                 />
               </div>
             </Link>

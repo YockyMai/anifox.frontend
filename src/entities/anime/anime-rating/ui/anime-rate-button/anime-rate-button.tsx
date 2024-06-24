@@ -16,7 +16,7 @@ export const AnimeRateButton = ({ animeUrl, rating }: AnimeRateButtonProps) => {
   const color = getColorByRating(rating)
 
   return (
-    <div>
+    <div className='w-fit'>
       <Tooltip
         unstyled
         position='bottom'

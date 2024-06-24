@@ -5,7 +5,6 @@ import { Image, UnstyledButton, Badge } from '@anifox/ui'
 import { getAnimeAccentColorStyles } from '../../helpers'
 import './anime-card-panel.css'
 import { AnimeCardPanelProps } from './anime-card-panel.interface'
-import { AnimePanelDescription } from './ui'
 
 export const AnimeCardPanel = ({ anime }: AnimeCardPanelProps) => {
   const cardAccentColorsStyles = getAnimeAccentColorStyles(
@@ -16,9 +15,11 @@ export const AnimeCardPanel = ({ anime }: AnimeCardPanelProps) => {
   return (
     <div style={cardAccentColorsStyles} className='anime-card-panel'>
       {anime.image?.cover && (
-        <div className='anime-card-panel__cover-image'>
-          <Image src={anime.image?.cover} />
-        </div>
+        <Image
+          alt={`Постер аниме ${anime.title}`}
+          className='anime-card-panel__cover-image'
+          src={anime.image?.cover}
+        />
       )}
 
       {anime.minimal_age ? (
@@ -47,10 +48,6 @@ export const AnimeCardPanel = ({ anime }: AnimeCardPanelProps) => {
           {anime.season && anime.year && ', '}
           {anime.year && `${anime.year} год`}
         </p>
-
-        {anime.description && (
-          <AnimePanelDescription description={anime.description} />
-        )}
 
         <div className='anime-card-panel__studio'>
           {anime.studio && anime.studio.length > 0 && (
