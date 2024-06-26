@@ -5,8 +5,8 @@ import {
 } from '@tanstack/react-query'
 import { ReactNode } from 'react'
 
-import { AnimePageLayout } from '@/pages/anime/anime-layout'
-import { AnimePageParams } from '@/pages/anime/anime.interface'
+import { AnimeScreenLayout } from '@/screens/anime/anime-layout'
+import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { usePrefetchAnimeQuery } from '@/services/queries'
 
 const AnimeLayout = async ({
@@ -22,7 +22,7 @@ const AnimeLayout = async ({
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <AnimePageLayout>{children}</AnimePageLayout>
+      <AnimeScreenLayout>{children}</AnimeScreenLayout>
     </HydrationBoundary>
   )
 }

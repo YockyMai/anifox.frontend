@@ -1,10 +1,13 @@
-import { AnimeCatalogPage } from '@/pages/anime-catalog'
-import { metadata } from '@/pages/anime-catalog/anime.metadata'
+import { Metadata } from 'next'
 
-export { metadata }
+import { AnimeCatalogScreen } from '@/screens/anime-catalog'
 
-const AnimeCatalog = async () => {
-  return <AnimeCatalogPage />
+export const metadata: Metadata = {
+  title: 'Посик аниме | ANIFOX'
+}
+
+const AnimeCatalog = () => {
+  return <AnimeCatalogScreen />
 }
 
 export default AnimeCatalog

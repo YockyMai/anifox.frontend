@@ -3,7 +3,7 @@
 import { Image, Tooltip } from '@anifox/ui'
 import Link from 'next/link'
 
-import { ROUTES } from '@/pages/pages.routes'
+import { ROUTES } from '@/screens/pages.routes'
 
 import { AnimeCardPanel } from '../anime-card-panel'
 import './anime-card.css'

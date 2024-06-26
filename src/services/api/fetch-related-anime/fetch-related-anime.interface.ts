@@ -1,4 +1,4 @@
-import { Anime } from "~shared/api"
+import { Anime } from '../fetch-anime-list'
 
 export type RelatedAnime = {
   anime: Anime

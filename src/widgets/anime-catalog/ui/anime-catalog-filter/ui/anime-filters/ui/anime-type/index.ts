@@ -1,1 +1,1 @@
-export * from './anime-type'
+export { AnimeType } from './anime-type'

@@ -6,7 +6,7 @@ import { clsx } from 'clsx'
 import { useAtom } from 'jotai'
 import Link from 'next/link'
 
-import { ROUTES } from '@/pages/pages.routes'
+import { ROUTES } from '@/screens/pages.routes'
 
 import './header.css'
 import { useOnChangeHeaderVisibility } from './hooks'
@@ -19,7 +19,7 @@ export const Header = () => {
 
   useOnChangeHeaderVisibility((isVisible) => setIsVisible(isVisible))
 
-  const headerLinks = useHeaderLinks()
+  const { links, activeTab, setActiveTab } = useHeaderLinks()
 
   const { hoverProps, isHovered } = useHover()
 
@@ -39,10 +39,13 @@ export const Header = () => {
 
         <nav className='site-header__nav'>
           <Tabs
-            tabs={headerLinks.map(({ content, path }) => ({
+            tabs={links.map(({ content, path }) => ({
               content: <Link href={path}>{content}</Link>,
               key: path
             }))}
+            activeTab={activeTab}
+            onChange={(key) => setActiveTab(key)}
+            withoutActiveBar
           />
         </nav>
       </div>

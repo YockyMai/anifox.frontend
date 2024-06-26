@@ -3,11 +3,11 @@
 import { Select } from '@anifox/ui'
 import { useAtom } from 'jotai'
 
-import { useGetAnimeStudios } from '@/services/queries'
+import { useAnimeStudiosQuery } from '@/services/queries'
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model'
 
 export const Studios = () => {
-  const { data, isLoading } = useGetAnimeStudios()
+  const { data, isLoading } = useAnimeStudiosQuery()
 
   const [studio, setStudio] = useAtom($animeCatalogFilterAtoms.studio)
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { clsx } from 'clsx'
-import { useAtom } from 'jotai'
+import { useAtomValue } from 'jotai'
 import { useEffect, useState } from 'react'
 
 import { $headerAtoms } from '@/widgets/header/store'
@@ -11,7 +11,7 @@ import { AnimeOrder } from './ui'
 import { AnimeFilters } from './ui'
 
 export const AnimeCatalogFilter = () => {
-  const [headerIsVisible] = useAtom($headerAtoms.isVisible)
+  const headerIsVisible = useAtomValue($headerAtoms.isVisible)
 
   const [isSticky, setIsSticky] = useState(
     typeof window !== 'undefined' ? window.scrollY : 0 >= 100

@@ -1,5 +1,5 @@
 {
-  "name": "frontend-nextjs",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,23 +11,21 @@
   "dependencies": {
     "@anifox/hooks": "^1.0.0",
     "@anifox/tailwind-config": "^1.0.3",
-    "@anifox/ui": "^1.4.6",
+    "@anifox/ui": "^1.4.8",
     "@tabler/icons-react": "^3.6.0",
     "@tanstack/react-query": "^5.45.0",
     "axios": "^1.7.2",
     "clsx": "^2.1.1",
     "colord": "^2.9.3",
     "dayjs": "^1.11.11",
-    "immer": "^10.1.1",
+    "glob": "^10.4.2",
     "jotai": "^2.8.3",
-    "jotai-tanstack-query": "^0.8.5",
     "next": "14.2.4",
     "nprogress": "^0.2.0",
     "react": "^18",
     "react-dom": "^18",
     "react-intersection-observer": "^9.10.3",
-    "wonka": "^6.3.4",
-    "zustand": "^4.5.2"
+    "wonka": "^6.3.4"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
@@ -35,7 +33,9 @@
     "@types/nprogress": "^0.2.3",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-no-ssr": "^1.1.7",
     "autoprefixer": "^10.4.19",
+    "encoding": "^0.1.13",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "postcss": "^8",
@@ -43,6 +43,7 @@
     "postcss-nested": "^6.0.1",
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.6.4",
+    "react-no-ssr": "^1.1.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }

@@ -3,7 +3,7 @@
 import { Badge, Tooltip, UISizes } from '@anifox/ui'
 import { IconStarFilled } from '@tabler/icons-react'
 
-import { useGetAnimeRating } from '@/services/queries/use-get-anime-rating'
+import { useAnimeRatingQuery } from '@/services/queries/use-anime-rating-query'
 
 import { getColorByRating } from '../../lib/get-color-by-rating'
 import './anime-rate-button.css'
@@ -11,7 +11,7 @@ import { AnimeRateButtonProps } from './anime-rate-button.interface'
 import { AnimeRateDropdown } from './ui'
 
 export const AnimeRateButton = ({ animeUrl, rating }: AnimeRateButtonProps) => {
-  const { data } = useGetAnimeRating(animeUrl)
+  const { data } = useAnimeRatingQuery(animeUrl)
 
   const color = getColorByRating(rating)
 

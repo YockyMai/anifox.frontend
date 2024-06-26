@@ -1,8 +1,4 @@
-'use server'
-
 import { ApiClient } from '@/common/lib/api-client'
-
-import { ACCESS_TOKEN_KEY } from './http.const'
 
 // const cookies = require('next/headers').cookies()
 
