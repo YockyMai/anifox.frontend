@@ -1,0 +1,1 @@
+export const SHOW_MORE_BUTTON_HEIGHT = 30

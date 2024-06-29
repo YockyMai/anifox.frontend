@@ -19,6 +19,7 @@ export const AnimeRateButton = ({ animeUrl, rating }: AnimeRateButtonProps) => {
     <div className='w-fit'>
       <Tooltip
         unstyled
+        withoutArrow
         position='bottom'
         label={<AnimeRateDropdown ratingDistribution={data ?? []} />}
       >

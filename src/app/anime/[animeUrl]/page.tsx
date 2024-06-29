@@ -1,7 +1,13 @@
-import React from 'react'
+import { Suspense } from 'react'
+
+import { AnimeOverviewScreen } from '@/screens/anime/anime-overview'
 
 const Anime = () => {
-  return <div></div>
+  return (
+    <Suspense fallback={<div></div>}>
+      <AnimeOverviewScreen />
+    </Suspense>
+  )
 }
 
 export default Anime

@@ -8,11 +8,11 @@ import { WithWindowProvider } from './with-window-provider'
 export const Providers = ({ children }: { children: ReactNode }) => {
   return (
     <WithJotaiProvider>
-      <WithThemeProvider>
-        <WithReactQueryProvider>
+      <WithReactQueryProvider>
+        <WithThemeProvider>
           <WithWindowProvider>{children}</WithWindowProvider>
-        </WithReactQueryProvider>
-      </WithThemeProvider>
+        </WithThemeProvider>
+      </WithReactQueryProvider>
     </WithJotaiProvider>
   )
 }

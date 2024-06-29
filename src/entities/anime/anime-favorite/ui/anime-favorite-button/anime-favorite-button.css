@@ -1,0 +1,3 @@
+.anime-favorite-button {
+  @apply flex items-center justify-center p-3 !important;
+}

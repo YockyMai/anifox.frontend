@@ -30,12 +30,7 @@ export const AnimeContentBackground = () => {
         ? imagesData[0]
         : ''
 
-    const img = new Image()
-    img.src = imageSrc
-    img.loading = 'eager'
-    img.onload = () => {
-      setImageSrc(imageSrc)
-    }
+    setImageSrc(imageSrc)
   }, [animeData, imagesData])
 
   useEffect(() => {

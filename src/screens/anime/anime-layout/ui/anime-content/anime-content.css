@@ -11,7 +11,7 @@
     @apply relative flex flex-col gap-y-1.5;
 
     &__image {
-      @apply h-80 overflow-hidden rounded max-lg:h-44;
+      @apply h-80 overflow-hidden rounded object-cover max-lg:h-44;
     }
 
     &__badge {
@@ -20,7 +20,7 @@
   }
 
   &__info {
-    @apply flex flex-col gap-y-3 max-lg:justify-center;
+    @apply grid grid-rows-[auto_auto_1fr] gap-y-3;
 
     &__top-section {
       @apply flex flex-col justify-between gap-y-2;

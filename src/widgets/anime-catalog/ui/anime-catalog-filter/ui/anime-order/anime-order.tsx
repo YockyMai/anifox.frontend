@@ -1,3 +1,5 @@
+'use client'
+
 import { Tooltip, UnstyledButton } from '@anifox/ui'
 import {
   IconFilter,

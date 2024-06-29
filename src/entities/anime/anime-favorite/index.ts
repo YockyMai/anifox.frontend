@@ -1,0 +1,1 @@
+export { AnimeFavoriteButton } from './ui'

@@ -11,7 +11,7 @@
   "dependencies": {
     "@anifox/hooks": "^1.0.0",
     "@anifox/tailwind-config": "^1.0.3",
-    "@anifox/ui": "^1.4.8",
+    "@anifox/ui": "^1.4.11",
     "@tabler/icons-react": "^3.6.0",
     "@tanstack/react-query": "^5.45.0",
     "axios": "^1.7.2",
