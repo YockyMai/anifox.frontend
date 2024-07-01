@@ -1,0 +1,14 @@
+.anime-screenshot {
+  @apply relative h-full w-auto flex-shrink-0 cursor-pointer;
+
+  &__image {
+    @apply overflow-hidden rounded object-cover transition-all;
+  }
+
+  &__icon {
+    @apply absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-2xl;
+    svg {
+      @apply stroke-white;
+    }
+  }
+}

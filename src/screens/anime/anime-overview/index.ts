@@ -1,1 +1,1 @@
-export { AnimeOverviewScreen } from './ui'
+export { AnimeOverviewScreen } from './anime-overview'

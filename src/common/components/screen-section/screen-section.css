@@ -1,0 +1,7 @@
+.screen-section {
+  @apply py-3;
+
+  &__title {
+    @apply mb-1 text-lg font-bold;
+  }
+}

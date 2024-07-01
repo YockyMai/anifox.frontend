@@ -4,6 +4,8 @@
     "clsx",
     "colord",
     "Embla",
+    "fancyapps",
+    "Fancybox",
     "immer",
     "isequal",
     "nprogress",

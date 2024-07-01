@@ -15,8 +15,11 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3
       '@anifox/ui':
-        specifier: ^1.4.11
-        version: 1.4.11(@tabler/icons-react@3.6.0(react@18.3.1))(@types/react-dom@18.3.0)(@types/react@18.3.3)(clsx@2.1.1)(embla-carousel@8.1.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^1.4.13
+        version: 1.4.13(@tabler/icons-react@3.6.0(react@18.3.1))(@types/react-dom@18.3.0)(@types/react@18.3.3)(clsx@2.1.1)(embla-carousel@8.1.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@fancyapps/ui':
+        specifier: ^5.0.36
+        version: 5.0.36
       '@tabler/icons-react':
         specifier: ^3.6.0
         version: 3.6.0(react@18.3.1)
@@ -127,8 +130,8 @@ packages:
   '@anifox/tailwind-config@1.0.3':
     resolution: {integrity: sha512-qO58e4P96qtOJPSjwe5YRlfJm8XS3KWOPnq43dXgzzBY+tlt+iqhiZ1KueFXHteyVot4EsCkB0rcnSq04TM+LA==}
 
-  '@anifox/ui@1.4.11':
-    resolution: {integrity: sha512-p4CVGqP8KNv8VhNcwfvObtfBRiCiCsvwUmjzm8HEuKk2h2yn0L6GqtjpCXnPBHPImVLrN40J8Vbfw4b/uYvCkA==}
+  '@anifox/ui@1.4.13':
+    resolution: {integrity: sha512-qiMb+WlKsd6EgOPblEc01e4EkNPStUXs2/xAPBKiY47kfuhhJhpHlyQriJRC084/RvR9TyfO4np1ehNrQigrWA==}
     peerDependencies:
       '@tabler/icons-react': ^3.3.0
       clsx: ^2.1.1
@@ -266,6 +269,9 @@ packages:
   '@eslint/js@8.57.0':
     resolution: {integrity: sha512-Ys+3g2TaW7gADOJzPt83SJtCDhMjndcDMFVQ/Tj9iA1BfJzFKD9mAUXT3OenpuPHbI6P/myECxRJrofUsDx/5g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+
+  '@fancyapps/ui@5.0.36':
+    resolution: {integrity: sha512-GMygQzp1MBTFNTT6AzpbL6pXTD6bTxwjmmpI1fe8Ozmmiseu8/g82Sudl1YhcbZmS4bJgaBOF5THDFGpXQ1fDw==}
 
   '@floating-ui/core@1.6.2':
     resolution: {integrity: sha512-+2XpQV9LLZeanU4ZevzRnGFg2neDeKHgFLjP6YLW+tly0IvrhqT4u8enLGjLH3qeh85g19xY5rsAusfwTdn5lg==}
@@ -2393,7 +2399,7 @@ snapshots:
 
   '@anifox/tailwind-config@1.0.3': {}
 
-  '@anifox/ui@1.4.11(@tabler/icons-react@3.6.0(react@18.3.1))(@types/react-dom@18.3.0)(@types/react@18.3.3)(clsx@2.1.1)(embla-carousel@8.1.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@anifox/ui@1.4.13(@tabler/icons-react@3.6.0(react@18.3.1))(@types/react-dom@18.3.0)(@types/react@18.3.3)(clsx@2.1.1)(embla-carousel@8.1.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@anifox/hooks': 1.0.0
       '@anifox/tailwind-config': 1.0.3
@@ -2608,6 +2614,8 @@ snapshots:
       - supports-color
 
   '@eslint/js@8.57.0': {}
+
+  '@fancyapps/ui@5.0.36': {}
 
   '@floating-ui/core@1.6.2':
     dependencies:
@@ -3531,7 +3539,7 @@ snapshots:
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
       eslint-plugin-jsx-a11y: 6.8.0(eslint@8.57.0)
       eslint-plugin-react: 7.34.2(eslint@8.57.0)
       eslint-plugin-react-hooks: 4.6.2(eslint@8.57.0)
@@ -3555,7 +3563,7 @@ snapshots:
       enhanced-resolve: 5.17.0
       eslint: 8.57.0
       eslint-module-utils: 2.8.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
       fast-glob: 3.3.2
       get-tsconfig: 4.7.5
       is-core-module: 2.13.1
@@ -3577,7 +3585,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0):
+  eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0):
     dependencies:
       array-includes: 3.1.8
       array.prototype.findlastindex: 1.2.5
