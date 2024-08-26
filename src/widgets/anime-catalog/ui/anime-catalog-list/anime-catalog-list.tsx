@@ -1,8 +1,8 @@
 'use client'
 
 import { IconExclamationCircle, IconMoodSad } from '@tabler/icons-react'
-import { Fragment, useEffect, useMemo } from 'react'
-import { useInView } from 'react-intersection-observer'
+import { useInView } from 'framer-motion'
+import { Fragment, useEffect, useMemo, useRef } from 'react'
 
 import { AnimeCard } from '@/entities/anime/anime-card'
 import { useAnimeListQuery } from '@/services/queries'
@@ -12,7 +12,8 @@ import { ANIME_CARD_LOADERS } from './anime-catalog-list.const'
 import './anime-catalog-list.css'
 
 export const AnimeCatalogList = () => {
-  const [loadMoreTriggerRef, loadMoreTriggerInView] = useInView()
+  const loadMoreTriggerRef = useRef<HTMLSpanElement>(null)
+  const loadMoreTriggerInView = useInView(loadMoreTriggerRef)
 
   const animeListQueryParams = useAnimeListQueryParams()
 

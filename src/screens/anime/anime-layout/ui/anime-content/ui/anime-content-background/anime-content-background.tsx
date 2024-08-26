@@ -1,9 +1,9 @@
 'use client'
 
+import { useInView } from 'framer-motion'
 import { useSetAtom } from 'jotai'
 import { useParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import { useInView } from 'react-intersection-observer'
+import { useEffect, useRef, useState } from 'react'
 
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { useAnimeQuery, useAnimeScreenshotsQuery } from '@/services/queries'
@@ -12,7 +12,9 @@ import { $headerAtoms } from '@/widgets/header/store'
 import './anime-content-background.css'
 
 export const AnimeContentBackground = () => {
-  const [imageRef, imageInView] = useInView()
+  const imageRef = useRef<HTMLDivElement>(null)
+
+  const imageInView = useInView(imageRef)
   const { animeUrl } = useParams<AnimePageParams>()!
 
   const setHeaderIsTransparent = useSetAtom($headerAtoms.isTransparent)
