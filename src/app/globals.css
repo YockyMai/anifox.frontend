@@ -6,7 +6,7 @@ html {
   --header-height: 70px;
 }
 
-.home-layout {
+.app {
   width: 100%;
   overflow-x: hidden;
   min-height: 100vh;
@@ -14,7 +14,7 @@ html {
   flex-direction: column;
   justify-content: space-between;
 
-  .main-layout__content {
+  &__layout {
     display: flex;
     flex: 1 0 auto;
     min-height: 100%;

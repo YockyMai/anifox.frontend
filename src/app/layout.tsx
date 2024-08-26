@@ -27,9 +27,11 @@ const RootLayout = ({
       <body className={nunitoSans.className}>
         <Providers>
           <NavigationProgress />
-          <Header />
-          <div className={'main-layout__content'}>
-            <main>{children}</main>
+          <div className='app'>
+            <Header />
+            <div className={'app__layout'}>
+              <main>{children}</main>
+            </div>
           </div>
         </Providers>
       </body>
