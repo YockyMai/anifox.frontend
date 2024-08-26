@@ -1,0 +1,3 @@
+.anime-video {
+  @apply aspect-[16/9] overflow-hidden rounded;
+}

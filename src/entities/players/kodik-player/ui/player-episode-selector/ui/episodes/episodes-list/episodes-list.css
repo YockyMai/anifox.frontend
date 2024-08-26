@@ -1,0 +1,7 @@
+.episodes-list {
+  @apply transition-all;
+
+  &__content {
+    @apply scrollbar-hide hover:scrollbar;
+  }
+}

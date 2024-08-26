@@ -9,10 +9,7 @@ import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { useAnimeScreenshotsQuery } from '@/services/queries'
 
 import { AnimeScreenshot } from './anime-screenshot'
-import {
-  ANIME_SCREENSHOTS_FANCYBOX_DATA_KEY,
-  ANIME_SCREENSHOT_SIZE
-} from './anime-screenshots.const'
+import { ANIME_SCREENSHOT_SIZE } from './anime-screenshots.const'
 
 export type NoSSRProps = {
   children: ReactNode

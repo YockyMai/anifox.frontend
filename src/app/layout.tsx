@@ -10,7 +10,10 @@ import './globals.css'
 const nunitoSans = Nunito_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'ANIFOX | Смотреть аниме в хорошем качестве',
+  title: {
+    default: 'Смотреть аниме в хорошем качестве',
+    template: '%s | ANIFOX'
+  },
   description: 'Отслеживание и отзывы'
 }
 

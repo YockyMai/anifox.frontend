@@ -8,6 +8,7 @@ import { fetchAnimeReleaseYears } from './fetch-anime-release-years'
 import { fetchAnimeScreenshots } from './fetch-anime-screenshots'
 import { fetchAnimeStudios } from './fetch-anime-studios'
 import { fetchAnimeTranslation } from './fetch-anime-translation'
+import { fetchAnimeVideos } from './fetch-anime-videos'
 import { fetchFavoriteAnimeList } from './fetch-favorite-anime-list'
 import { fetchRelatedAnime } from './fetch-related-anime'
 import { fetchSimilarAnime } from './fetch-similar-anime'
@@ -28,6 +29,7 @@ export const api = {
   fetchSimilarAnime,
   fetchAnimeList,
   fetchAnimeRating,
+  fetchAnimeVideos,
   setAnimeStatus,
   signup
 }
@@ -83,3 +85,5 @@ export type { RelatedAnime } from './fetch-related-anime'
 export type { AnimeRating } from './fetch-anime-rating'
 
 export type { SignUpParams } from './sign-up'
+
+export type { AnimeVideo } from './fetch-anime-videos'

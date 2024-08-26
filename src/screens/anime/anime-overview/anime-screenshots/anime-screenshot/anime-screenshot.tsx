@@ -1,4 +1,4 @@
-'use hover'
+'use client'
 
 import { useHover } from '@anifox/hooks'
 import { Transition } from '@anifox/ui'
