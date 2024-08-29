@@ -1,0 +1,11 @@
+.step-body {
+  @apply flex h-full w-full flex-col justify-between p-12;
+
+  &__title {
+    @apply pb-10 text-center text-lg font-bold text-black;
+  }
+
+  &__buttons {
+    @apply flex justify-center gap-x-3 pt-12;
+  }
+}

@@ -9,7 +9,7 @@ import {
   SIGNUP_STEP_KEY
 } from './signup.const'
 
-export const step = atomWithStorage(SIGNUP_STEP_KEY, 0)
+export const step = atomWithStorage(SIGNUP_STEP_KEY, 1)
 
 export const email = atomWithStorage(SIGNUP_EMAIL_KEY, '')
 export const login = atomWithStorage(SIGNUP_LOGIN_KEY, '')
