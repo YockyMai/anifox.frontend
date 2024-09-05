@@ -21,7 +21,6 @@ export const WelcomeStep = () => {
       }
       nextButton={{
         label: 'Создать аккаунт',
-        isValid: true,
         onClick: incrementStep
       }}
       title='🎉 Добро пожаловать в ANIFOX'
