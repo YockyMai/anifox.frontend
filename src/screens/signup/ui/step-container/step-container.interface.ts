@@ -2,10 +2,10 @@ import { ReactNode } from 'react'
 
 type ButtonParams = {
   label: string
-  isValid: boolean
+  onClick?: () => void
 }
 
-export type StepBodyProps = {
+export type StepContainerProps = {
   prevButton?: ButtonParams
   nextButton: ButtonParams
   title: string

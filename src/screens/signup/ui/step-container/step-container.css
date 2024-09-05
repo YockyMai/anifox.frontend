@@ -1,4 +1,4 @@
-.step-body {
+.step-container {
   @apply flex h-full w-full flex-col justify-between p-12;
 
   &__title {

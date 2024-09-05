@@ -1,19 +1,50 @@
 import { Input } from '@anifox/ui'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useAtom } from 'jotai'
 import React from 'react'
+import { useForm } from 'react-hook-form'
 
-import { StepBody } from '../../step-body'
+import { $signupAtoms } from '@/screens/signup/atoms'
+import { useStepsActions } from '@/screens/signup/hooks'
+
+import { StepContainer } from '../../step-container'
+import { emailSchema } from './email-step.schema'
 
 export const EmailStep = () => {
+  const [email, setEmail] = useAtom($signupAtoms.email)
+
+  const { incrementStep, decrementStep } = useStepsActions()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({ resolver: yupResolver(emailSchema), defaultValues: { email } })
+
   return (
-    <StepBody
+    <StepContainer
       title='💌 Введите ваш email'
-      nextButton={{ label: 'К логину', isValid: true }}
-      prevButton={{ label: 'Обратно к приветствию :)', isValid: true }}
+      prevButton={{ label: 'Назад', onClick: decrementStep }}
+      nextButton={{
+        label: 'Далее',
+        onClick: handleSubmit((fields) => {
+          setEmail(fields.email)
+          incrementStep()
+        })
+      }}
     >
-      <Input label='Email' variant='filled' placeholder='ghoul@gmail.com' />
+      <Input
+        {...register('email')}
+        error={errors.email?.message}
+        autoFocus
+        label='Email'
+        variant='filled'
+        placeholder='ghoul@gmail.com'
+      />
+
       <p className='mt-7 text-center text-sm'>
         Email будет необходим при входе в аккаунт ANIFOX
       </p>
-    </StepBody>
+    </StepContainer>
   )
 }

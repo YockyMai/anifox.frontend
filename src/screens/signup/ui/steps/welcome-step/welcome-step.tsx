@@ -2,12 +2,15 @@ import Link from 'next/link'
 import React from 'react'
 
 import { ROUTES } from '@/screens/pages.routes'
+import { useStepsActions } from '@/screens/signup/hooks'
 
-import { StepBody } from '../../step-body'
+import { StepContainer } from '../../step-container'
 
 export const WelcomeStep = () => {
+  const { incrementStep } = useStepsActions()
+
   return (
-    <StepBody
+    <StepContainer
       footer={
         <p className='mt-1 text-center text-sm'>
           Уже есть аккаунт?{' '}
@@ -16,7 +19,11 @@ export const WelcomeStep = () => {
           </Link>
         </p>
       }
-      nextButton={{ label: 'Создать аккаунт', isValid: true }}
+      nextButton={{
+        label: 'Создать аккаунт',
+        isValid: true,
+        onClick: incrementStep
+      }}
       title='🎉 Добро пожаловать в ANIFOX'
     >
       <p className='text-center'>
@@ -24,6 +31,6 @@ export const WelcomeStep = () => {
         вы сможете вести свои списки аниме, добавлять понравившиеся тайтлы в
         избранное и многое другое, желаем вам приятного просмотра 😊
       </p>
-    </StepBody>
+    </StepContainer>
   )
 }

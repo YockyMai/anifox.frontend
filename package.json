@@ -11,8 +11,9 @@
   "dependencies": {
     "@anifox/hooks": "^1.0.0",
     "@anifox/tailwind-config": "^1.0.3",
-    "@anifox/ui": "^1.5.0",
+    "@anifox/ui": "^1.6.0",
     "@fancyapps/ui": "^5.0.36",
+    "@hookform/resolvers": "^3.9.0",
     "@tabler/icons-react": "^3.6.0",
     "@tanstack/react-query": "^5.45.0",
     "axios": "^1.7.2",
@@ -27,8 +28,10 @@
     "nprogress": "^0.2.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.53.0",
     "react-window": "^1.8.10",
-    "wonka": "^6.3.4"
+    "wonka": "^6.3.4",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",

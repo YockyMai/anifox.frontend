@@ -5,6 +5,7 @@ import React from 'react'
 
 import { $signupAtoms } from '../../atoms'
 import { TOTAL_STEPS } from '../../atoms/signup.const'
+import { BirthdayStep } from './birthday-step/birthday-step'
 import { EmailStep } from './email-step'
 import { LoginStep } from './login-step'
 import { NicknameStep } from './nickname-step'
@@ -31,6 +32,7 @@ export const Steps = () => {
           {step === 2 && <EmailStep />}
           {step === 3 && <LoginStep />}
           {step === 4 && <NicknameStep />}
+          {step === 5 && <BirthdayStep />}
         </AnimatePresence>
       </div>
     </div>
