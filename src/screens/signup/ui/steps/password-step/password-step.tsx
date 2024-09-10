@@ -1,54 +1,54 @@
 import { Input } from '@anifox/ui'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useAtom } from 'jotai'
-import React, { useEffect } from 'react'
+import { useSetAtom } from 'jotai'
+import React from 'react'
 import { useForm } from 'react-hook-form'
 
 import { $signupAtoms } from '@/screens/signup/atoms'
 import { useStepsActions } from '@/screens/signup/hooks'
 
 import { StepContainer } from '../../step-container'
-import { emailSchema } from './email-step.schema'
+import { passwordSchema } from './password-step.schema'
 
-export const EmailStep = () => {
-  const [email, setEmail] = useAtom($signupAtoms.email)
+export const PasswordStep = () => {
+  const setPassword = useSetAtom($signupAtoms.password)
 
   const { incrementStep, decrementStep } = useStepsActions()
 
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors }
-  } = useForm({ resolver: yupResolver(emailSchema), defaultValues: { email } })
-
-  useEffect(() => {
-    reset({ email })
-  }, [email, reset])
+  } = useForm({
+    resolver: yupResolver(passwordSchema)
+  })
 
   return (
     <StepContainer
-      title='💌 Введите ваш email'
+      title='🔒 Введите желаемый пароль'
       prevButton={{ label: 'Назад', onClick: decrementStep }}
       nextButton={{
         label: 'Далее',
         onClick: handleSubmit((fields) => {
-          setEmail(fields.email)
+          setPassword(fields.password)
           incrementStep()
         })
       }}
     >
       <Input
-        {...register('email')}
-        error={errors.email?.message}
+        {...register('password')}
+        error={errors.password?.message}
         autoFocus
-        label='Email'
-        variant='filled'
-        placeholder='ghoul@gmail.com'
+        label='Пароль'
+        variant='outline'
+        placeholder='********'
+        type='password'
       />
 
       <p className='step-container__description'>
-        Email будет необходим при входе в аккаунт ANIFOX
+        Есть два самых важных правила: <br />
+        посмотреть анимешку перед сном и<br />
+        не забывать пароль
       </p>
     </StepContainer>
   )

@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 
+import { WithAuthProvider } from './with-auth-provider'
 import { WithJotaiProvider } from './with-jotai-provider'
 import { WithReactQueryProvider } from './with-react-query-provider'
 import { WithThemeProvider } from './with-theme-provider'
@@ -9,9 +10,11 @@ export const Providers = ({ children }: { children: ReactNode }) => {
   return (
     <WithJotaiProvider>
       <WithReactQueryProvider>
-        <WithThemeProvider>
-          <WithWindowProvider>{children}</WithWindowProvider>
-        </WithThemeProvider>
+        <WithAuthProvider>
+          <WithThemeProvider>
+            <WithWindowProvider>{children}</WithWindowProvider>
+          </WithThemeProvider>
+        </WithAuthProvider>
       </WithReactQueryProvider>
     </WithJotaiProvider>
   )

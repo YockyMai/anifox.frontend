@@ -1,0 +1,3 @@
+.error-step {
+  @apply flex h-full w-full items-center justify-center gap-3;
+}

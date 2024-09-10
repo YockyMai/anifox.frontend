@@ -3,6 +3,7 @@
 import { Input } from '@anifox/ui'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useAtom } from 'jotai'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { $signupAtoms } from '@/screens/signup/atoms'
@@ -19,11 +20,16 @@ export const NicknameStep = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm({
     resolver: yupResolver(nicknameSchema),
     defaultValues: { nickname }
   })
+
+  useEffect(() => {
+    reset({ nickname })
+  }, [nickname, reset])
 
   return (
     <StepContainer
@@ -44,7 +50,7 @@ export const NicknameStep = () => {
         variant='filled'
         placeholder='Твой никнейм'
       />
-      <p className='mt-7 text-center text-sm'>
+      <p className='step-container__description'>
         Имя пользователя отображается везде, например в отзывах, в комментариях
         и ... Да вообще везде :)
       </p>

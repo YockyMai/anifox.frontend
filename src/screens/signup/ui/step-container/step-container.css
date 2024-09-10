@@ -8,4 +8,8 @@
   &__buttons {
     @apply flex justify-center gap-x-3 pt-12;
   }
+
+  &__description {
+    @apply mt-7 text-center text-sm;
+  }
 }

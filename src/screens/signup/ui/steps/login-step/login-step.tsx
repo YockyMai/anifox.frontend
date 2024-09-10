@@ -1,6 +1,7 @@
 import { Input } from '@anifox/ui'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useAtom } from 'jotai'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { $signupAtoms } from '@/screens/signup/atoms'
@@ -17,8 +18,13 @@ export const LoginStep = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm({ resolver: yupResolver(loginSchema), defaultValues: { login } })
+
+  useEffect(() => {
+    reset({ login })
+  }, [login, reset])
 
   return (
     <StepContainer
@@ -39,7 +45,7 @@ export const LoginStep = () => {
         variant='filled'
         placeholder='kaneki_ken'
       />
-      <p className='mt-7 text-center text-sm'>
+      <p className='step-container__description'>
         Логин будет отображаться в ссылке вашего профиля, а также, его можно
         использовать вместо email, для входа в аккаунт ANIFOX
       </p>

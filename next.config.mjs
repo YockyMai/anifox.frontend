@@ -12,6 +12,14 @@ const nextConfig = {
         hostname: 'cdn.anifox.club'
       }
     ]
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: `${process.env.NEXT_PUBLIC_PROXY_HOST}:path*`
+      }
+    ]
   }
 }
 

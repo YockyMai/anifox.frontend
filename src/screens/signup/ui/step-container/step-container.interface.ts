@@ -7,8 +7,8 @@ type ButtonParams = {
 
 export type StepContainerProps = {
   prevButton?: ButtonParams
-  nextButton: ButtonParams
-  title: string
+  nextButton?: ButtonParams
+  title: string | ReactNode
   children: ReactNode
   footer?: ReactNode
 }

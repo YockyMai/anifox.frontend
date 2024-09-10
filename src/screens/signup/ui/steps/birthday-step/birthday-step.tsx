@@ -1,22 +1,37 @@
 import { Button, Calendar, Tooltip } from '@anifox/ui'
+import { yupResolver } from '@hookform/resolvers/yup'
+import dayjs from 'dayjs'
 import { useAtom } from 'jotai'
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
 
 import { $signupAtoms } from '@/screens/signup/atoms'
 import { useStepsActions } from '@/screens/signup/hooks'
 
 import { StepContainer } from '../../step-container'
+import { birthdaySchema } from './birthday-step.schema'
 
 export const BirthdayStep = () => {
   const [birthday, setBirthday] = useAtom($signupAtoms.birthday)
 
   const { incrementStep, decrementStep } = useStepsActions()
 
+  const { setValue, reset, handleSubmit } = useForm({
+    resolver: yupResolver(birthdaySchema),
+    defaultValues: { birthday }
+  })
+
+  useEffect(() => {
+    reset({ birthday })
+  }, [birthday, reset])
+
   return (
     <StepContainer
       title='📅 Введите вашу дату рождения'
       prevButton={{ label: 'Назад', onClick: decrementStep }}
       nextButton={{
-        label: 'Далее'
+        label: birthday ? 'Далее' : 'Пропустить',
+        onClick: handleSubmit(incrementStep)
       }}
     >
       <Tooltip
@@ -26,11 +41,16 @@ export const BirthdayStep = () => {
           <Calendar
             maxDate={new Date()}
             value={birthday}
-            onChange={(date) => setBirthday(date as Date)}
+            onChange={(date) => {
+              setBirthday(date as Date)
+              setValue('birthday', date as Date)
+            }}
           />
         }
       >
-        <Button>Открыть календарь</Button>
+        <Button>
+          {birthday ? dayjs(birthday).format('DD.MM.YYYY') : 'Выберите дату'}
+        </Button>
       </Tooltip>
 
       <p className='mt-7 text-center text-sm'>

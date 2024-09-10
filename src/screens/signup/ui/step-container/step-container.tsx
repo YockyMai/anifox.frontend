@@ -41,14 +41,16 @@ export const StepContainer = ({
             </Button>
           )}
 
-          <Button
-            onClick={nextButton.onClick}
-            size={UISizes.SM}
-            color={UIColors.ORANGE}
-            radius={UISizes.XXL}
-          >
-            {nextButton.label}
-          </Button>
+          {nextButton && (
+            <Button
+              onClick={nextButton.onClick}
+              size={UISizes.SM}
+              color={UIColors.ORANGE}
+              radius={UISizes.XXL}
+            >
+              {nextButton.label}
+            </Button>
+          )}
         </div>
 
         {footer && footer}

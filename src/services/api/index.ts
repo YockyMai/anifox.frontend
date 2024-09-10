@@ -12,6 +12,7 @@ import { fetchAnimeVideos } from './fetch-anime-videos'
 import { fetchFavoriteAnimeList } from './fetch-favorite-anime-list'
 import { fetchRelatedAnime } from './fetch-related-anime'
 import { fetchSimilarAnime } from './fetch-similar-anime'
+import { login } from './login'
 import { setAnimeStatus } from './set-anime-status'
 import { signup } from './sign-up'
 
@@ -31,7 +32,8 @@ export const api = {
   fetchAnimeRating,
   fetchAnimeVideos,
   setAnimeStatus,
-  signup
+  signup,
+  login
 }
 
 // export types

@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server'
 
-import { ACCESS_TOKEN_KEY } from './services/http/http.const'
+import { COOKIES } from './common/const/cookies'
 
 export const middleware = (request: NextRequest) => {
-  const accessToken = request.cookies.get(ACCESS_TOKEN_KEY)?.value
+  const accessToken = request.cookies.get(COOKIES.ACCESS_TOKEN_KEY)?.value
 }

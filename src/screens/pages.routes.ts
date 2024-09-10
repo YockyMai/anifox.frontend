@@ -12,5 +12,8 @@ export const ROUTES = {
   SETTINGS: '/settings',
   LOGIN: '/login',
   SIGN_UP: '/signup',
-  RIGHT_HOLDERS: '/right-holders'
+  RIGHT_HOLDERS: '/right-holders',
+  PROFILE: {
+    ROOT: '/profile/:login'
+  }
 }

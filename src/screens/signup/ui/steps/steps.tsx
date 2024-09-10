@@ -4,12 +4,16 @@ import { useAtomValue } from 'jotai'
 import React from 'react'
 
 import { $signupAtoms } from '../../atoms'
-import { TOTAL_STEPS } from '../../atoms/signup.const'
+import { STEPS, TOTAL_STEPS } from '../../atoms/signup.const'
 import { BirthdayStep } from './birthday-step/birthday-step'
+import { CreateAccountStep } from './create-account-step'
 import { EmailStep } from './email-step'
+import { ErrorStep } from './error-step'
 import { LoginStep } from './login-step'
 import { NicknameStep } from './nickname-step'
+import { PasswordStep } from './password-step'
 import './steps.css'
+import { SuccessStep } from './success-step'
 import { WelcomeStep } from './welcome-step'
 
 export const Steps = () => {
@@ -28,11 +32,15 @@ export const Steps = () => {
         </div>
 
         <AnimatePresence mode='wait' initial={false}>
-          {step === 1 && <WelcomeStep />}
-          {step === 2 && <EmailStep />}
-          {step === 3 && <LoginStep />}
-          {step === 4 && <NicknameStep />}
-          {step === 5 && <BirthdayStep />}
+          {step === STEPS.WELCOME && <WelcomeStep />}
+          {step === STEPS.EMAIL && <EmailStep />}
+          {step === STEPS.LOGIN && <LoginStep />}
+          {step === STEPS.NICKNAME && <NicknameStep />}
+          {step === STEPS.BIRTHDAY && <BirthdayStep />}
+          {step === STEPS.PASSWORD && <PasswordStep />}
+          {step === STEPS.CREATE_ACCOUNT && <CreateAccountStep />}
+          {step === STEPS.SUCCESS && <SuccessStep />}
+          {step === STEPS.ERROR && <ErrorStep />}
         </AnimatePresence>
       </div>
     </div>

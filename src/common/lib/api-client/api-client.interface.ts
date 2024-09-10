@@ -4,8 +4,20 @@ export type ApiClientOptions = {
 }
 
 export type ApiClientResponse<T> = {
+  arrayBuffer: () => Promise<ArrayBuffer>
+  blob: () => Promise<Blob>
+  bodyUsed: boolean
+  clone: () => Response
+  formData: () => Promise<FormData>
+  headers: Headers
+  ok: boolean
+  redirected: boolean
+  statusText: string
+  text: () => Promise<string>
+  type: ResponseType
+  url: string
   data: T
-} & Omit<Response, 'json'>
+}
 
 export type ApiClientQueryConfig = {
   searchParams?: Record<string, any>
