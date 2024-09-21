@@ -1,5 +1,5 @@
 .anime-catalog-filter {
-  @apply fixed top-[--header-height] z-50;
+  @apply fixed top-[--header-height] z-40;
   @apply w-full pb-4 pt-10 transition-all duration-500;
 
   &__container {

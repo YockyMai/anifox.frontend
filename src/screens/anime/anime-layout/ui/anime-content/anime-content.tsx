@@ -1,9 +1,9 @@
 'use client'
 
-import { Badge } from '@anifox/ui'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
 
+import { Badge } from '@/common/components'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { useAnimeQuery } from '@/services/queries'
 
@@ -30,7 +30,7 @@ export const AnimeContent = () => {
           <Image
             className='anime-content__poster__image'
             src={data!.image.large}
-            alt={'Постер аниме'}
+            alt='Постер аниме'
             width={220}
             height={320}
           />

@@ -1,8 +1,8 @@
 'use client'
 
-import { Image, Tooltip } from '@anifox/ui'
 import Link from 'next/link'
 
+import { Tooltip, Image } from '@/common/components'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { AnimeCardPanel } from '../anime-card-panel'

@@ -1,0 +1,20 @@
+.carousel__controls {
+  &__prev-next-button {
+    @apply flex items-center justify-center;
+    @apply top-1/2 h-8 w-8;
+    @apply absolute -translate-y-1/2;
+    @apply rounded-full bg-black/50 text-white;
+
+    &_disabled {
+      @apply opacity-30;
+    }
+
+    &_prev {
+      @apply left-2;
+    }
+
+    &_next {
+      @apply right-2;
+    }
+  }
+}

@@ -1,9 +1,9 @@
 'use client'
 
-import { useInView } from 'framer-motion'
 import { useSetAtom } from 'jotai'
 import { useParams } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useInView } from 'react-intersection-observer'
 
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { useAnimeQuery, useAnimeScreenshotsQuery } from '@/services/queries'
@@ -12,9 +12,9 @@ import { $headerAtoms } from '@/widgets/header/store'
 import './anime-content-background.css'
 
 export const AnimeContentBackground = () => {
-  const imageRef = useRef<HTMLDivElement>(null)
+  // needed the hook from this library because it works if the element is lower z-index 0
+  const { ref, inView: imageInView } = useInView()
 
-  const imageInView = useInView(imageRef)
   const { animeUrl } = useParams<AnimePageParams>()!
 
   const setHeaderIsTransparent = useSetAtom($headerAtoms.isTransparent)
@@ -46,7 +46,7 @@ export const AnimeContentBackground = () => {
   if (!imageSrc) return null
 
   return (
-    <div ref={imageRef} className='anime-content-background'>
+    <div ref={ref} className='anime-content-background'>
       <div
         className='anime-content-background__image'
         style={{ backgroundImage: `url(${imageSrc})` }}

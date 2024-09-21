@@ -1,0 +1,79 @@
+.progress-bar {
+  @apply w-full overflow-hidden;
+
+  &_radius-sm {
+    @apply rounded-sm;
+  }
+
+  &_radius-md {
+    @apply rounded;
+  }
+
+  &_radius-lg {
+    @apply rounded-lg;
+  }
+
+  &_radius-xl {
+    @apply rounded-xl;
+  }
+
+  &_radius-xxl {
+    @apply rounded-2xl;
+  }
+
+  .progress-bar__slider {
+    @apply h-full;
+  }
+
+  &_orange {
+    @apply bg-orange-300/30;
+
+    .progress-bar__slider {
+      @apply bg-orange-300;
+    }
+  }
+
+  &_red {
+    @apply bg-red-300/30;
+
+    .progress-bar__slider {
+      @apply bg-red-400;
+    }
+  }
+
+  &_green {
+    @apply bg-green-400/30;
+
+    .progress-bar__slider {
+      @apply bg-green-400;
+    }
+  }
+
+  &_purple {
+    @apply bg-purple-400/30;
+
+    .progress-bar__slider {
+      @apply bg-purple-400;
+    }
+  }
+
+  &_sm {
+    @apply h-[1px];
+  }
+
+  &_md {
+    @apply h-1;
+  }
+
+  &_lg {
+    @apply h-2;
+  }
+
+  &_xl {
+    @apply h-3;
+  }
+
+  &_xxl {
+    @apply h-4;
+  }
+}

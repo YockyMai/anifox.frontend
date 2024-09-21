@@ -1,0 +1,3 @@
+.unstyled-button {
+  @apply cursor-pointer appearance-none border-none bg-transparent p-0;
+}

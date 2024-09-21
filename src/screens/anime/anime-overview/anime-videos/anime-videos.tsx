@@ -1,9 +1,10 @@
 'use client'
 
-import { Carousel, NoSSR, Slide } from '@anifox/ui'
 import { useParams } from 'next/navigation'
 import React, { useMemo } from 'react'
 
+import { Carousel } from '@/common/components'
+import { Slide } from '@/common/components/carousel'
 import { useAnimeVideosQuery } from '@/services/queries'
 
 import { AnimePageParams } from '../../anime.interface'

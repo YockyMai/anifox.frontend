@@ -1,9 +1,9 @@
 'use client'
 
-import { UnstyledButton } from '@anifox/ui'
 import { useParams } from 'next/navigation'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
+import { UnstyledButton } from '@/common/components'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { useAnimeQuery } from '@/services/queries'
 

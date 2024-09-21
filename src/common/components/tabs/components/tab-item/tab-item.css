@@ -1,0 +1,7 @@
+.tab-item {
+  @apply z-10 px-3 py-2 transition-colors;
+
+  &_active {
+    @apply text-orange-400;
+  }
+}

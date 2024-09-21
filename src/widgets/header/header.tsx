@@ -1,11 +1,11 @@
 'use client'
 
 import { useHover } from '@anifox/hooks'
-import { AnifoxLogo, Tabs } from '@anifox/ui'
 import { clsx } from 'clsx'
-import { useAtom } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import Link from 'next/link'
 
+import { AnifoxLogo, Tabs } from '@/common/components'
 import { ROUTES } from '@/screens/pages.routes'
 
 import './header.css'
@@ -15,7 +15,7 @@ import { $headerAtoms } from './store'
 
 export const Header = () => {
   const [isVisible, setIsVisible] = useAtom($headerAtoms.isVisible)
-  const [isTransparent] = useAtom($headerAtoms.isTransparent)
+  const isTransparent = useAtomValue($headerAtoms.isTransparent)
 
   useOnChangeHeaderVisibility((isVisible) => setIsVisible(isVisible))
 

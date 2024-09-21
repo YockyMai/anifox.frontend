@@ -1,10 +1,10 @@
 'use client'
 
-import { Tabs } from '@anifox/ui'
 import Link from 'next/link'
 import { useParams, usePathname } from 'next/navigation'
 import { useMemo, useState } from 'react'
 
+import { Tabs } from '@/common/components'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { ROUTES } from '@/screens/pages.routes'
 

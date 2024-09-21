@@ -1,0 +1,33 @@
+.anifox-logo {
+  @apply flex cursor-default select-none items-center;
+
+  &__image {
+    @apply mr-1 h-10;
+  }
+
+  &__text {
+    @apply flex items-center;
+
+    p {
+      @apply text-xl font-bold transition-colors;
+
+      &:hover {
+        @apply transition-colors;
+
+        &:last-child {
+          @apply text-red-300;
+        }
+        &:first-child {
+          @apply text-orange-300;
+        }
+      }
+
+      &:first-child {
+        @apply text-red-300;
+      }
+      &:last-child {
+        @apply text-orange-300;
+      }
+    }
+  }
+}

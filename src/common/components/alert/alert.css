@@ -1,0 +1,71 @@
+.alert {
+  @apply flex p-5;
+
+  &__icon {
+    @apply mr-3 text-[--bg-color];
+  }
+
+  &__title {
+    @apply mb-2 font-bold text-[--bg-color];
+  }
+
+  &__close-icon {
+    @apply text-[--bg-color];
+  }
+
+  &__content {
+    @apply text-sm font-normal;
+  }
+
+  &_orange {
+    --bg-color: theme('colors.orange.300');
+  }
+
+  &_green {
+    --bg-color: theme('colors.green.400');
+  }
+
+  &_red {
+    --bg-color: theme('colors.red.400');
+  }
+
+  &_purple {
+    --bg-color: theme('colors.purple.400');
+  }
+
+  &_filled {
+    @apply bg-[--bg-color];
+
+    * {
+      @apply text-white;
+    }
+  }
+
+  &_outline {
+    @apply outline outline-1 outline-[--bg-color];
+  }
+
+  &_light {
+    background-color: color-mix(in srgb, var(--bg-color) 10%, transparent);
+  }
+
+  &_radius-sm {
+    @apply rounded-sm;
+  }
+
+  &_radius-md {
+    @apply rounded;
+  }
+
+  &_radius-lg {
+    @apply rounded-lg;
+  }
+
+  &_radius-xl {
+    @apply rounded-xl;
+  }
+
+  &_radius-xxl {
+    @apply rounded-2xl;
+  }
+}

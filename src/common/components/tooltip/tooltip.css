@@ -1,0 +1,29 @@
+.tooltip-content {
+  @apply bg-slate-50 drop-shadow;
+
+  @apply w-fit rounded px-2 py-1;
+
+  &[data-state='open'] {
+    @apply animate-fade-in;
+  }
+  &[data-state='closed'] {
+    @apply animate-fade-out;
+  }
+
+  &__arrow {
+    @apply fill-slate-50;
+  }
+}
+
+.tooltip-content--animations {
+  &[data-state='open'] {
+    @apply animate-fade-in;
+  }
+  &[data-state='closed'] {
+    @apply animate-fade-out;
+  }
+}
+
+.tooltip-trigger {
+  @apply w-fit;
+}

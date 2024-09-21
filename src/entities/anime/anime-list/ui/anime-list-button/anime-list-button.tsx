@@ -1,4 +1,3 @@
-import { Badge, Tooltip, UnstyledButton } from '@anifox/ui'
 import {
   IconCheck,
   IconClockPlus,
@@ -7,6 +6,8 @@ import {
   IconZzz
 } from '@tabler/icons-react'
 import { useMemo } from 'react'
+
+import { Badge, Tooltip, UnstyledButton } from '@/common/components'
 
 import { ANIME_LIST_VARIANTS } from '../../const/anime-list-variants'
 import './anime-list-button.css'

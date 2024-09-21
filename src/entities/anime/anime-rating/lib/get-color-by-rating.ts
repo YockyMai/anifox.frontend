@@ -1,4 +1,4 @@
-import { UIColors } from '@anifox/ui'
+import { UIColors } from '@/common/types/ui-colors'
 
 export const getColorByRating = (rating: number) => {
   if (rating <= 3) return UIColors.RED

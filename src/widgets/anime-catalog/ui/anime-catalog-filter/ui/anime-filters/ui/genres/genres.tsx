@@ -1,9 +1,9 @@
 'use client'
 
-import { MultiSelect } from '@anifox/ui'
-import { SelectOption } from '@anifox/ui/dist/components/select/select.interface'
 import { useAtom } from 'jotai'
 
+import { MultiSelect } from '@/common/components'
+import { SelectOption } from '@/common/components/select/select.interface'
 import { useAnimeGenresQuery } from '@/services/queries'
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model/anime-catalog-filter'
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { Image, UnstyledButton, Badge } from '@anifox/ui'
+import { UnstyledButton, Image, Badge } from '@/common/components'
 
 import { getAnimeAccentColorStyles } from '../../helpers'
 import './anime-card-panel.css'

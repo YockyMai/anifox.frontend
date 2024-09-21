@@ -1,8 +1,8 @@
 .anime-content-background {
-  @apply absolute left-0 top-0 h-full w-full overflow-hidden opacity-30 dark:opacity-20;
+  @apply aspect-[12/2] overflow-hidden;
 
   &__image {
-    @apply h-full w-full scale-105 bg-cover bg-center blur-sm brightness-75;
+    @apply h-full w-full scale-105 bg-cover bg-center;
     @apply animate-fade-in;
   }
 }

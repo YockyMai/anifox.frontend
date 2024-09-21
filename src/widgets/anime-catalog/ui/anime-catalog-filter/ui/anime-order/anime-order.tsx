@@ -1,6 +1,5 @@
 'use client'
 
-import { Tooltip, UnstyledButton } from '@anifox/ui'
 import {
   IconFilter,
   IconSortAscending,
@@ -9,6 +8,7 @@ import {
 import { clsx } from 'clsx'
 import { useAtom } from 'jotai'
 
+import { Tooltip, UnstyledButton } from '@/common/components'
 import { AnimeOrderVariants } from '@/services/api'
 import { ANIME_SORT_DIRECTION } from '@/widgets/anime-catalog/model'
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model/anime-catalog-filter'

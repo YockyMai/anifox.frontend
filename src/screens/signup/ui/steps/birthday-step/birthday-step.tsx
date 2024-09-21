@@ -1,10 +1,12 @@
-import { Button, Calendar, Tooltip } from '@anifox/ui'
+'use client'
+
 import { yupResolver } from '@hookform/resolvers/yup'
 import dayjs from 'dayjs'
 import { useAtom } from 'jotai'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
+import { Button, Calendar, Tooltip } from '@/common/components'
 import { $signupAtoms } from '@/screens/signup/atoms'
 import { useStepsActions } from '@/screens/signup/hooks'
 

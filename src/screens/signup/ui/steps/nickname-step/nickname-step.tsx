@@ -1,11 +1,11 @@
 'use client'
 
-import { Input } from '@anifox/ui'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useAtom } from 'jotai'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
+import { Input } from '@/common/components'
 import { $signupAtoms } from '@/screens/signup/atoms'
 import { useStepsActions } from '@/screens/signup/hooks'
 

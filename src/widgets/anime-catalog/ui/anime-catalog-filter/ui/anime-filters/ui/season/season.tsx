@@ -1,8 +1,8 @@
 'use client'
 
-import { Select } from '@anifox/ui'
 import { useAtom } from 'jotai'
 
+import { Select } from '@/common/components'
 import { AnimeSeasons } from '@/services/api'
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model'
 

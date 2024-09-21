@@ -1,8 +1,9 @@
 'use client'
 
-import { Badge, Tooltip, UISizes } from '@anifox/ui'
 import { IconStarFilled } from '@tabler/icons-react'
 
+import { Badge, Tooltip } from '@/common/components'
+import { UISizes } from '@/common/types/ui-sizes'
 import { useAnimeRatingQuery } from '@/services/queries/use-anime-rating-query'
 
 import { getColorByRating } from '../../lib/get-color-by-rating'

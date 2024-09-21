@@ -1,7 +1,11 @@
-import { ProgressBar, UISizes } from '@anifox/ui'
+'use client'
+
 import { AnimatePresence } from 'framer-motion'
 import { useAtomValue } from 'jotai'
 import React from 'react'
+
+import { ProgressBar } from '@/common/components'
+import { UISizes } from '@/common/types/ui-sizes'
 
 import { $signupAtoms } from '../../atoms'
 import { STEPS, TOTAL_STEPS } from '../../atoms/signup.const'

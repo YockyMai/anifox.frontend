@@ -1,0 +1,131 @@
+.button {
+  @apply relative cursor-pointer select-none appearance-none overflow-hidden rounded border-0 px-4 py-2;
+  @apply font-normal leading-[--button-height] text-white;
+
+  &__content {
+    @apply flex h-[--button-height] items-center justify-center gap-2;
+
+    font-size: var(--button-font-size);
+
+    &__icon {
+      @apply flex h-full w-full items-center justify-center;
+    }
+  }
+
+  &_filled {
+    @apply bg-[--button-bg-color];
+    --ripple-bg-color: theme('colors.white');
+  }
+
+  &_outline {
+    @apply bg-transparent outline outline-2;
+    color: var(--button-bg-color);
+    --ripple-bg-color: var(--button-bg-color);
+  }
+
+  &_light {
+    @apply text-[--button-bg-color];
+
+    /* приходится использовть color-mix для прозрачности hex */
+    background-color: color-mix(
+      in srgb,
+      var(--button-bg-color) 15%,
+      transparent
+    );
+  }
+
+  &_full-width {
+    @apply w-full;
+  }
+
+  &_orange {
+    --button-bg-color: theme('colors.orange.300');
+    --button-font-color: theme('colors.orange.50');
+  }
+
+  &_green {
+    --button-bg-color: theme('colors.green.400');
+    --button-font-color: theme('colors.green.50');
+  }
+
+  &_red {
+    --button-bg-color: theme('colors.red.400');
+    --button-font-color: theme('colors.red.50');
+  }
+
+  &_purple {
+    --button-bg-color: theme('colors.purple.400');
+    --button-font-color: theme('colors.purple.50');
+  }
+
+  &_light-blue {
+    --button-bg-color: theme('colors.slate.300');
+    --button-font-color: theme('colors.slate.50');
+  }
+
+  &_sm {
+    --button-height: theme('height.5');
+    --button-font-size: theme('fontSize.sm');
+  }
+
+  &_md {
+    --button-height: theme('height.6');
+    --button-font-size: theme('fontSize.base');
+  }
+
+  &_lg {
+    --button-height: theme('height.7');
+    --button-font-size: theme('fontSize.lg');
+  }
+
+  &_xl {
+    --button-height: theme('height.8');
+    --button-font-size: theme('fontSize.xl');
+  }
+
+  &_xxl {
+    --button-height: theme('height.9');
+    --button-font-size: theme('fontSize.2xl');
+  }
+
+  &_radius-sm {
+    border-radius: theme('borderRadius.sm');
+  }
+
+  &_radius-md {
+    border-radius: theme('borderRadius.DEFAULT');
+  }
+
+  &_radius-lg {
+    border-radius: theme('borderRadius.lg');
+  }
+
+  &_radius-xl {
+    border-radius: theme('borderRadius.xl');
+  }
+
+  &_radius-xxl {
+    border-radius: theme('borderRadius.2xl');
+  }
+
+  &__ripple {
+    @apply absolute bottom-0 left-0 right-0 top-0 z-0 overflow-hidden;
+
+    span {
+      @apply absolute animate-ripple rounded-full bg-[--ripple-bg-color] opacity-25;
+      transform: scale(0);
+    }
+  }
+}
+
+button:disabled {
+  @apply cursor-default opacity-60;
+
+  &:hover {
+    @apply filter-none;
+  }
+}
+
+button:hover {
+  @apply brightness-95;
+}

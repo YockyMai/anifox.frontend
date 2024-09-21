@@ -1,11 +1,11 @@
 'use client'
 
 import { useDebounce } from '@anifox/hooks'
-import { Input } from '@anifox/ui'
 import { IconSearch, IconX } from '@tabler/icons-react'
 import { useAtom } from 'jotai'
 import { useEffect, useState } from 'react'
 
+import { Input } from '@/common/components'
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model'
 
 import './search.css'

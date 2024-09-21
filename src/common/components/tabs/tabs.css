@@ -1,0 +1,19 @@
+.tabs {
+  @apply relative flex cursor-pointer;
+
+  &__active-bar {
+    @apply absolute bottom-0 h-[2px] rounded-sm transition-all;
+  }
+
+  &__active-bar_color {
+    @apply bg-orange-300;
+  }
+
+  &__hovered-indicator {
+    @apply absolute top-1/2 h-[80%] -translate-y-1/2 rounded transition-all;
+  }
+
+  &__hover-indicator_color {
+    @apply bg-black/5;
+  }
+}

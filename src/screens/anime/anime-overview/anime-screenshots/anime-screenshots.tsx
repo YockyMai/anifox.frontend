@@ -1,10 +1,9 @@
 'use client'
 
-import { Carousel, NoSSR } from '@anifox/ui'
 import { useParams } from 'next/navigation'
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode } from 'react'
 
-import { Fancybox } from '@/common/components'
+import { Carousel, Fancybox } from '@/common/components'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { useAnimeScreenshotsQuery } from '@/services/queries'
 
@@ -23,18 +22,16 @@ export const AnimeScreenshots = () => {
   if (!data) return null
 
   return (
-    <NoSSR>
-      <Fancybox>
-        <Carousel
-          slides={(data ?? []).map((src) => ({
-            content: <AnimeScreenshot key={src} src={src} alt={''} />,
-            size: ANIME_SCREENSHOT_SIZE.WIDTH
-          }))}
-          dragFree
-          slideSpacing={10}
-          align='end'
-        />
-      </Fancybox>
-    </NoSSR>
+    <Fancybox>
+      <Carousel
+        slides={(data ?? []).map((src) => ({
+          content: <AnimeScreenshot key={src} src={src} alt={''} />,
+          size: ANIME_SCREENSHOT_SIZE.WIDTH
+        }))}
+        dragFree
+        slideSpacing={10}
+        align='end'
+      />
+    </Fancybox>
   )
 }

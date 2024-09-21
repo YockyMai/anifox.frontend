@@ -1,8 +1,8 @@
-import { UnstyledButton } from '@anifox/ui'
 import { useAtomValue, useSetAtom } from 'jotai'
 import React, { useCallback } from 'react'
 import { FixedSizeList } from 'react-window'
 
+import { UnstyledButton } from '@/common/components'
 import { $windowAtoms } from '@/common/store/window'
 import { getPlayerLinkFromParams } from '@/entities/players/kodik-player/helpers/get-player-link-from-params'
 import { $kodikPlayerAtoms } from '@/entities/players/kodik-player/store/kodik-player'

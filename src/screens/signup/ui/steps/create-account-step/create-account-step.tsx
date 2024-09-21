@@ -1,9 +1,10 @@
 'use client'
 
-import { Loader, UISizes } from '@anifox/ui'
 import { useSetAtom } from 'jotai'
 import React from 'react'
 
+import { Loader } from '@/common/components'
+import { UISizes } from '@/common/types/ui-sizes'
 import { $signupAtoms } from '@/screens/signup/atoms'
 import { STEPS } from '@/screens/signup/atoms/signup.const'
 
