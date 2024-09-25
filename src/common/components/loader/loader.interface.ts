@@ -6,6 +6,6 @@ import { UISize } from '@/shared/types/ui-sizes'
 export interface LoaderProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLImageElement>, HTMLSpanElement> {
   size?: UISize
-  color?: UIColor
+  color?: UIColor | 'light'
   custom?: ReactNode
 }

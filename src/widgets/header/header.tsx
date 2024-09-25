@@ -12,6 +12,7 @@ import './header.css'
 import { useOnChangeHeaderVisibility } from './hooks'
 import { useHeaderLinks } from './hooks/use-header-links'
 import { $headerAtoms } from './store'
+import { UserButton } from './ui/user-button/user-button'
 
 export const Header = () => {
   const [isVisible, setIsVisible] = useAtom($headerAtoms.isVisible)
@@ -32,7 +33,7 @@ export const Header = () => {
         !isVisible && 'site-header__hidden'
       )}
     >
-      <div className='site-header__left-section'>
+      <div className='site-header__section'>
         <Link href={ROUTES.HOME}>
           <AnifoxLogo />
         </Link>
@@ -48,6 +49,10 @@ export const Header = () => {
             withoutActiveBar
           />
         </nav>
+      </div>
+
+      <div className='site-header__section'>
+        <UserButton />
       </div>
     </header>
   )

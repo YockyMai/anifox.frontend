@@ -13,7 +13,7 @@
     @apply bg-slate-800/50;
   }
 
-  &__left-section {
+  &__section {
     @apply flex items-center gap-7;
   }
 

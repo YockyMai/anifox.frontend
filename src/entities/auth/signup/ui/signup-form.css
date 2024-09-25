@@ -1,0 +1,8 @@
+.signup-form {
+  @apply relative overflow-hidden rounded-2xl bg-slate-50 drop-shadow-sm;
+  @apply h-[400px] w-full;
+
+  &__progress {
+    @apply absolute left-0 top-0 w-full;
+  }
+}

@@ -8,7 +8,7 @@
     font-size: var(--button-font-size);
 
     &__icon {
-      @apply flex h-full w-full items-center justify-center;
+      @apply flex items-center justify-center;
     }
   }
 

@@ -6,9 +6,11 @@ import { UIColors } from '@/common/types/ui-colors'
 import { UISizes } from '@/common/types/ui-sizes'
 import { UIVariants } from '@/common/types/ui-variants'
 
+import { Loader } from '../loader'
 import './button.css'
 import { ButtonProps } from './button.interface'
 
+// eslint-disable-next-line react/display-name
 export const Button = forwardRef(
   (
     {
@@ -21,6 +23,7 @@ export const Button = forwardRef(
       rightIcon,
       variant = UIVariants.FILLED,
       radius = UISizes.MD,
+      isLoading,
       className,
       ...other
     }: ButtonProps,
@@ -49,12 +52,17 @@ export const Button = forwardRef(
         {...other}
       >
         <div className='button__content'>
-          {icon && (
+          {icon && !isLoading && (
             <div className='button__content__icon button__content__icon_left'>
               {icon}
             </div>
           )}
-          {children}
+          {isLoading && (
+            <div className='button__content__icon button__content__icon_left'>
+              <Loader color='light' size={UISizes.SM} />
+            </div>
+          )}
+          <div className='whitespace-nowrap'>{children}</div>
           {rightIcon && (
             <div className='button__content__icon button__content__icon_right'>
               {rightIcon}
@@ -63,8 +71,9 @@ export const Button = forwardRef(
         </div>
         <div className={clsx(withRipple && 'button__ripple')}>
           {rippleArray.length > 0 &&
-            rippleArray.map((ripple) => (
+            rippleArray.map((ripple, index) => (
               <span
+                key={index}
                 style={{
                   animationDuration: `${rippleDuration}ms`,
                   top: ripple.y,

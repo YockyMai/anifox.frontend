@@ -1,6 +1,9 @@
 .loader {
   @apply animate-spin;
 
+  &_light {
+    @apply text-white;
+  }
   &_orange {
     @apply text-orange-300;
   }

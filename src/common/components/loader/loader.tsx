@@ -9,6 +9,7 @@ import { LOADER_SIZE } from './loader.const'
 import './loader.css'
 import { LoaderProps } from './loader.interface'
 
+// eslint-disable-next-line react/display-name
 export const Loader = forwardRef(
   (
     {

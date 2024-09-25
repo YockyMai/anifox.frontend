@@ -1,7 +1,11 @@
-.login {
+.login-container {
   @apply flex h-full w-full items-center justify-center;
+}
 
-  &__content {
-    @apply w-full max-w-[500px] rounded bg-slate-50;
+.login {
+  @apply w-full max-w-[500px];
+
+  &__title {
+    @apply pb-12 text-center text-xl font-bold;
   }
 }

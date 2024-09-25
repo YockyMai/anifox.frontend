@@ -7,8 +7,8 @@ import { Button } from '@/common/components'
 export const WatchAnimeButton = () => {
   return (
     <Link href={'#'}>
-      <Button withRipple fullWidth>
-        <p className='text-nowrap break-words'>Смотреть аниме</p>
+      <Button withRipple fullWidth icon={<IconPlayerPlayFilled />}>
+        Смотреть аниме
       </Button>
     </Link>
   )

@@ -7,6 +7,7 @@ import { UIVariants } from '@/common/types/ui-variants'
 import './input.css'
 import { InputProps } from './input.interface'
 
+// eslint-disable-next-line react/display-name
 export const Input = forwardRef(
   (
     {
@@ -17,7 +18,7 @@ export const Input = forwardRef(
       size = UISizes.MD,
       disabled,
       error,
-      variant = UIVariants.FILLED,
+      variant = UIVariants.LIGHT,
       ...other
     }: InputProps,
     ref: ForwardedRef<HTMLInputElement>
@@ -28,7 +29,7 @@ export const Input = forwardRef(
           'input',
           size && `input_${size}`,
           disabled && 'input_disabled',
-          variant && `input_${variant}`
+          `input_${variant}`
         )}
       >
         {label && <label className='input__label'>{label}</label>}

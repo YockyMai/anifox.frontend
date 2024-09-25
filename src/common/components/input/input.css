@@ -8,7 +8,9 @@
   }
 
   &__element {
-    @apply flex items-center rounded-lg bg-slate-50 px-4 py-2 drop-shadow-sm dark:bg-slate-800;
+    @apply flex items-center rounded-lg px-4 py-2 drop-shadow-sm;
+
+    @apply bg-[--input-bg-color];
 
     input {
       @apply h-[--input-height] w-full;
@@ -49,5 +51,12 @@
   &_xxl {
     --input-height: theme('height.9');
     --input-font-size: theme('fontSize.2xl');
+  }
+
+  &_light {
+    --input-bg-color: theme('backgroundColor.white');
+  }
+  &_filled {
+    --input-bg-color: theme('backgroundColor.slate.100');
   }
 }
