@@ -1,0 +1,7 @@
+.home-carousel-slide {
+  @apply relative h-[600px] w-full;
+
+  &__image {
+    @apply absolute left-0 top-0 z-0;
+  }
+}

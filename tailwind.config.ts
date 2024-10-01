@@ -27,7 +27,7 @@ const config: Config = {
       }
     },
     fontFamily: {
-      sans: ['Nunito Sans', 'sans-serif']
+      sans: ['Nunito', 'sans-serif']
     }
   },
   plugins: [scrollbar],

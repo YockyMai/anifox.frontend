@@ -27,3 +27,8 @@ export {
   useAnimeVideosQuery,
   usePrefetchAnimeVideosQuery
 } from './use-anime-videos-query'
+
+export {
+  useComingOutAnimeQuery,
+  usePrefetchComingOutAnimeQuery
+} from './use-coming-out-anime-query'

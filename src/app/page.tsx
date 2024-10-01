@@ -1,13 +1,22 @@
-'use client'
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient
+} from '@tanstack/react-query'
 
-import { useAtom, useAtomValue } from 'jotai'
+import { HomeScreen } from '@/screens/home'
+import { usePrefetchComingOutAnimeQuery } from '@/services/queries'
 
-import { $userAtoms } from '@/entities/user/atoms'
+const Home = async () => {
+  const queryClient = new QueryClient()
 
-const Home = () => {
-  const user = useAtomValue($userAtoms.user)
+  await usePrefetchComingOutAnimeQuery(queryClient)
 
-  return <div></div>
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <HomeScreen />
+    </HydrationBoundary>
+  )
 }
 
 export default Home

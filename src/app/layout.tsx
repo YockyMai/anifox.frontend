@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Nunito_Sans } from 'next/font/google'
+import { Nunito } from 'next/font/google'
 
 import { NavigationProgress } from '@/common/components'
 import { Providers } from '@/providers'
@@ -7,7 +7,7 @@ import { Header } from '@/widgets/header'
 
 import './global.css'
 
-const nunitoSans = Nunito_Sans({ subsets: ['latin'] })
+const nunitoSans = Nunito({ subsets: ['latin', 'cyrillic'] })
 
 export const metadata: Metadata = {
   title: {

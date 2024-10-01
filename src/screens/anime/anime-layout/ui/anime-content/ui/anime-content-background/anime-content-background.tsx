@@ -1,13 +1,12 @@
 'use client'
 
-import { useSetAtom } from 'jotai'
 import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { useAnimeQuery, useAnimeScreenshotsQuery } from '@/services/queries'
-import { $headerAtoms } from '@/widgets/header/store'
+import { useToggleHeaderOpacity } from '@/widgets/header'
 
 import './anime-content-background.css'
 
@@ -15,9 +14,9 @@ export const AnimeContentBackground = () => {
   // needed the hook from this library because it works if the element is lower z-index 0
   const { ref, inView: imageInView } = useInView()
 
-  const { animeUrl } = useParams<AnimePageParams>()!
+  useToggleHeaderOpacity(imageInView)
 
-  const setHeaderIsTransparent = useSetAtom($headerAtoms.isTransparent)
+  const { animeUrl } = useParams<AnimePageParams>()!
 
   const { data: animeData } = useAnimeQuery(animeUrl)
   const { data: imagesData } = useAnimeScreenshotsQuery(animeUrl)
@@ -34,14 +33,6 @@ export const AnimeContentBackground = () => {
 
     setImageSrc(imageSrc)
   }, [animeData, imagesData])
-
-  useEffect(() => {
-    setHeaderIsTransparent(imageInView)
-
-    return () => {
-      setHeaderIsTransparent(false)
-    }
-  }, [imageInView, setHeaderIsTransparent])
 
   if (!imageSrc) return null
 

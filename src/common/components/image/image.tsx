@@ -8,7 +8,7 @@ import './image.css'
 import { ImageProps } from './image.interface'
 
 const Image = (
-  { fit, alt, width, height, className, ...other }: ImageProps,
+  { fit, alt, width, height, className, src, ...other }: ImageProps,
   ref: ForwardedRef<HTMLDivElement>
 ) => {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -17,6 +17,7 @@ const Image = (
     setIsLoaded(true)
   }
   const onError = () => {
+    console.log('error')
     setIsError(true)
   }
 
@@ -28,6 +29,7 @@ const Image = (
     >
       <img
         style={{ objectFit: fit }}
+        src={src ?? ''}
         {...other}
         onLoad={onLoad}
         onError={onError}

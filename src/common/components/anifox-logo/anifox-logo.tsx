@@ -6,7 +6,7 @@ export const AnifoxLogo = () => {
   return (
     <div className='anifox-logo'>
       <Image
-        alt='Anifox logo'
+        alt='Logo'
         src={'/anifox-logo.webp'}
         className='anifox-logo__image'
         width={40}

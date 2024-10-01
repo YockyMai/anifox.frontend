@@ -57,8 +57,8 @@ export const Carousel = ({
       className='carousel'
       style={
         {
-          ...(slideSpacing && {
-            '--slide-spacing': calcSlideSpacing(slideSpacing)
+          ...(typeof slideSpacing !== undefined && {
+            '--slide-spacing': calcSlideSpacing(slideSpacing!)
           })
         } as CSSProperties
       }
