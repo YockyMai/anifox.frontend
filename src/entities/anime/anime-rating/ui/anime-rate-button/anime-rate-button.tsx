@@ -2,7 +2,7 @@
 
 import { IconStarFilled } from '@tabler/icons-react'
 
-import { Badge, Tooltip } from '@/common/components'
+import { Badge, HoverCard } from '@/common/components'
 import { UISizes } from '@/common/types/ui-sizes'
 import { useAnimeRatingQuery } from '@/services/queries/use-anime-rating-query'
 
@@ -18,17 +18,23 @@ export const AnimeRateButton = ({ animeUrl, rating }: AnimeRateButtonProps) => {
 
   return (
     <div className='w-fit'>
-      <Tooltip
+      <HoverCard
         unstyled
         withoutArrow
         position='bottom'
-        label={<AnimeRateDropdown ratingDistribution={data ?? []} />}
+        trigger={
+          <Badge
+            className='anime-rate-button'
+            radius={UISizes.MD}
+            color={color}
+          >
+            Оценить аниме
+            <IconStarFilled />
+          </Badge>
+        }
       >
-        <Badge className='anime-rate-button' radius={UISizes.MD} color={color}>
-          Оценить аниме
-          <IconStarFilled />
-        </Badge>
-      </Tooltip>
+        <AnimeRateDropdown ratingDistribution={data ?? []} />
+      </HoverCard>
     </div>
   )
 }

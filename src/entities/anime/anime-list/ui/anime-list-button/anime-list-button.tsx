@@ -7,7 +7,7 @@ import {
 } from '@tabler/icons-react'
 import { useMemo } from 'react'
 
-import { Badge, Tooltip, UnstyledButton } from '@/common/components'
+import { Badge, HoverCard, UnstyledButton } from '@/common/components'
 
 import { ANIME_LIST_VARIANTS } from '../../const/anime-list-variants'
 import './anime-list-button.css'
@@ -41,29 +41,29 @@ export const AnimeListButton = ({ animeUrl }: AnimeListButtonProps) => {
   )
 
   return (
-    <Tooltip
+    <HoverCard
       withoutArrow
       unstyled
       width={180}
-      label={
-        <div className='anime-status-button__dropdown'>
-          {options.map((option) => (
-            <UnstyledButton
-              key={option.value}
-              // onClick={() => setAnimeStatus(option.value)}
-              className='anime-status-button__dropdown__item'
-            >
-              {option.icon}
-              {option.title}
-            </UnstyledButton>
-          ))}
-        </div>
+      trigger={
+        <Badge className='anime-status-button'>
+          <p>Добавить в список</p>
+          <IconStack2Filled />
+        </Badge>
       }
     >
-      <Badge className='anime-status-button'>
-        <p>Добавить в список</p>
-        <IconStack2Filled />
-      </Badge>
-    </Tooltip>
+      <div className='anime-status-button__dropdown'>
+        {options.map((option) => (
+          <UnstyledButton
+            key={option.value}
+            // onClick={() => setAnimeStatus(option.value)}
+            className='anime-status-button__dropdown__item'
+          >
+            {option.icon}
+            {option.title}
+          </UnstyledButton>
+        ))}
+      </div>
+    </HoverCard>
   )
 }

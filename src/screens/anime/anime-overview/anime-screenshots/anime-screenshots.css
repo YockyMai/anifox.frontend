@@ -1,0 +1,5 @@
+.anime-screenshots {
+  --image-height: 130px;
+
+  height: var(--image-height);
+}

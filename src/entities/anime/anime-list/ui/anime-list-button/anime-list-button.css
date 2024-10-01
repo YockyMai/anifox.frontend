@@ -10,8 +10,8 @@
   @apply overflow-hidden rounded bg-slate-200 shadow dark:bg-slate-800;
 
   &__item {
-    @apply w-full px-2 py-2 text-sm;
     @apply transition-colors hover:bg-slate-300 hover:dark:bg-slate-700 dark:hover:text-white;
     @apply flex items-center justify-start gap-2;
+    @apply w-full px-2 py-2 text-sm;
   }
 }

@@ -1,1 +1,3 @@
-export { KodikPlayer } from './kodik-player'
+import KodikPlayer from './kodik-player'
+
+export { KodikPlayer }

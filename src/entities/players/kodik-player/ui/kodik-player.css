@@ -1,9 +1,5 @@
 .kodik-player-container {
   @apply relative aspect-[12/6] w-full;
-
-  .kodik-player__header {
-    @apply grid grid-cols-[500px_auto] py-2;
-  }
 }
 
 .kodik-player {

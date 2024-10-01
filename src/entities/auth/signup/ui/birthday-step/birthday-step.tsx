@@ -6,7 +6,7 @@ import { useAtom } from 'jotai'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { Button, Calendar, Tooltip } from '@/common/components'
+import { Button, Calendar, HoverCard } from '@/common/components'
 
 import { $signupAtoms } from '../../atoms'
 import { useStepsActions } from '../../hooks'
@@ -36,24 +36,24 @@ export const BirthdayStep = () => {
         onClick: handleSubmit(incrementStep)
       }}
     >
-      <Tooltip
+      <HoverCard
         unstyled
         triggerClassName='mx-auto'
-        label={
-          <Calendar
-            maxDate={new Date()}
-            value={birthday}
-            onChange={(date) => {
-              setBirthday(date as Date)
-              setValue('birthday', date as Date)
-            }}
-          />
+        trigger={
+          <Button>
+            {birthday ? dayjs(birthday).format('DD.MM.YYYY') : 'Выберите дату'}
+          </Button>
         }
       >
-        <Button>
-          {birthday ? dayjs(birthday).format('DD.MM.YYYY') : 'Выберите дату'}
-        </Button>
-      </Tooltip>
+        <Calendar
+          maxDate={new Date()}
+          value={birthday}
+          onChange={(date) => {
+            setBirthday(date as Date)
+            setValue('birthday', date as Date)
+          }}
+        />
+      </HoverCard>
 
       <p className='mt-7 text-center text-sm'>
         Зная вашу дату рождения, мы можем подобрать для вас подходящие аниме.

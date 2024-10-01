@@ -1,5 +1,8 @@
 .episodes-list {
-  @apply transition-all;
+  @apply overflow-hidden rounded transition-all;
+
+  @apply bg-slate-300/80 backdrop-blur-xl;
+  @apply dark:bg-slate-900;
 
   &__content {
     @apply scrollbar-hide hover:scrollbar;

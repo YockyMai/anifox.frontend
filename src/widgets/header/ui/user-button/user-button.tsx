@@ -1,5 +1,5 @@
 import { IconUserFilled } from '@tabler/icons-react'
-import { useAtom, useAtomValue } from 'jotai'
+import { useAtomValue } from 'jotai'
 import Link from 'next/link'
 import React from 'react'
 

@@ -1,23 +1,21 @@
 'use client'
 
 import { useHover } from '@anifox/hooks'
-import { IconChevronDown } from '@tabler/icons-react'
+import { IconChevronDown, IconPlayerPlayFilled } from '@tabler/icons-react'
 import { useAtomValue } from 'jotai'
 import React, { useEffect, useMemo, useState } from 'react'
 
+import Popover from '@/common/components/popover/popover'
 import { getUserDeviceType } from '@/common/helpers'
+import { $kodikPlayerAtoms } from '@/entities/players/kodik-player/store/kodik-player'
 import { useAnimeEpisodesQuery } from '@/services/queries'
 
 import { $playerEpisodeAtoms } from '../../store'
 import { EpisodesList } from './episodes-list/episodes-list'
 import './episodes.css'
 
-type Props = {
-  animeUrl: string
-}
-
-export const Episodes = ({ animeUrl }: Props) => {
-  //TODO: Реализовать бесконечный скролл для эпизодов
+export const Episodes = () => {
+  const animeUrl = useAtomValue($kodikPlayerAtoms.animeUrl)
 
   const { data } = useAnimeEpisodesQuery({ animeUrl })
 
@@ -26,19 +24,11 @@ export const Episodes = ({ animeUrl }: Props) => {
     $playerEpisodeAtoms.selectedTranslationAtom
   )
 
-  const device = getUserDeviceType()
-  const { isHovered, hoverProps } = useHover()
-  const [isOpened, setIsOpened] = useState(isHovered)
+  const [isOpened, setIsOpened] = useState(false)
 
   const toggleEpisodeListOpened = () => {
-    if (device !== 'desktop') setIsOpened((prev) => !prev)
+    setIsOpened((prev) => !prev)
   }
-
-  useEffect(() => {
-    if (device === 'desktop') {
-      setIsOpened(isHovered)
-    }
-  }, [device, isHovered])
 
   const episodes = useMemo(
     () => data?.pages.flatMap((episode) => episode.flat()) ?? [],
@@ -48,10 +38,15 @@ export const Episodes = ({ animeUrl }: Props) => {
   if (episodes.length <= 1) return null
 
   return (
-    <div className='anime-episodes-container' {...hoverProps}>
-      <div onClick={toggleEpisodeListOpened} className='anime-episodes-episode'>
-        <div className='flex'>
-          {/* <MdOutlineVideoLibrary className={styles.playIcon} /> */}
+    <Popover
+      unstyled
+      withoutArrow
+      trigger={
+        <div
+          onClick={toggleEpisodeListOpened}
+          className='anime-episodes-trigger'
+        >
+          <IconPlayerPlayFilled className='anime-episodes-trigger__icon' />
           {selectedEpisode ? (
             <p>{selectedEpisode.number} серия</p>
           ) : (
@@ -62,8 +57,9 @@ export const Episodes = ({ animeUrl }: Props) => {
             <IconChevronDown className='anime-episodes-episode__icon' />
           </div>
         </div>
-      </div>
-      <EpisodesList isOpened={isHovered} episodes={episodes} />
-    </div>
+      }
+    >
+      <EpisodesList isOpened={isOpened} episodes={episodes} />
+    </Popover>
   )
 }

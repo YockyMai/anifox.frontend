@@ -1,4 +1,4 @@
 export const ANIME_SCREENSHOT_SIZE = {
   HEIGHT: 130,
-  WIDTH: 257
+  WIDTH: 247
 }

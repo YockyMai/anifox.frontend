@@ -12,7 +12,7 @@ export const AnimeFavoriteButton = ({
   const iconSize = Math.round(size / 1.3)
 
   return (
-    <Tooltip withoutArrow label={<p>Добавить в избранное</p>}>
+    <Tooltip label={'Добавить в избранное'}>
       <Button
         color={UIColors.RED}
         style={{ height: size, width: size }}

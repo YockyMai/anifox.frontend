@@ -9,6 +9,7 @@ import { useAnimeScreenshotsQuery } from '@/services/queries'
 
 import { AnimeScreenshot } from './anime-screenshot'
 import { ANIME_SCREENSHOT_SIZE } from './anime-screenshots.const'
+import './anime-screenshots.css'
 
 export type NoSSRProps = {
   children: ReactNode
@@ -23,15 +24,17 @@ export const AnimeScreenshots = () => {
 
   return (
     <Fancybox>
-      <Carousel
-        slides={(data ?? []).map((src) => ({
-          content: <AnimeScreenshot key={src} src={src} alt={''} />,
-          size: ANIME_SCREENSHOT_SIZE.WIDTH
-        }))}
-        dragFree
-        slideSpacing={10}
-        align='end'
-      />
+      <div className='anime-screenshots'>
+        <Carousel
+          slides={(data ?? []).map((src) => ({
+            content: <AnimeScreenshot key={src} src={src} alt={''} />,
+            size: ANIME_SCREENSHOT_SIZE.WIDTH
+          }))}
+          dragFree
+          slideSpacing={10}
+          align='end'
+        />
+      </div>
     </Fancybox>
   )
 }

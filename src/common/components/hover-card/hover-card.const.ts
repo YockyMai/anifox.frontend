@@ -7,7 +7,7 @@ export const COLLISION_PADDING = {
   right: 20
 }
 
-export const TOOLTIP_OFFSET = {
+export const HOVER_CARD_OFFSET = {
   [UISizes.SM]: 1,
   [UISizes.MD]: 3,
   [UISizes.LG]: 5,

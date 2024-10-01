@@ -1,8 +1,8 @@
 .anime-screenshot {
-  @apply relative h-full w-auto flex-shrink-0 cursor-pointer;
+  @apply relative h-[--image-height] w-auto flex-shrink-0 cursor-pointer overflow-hidden rounded;
 
   &__image {
-    @apply overflow-hidden rounded object-cover transition-all;
+    @apply h-[--image-height] w-[247px] object-cover transition-all;
   }
 
   &__icon {

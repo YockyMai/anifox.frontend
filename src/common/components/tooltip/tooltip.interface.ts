@@ -1,20 +1,15 @@
-import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react'
+import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from 'react'
 
-import { UISize } from '@/main'
-
-export interface TooltipProps
-  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  children: ReactNode
-  label: string | ReactNode
+export type TooltipProps = {
+  children?: ReactNode
+  label: string
   hideWhenDetached?: boolean
   width?: number
   position?: 'top' | 'right' | 'bottom' | 'left'
   isOpen?: boolean
   onOpenChange?: (isOpen: boolean) => void
-  openDelay?: number
-  closeDelay?: number
   withoutArrow?: boolean
-  tooltipOffset?: UISize
-  triggerClassName?: string
-  unstyled?: boolean
-}
+} & DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>

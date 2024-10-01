@@ -1,5 +1,5 @@
 .anime-player-container {
-  @apply relative my-12 bg-slate-200 py-5;
+  @apply relative my-12 py-5;
 
   .screen-section__title {
     @apply container mx-auto;

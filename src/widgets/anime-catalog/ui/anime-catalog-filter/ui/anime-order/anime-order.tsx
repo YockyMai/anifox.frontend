@@ -8,7 +8,7 @@ import {
 import { clsx } from 'clsx'
 import { useAtom } from 'jotai'
 
-import { Tooltip, UnstyledButton } from '@/common/components'
+import { HoverCard, UnstyledButton } from '@/common/components'
 import { AnimeOrderVariants } from '@/services/api'
 import { ANIME_SORT_DIRECTION } from '@/widgets/anime-catalog/model'
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model/anime-catalog-filter'
@@ -33,46 +33,46 @@ export const AnimeOrder = () => {
   }
 
   return (
-    <Tooltip
+    <HoverCard
       unstyled
       position='bottom'
       withoutArrow
-      label={
-        <div className='anime-order__dropdown'>
-          <div className='anime-order__dropdown__header'>
-            <p>Сортировать</p>
-            <div className='anime-order__dropdown__sort'>
-              <UnstyledButton
-                className='anime-order__dropdown__sort__icon'
-                onClick={toggleSort}
-              >
-                {sort === ANIME_SORT_DIRECTION.ASC ? (
-                  <IconSortDescending />
-                ) : (
-                  <IconSortAscending />
-                )}
-              </UnstyledButton>
-            </div>
-          </div>
-          <div />
-          {Object.values(ANIME_ORDER_OPTIONS).map((orderOption) => (
-            <UnstyledButton
-              onClick={() => selectOrder(orderOption)}
-              className={clsx(
-                'anime-order__dropdown__option',
-                orderOption === order && 'anime-order__dropdown__option_active'
-              )}
-              key={orderOption}
-            >
-              <p>{orderOption}</p>
-            </UnstyledButton>
-          ))}
-        </div>
+      trigger={
+        <UnstyledButton className='anime-order'>
+          <IconFilter />
+        </UnstyledButton>
       }
     >
-      <UnstyledButton className='anime-order'>
-        <IconFilter />
-      </UnstyledButton>
-    </Tooltip>
+      <div className='anime-order__dropdown'>
+        <div className='anime-order__dropdown__header'>
+          <p>Сортировать</p>
+          <div className='anime-order__dropdown__sort'>
+            <UnstyledButton
+              className='anime-order__dropdown__sort__icon'
+              onClick={toggleSort}
+            >
+              {sort === ANIME_SORT_DIRECTION.ASC ? (
+                <IconSortDescending />
+              ) : (
+                <IconSortAscending />
+              )}
+            </UnstyledButton>
+          </div>
+        </div>
+        <div />
+        {Object.values(ANIME_ORDER_OPTIONS).map((orderOption) => (
+          <UnstyledButton
+            onClick={() => selectOrder(orderOption)}
+            className={clsx(
+              'anime-order__dropdown__option',
+              orderOption === order && 'anime-order__dropdown__option_active'
+            )}
+            key={orderOption}
+          >
+            <p>{orderOption}</p>
+          </UnstyledButton>
+        ))}
+      </div>
+    </HoverCard>
   )
 }

@@ -11,6 +11,7 @@ import { AnimeEpisode } from '@/services/api'
 import { getAnimeListHeight } from '../../../helpers/get-anime-list-height'
 import { $playerEpisodeAtoms } from '../../../store'
 import { EpisodeSelectionCard } from './episode-card'
+import { EPISODE_CARD_HEIGHT } from './episodes-list.const'
 import './episodes-list.css'
 import { EpisodesListProps } from './episodes-list.interface'
 
@@ -21,7 +22,7 @@ export const EpisodesList = ({ episodes, isOpened }: EpisodesListProps) => {
   const selectedTranslation = useAtomValue(
     $playerEpisodeAtoms.selectedTranslationAtom
   )
-  const setEpisodeLink = useSetAtom($kodikPlayerAtoms.kodikEpisodeLink)
+  const setEpisodeLink = useSetAtom($kodikPlayerAtoms.episodeLink)
 
   const onChangeEpisode = useCallback(
     (episode: AnimeEpisode) => {
@@ -42,18 +43,17 @@ export const EpisodesList = ({ episodes, isOpened }: EpisodesListProps) => {
   const episodesListHeight = getAnimeListHeight(episodes.length, windowHeight)
 
   return (
-    <div
-      className='episodes-list'
-      style={{ height: isOpened ? episodesListHeight : 0 }}
-    >
+    <div className='episodes-list'>
       <FixedSizeList
         className='episodes-list__content'
-        height={episodesListHeight}
+        height={500}
         width={500}
-        itemSize={96}
+        itemSize={EPISODE_CARD_HEIGHT}
         itemCount={episodes.length}
         initialScrollOffset={
-          selectedEpisode ? selectedEpisode.number * 96 - 96 : 0
+          selectedEpisode
+            ? selectedEpisode.number * EPISODE_CARD_HEIGHT - EPISODE_CARD_HEIGHT
+            : 0
         }
       >
         {({ index, style }) => (

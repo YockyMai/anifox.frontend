@@ -1,9 +1,11 @@
-import { Episodes } from './episodes/episodes'
-import './player-episode-selector.css'
-import { PlayerEpisodeSelectorProps } from './player-episode-selector.interface'
+import React from 'react'
 
-export const PlayerEpisodeSelector = ({
-  animeUrl
-}: PlayerEpisodeSelectorProps) => {
-  return <Episodes animeUrl={animeUrl} />
+import { Episodes } from './episodes/episodes'
+
+export const PlayerEpisodeSelector = () => {
+  return (
+    <div>
+      <Episodes />
+    </div>
+  )
 }

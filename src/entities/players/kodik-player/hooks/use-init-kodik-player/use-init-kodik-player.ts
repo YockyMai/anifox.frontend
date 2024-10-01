@@ -11,10 +11,13 @@ import { $kodikPlayerAtoms } from '../../store/kodik-player'
 import { UseInitKodikPlayerOptions } from './use-init-kodik-player.interface'
 
 export const useInitKodikPlayer = ({ animeUrl }: UseInitKodikPlayerOptions) => {
-  const setKodikEpisodeLink = useSetAtom($kodikPlayerAtoms.kodikEpisodeLink)
+  const setEpisodeLink = useSetAtom($kodikPlayerAtoms.episodeLink)
+  const setAnimeUrl = useSetAtom($kodikPlayerAtoms.animeUrl)
 
   const { data: episodes } = useAnimeEpisodesQuery({ animeUrl })
   const translations = useAnimeTranslationsQuery(animeUrl)
+
+  setAnimeUrl(animeUrl)
 
   useEffect(() => {
     if (!episodes?.pages.length) {
@@ -29,6 +32,6 @@ export const useInitKodikPlayer = ({ animeUrl }: UseInitKodikPlayerOptions) => {
       }
     )
 
-    setKodikEpisodeLink(episodeLink)
-  }, [episodes, setKodikEpisodeLink])
+    setEpisodeLink(episodeLink)
+  }, [episodes, setEpisodeLink])
 }

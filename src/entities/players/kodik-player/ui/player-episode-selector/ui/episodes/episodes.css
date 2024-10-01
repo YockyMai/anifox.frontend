@@ -1,11 +1,10 @@
-.anime-episodes-container {
-  @apply overflow-hidden rounded bg-black py-2 backdrop-blur-xl;
-  &__selected-epsiode {
-    @apply sticky left-0 top-0 z-10 flex cursor-pointer items-center justify-between bg-slate-900 text-white;
-    @apply px-2 py-1 lg:py-2;
+.anime-episodes-trigger {
+  @apply flex items-center justify-between;
+  @apply px-2 py-1 lg:py-2;
+  @apply cursor-pointer;
+  @apply rounded bg-slate-300;
 
-    &__icon {
-      @apply mr-2 text-2xl;
-    }
+  &__icon {
+    @apply mr-2 text-2xl;
   }
 }
