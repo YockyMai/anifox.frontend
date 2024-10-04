@@ -64,28 +64,28 @@
   }
 
   &_sm {
-    --button-height: theme('height.5');
+    --button-height: theme('height.4');
     --button-font-size: theme('fontSize.sm');
   }
 
   &_md {
+    --button-height: theme('height.5');
+    --button-font-size: theme('fontSize.sm');
+  }
+
+  &_lg {
     --button-height: theme('height.6');
     --button-font-size: theme('fontSize.base');
   }
 
-  &_lg {
-    --button-height: theme('height.7');
-    --button-font-size: theme('fontSize.lg');
-  }
-
   &_xl {
-    --button-height: theme('height.8');
-    --button-font-size: theme('fontSize.xl');
+    --button-height: theme('height.7');
+    --button-font-size: theme('fontSize.base');
   }
 
   &_xxl {
-    --button-height: theme('height.9');
-    --button-font-size: theme('fontSize.2xl');
+    --button-height: theme('height.8');
+    --button-font-size: theme('fontSize.base');
   }
 
   &_radius-sm {

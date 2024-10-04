@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 
 import { UISizes } from '@/common/types/ui-sizes'
 
-import { Badge } from './badge'
+import Badge from './badge'
 
 const meta = {
   title: 'Badge',
