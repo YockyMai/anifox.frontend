@@ -24,6 +24,8 @@ const SlidesDemo = [
   'https://shikimori.one/system/screenshots/original/658977f5f3980c8e0d7190a73a5426a5f830aa20.jpg?1652290582'
 ].map((src) => (
   <img
+    key={src}
+    alt='slide'
     style={{
       width: '100%',
       borderRadius: '1em',

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Tooltip } from './popover'
+import { Tooltip } from '../tooltip'
 
 const meta = {
   title: 'Tooltip',
@@ -20,6 +20,6 @@ type Story = StoryObj<typeof meta>
 export const Demo: Story = {
   args: {
     children: <h1>Hover me</h1>,
-    label: <>CONTENT</>
+    label: 'content'
   }
 }

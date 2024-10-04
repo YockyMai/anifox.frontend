@@ -16,7 +16,6 @@ export const DropdownIndicator = <IsMulti extends boolean>({
     <UnstyledButton
       className='select__indicator'
       // any - так как innerProps типизирован для Div, а не для Button элемента
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       {...(innerProps as any)}
     >
       <IconChevronDown size={20} />

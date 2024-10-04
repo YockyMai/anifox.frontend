@@ -1,6 +1,8 @@
 import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react'
 
-import { UIColor, UISize, UIVariant } from '@/main'
+import { UIColor } from '@/common/types/ui-colors'
+import { UISize } from '@/common/types/ui-sizes'
+import { UIVariant } from '@/common/types/ui-variants'
 
 export interface AlertProps
   extends DetailedHTMLProps<

@@ -4,13 +4,13 @@ import {
   IconChevronsLeft,
   IconChevronsRight
 } from '@tabler/icons-react'
-import { forwardRef } from 'react'
+import { ForwardedRef, forwardRef } from 'react'
 import { Calendar as ReactCalendar } from 'react-calendar'
 
 import './calendar.css'
 import { CalendarProps } from './calendar.interface'
 
-export const Calendar = forwardRef((props: CalendarProps, ref) => {
+const Calendar = (props: CalendarProps, ref: ForwardedRef<HTMLDivElement>) => {
   return (
     <ReactCalendar
       {...props}
@@ -21,4 +21,6 @@ export const Calendar = forwardRef((props: CalendarProps, ref) => {
       prevLabel={<IconChevronLeft size={24} />}
     />
   )
-})
+}
+
+export default forwardRef(Calendar)

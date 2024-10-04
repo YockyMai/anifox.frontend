@@ -1,1 +1,1 @@
-export { TabItem } from './tab-item'
+export { default as TabItem } from './tab-item'

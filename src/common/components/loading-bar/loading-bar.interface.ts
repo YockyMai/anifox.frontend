@@ -1,7 +1,7 @@
 import { DetailedHTMLProps, HTMLAttributes } from 'react'
 
-import { UIColor } from '@/main'
-import { UISize } from '@/shared/types/ui-sizes'
+import { UIColor } from '@/common/types/ui-colors'
+import { UISize } from '@/common/types/ui-sizes'
 
 export type LoadingBarProps = {
   width?: number

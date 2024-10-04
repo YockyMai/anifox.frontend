@@ -5,8 +5,8 @@ import {
   ReactNode
 } from 'react'
 
-import { UISize } from '@/shared/types/ui-sizes'
-import { UIVariant } from '@/shared/types/ui-variants'
+import { UISize } from '@/common/types/ui-sizes'
+import { UIVariant } from '@/common/types/ui-variants'
 
 export interface InputProps
   extends DetailedHTMLProps<
