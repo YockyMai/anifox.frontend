@@ -34,10 +34,6 @@
     );
   }
 
-  &_blur {
-    @apply backdrop-blur-sm;
-  }
-
   &_full-width {
     @apply w-full;
   }

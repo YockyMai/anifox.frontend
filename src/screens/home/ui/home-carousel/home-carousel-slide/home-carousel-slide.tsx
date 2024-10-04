@@ -79,7 +79,6 @@ export const HomeCarouselSlide = ({ anime }: HomeCarouselSlideProps) => {
             whileInView={animations.whileInView}
           >
             <Button
-              variant='blur'
               icon={<IconPlayerPlayFilled />}
               size={UISizes.LG}
               color='orange'

@@ -21,6 +21,13 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/screens/home/ui/home-carousel/home-carousel-slide/home-carousel-slide.const.ts",
+    "src/types/*.d.ts"
+  ],
   "exclude": ["node_modules"]
 }
