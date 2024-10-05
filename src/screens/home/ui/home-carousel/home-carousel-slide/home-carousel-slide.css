@@ -3,7 +3,7 @@
   @apply flex items-center px-32;
 
   &__image {
-    @apply absolute left-0 top-0 -z-10 h-full w-full select-none;
+    @apply absolute left-0 top-0 -z-10 h-full w-full select-none brightness-90;
 
     &__element {
       @apply pointer-events-none h-full w-full select-none;

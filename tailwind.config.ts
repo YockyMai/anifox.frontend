@@ -19,7 +19,6 @@ const config: Config = {
         'fade-out': `fade-out ${utils.theme('transitionDuration.75')} ease-out`,
         'scale-in': `scale-in ease-in ${utils.theme('transitionDuration.75')} ease-in`,
         'scale-out': `scale-out ${utils.theme('transitionDuration.75')} ease-out`,
-        ripple: `ripple`,
         slide: `slide ${utils.theme('transitionDuration.75')} infinite`
       }),
       colors: {

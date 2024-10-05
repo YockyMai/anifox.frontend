@@ -16,7 +16,6 @@ export const AnimeFavoriteButton = ({
       <Button
         color={UIColors.RED}
         style={{ height: size, width: size }}
-        withRipple
         className='anime-favorite-button'
       >
         <IconHeartFilled size={iconSize} />

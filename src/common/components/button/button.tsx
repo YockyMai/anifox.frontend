@@ -1,7 +1,7 @@
 import { clsx } from 'clsx'
+import { motion } from 'framer-motion'
 import { ForwardedRef, forwardRef } from 'react'
 
-import { useRippleEffect } from '@/common/hooks'
 import { UIColors } from '@/common/types/ui-colors'
 import { UISizes } from '@/common/types/ui-sizes'
 import { UIVariants } from '@/common/types/ui-variants'
@@ -16,7 +16,6 @@ export const Button = forwardRef(
     {
       children,
       size = UISizes.MD,
-      withRipple,
       color = UIColors.ORANGE,
       fullWidth,
       icon,
@@ -29,9 +28,6 @@ export const Button = forwardRef(
     }: ButtonProps,
     ref: ForwardedRef<HTMLButtonElement>
   ) => {
-    const { addRipple, rippleArray, setRippleArray, rippleDuration } =
-      useRippleEffect()
-
     return (
       <button
         className={clsx(
@@ -43,11 +39,6 @@ export const Button = forwardRef(
           radius && `button_radius-${radius}`,
           className
         )}
-        onMouseDown={
-          withRipple
-            ? (event) => addRipple(event, rippleArray, setRippleArray)
-            : undefined
-        }
         ref={ref}
         {...other}
       >
@@ -68,21 +59,6 @@ export const Button = forwardRef(
               {rightIcon}
             </div>
           )}
-        </div>
-        <div className={clsx(withRipple && 'button__ripple')}>
-          {rippleArray.length > 0 &&
-            rippleArray.map((ripple, index) => (
-              <span
-                key={index}
-                style={{
-                  animationDuration: `${rippleDuration}ms`,
-                  top: ripple.y,
-                  left: ripple.x,
-                  width: ripple.size,
-                  height: ripple.size
-                }}
-              />
-            ))}
         </div>
       </button>
     )

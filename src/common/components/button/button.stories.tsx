@@ -23,7 +23,6 @@ type Story = StoryObj<typeof meta>
 export const Demo: Story = {
   args: {
     children: 'Watching',
-    withRipple: true,
     size: UISizes.MD,
     radius: UISizes.MD,
     className: 'test'
@@ -33,7 +32,6 @@ export const Demo: Story = {
 export const LeftIcon: Story = {
   args: {
     children: 'Registration',
-    withRipple: true,
     size: UISizes.MD,
     radius: UISizes.MD,
     icon: <IconBrandAuth0 />
@@ -43,7 +41,6 @@ export const LeftIcon: Story = {
 export const RightIcon: Story = {
   args: {
     children: 'Registration',
-    withRipple: true,
     size: UISizes.MD,
     radius: UISizes.MD,
     rightIcon: <IconBrandAuth0 />
@@ -53,7 +50,6 @@ export const RightIcon: Story = {
 export const DisabledButton: Story = {
   args: {
     children: 'Disabled button',
-    withRipple: true,
     disabled: true,
     title: 'disable'
   }

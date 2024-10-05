@@ -14,13 +14,11 @@
 
   &_filled {
     @apply bg-[--button-bg-color];
-    --ripple-bg-color: theme('colors.white');
   }
 
   &_outline {
     @apply bg-transparent outline outline-2;
     color: var(--button-bg-color);
-    --ripple-bg-color: var(--button-bg-color);
   }
 
   &_light {
@@ -106,15 +104,6 @@
 
   &_radius-xxl {
     border-radius: theme('borderRadius.2xl');
-  }
-
-  &__ripple {
-    @apply absolute bottom-0 left-0 right-0 top-0 z-0 overflow-hidden;
-
-    span {
-      @apply absolute animate-ripple rounded-full bg-[--ripple-bg-color] opacity-25;
-      transform: scale(0);
-    }
   }
 }
 
