@@ -1,7 +1,7 @@
 'use client'
 
 import useEmblaCarousel from 'embla-carousel-react'
-import { CSSProperties, useEffect } from 'react'
+import { CSSProperties, memo, useEffect } from 'react'
 
 import { UiAligns } from '@/common/types/ui-aligns'
 
@@ -11,7 +11,7 @@ import { CarouselControls } from './components'
 import { useCarouselPlugins } from './hooks'
 import { calcSlideSize, calcSlideSpacing } from './lib'
 
-export const Carousel = ({
+const Carousel = ({
   slides,
   loop,
   slideOnWheel,
@@ -90,3 +90,5 @@ export const Carousel = ({
     </div>
   )
 }
+
+export default memo(Carousel)

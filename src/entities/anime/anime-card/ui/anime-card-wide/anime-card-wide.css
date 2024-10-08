@@ -1,0 +1,21 @@
+.anime-card-wide {
+  @apply relative aspect-[12/6] cursor-pointer select-none overflow-hidden rounded;
+  @apply flex flex-col justify-end;
+
+  &__image {
+    @apply absolute left-0 top-0 h-full w-full;
+  }
+
+  &__title {
+    @apply w-full bg-black/50 px-2 py-1.5 backdrop-blur-lg;
+    p {
+      @apply line-clamp-2 w-full text-xs text-white transition-colors;
+    }
+
+    &_active {
+      p {
+        @apply text-orange-300;
+      }
+    }
+  }
+}

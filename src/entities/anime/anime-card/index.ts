@@ -1,1 +1,6 @@
-export { AnimeCard, AnimeCardSkeleton } from './ui'
+export {
+  AnimeCard,
+  AnimeCardSkeleton,
+  AnimeCardSimple,
+  AnimeCardWide
+} from './ui'

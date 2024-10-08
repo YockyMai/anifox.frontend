@@ -1,4 +1,4 @@
-export { Carousel } from './carousel'
+export { default as Carousel } from './carousel'
 export type {
   CarouselAutoplayOptions,
   CarouselProps,

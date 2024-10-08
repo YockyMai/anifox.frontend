@@ -1,6 +1,6 @@
 .home-carousel-slide {
   @apply relative h-[600px] w-full;
-  @apply flex items-center px-32;
+  @apply flex flex-col justify-center px-32 py-10;
 
   &__image {
     @apply absolute left-0 top-0 -z-10 h-full w-full select-none brightness-90;
@@ -10,24 +10,24 @@
     }
   }
 
-  &__container {
-    @apply flex h-full flex-col justify-between py-10;
-  }
-
   &__content {
     @apply select-none gap-3 rounded bg-black/30 py-5 pl-5 pr-8 backdrop-blur-xl;
-    @apply flex items-center justify-between;
+    @apply flex w-fit items-center justify-between;
+
+    &__image {
+      @apply w-32;
+    }
 
     &__info {
-      @apply flex flex-col gap-y-1;
+      @apply flex flex-col gap-y-2;
 
       &__title {
         @apply text-2xl text-white;
       }
-    }
-  }
 
-  &__buttons {
-    @apply flex items-center gap-3;
+      &__buttons {
+        @apply flex items-center gap-1.5;
+      }
+    }
   }
 }

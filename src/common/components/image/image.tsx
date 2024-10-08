@@ -1,51 +1,24 @@
 'use client'
 
-import { IconPhotoOff } from '@tabler/icons-react'
 import { clsx } from 'clsx'
-import { ForwardedRef, forwardRef, useState } from 'react'
+import { ForwardedRef, forwardRef } from 'react'
 
 import './image.css'
 import { ImageProps } from './image.interface'
 
 const Image = (
   { fit, alt, width, height, className, src, ...other }: ImageProps,
-  ref: ForwardedRef<HTMLDivElement>
+  ref: ForwardedRef<HTMLImageElement>
 ) => {
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [isError, setIsError] = useState(false)
-  const onLoad = () => {
-    setIsLoaded(true)
-  }
-  const onError = () => {
-    console.log('error')
-    setIsError(true)
-  }
-
   return (
-    <div
-      style={{ width, height }}
-      className={clsx('image', className)}
+    <img
       ref={ref}
-    >
-      <img
-        style={{ objectFit: fit }}
-        src={src ?? ''}
-        {...other}
-        onLoad={onLoad}
-        onError={onError}
-        alt={alt ?? 'Отсутствует изображение'}
-        className={clsx('image__view', isLoaded && 'image_loaded')}
-      />
-      {!isLoaded && !isError && (
-        <span className={clsx('image__status', 'image__loader')} />
-      )}
-      {!isLoaded && isError && (
-        <div className='image__status image__error image_loaded'>
-          <IconPhotoOff />
-          <p>Отсутствует изображение</p>
-        </div>
-      )}
-    </div>
+      style={{ objectFit: fit ?? 'cover' }}
+      src={src ?? ''}
+      {...other}
+      alt={alt ?? 'Отсутствует изображение'}
+      className={clsx('image', className)}
+    />
   )
 }
 

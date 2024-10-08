@@ -1,0 +1,9 @@
+.anime-card-simple {
+  &__image {
+    @apply aspect-[9/12];
+  }
+
+  &__title {
+    @apply line-clamp-2 text-sm;
+  }
+}
