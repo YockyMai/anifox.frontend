@@ -5,10 +5,10 @@ export const ROUTES = {
     ANIME: {
       ROOT: '/anime/:animeUrl',
       CHARACTERS: '/anime/:animeUrl/characters',
+      WATCH: '/anime/:animeUrl/watch',
       REVIEWS: '/anime/:animeUrl/reviews'
     }
   },
-  WATCH: `/watch/:animeUrl`,
   SETTINGS: '/settings',
   LOGIN: '/login',
   SIGN_UP: '/signup',

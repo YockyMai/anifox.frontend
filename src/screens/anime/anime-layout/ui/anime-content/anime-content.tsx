@@ -29,7 +29,7 @@ export const AnimeContent = () => {
         <div className='anime-content__poster'>
           <Image
             className='anime-content__poster__image'
-            src={data!.image.large}
+            src={data?.image.large ?? ''}
             alt='Постер аниме'
             width={220}
             height={320}

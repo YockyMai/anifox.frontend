@@ -3,7 +3,6 @@
 import { ScreenSection } from '@/common/components'
 
 import { AnimeFranchise } from './anime-franchise'
-import { AnimePlayer } from './anime-player'
 import { AnimeScreenshots } from './anime-screenshots'
 import { AnimeVideos } from './anime-videos'
 
@@ -19,8 +18,6 @@ export const AnimeOverviewScreen = () => {
           <AnimeVideos />
         </ScreenSection>
       </div>
-
-      <AnimePlayer />
 
       <div className='container mx-auto'>
         <ScreenSection title='Хронология'>

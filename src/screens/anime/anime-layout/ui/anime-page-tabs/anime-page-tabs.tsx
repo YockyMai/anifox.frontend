@@ -1,8 +1,9 @@
 'use client'
 
+import { IconPlayerPlay, IconBook, IconUsers } from '@tabler/icons-react'
 import Link from 'next/link'
 import { useParams, usePathname } from 'next/navigation'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { Tabs } from '@/common/components'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
@@ -16,22 +17,45 @@ export const AnimePageTabs = () => {
 
   const [activeTab, setActiveTab] = useState(pathname)
 
-  const animeOverviewUrl = `${ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', animeUrl)}`
-  const animeCharactersUrl = `${ROUTES.CATALOG.ANIME.CHARACTERS.replace(':animeUrl', animeUrl)}`
+  useEffect(() => {
+    setActiveTab(pathname)
+  }, [pathname])
 
-  const tabs = useMemo(
-    () => [
+  const tabs = useMemo(() => {
+    const animeOverviewUrl = `${ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', animeUrl)}`
+    const watchAnimeUrl = `${ROUTES.CATALOG.ANIME.WATCH.replace(':animeUrl', animeUrl)}`
+    const animeCharactersUrl = `${ROUTES.CATALOG.ANIME.CHARACTERS.replace(':animeUrl', animeUrl)}`
+
+    return [
       {
-        content: <Link href={animeOverviewUrl}>Обзор</Link>,
+        content: (
+          <Link className='anime-page-tabs__tab' href={watchAnimeUrl}>
+            <IconPlayerPlay />
+            Смотреть
+          </Link>
+        ),
+        key: watchAnimeUrl
+      },
+      {
+        content: (
+          <Link className='anime-page-tabs__tab' href={animeOverviewUrl}>
+            <IconBook />
+            Обзор
+          </Link>
+        ),
         key: animeOverviewUrl
       },
       {
-        content: <Link href={animeCharactersUrl}>Персонажи</Link>,
+        content: (
+          <Link className='anime-page-tabs__tab' href={animeCharactersUrl}>
+            <IconUsers />
+            Персонажи
+          </Link>
+        ),
         key: animeCharactersUrl
       }
-    ],
-    [animeOverviewUrl, animeCharactersUrl]
-  )
+    ]
+  }, [animeUrl])
 
   return (
     <div className='anime-page-tabs'>

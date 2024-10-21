@@ -4,7 +4,7 @@
   }
 
   &__menu-portal {
-    @apply translate-y-1;
+    @apply z-50 translate-y-1 !important;
   }
 
   &__menu {
