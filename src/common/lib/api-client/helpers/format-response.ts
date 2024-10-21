@@ -3,13 +3,13 @@ import { ApiClientResponse } from '../api-client.interface'
 export const formatResponse = async <T = any>(
   response: Response
 ): Promise<ApiClientResponse<T>> => {
-  try {
-    const data = (await response.json()) as T
-
-    return getParsedResponseObject(response, data)
-  } catch (e) {
-    return getParsedResponseObject(response, null as T)
+  if (!response.ok) {
+    throw new Error(response.statusText)
   }
+
+  const data = (await response.json()) as T
+
+  return getParsedResponseObject(response, data)
 }
 
 const getParsedResponseObject = <T>(response: Response, data?: T) => {
