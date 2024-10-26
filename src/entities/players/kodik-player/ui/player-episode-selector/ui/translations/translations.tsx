@@ -1,83 +1,49 @@
-// import { useUnit } from "effector-react"
-// import { motion } from "framer-motion"
-// import React, { useEffect, useState } from "react"
-// import { BiChevronDown } from "react-icons/all"
+import { IconChevronDown } from '@tabler/icons-react'
+import { useAtom, useAtomValue } from 'jotai'
+import React from 'react'
 
-// import { kodikPlayerHudModel } from "~entities/kodik-player"
-// import { EpisodeTranslationCard } from "~entities/translation"
+import { Popover, UnstyledButton } from '@/common/components'
+import { $kodikPlayerAtoms } from '@/entities/players/kodik-player/store/kodik-player'
 
-// import { SoundWave } from "~shared/components"
-// import { getUserDeviceType } from "~shared/helpers"
-// import { useHover } from "~shared/hooks"
+import './translations.css'
 
-// import { episodeSelectorModel } from "../../model"
-// import styles from "./styles.module.pcss"
-// import { listVariants, chevronVariants } from "./variants"
+export const Translations = () => {
+  const selectedEpisode = useAtomValue($kodikPlayerAtoms.selectedEpisodeAtom)
+  const [selectedTranslation, setSelectedTranslation] = useAtom(
+    $kodikPlayerAtoms.selectedTranslationAtom
+  )
 
-// export const Translations = () => {
-//   const translations = useUnit(episodeSelectorModel.$translations)
-//   const selectedTranslation = useUnit(episodeSelectorModel.$selectedTranslation)
+  if (!selectedEpisode) return null
 
-//   const device = getUserDeviceType()
-//   const { isHovered, hoverProps } = useHover()
-//   const [isOpened, setIsOpened] = useState(isHovered)
+  return (
+    <Popover
+      withoutArrow
+      trigger={
+        <UnstyledButton className='anime-translations-trigger'>
+          {/* <SoundWave /> */}
+          {selectedTranslation ? (
+            <p>{selectedTranslation.title}</p>
+          ) : (
+            <p>Озвучки</p>
+          )}
 
-//   useEffect(() => {
-//     if (device === "desktop") {
-//       setIsOpened(isHovered)
-//     }
-//   }, [isHovered])
-
-//   useEffect(() => {
-//     if (isOpened) {
-//       kodikPlayerHudModel.hudElementInteracted()
-//     } else {
-//       kodikPlayerHudModel.hudStoppedInteracting()
-//     }
-//   }, [isOpened])
-
-//   const toggleTranslationListOpened = () => {
-//     if (device !== "desktop") setIsOpened((prev) => !prev)
-//   }
-
-//   return (
-//     <div {...hoverProps} className={styles.translations}>
-//       <div
-//         onClick={toggleTranslationListOpened}
-//         className={styles.selectedTranslation}
-//       >
-//         <SoundWave />
-//         {selectedTranslation ? (
-//           <p>{selectedTranslation.title}</p>
-//         ) : (
-//           <p>Озвучки</p>
-//         )}
-//         <motion.div
-//           variants={chevronVariants}
-//           animate={isOpened ? "opened" : "closed"}
-//         >
-//           <BiChevronDown className={"text-2xl text-white"} />
-//         </motion.div>
-//       </div>
-//       <motion.div
-//         initial={false}
-//         variants={listVariants}
-//         animate={isOpened ? "opened" : "closed"}
-//       >
-//         {translations?.map((translation) => (
-//           <div
-//             key={translation.id}
-//             onClick={() => {
-//               episodeSelectorModel.translationSelected(translation)
-//             }}
-//           >
-//             <EpisodeTranslationCard
-//               isSelected={translation.id === selectedTranslation?.id}
-//               translation={translation}
-//             />
-//           </div>
-//         ))}
-//       </motion.div>
-//     </div>
-//   )
-// }
+          <IconChevronDown />
+        </UnstyledButton>
+      }
+    >
+      <div>
+        {selectedEpisode.translations.map((translation) => (
+          <div key={translation.id}>
+            <UnstyledButton
+              onClick={() => {
+                setSelectedTranslation(translation)
+              }}
+            >
+              {translation.title}
+            </UnstyledButton>
+          </div>
+        ))}
+      </div>
+    </Popover>
+  )
+}

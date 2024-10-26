@@ -15,8 +15,10 @@ export type AnimeEpisodeTranslation = {
 }
 
 export type AnimeEpisode = {
-  title?: string
-  description: string
+  aired: string | null
+  title: string
+  description: string | null
+  recap: boolean
   number: number
   image: string
   translations: AnimeEpisodeTranslation[]

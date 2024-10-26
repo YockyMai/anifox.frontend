@@ -1,8 +1,10 @@
-.translations {
-  @apply bg-black/50 backdrop-blur-xl rounded overflow-hidden relative h-fit;
-  .selectedTranslation {
-    @apply flex items-center gap-x-2;
-    @apply flex items-center justify-between bg-slate-900 cursor-pointer sticky z-10 left-0 top-0 text-white;
-    @apply p-1 lg:p-2;
+.anime-translations-trigger {
+  @apply flex items-center justify-between;
+  @apply px-2 py-1 lg:py-2;
+  @apply cursor-pointer;
+  @apply rounded-xl bg-slate-100;
+
+  &__icon {
+    @apply mr-2 text-2xl;
   }
 }

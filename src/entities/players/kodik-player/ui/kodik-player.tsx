@@ -1,6 +1,7 @@
 import { Provider, useAtomValue } from 'jotai'
 import React, { memo } from 'react'
 
+import { getPlayerLinkFromParams } from '../helpers/get-player-link-from-params'
 import { useInitKodikPlayer } from '../hooks'
 import { $kodikPlayerAtoms } from '../store/kodik-player'
 import { KodikPlayerHeader } from './kodik-player-header/kodik-player-header'
@@ -8,7 +9,9 @@ import './kodik-player.css'
 import { KodikPlayerProps } from './kodik-player.interface'
 
 const Player = ({ animeUrl }: KodikPlayerProps) => {
-  const episodeLink = useAtomValue($kodikPlayerAtoms.episodeLink)
+  const selectedTranslation = useAtomValue(
+    $kodikPlayerAtoms.selectedTranslationAtom
+  )
 
   useInitKodikPlayer({ animeUrl })
 
@@ -16,8 +19,16 @@ const Player = ({ animeUrl }: KodikPlayerProps) => {
     <div className='kodik-player-container'>
       <KodikPlayerHeader />
 
-      {episodeLink && (
-        <iframe className='kodik-player' allowFullScreen src={episodeLink} />
+      {selectedTranslation && (
+        <iframe
+          className='kodik-player'
+          allowFullScreen
+          src={getPlayerLinkFromParams(selectedTranslation.link, {
+            only_episode: true,
+            only_season: true,
+            start_from: 0
+          })}
+        />
       )}
     </div>
   )

@@ -1,5 +1,5 @@
 import { AnimeEpisode } from '@/services/api'
 
-export type EpisodesListProps = {
+export type EpisodesProps = {
   episodes: AnimeEpisode[]
 }

@@ -1,21 +1,20 @@
 import { useSetAtom } from 'jotai'
 import { useEffect } from 'react'
 
-import {
-  useAnimeEpisodesQuery,
-  useAnimeTranslationsQuery
-} from '@/services/queries'
+import { useAnimeEpisodesQuery } from '@/services/queries'
 
-import { getPlayerLinkFromParams } from '../../helpers/get-player-link-from-params'
 import { $kodikPlayerAtoms } from '../../store/kodik-player'
 import { UseInitKodikPlayerOptions } from './use-init-kodik-player.interface'
 
 export const useInitKodikPlayer = ({ animeUrl }: UseInitKodikPlayerOptions) => {
-  const setEpisodeLink = useSetAtom($kodikPlayerAtoms.episodeLink)
+  const setSelectedEpisode = useSetAtom($kodikPlayerAtoms.selectedEpisodeAtom)
+  const setSelectedTranslation = useSetAtom(
+    $kodikPlayerAtoms.selectedTranslationAtom
+  )
+
   const setAnimeUrl = useSetAtom($kodikPlayerAtoms.animeUrl)
 
   const { data: episodes } = useAnimeEpisodesQuery({ animeUrl })
-  const translations = useAnimeTranslationsQuery(animeUrl)
 
   setAnimeUrl(animeUrl)
 
@@ -24,14 +23,9 @@ export const useInitKodikPlayer = ({ animeUrl }: UseInitKodikPlayerOptions) => {
       return
     }
 
-    const episodeLink = getPlayerLinkFromParams(
-      episodes.pages[0][0].translations[0].link,
-      {
-        only_episode: true,
-        translations: false
-      }
-    )
+    const lastWatchedEpisode = episodes.pages[0][0]
 
-    setEpisodeLink(episodeLink)
-  }, [episodes, setEpisodeLink])
+    setSelectedTranslation(lastWatchedEpisode.translations[0])
+    setSelectedEpisode(lastWatchedEpisode)
+  }, [episodes, setSelectedEpisode, setSelectedTranslation])
 }
