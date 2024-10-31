@@ -1,6 +1,5 @@
 import './kodik-player-header.css'
-import { Episodes } from './ui/episodes/episodes'
-import { Translations } from './ui/translations/translations'
+import { Episodes, Translations } from './ui'
 
 export const KodikPlayerHeader = () => {
   return (
