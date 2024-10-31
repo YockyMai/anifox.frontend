@@ -1,7 +1,5 @@
 'use client'
 
-import React from 'react'
-
 import { useResetSignupForm } from '../../hooks'
 import { StepContainer } from '../step-container'
 

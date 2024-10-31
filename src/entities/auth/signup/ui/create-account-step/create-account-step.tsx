@@ -1,7 +1,6 @@
 'use client'
 
 import { useSetAtom } from 'jotai'
-import React from 'react'
 
 import { Loader } from '@/common/components'
 import { UISizes } from '@/common/types/ui-sizes'

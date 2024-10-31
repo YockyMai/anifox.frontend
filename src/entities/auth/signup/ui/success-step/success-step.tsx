@@ -2,7 +2,6 @@
 
 import { useAtomValue } from 'jotai'
 import { useRouter } from 'next/navigation'
-import React, { useEffect } from 'react'
 import Confetti from 'react-confetti'
 
 import { $userAtoms } from '@/entities/user/atoms'

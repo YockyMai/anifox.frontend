@@ -3,30 +3,26 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { IconLogin } from '@tabler/icons-react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 
-import { Button, Input } from '@/common/components'
+import { Button, Input, UnstyledButton } from '@/common/components'
 import { UISizes } from '@/common/types/ui-sizes'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { useLogin } from '../hooks'
 import './login-form.css'
-import { LoginSchema } from './login-form.interface'
+import { LoginFormProps, LoginSchema } from './login-form.interface'
 import { loginSchema } from './login-form.schema'
 
-export const LoginForm = () => {
-  const router = useRouter()
-
+export const LoginForm = ({
+  onSignupClick,
+  onLoginSuccess
+}: LoginFormProps) => {
   const {
     register,
     formState: { errors },
     handleSubmit
   } = useForm({ resolver: yupResolver(loginSchema) })
-
-  const onLoginSuccess = () => {
-    router.replace(ROUTES.HOME)
-  }
 
   const { login, isLoading } = useLogin(onLoginSuccess)
 
@@ -70,9 +66,15 @@ export const LoginForm = () => {
 
       <p className='mt-1 text-center text-sm'>
         Еще нет аккаунта?{' '}
-        <Link className='text-orange-300' href={ROUTES.SIGN_UP}>
-          Создать аккаунт
-        </Link>
+        {onSignupClick ? (
+          <UnstyledButton onClick={onSignupClick} className='text-orange-300'>
+            Создать аккаунт
+          </UnstyledButton>
+        ) : (
+          <Link className='text-orange-300' href={ROUTES.SIGN_UP}>
+            Создать аккаунт
+          </Link>
+        )}
       </p>
     </form>
   )

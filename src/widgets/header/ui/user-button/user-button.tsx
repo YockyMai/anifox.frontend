@@ -1,7 +1,6 @@
 import { IconUserFilled } from '@tabler/icons-react'
 import { useAtomValue } from 'jotai'
 import Link from 'next/link'
-import React from 'react'
 
 import { Button } from '@/common/components'
 import { UIVariants } from '@/common/types/ui-variants'

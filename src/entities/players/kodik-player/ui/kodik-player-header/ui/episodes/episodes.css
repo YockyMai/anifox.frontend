@@ -1,0 +1,4 @@
+.episodes {
+  @apply relative;
+  @apply text-white;
+}

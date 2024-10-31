@@ -1,5 +1,5 @@
 import { Provider, useAtomValue } from 'jotai'
-import React, { memo } from 'react'
+import { memo } from 'react'
 
 import { getPlayerLinkFromParams } from '../helpers/get-player-link-from-params'
 import { useInitKodikPlayer } from '../hooks'

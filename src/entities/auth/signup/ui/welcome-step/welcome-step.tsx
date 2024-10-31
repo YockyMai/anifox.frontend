@@ -1,14 +1,15 @@
 'use client'
 
 import Link from 'next/link'
-import React from 'react'
 
+import UnstyledButton from '@/common/components/unstyled-button/unstyled-button'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { useStepsActions } from '../../hooks'
 import { StepContainer } from '../step-container'
+import { WelcomeStepProps } from './welcome-step.interface'
 
-export const WelcomeStep = () => {
+export const WelcomeStep = ({ onLoginClick }: WelcomeStepProps) => {
   const { incrementStep } = useStepsActions()
 
   return (
@@ -16,9 +17,15 @@ export const WelcomeStep = () => {
       footer={
         <p className='mt-1 text-center text-sm'>
           Уже есть аккаунт?{' '}
-          <Link className='text-orange-300' href={ROUTES.LOGIN}>
-            Вход
-          </Link>
+          {onLoginClick ? (
+            <UnstyledButton onClick={onLoginClick} className='text-orange-300'>
+              Вход
+            </UnstyledButton>
+          ) : (
+            <Link className='text-orange-300' href={ROUTES.LOGIN}>
+              Вход
+            </Link>
+          )}
         </p>
       }
       nextButton={{

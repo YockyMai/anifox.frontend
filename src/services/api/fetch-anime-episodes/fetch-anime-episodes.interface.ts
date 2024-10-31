@@ -2,7 +2,7 @@ export type FetchAnimeEpisodesParams = {
   animeUrl: string
   page?: number
   limit?: number
-  sort?: 'NumberAsc' | 'NumberDesc'
+  sort?: 'Asc' | 'Desc'
 }
 
 export type FetchAnimeEpisodesResponse = AnimeEpisode[]

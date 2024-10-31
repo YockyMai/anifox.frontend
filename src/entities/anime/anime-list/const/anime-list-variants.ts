@@ -3,4 +3,4 @@ export const ANIME_LIST_VARIANTS = {
   IN_PLAN: 'InPlan',
   WATCHED: 'Watched',
   POSTPONED: 'Postponed'
-}
+} as const

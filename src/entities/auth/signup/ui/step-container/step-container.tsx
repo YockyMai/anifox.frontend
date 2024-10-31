@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import React from 'react'
 
 import { Button } from '@/common/components'
 import { UIColors } from '@/common/types/ui-colors'

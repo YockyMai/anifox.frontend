@@ -1,5 +1,5 @@
 .modal__overlay {
-  @apply fixed inset-0 z-[49] bg-black/10;
+  @apply fixed inset-0 z-[99] bg-black/20 backdrop-blur;
 
   &[data-state='open'] {
     @apply animate-fade-in;
@@ -10,9 +10,9 @@
 }
 
 .modal__content {
-  @apply fixed left-1/2 top-1/2 z-50;
+  @apply fixed left-1/2 top-1/2 z-[100];
   @apply max-h-[85vh] w-[90vw] max-w-[450px];
-  @apply rounded bg-slate-100 p-4 drop-shadow dark:bg-slate-800;
+  @apply rounded bg-slate-100 p-4 dark:bg-slate-800;
   @apply -translate-x-1/2 -translate-y-1/2;
 
   &[data-state='open'] {

@@ -7,7 +7,7 @@ import {
 } from '@tabler/icons-react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 
 import { Badge, Button, Image } from '@/common/components'
 import { UISizes } from '@/common/types/ui-sizes'

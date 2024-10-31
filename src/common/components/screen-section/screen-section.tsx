@@ -1,5 +1,3 @@
-import React from 'react'
-
 import './screen-section.css'
 import { ScreenSectionProps } from './screen-section.interface'
 

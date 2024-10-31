@@ -1,0 +1,20 @@
+.translations {
+  @apply relative h-full;
+
+  &__button {
+    @apply flex h-full w-full items-center justify-between;
+    @apply px-2 py-1 lg:py-2;
+    @apply cursor-pointer;
+    @apply rounded-[10px] bg-slate-900/80;
+
+    &__icon {
+      @apply ml-2 text-2xl;
+    }
+  }
+
+  &__list {
+    @apply absolute h-0 w-full overflow-hidden rounded-b-[10px];
+
+    @apply bg-slate-900/80 backdrop-blur-xl;
+  }
+}

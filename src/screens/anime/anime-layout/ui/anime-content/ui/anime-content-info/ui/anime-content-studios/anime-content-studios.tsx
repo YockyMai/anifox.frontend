@@ -1,7 +1,7 @@
 'use client'
 
 import { useParams } from 'next/navigation'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { ROUTES } from '@/screens/pages.routes'

@@ -1,5 +1,4 @@
 import { colord } from 'colord'
-import React from 'react'
 
 export const getAnimeAccentColorStyles = (
   hex: string = '#FFFFFF',

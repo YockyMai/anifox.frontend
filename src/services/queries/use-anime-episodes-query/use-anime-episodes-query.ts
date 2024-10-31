@@ -7,7 +7,7 @@ import { ANIME_EPISODES_QUERY_KEY } from './use-anime-episodes-query.const'
 export const useAnimeEpisodesQuery = ({
   animeUrl,
   limit = 20,
-  sort
+  sort = 'Asc'
 }: FetchAnimeEpisodesParams) =>
   useInfiniteQuery({
     queryKey: [ANIME_EPISODES_QUERY_KEY.replace('animeUrl', animeUrl)],

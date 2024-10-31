@@ -1,6 +1,6 @@
 import { jwtDecode } from 'jwt-decode'
 import { cookies } from 'next/headers'
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 import { COOKIES } from '@/common/const'
 import { User } from '@/entities/user/atoms/user.interface'

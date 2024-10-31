@@ -1,7 +1,7 @@
 'use client'
 
 import { useParams } from 'next/navigation'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 
 import { Carousel } from '@/common/components'
 import { Slide } from '@/common/components/carousel'

@@ -2,7 +2,7 @@
 
 import { Fancybox as NativeFancybox } from '@fancyapps/ui'
 import '@fancyapps/ui/dist/fancybox/fancybox.css'
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 import { NoSSR } from '../no-ssr'
 import {

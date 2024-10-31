@@ -2,7 +2,7 @@
 
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useAtom } from 'jotai'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Input } from '@/common/components'

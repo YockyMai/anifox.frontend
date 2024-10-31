@@ -1,5 +1,7 @@
-import { useAtom, useAtomValue, useSetAtom } from 'jotai'
-import React, { useCallback } from 'react'
+'use client'
+
+import { useAtom } from 'jotai'
+import { useCallback } from 'react'
 import { FixedSizeList } from 'react-window'
 
 import { UnstyledButton } from '@/common/components'
@@ -9,6 +11,7 @@ import { AnimeEpisode } from '@/services/api'
 import { EpisodeSelectionCard } from './episode-card'
 import { EPISODE_CARD_HEIGHT } from './episodes-list.const'
 import './episodes-list.css'
+import { getEpisodeListHeight } from './episodes-list.helpers'
 import { EpisodesListProps } from './episodes-list.interface'
 
 export const EpisodesList = ({ episodes }: EpisodesListProps) => {
@@ -37,10 +40,10 @@ export const EpisodesList = ({ episodes }: EpisodesListProps) => {
   )
 
   return (
-    <div className='episodes-list'>
+    <div className='episodes__list'>
       <FixedSizeList
-        className='episodes-list__content'
-        height={episodes.length * EPISODE_CARD_HEIGHT}
+        className='episodes__list__content'
+        height={getEpisodeListHeight(episodes.length)}
         width={500}
         itemSize={EPISODE_CARD_HEIGHT}
         itemCount={episodes.length}

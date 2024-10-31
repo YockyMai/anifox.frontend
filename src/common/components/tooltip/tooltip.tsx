@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { HoverCard } from '../hover-card'
 import './tooltip.css'
 import { TooltipProps } from './tooltip.interface'

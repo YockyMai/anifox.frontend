@@ -16,10 +16,14 @@ import { LoginStep } from './login-step'
 import { NicknameStep } from './nickname-step'
 import { PasswordStep } from './password-step'
 import './signup-form.css'
+import { SignupFormProps } from './signup-form.interface'
 import { SuccessStep } from './success-step'
 import { WelcomeStep } from './welcome-step'
 
-export const SignupForm = () => {
+export const SignupForm = ({
+  onLoginClick,
+  onSignupSuccess
+}: SignupFormProps) => {
   const step = useAtomValue($signupAtoms.step)
 
   return (
@@ -32,15 +36,15 @@ export const SignupForm = () => {
       </div>
 
       <AnimatePresence mode='wait' initial={false}>
-        {step === STEPS.WELCOME && <WelcomeStep />}
+        {step === STEPS.WELCOME && <WelcomeStep onLoginClick={onLoginClick} />}
         {step === STEPS.EMAIL && <EmailStep />}
         {step === STEPS.LOGIN && <LoginStep />}
         {step === STEPS.NICKNAME && <NicknameStep />}
         {step === STEPS.BIRTHDAY && <BirthdayStep />}
         {step === STEPS.PASSWORD && <PasswordStep />}
         {step === STEPS.CREATE_ACCOUNT && <CreateAccountStep />}
-        {step === STEPS.SUCCESS && <SuccessStep />}
         {step === STEPS.ERROR && <ErrorStep />}
+        {step === STEPS.SUCCESS && <SuccessStep />}
       </AnimatePresence>
     </div>
   )
