@@ -1,9 +1,17 @@
-import { AnimePlayer } from '../anime-characters/anime-player'
+'use client'
+
+import { useParams } from 'next/navigation'
+
+import { KodikPlayer } from '@/entities/players/kodik-player'
+
+import { AnimePageParams } from '../anime.interface'
 
 export const AnimeWatchScreen = () => {
+  const { animeUrl } = useParams<AnimePageParams>()
+
   return (
-    <div className='container mx-auto'>
-      <AnimePlayer />
+    <div>
+      <KodikPlayer animeUrl={animeUrl} />
     </div>
   )
 }

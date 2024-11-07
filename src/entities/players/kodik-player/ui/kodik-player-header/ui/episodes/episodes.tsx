@@ -18,7 +18,7 @@ import './episodes.css'
 export const Episodes = () => {
   const { animeUrl } = useParams<AnimePageParams>()
 
-  const { data } = useAnimeEpisodesQuery({ animeUrl })
+  const { data } = useAnimeEpisodesQuery({ animeUrl, page: 0, limit: 10000 })
 
   const episodes = useMemo(
     () => data?.pages.flatMap((episodes) => episodes) ?? [],

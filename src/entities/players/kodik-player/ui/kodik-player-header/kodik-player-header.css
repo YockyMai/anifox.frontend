@@ -1,10 +1,17 @@
 .kodik-player__header {
-  @apply rounded-xl bg-slate-300/20 backdrop-blur-xl;
-  @apply absolute left-1/2 top-[5px] -translate-x-1/2 p-1;
-
-  width: calc(100% - 10px);
+  @apply relative mx-auto w-[75%] rounded-xl p-1;
+  @apply mb-0.5 flex items-center justify-between;
+  @apply z-10 transition-all duration-300;
 
   &__selectors {
     @apply flex gap-x-1 text-white;
+  }
+
+  &__actions {
+    @apply overflow-hidden rounded-xl bg-slate-900/80;
+  }
+
+  &--wide {
+    @apply mb-3 shadow-md shadow-slate-600/15;
   }
 }

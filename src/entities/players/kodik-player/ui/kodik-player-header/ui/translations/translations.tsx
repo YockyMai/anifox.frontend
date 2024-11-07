@@ -1,8 +1,9 @@
+import { useOutsideClick } from '@anifox/hooks'
 import { IconChevronDown } from '@tabler/icons-react'
 import { useAtom, useAtomValue } from 'jotai'
 import { useState } from 'react'
 
-import { UnstyledButton } from '@/common/components'
+import { SoundWave, UnstyledButton } from '@/common/components'
 import { $kodikPlayerAtoms } from '@/entities/players/kodik-player/store/kodik-player'
 
 import { useSelectorAnimation } from '../../hooks'
@@ -20,8 +21,8 @@ export const Translations = () => {
     useSelectorAnimation({
       listNode: '.translations__list',
       rootNode: '.translations',
-      toHeight: 24 * (selectedEpisode?.translations.length ?? 0),
-      toWidth: 150
+      toHeight: 48 * (selectedEpisode?.translations.length ?? 0),
+      toWidth: 200
     })
 
   const onChangeTranslationsOpen = (isOpen: boolean) => {
@@ -34,13 +35,17 @@ export const Translations = () => {
     }
   }
 
+  useOutsideClick(scope, () => {
+    setIsOpen(false)
+  })
+
   if (!selectedEpisode) return null
 
   return (
     <div ref={scope} onClick={() => onChangeTranslationsOpen(!isOpen)}>
       <div className='translations'>
         <UnstyledButton className='translations__button'>
-          {/* <SoundWave /> */}
+          <SoundWave />
           {selectedTranslation ? (
             <p>{selectedTranslation.title}</p>
           ) : (
@@ -54,7 +59,7 @@ export const Translations = () => {
           {selectedEpisode.translations.map((translation) => (
             <div key={translation.id}>
               <UnstyledButton
-                className='w-full text-left'
+                className='translations__list__translation'
                 onClick={() => {
                   setSelectedTranslation(translation)
                 }}

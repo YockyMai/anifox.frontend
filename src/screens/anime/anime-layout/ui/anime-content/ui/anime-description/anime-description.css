@@ -1,5 +1,5 @@
 .anime-description {
-  @apply h-full overflow-hidden rounded;
+  @apply h-full overflow-hidden;
 
   &__text {
     @apply overflow-hidden;

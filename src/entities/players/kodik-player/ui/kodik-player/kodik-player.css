@@ -1,0 +1,24 @@
+.kodik-player-container {
+  @apply relative mx-auto w-full py-5;
+
+  &__frame {
+    @apply mx-auto aspect-[12/6];
+    max-height: 85vh;
+
+    &__wide {
+      @apply transition-all;
+      width: calc(100% - 20px);
+    }
+    &__default {
+      @apply w-[75%] transition-all;
+    }
+
+    iframe {
+      @apply drop-shadow;
+    }
+  }
+}
+
+.kodik-player {
+  @apply h-full w-full rounded-xl;
+}

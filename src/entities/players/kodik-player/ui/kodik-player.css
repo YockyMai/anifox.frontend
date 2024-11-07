@@ -1,7 +1,0 @@
-.kodik-player-container {
-  @apply relative aspect-[12/6] w-full;
-}
-
-.kodik-player {
-  @apply h-full w-full rounded-xl;
-}
