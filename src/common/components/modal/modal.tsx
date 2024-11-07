@@ -1,5 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { IconX } from '@tabler/icons-react'
+import clsx from 'clsx'
 
 import { UnstyledButton } from '../unstyled-button'
 import './modal.css'
@@ -12,7 +13,8 @@ export const Modal = ({
   description,
   onOpenChange,
   open,
-  withoutCloseButton
+  withoutCloseButton,
+  withoutPadding
 }: ModalProps) => {
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
@@ -20,20 +22,22 @@ export const Modal = ({
       <Dialog.Portal>
         <Dialog.Overlay className='modal__overlay' />
         <Dialog.Content className='modal__content'>
-          {!withoutCloseButton && (
-            <Dialog.Close asChild>
-              <UnstyledButton
-                className='modal__close-button'
-                aria-label='close'
-              >
-                <IconX />
-              </UnstyledButton>
-            </Dialog.Close>
-          )}
+          <div className='modal__header'>
+            {title && (
+              <Dialog.Title className='modal__title'>{title}</Dialog.Title>
+            )}
 
-          {title && (
-            <Dialog.Title className='modal__title'>{title}</Dialog.Title>
-          )}
+            {!withoutCloseButton && (
+              <Dialog.Close asChild>
+                <UnstyledButton
+                  className='modal__close-button'
+                  aria-label='close'
+                >
+                  <IconX size={32} />
+                </UnstyledButton>
+              </Dialog.Close>
+            )}
+          </div>
 
           {description && (
             <Dialog.Description className='modal__description'>
@@ -41,7 +45,14 @@ export const Modal = ({
             </Dialog.Description>
           )}
 
-          {children}
+          <div
+            className={clsx(
+              'modal__body',
+              withoutPadding && 'modal__body--without-padding'
+            )}
+          >
+            {children}
+          </div>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

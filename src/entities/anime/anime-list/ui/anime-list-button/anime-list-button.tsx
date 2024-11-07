@@ -52,7 +52,7 @@ export const AnimeListButton = ({ animeUrl }: AnimeListButtonProps) => {
       setAuthModalIsOpened(true)
     }
   }
-  console.log(authModalIsOpened)
+
   return (
     <>
       <HoverCard

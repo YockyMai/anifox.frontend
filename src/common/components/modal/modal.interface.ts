@@ -8,4 +8,5 @@ export type ModalProps = {
   trigger?: ReactNode
   children: ReactNode
   withoutCloseButton?: boolean
+  withoutPadding?: boolean
 }

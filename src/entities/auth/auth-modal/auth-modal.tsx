@@ -35,21 +35,20 @@ export const AuthModal = ({
   }
 
   return (
-    <div>
-      <Modal
-        title='Авторизация'
-        open={authModalIsOpen}
-        onOpenChange={onOpenChangeAuthModal}
-      >
-        {formType === AUTH_MODAL_FORM.LOGIN ? (
-          <LoginForm
-            onSignupClick={onSignupClick}
-            onLoginSuccess={onAuthSuccess}
-          />
-        ) : (
-          <SignupForm onLoginClick={onLoginClick} />
-        )}
-      </Modal>
-    </div>
+    <Modal
+      title='Быстрая авторизация'
+      open={authModalIsOpen}
+      onOpenChange={onOpenChangeAuthModal}
+      withoutPadding
+    >
+      {formType === AUTH_MODAL_FORM.LOGIN ? (
+        <LoginForm
+          onSignupClick={onSignupClick}
+          onLoginSuccess={onAuthSuccess}
+        />
+      ) : (
+        <SignupForm onLoginClick={onLoginClick} />
+      )}
+    </Modal>
   )
 }
