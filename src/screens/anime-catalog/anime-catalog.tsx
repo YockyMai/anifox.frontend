@@ -1,13 +1,27 @@
+'use client'
+
+import { useAtomValue } from 'jotai'
+
+import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog'
+import { AnimeCatalogLanding } from '@/widgets/anime-catalog-landing'
 import {
   AnimeCatalogFilter,
   AnimeCatalogList
 } from '@/widgets/anime-catalog/ui'
 
 export const AnimeCatalogScreen = () => {
+  const isFilterActive = useAtomValue($animeCatalogFilterAtoms.isFilterActive)
+
   return (
     <div className='mt-[100]'>
       <AnimeCatalogFilter />
-      <AnimeCatalogList />
+      {isFilterActive ? (
+        <AnimeCatalogList />
+      ) : (
+        <div className='mt-52'>
+          <AnimeCatalogLanding />
+        </div>
+      )}
     </div>
   )
 }

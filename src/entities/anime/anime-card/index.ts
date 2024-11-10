@@ -2,5 +2,6 @@ export {
   AnimeCard,
   AnimeCardSkeleton,
   AnimeCardSimple,
-  AnimeCardWide
+  AnimeCardWide,
+  AnimeCategoryList
 } from './ui'

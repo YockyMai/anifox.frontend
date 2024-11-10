@@ -1,0 +1,21 @@
+.anime-category-list {
+  @apply container mx-auto;
+  &__header {
+    @apply flex items-center justify-between pb-3;
+  }
+
+  &__category {
+    @apply flex items-center gap-x-2 text-slate-700;
+    p {
+      @apply text-lg font-bold;
+    }
+  }
+
+  &__content {
+    @apply grid grid-cols-[repeat(auto-fill,185px)];
+    @apply max-xl:grid-cols-[repeat(auto-fill,minmax(125px,1fr))];
+    @apply max-sm:grid-cols-[repeat(auto-fill,minmax(105px,1fr))];
+
+    @apply mx-auto justify-between gap-x-8 gap-y-6 max-sm:gap-x-4 max-sm:gap-y-3;
+  }
+}

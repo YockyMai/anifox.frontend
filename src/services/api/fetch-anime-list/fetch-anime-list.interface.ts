@@ -6,7 +6,12 @@ export type AnimeMinimalAge = 18 | 16 | 12 | 6 | 0
 export type AnimeRatingMpa = 'PG' | 'PG-13' | 'R' | 'R+' | 'G'
 export type AnimeSeasons = 'Winter' | 'Spring' | 'Summer' | 'Fall'
 export type AnimeStatuses = 'Released' | 'Ongoing'
-export type AnimeOrderVariants = 'Update' | 'Aired' | 'Released' | 'Random'
+export type AnimeOrderVariants =
+  | 'Update'
+  | 'Aired'
+  | 'Released'
+  | 'Random'
+  | 'Rating'
 export type AnimeSortDirection = 'Asc' | 'Desc'
 
 export type AnimeTypeVariants =

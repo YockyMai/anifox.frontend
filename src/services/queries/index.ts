@@ -32,3 +32,13 @@ export {
   useComingOutAnimeQuery,
   usePrefetchComingOutAnimeQuery
 } from './use-coming-out-anime-query'
+
+export {
+  useAllTimePopularAnimeListQuery,
+  usePrefetchAllTimePopularAnimeListQuery
+} from './use-all-time-popular-anime-query'
+
+export {
+  useMostRatedAnimeListQuery,
+  usePrefetchMostRatedAnimeListQuery
+} from './use-most-rated-anime-query'

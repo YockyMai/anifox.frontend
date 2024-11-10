@@ -26,3 +26,24 @@ export const translations = atom<AnimeTranslation[]>([])
 export const studio = atom<string | null>(null)
 export const sort = atom<AnimeSortDirection>(ANIME_SORT_DIRECTION.DESC)
 export const order = atom<AnimeOrderVariants | null>(null)
+
+export const isFilterActive = atom<boolean>((get) =>
+  [
+    get(status),
+    get(search),
+    get(genres),
+    get(minimalAge),
+    get(ratingMpa),
+    get(season),
+    get(type),
+    get(years),
+    get(translations),
+    get(studio),
+    get(order)
+  ].some(
+    (value) =>
+      value !== null &&
+      value !== '' &&
+      (Array.isArray(value) ? value.length > 0 : true)
+  )
+)
