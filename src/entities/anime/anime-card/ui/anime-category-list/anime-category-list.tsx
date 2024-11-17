@@ -20,11 +20,7 @@ export const AnimeCategoryList = ({
           <p>{category}</p>
         </div>
 
-        {categoryLink && (
-          <Link href={categoryLink}>
-            <Badge>Показать все</Badge>
-          </Link>
-        )}
+        {categoryLink && <Link href={categoryLink}>Показать все</Link>}
       </div>
       <div className='anime-category-list__content'>
         {items.map((anime) => (

@@ -15,5 +15,9 @@ export const ROUTES = {
   RIGHT_HOLDERS: '/right-holders',
   PROFILE: {
     ROOT: '/profile/:login'
+  },
+  APPS: {
+    ROOT: '/apps',
+    ANDROID: '/apps#android'
   }
 }

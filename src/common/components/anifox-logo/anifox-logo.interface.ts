@@ -1,5 +1,4 @@
-import { ReactNode } from 'react'
-
 export type AnifoxLogoProps = {
-  image?: ReactNode
+  withoutImage?: boolean
+  withoutText?: boolean
 }

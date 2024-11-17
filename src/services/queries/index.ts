@@ -42,3 +42,8 @@ export {
   useMostRatedAnimeListQuery,
   usePrefetchMostRatedAnimeListQuery
 } from './use-most-rated-anime-query'
+
+export {
+  useAnimeSchedulesQuery,
+  usePrefetchAnimeSchedulesQuery
+} from './use-anime-schedule-query'

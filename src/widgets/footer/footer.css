@@ -1,0 +1,25 @@
+.footer {
+  @apply mt-16 bg-slate-800 py-5;
+
+  &__container {
+    @apply container mx-auto flex justify-between;
+  }
+
+  &__left {
+    @apply flex flex-col justify-between;
+  }
+
+  &__right {
+    @apply flex gap-x-10;
+  }
+
+  &__category {
+    &__title {
+      @apply mb-4 text-slate-200;
+    }
+
+    &__content {
+      @apply flex flex-col gap-y-3;
+    }
+  }
+}

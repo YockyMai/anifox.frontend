@@ -3,6 +3,7 @@ import { Nunito } from 'next/font/google'
 
 import { NavigationProgress } from '@/common/components'
 import { Providers } from '@/providers'
+import { Footer } from '@/widgets/footer'
 import { Header } from '@/widgets/header'
 
 import './global.css'
@@ -32,6 +33,7 @@ const RootLayout = ({
             <div className={'app__layout'}>
               <main>{children}</main>
             </div>
+            <Footer />
           </div>
         </Providers>
       </body>

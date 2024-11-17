@@ -1,21 +1,27 @@
 import Image from 'next/image'
 
 import './anifox-logo.css'
+import { AnifoxLogoProps } from './anifox-logo.interface'
 
-export const AnifoxLogo = () => {
+export const AnifoxLogo = ({ withoutImage, withoutText }: AnifoxLogoProps) => {
   return (
     <div className='anifox-logo'>
-      <Image
-        alt='Logo'
-        src={'/anifox-logo.webp'}
-        className='anifox-logo__image'
-        width={40}
-        height={40}
-      />
-      <div className='anifox-logo__text'>
-        <p>Ani</p>
-        <p>Fox</p>
-      </div>
+      {!withoutImage && (
+        <Image
+          alt='Logo'
+          src={'/anifox-logo.webp'}
+          className='anifox-logo__image'
+          width={40}
+          height={40}
+        />
+      )}
+
+      {!withoutText && (
+        <div className='anifox-logo__text'>
+          <p>Ani</p>
+          <p>Fox</p>
+        </div>
+      )}
     </div>
   )
 }
