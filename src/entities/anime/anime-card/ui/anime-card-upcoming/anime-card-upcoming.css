@@ -1,0 +1,36 @@
+.anime-card-upcoming {
+  @apply overflow-hidden rounded bg-slate-50;
+  @apply shadow-2xl shadow-black/10 transition-shadow hover:shadow-[var(--card-background-color)];
+
+  &__header {
+    @apply relative h-16;
+    @apply flex flex-col justify-end;
+
+    &__image {
+      @apply absolute left-0 top-0 z-10 h-full w-full rounded-none object-cover;
+    }
+
+    &__title {
+      @apply z-20 w-full bg-black/50 px-2 py-1.5 backdrop-blur-lg;
+
+      p {
+        @apply line-clamp-1 w-full text-xs text-white transition-colors;
+      }
+    }
+  }
+
+  &__body {
+    @apply select-none px-3 py-2;
+  }
+
+  &__episodes {
+    @apply grid grid-cols-[auto_24px_auto] items-center justify-between;
+    &__title {
+      @apply text-sm font-bold;
+    }
+
+    &__episode {
+      @apply text-sm;
+    }
+  }
+}

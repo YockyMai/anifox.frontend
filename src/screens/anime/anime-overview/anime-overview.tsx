@@ -9,7 +9,7 @@ import { AnimeVideos } from './anime-videos'
 export const AnimeOverviewScreen = () => {
   return (
     <div>
-      <div className='container mx-auto'>
+      <div className='container'>
         <ScreenSection title='Кадры из аниме'>
           <AnimeScreenshots />
         </ScreenSection>
@@ -19,7 +19,7 @@ export const AnimeOverviewScreen = () => {
         </ScreenSection>
       </div>
 
-      <div className='container mx-auto'>
+      <div className='container'>
         <ScreenSection title='Хронология'>
           <AnimeFranchise />
         </ScreenSection>

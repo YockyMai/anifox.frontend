@@ -10,10 +10,10 @@ export const HomeScreen = () => {
         <HomeCarousel />
       </div>
 
-      <AnimeCalendar />
+      <AnimeCatalogLanding />
 
       <div className='mt-[100px]'>
-        <AnimeCatalogLanding />
+        <AnimeCalendar />
       </div>
     </div>
   )

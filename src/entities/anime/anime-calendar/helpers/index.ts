@@ -1,1 +1,1 @@
-export { getCurrentDayOfWeek } from './get-current-day-of-week'
+export { checkIsWeekday } from './checkIsWeekday'

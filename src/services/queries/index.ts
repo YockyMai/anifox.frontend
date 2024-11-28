@@ -47,3 +47,8 @@ export {
   useAnimeSchedulesQuery,
   usePrefetchAnimeSchedulesQuery
 } from './use-anime-schedule-query'
+
+export {
+  useAnimeWeekSchedulesQuery,
+  usePrefetchAnimeWeekSchedulesQuery
+} from './use-anime-week-schedule-query'

@@ -34,9 +34,10 @@ export const Footer = () => {
                 <Button
                   fullWidth
                   size='sm'
-                  color='light-blue'
-                  variant='outline'
+                  color='orange'
+                  variant='filled'
                   icon={<IconBrandTelegram />}
+                  radius='xxl'
                 >
                   Телеграм
                 </Button>
@@ -45,9 +46,10 @@ export const Footer = () => {
                 <Button
                   fullWidth
                   size='sm'
-                  color='light-blue'
-                  variant='outline'
+                  color='orange'
+                  variant='filled'
                   icon={<IconBrandVk />}
+                  radius='xxl'
                 >
                   Вконтакте
                 </Button>
@@ -62,9 +64,10 @@ export const Footer = () => {
                 <Button
                   fullWidth
                   size='sm'
-                  color='light-blue'
-                  variant='outline'
+                  color='orange'
+                  variant='filled'
                   icon={<IconBrandAndroid />}
+                  radius='xxl'
                 >
                   Android
                 </Button>
@@ -73,9 +76,10 @@ export const Footer = () => {
                 <Button
                   fullWidth
                   size='sm'
-                  color='light-blue'
-                  variant='outline'
+                  color='orange'
+                  variant='filled'
                   icon={<IconBrandWindows />}
+                  radius='xxl'
                 >
                   Windows
                 </Button>

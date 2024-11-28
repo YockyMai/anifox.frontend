@@ -75,17 +75,17 @@ export const HomeCarousel = () => {
           dragFree
           slides={filteredData.map((anime, index) => ({
             content: (
-              <div onClick={() => setCurrentSlide(index)}>
+              <div className='mx-1' onClick={() => setCurrentSlide(index)}>
                 <AnimeCardWide
                   isActive={index === currentSlide}
                   anime={anime}
                 />
               </div>
             ),
-            size: 200
+            size: 220
           }))}
           onInitEmbla={(emblaApi) => setThumbsCarouselApi(emblaApi)}
-          slideSpacing={10}
+          slideSpacing={0}
         />
       </div>
 

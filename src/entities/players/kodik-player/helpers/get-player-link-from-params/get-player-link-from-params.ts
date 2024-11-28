@@ -19,7 +19,7 @@ export const getPlayerLinkFromParams = (
   if (!normalizedParams.start_from === undefined) {
     normalizedParams.start_from = 0
   }
-  console.log({ params })
+
   const paramsCount = Object.getOwnPropertyNames(params).length
 
   const paramsArray: { key: string; value: string }[] = []

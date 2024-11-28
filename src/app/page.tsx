@@ -4,10 +4,9 @@ import {
   QueryClient
 } from '@tanstack/react-query'
 
-import { getCurrentDayOfWeek } from '@/entities/anime/anime-calendar'
 import { HomeScreen } from '@/screens/home'
 import {
-  usePrefetchAnimeSchedulesQuery,
+  usePrefetchAnimeWeekSchedulesQuery,
   usePrefetchComingOutAnimeQuery
 } from '@/services/queries'
 import { usePrefetchAnimeCatalogLandingData } from '@/widgets/anime-catalog-landing/api/prefetch-anime-catalog-landing-data'
@@ -19,10 +18,7 @@ const Home = async () => {
 
   await usePrefetchAnimeCatalogLandingData(queryClient)
 
-  await usePrefetchAnimeSchedulesQuery(
-    { day: getCurrentDayOfWeek() },
-    queryClient
-  )
+  await usePrefetchAnimeWeekSchedulesQuery(queryClient)
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

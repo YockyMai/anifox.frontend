@@ -1,0 +1,18 @@
+.anime-calendar-bar {
+  @apply mb-20 select-none pl-5;
+
+  &__header {
+    @apply pb-4 text-center;
+
+    p {
+      @apply font-semibold;
+    }
+  }
+
+  &__header--red {
+    @apply text-red-300;
+    p {
+      @apply font-bold;
+    }
+  }
+}

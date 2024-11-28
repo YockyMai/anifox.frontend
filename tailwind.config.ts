@@ -23,6 +23,10 @@ const config: Config = {
       }),
       colors: {
         light: '#eff3f8'
+      },
+      container: {
+        center: true,
+        padding: '1rem'
       }
     },
     fontFamily: {
