@@ -7,4 +7,6 @@ export type CarouselControlsProps = {
   hideButtons?: boolean
   nextButton?: ReactNode
   prevButton?: ReactNode
+  hideDisabledButton: boolean
+  controlsSpacing?: number
 }

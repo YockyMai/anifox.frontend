@@ -1,11 +1,12 @@
 'use client'
 
-import { Provider } from 'jotai'
+import { IconCalendarWeek } from '@tabler/icons-react'
 import React, { memo } from 'react'
 
+import { ANIME_SCHEDULE_DAY } from '@/services/api'
 import { useAnimeWeekSchedulesQuery } from '@/services/queries'
 
-import { AnimeCalendarContent } from './anime-calendar-content'
+import { AnimeCalendarSlider } from './anime-calendar-slider'
 import './anime-calendar.css'
 
 const AnimeCalendar = () => {
@@ -14,21 +15,19 @@ const AnimeCalendar = () => {
   if (!data) {
     return null
   }
+
   return (
     <div className='anime-calendar'>
       <div className='anime-calendar__title'>
+        <IconCalendarWeek />
         <p>Календарь аниме</p>
       </div>
 
-      <AnimeCalendarContent />
+      {Object.entries(ANIME_SCHEDULE_DAY).map(([, day]) => (
+        <AnimeCalendarSlider key={day} day={day} />
+      ))}
     </div>
   )
 }
 
-const Root = () => (
-  <Provider>
-    <AnimeCalendar />
-  </Provider>
-)
-
-export default memo(Root)
+export default memo(AnimeCalendar)

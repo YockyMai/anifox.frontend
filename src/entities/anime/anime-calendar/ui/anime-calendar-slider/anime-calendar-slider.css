@@ -1,0 +1,20 @@
+.anime-calendar-slider {
+  @apply mb-10 flex items-center gap-x-3;
+
+  &__header {
+    @apply h-full w-[100px] px-1;
+    @apply rounded;
+
+    &__number {
+      @apply flex items-center text-xl font-bold;
+    }
+
+    &__label {
+      @apply text-sm;
+    }
+  }
+
+  &__header--red {
+    @apply text-red-400;
+  }
+}

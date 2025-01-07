@@ -1,3 +1,11 @@
 .anime-rate-button {
   @apply flex w-fit items-center gap-1;
+
+  p {
+    @apply text-sm;
+  }
+}
+
+.anime-rate-button-without-text {
+  @apply flex items-center justify-center p-3 !important;
 }

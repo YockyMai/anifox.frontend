@@ -8,7 +8,7 @@ import { UiAligns } from '@/common/types/ui-aligns'
 import './carousel.css'
 import { CarouselProps } from './carousel.interface'
 import { CarouselControls } from './components'
-import { useCarouselPlugins } from './hooks'
+import { useCarouselPlugins, useSlideSize } from './hooks'
 import { calcSlideSize, calcSlideSpacing } from './lib'
 
 const Carousel = ({
@@ -22,9 +22,14 @@ const Carousel = ({
   hideButtons,
   nextButton,
   prevButton,
+  controlsSpacing,
+  hideDisabledButton = true,
   align = UiAligns.CENTER,
+  breakpoints,
   onInitEmbla
 }: CarouselProps) => {
+  const slideSize = useSlideSize(breakpoints)
+
   const normalizedSlides = slides.map((slide) => {
     if (typeof slide === 'object' && slide && 'content' in slide) {
       return slide
@@ -69,8 +74,8 @@ const Carousel = ({
             <div
               className='carousel__slide'
               style={{
-                ...(slide.size && {
-                  flex: `0 0 ${calcSlideSize(slide.size)}`
+                ...((slide.size || slideSize) && {
+                  flex: `0 0 ${slideSize ? slideSize : calcSlideSize(slide.size)}`
                 })
               }}
               key={index}
@@ -82,6 +87,8 @@ const Carousel = ({
       </div>
 
       <CarouselControls
+        controlsSpacing={controlsSpacing}
+        hideDisabledButton={hideDisabledButton}
         hideButtons={hideButtons}
         nextButton={nextButton}
         prevButton={prevButton}

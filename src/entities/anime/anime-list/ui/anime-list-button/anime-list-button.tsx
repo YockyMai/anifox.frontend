@@ -8,7 +8,8 @@ import {
 import { useAtomValue } from 'jotai'
 import { useMemo, useState } from 'react'
 
-import { Badge, HoverCard, UnstyledButton } from '@/common/components'
+import { Badge, Button, HoverCard, UnstyledButton } from '@/common/components'
+import { UIColors } from '@/common/types/ui-colors'
 import { AuthModal } from '@/entities/auth/auth-modal'
 import { $userAtoms } from '@/entities/user/atoms'
 
@@ -16,7 +17,12 @@ import { ANIME_LIST_VARIANTS } from '../../const/anime-list-variants'
 import './anime-list-button.css'
 import { AnimeListButtonProps } from './anime-list-button.interface'
 
-export const AnimeListButton = ({ animeUrl }: AnimeListButtonProps) => {
+export const AnimeListButton = ({
+  animeUrl,
+  withoutTitle,
+  size = 28,
+  openDelay
+}: AnimeListButtonProps) => {
   const [authModalIsOpened, setAuthModalIsOpened] = useState(false)
 
   const user = useAtomValue($userAtoms.user)
@@ -53,18 +59,35 @@ export const AnimeListButton = ({ animeUrl }: AnimeListButtonProps) => {
     }
   }
 
+  const trigger = useMemo(() => {
+    if (withoutTitle) {
+      return (
+        <Button
+          color={UIColors.ORANGE}
+          style={{ height: size, width: size }}
+          className='anime-status-button-without-text'
+        >
+          <IconStack2Filled />
+        </Button>
+      )
+    }
+
+    return (
+      <Badge className='anime-status-button'>
+        <p>Добавить в список</p>
+        <IconStack2Filled />
+      </Badge>
+    )
+  }, [size, withoutTitle])
+
   return (
     <>
       <HoverCard
+        openDelay={openDelay}
         withoutArrow
         unstyled
         width={180}
-        trigger={
-          <Badge className='anime-status-button'>
-            <p>Добавить в список</p>
-            <IconStack2Filled />
-          </Badge>
-        }
+        trigger={trigger}
       >
         <div className='anime-status-button__dropdown'>
           {options.map((option) => (

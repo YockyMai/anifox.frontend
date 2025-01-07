@@ -3,10 +3,16 @@
     @apply flex items-center justify-center;
     @apply top-1/2 h-8 w-8;
     @apply absolute -translate-y-1/2;
-    @apply rounded-full bg-black/50 text-white;
+    @apply rounded-full bg-black/50 text-white opacity-100;
+    @apply transition-all;
+    @apply hover:scale-105;
 
     &_disabled {
       @apply opacity-30;
+    }
+
+    &_hidden {
+      @apply pointer-events-none opacity-0;
     }
 
     &_prev {

@@ -15,12 +15,12 @@ export const WithWindowProvider = ({ children }: { children: ReactNode }) => {
       setWindowHeight(window.innerHeight)
     }
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', onWindowResize)
+    window.addEventListener('resize', onWindowResize)
 
-      return () => {
-        window.removeEventListener('resize', onWindowResize)
-      }
+    onWindowResize()
+
+    return () => {
+      window.removeEventListener('resize', onWindowResize)
     }
   }, [setWindowHeight, setWindowWidth])
 

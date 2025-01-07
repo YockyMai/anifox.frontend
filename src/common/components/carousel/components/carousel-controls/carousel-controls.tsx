@@ -9,7 +9,9 @@ import { CarouselControlsProps } from './carousel-controls.interface'
 
 export const CarouselControls = ({
   emblaApi,
+  controlsSpacing,
   hideButtons,
+  hideDisabledButton,
   nextButton,
   prevButton
 }: CarouselControlsProps) => {
@@ -28,9 +30,11 @@ export const CarouselControls = ({
             className={clsx(
               'carousel__controls__prev-next-button',
               'carousel__controls__prev-next-button_prev',
-              prevBtnDisabled && 'carousel__controls__prev-next-button_disabled'
+              prevBtnDisabled &&
+                `carousel__controls__prev-next-button_${hideDisabledButton ? 'hidden' : 'disabled'}`
             )}
             onClick={onPrevButtonClick}
+            style={{ left: `-${controlsSpacing}px` }}
           >
             {prevButton ? prevButton : <IconChevronLeft />}
           </UnstyledButton>
@@ -39,9 +43,11 @@ export const CarouselControls = ({
             className={clsx(
               'carousel__controls__prev-next-button',
               'carousel__controls__prev-next-button_next',
-              nextBtnDisabled && 'carousel__controls__prev-next-button_disabled'
+              nextBtnDisabled &&
+                `carousel__controls__prev-next-button_${hideDisabledButton ? 'hidden' : 'disabled'}`
             )}
             onClick={onNextButtonClick}
+            style={{ right: `-${controlsSpacing}px` }}
           >
             {nextButton ? nextButton : <IconChevronRight />}
           </UnstyledButton>

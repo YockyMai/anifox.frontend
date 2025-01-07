@@ -2,7 +2,7 @@
   @apply px-2 py-0.5 font-normal;
 
   &_sm {
-    @apply text-sm;
+    @apply text-xs;
   }
 
   &_md {

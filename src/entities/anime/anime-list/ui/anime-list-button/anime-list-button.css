@@ -4,6 +4,14 @@
   p {
     @apply text-sm;
   }
+
+  &--without-title {
+    @apply w-[22px];
+  }
+}
+
+.anime-status-button-without-text {
+  @apply flex items-center justify-center p-3 !important;
 }
 
 .anime-status-button__dropdown {

@@ -1,8 +1,15 @@
-import { IconArrowRight } from '@tabler/icons-react'
+import {
+  IconArrowRight,
+  IconPlayerPlay,
+  IconPlayerPlayFilled
+} from '@tabler/icons-react'
 import Link from 'next/link'
 import React from 'react'
 
-import { Image } from '@/common/components'
+import { Badge, Button, Image, Tooltip } from '@/common/components'
+import { AnimeFavoriteButton } from '@/entities/anime/anime-favorite'
+import { AnimeListButton } from '@/entities/anime/anime-list'
+import { AnimeRateButton } from '@/entities/anime/anime-rating'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { getAnimeAccentColorStyles } from '../../helpers'
@@ -21,36 +28,39 @@ export const AnimeCardUpcoming = ({ anime }: AnimeCardUpcomingProps) => {
       href={ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', anime.url)}
     >
       <div className='anime-card-upcoming'>
-        <div className='anime-card-upcoming__header'>
-          <Image
-            className='anime-card-upcoming__header__image'
-            src={anime.image.cover ?? anime.image.medium}
-            alt={anime.title}
-          />
-          <div className='anime-card-upcoming__header__title'>
-            <p>{anime.title}</p>
-          </div>
-        </div>
-
+        <Image
+          className='anime-card-upcoming__image'
+          src={anime.image.medium}
+          alt={anime.title}
+          width={50}
+        />
         <div className='anime-card-upcoming__body'>
-          <div className='anime-card-upcoming__episodes'>
-            <div>
-              <p className='anime-card-upcoming__episodes__title'>Вышла</p>
-              <p className='anime-card-upcoming__episodes__episode'>
-                {anime.episodes ?? 0} серия
-              </p>
+          <div>
+            <p className='anime-card-upcoming__title'>{anime.title}</p>
+            <div className='anime-card-upcoming__episodes'>
+              <Badge color='red' size='sm'>
+                Вышла {anime.episodes ?? 0} серия
+              </Badge>
+              <IconArrowRight size={16} />
+              <Badge color='green' size='sm'>
+                Выйдет {(anime.episodes ?? 0) + 1} серия
+              </Badge>
             </div>
+          </div>
 
-            <IconArrowRight size={16} />
-
-            <div>
-              <p className='anime-card-upcoming__episodes__title text-right'>
-                Выйдет
-              </p>
-              <p className='anime-card-upcoming__episodes__episode text-right'>
-                {(anime.episodes ?? 0) + 1} серия
-              </p>
-            </div>
+          <div className='anime-card-upcoming__actions'>
+            <AnimeFavoriteButton animeUrl={anime.url} />
+            <AnimeListButton
+              openDelay={300}
+              animeUrl={anime.url}
+              withoutTitle
+            />
+            <AnimeRateButton
+              openDelay={300}
+              animeUrl={anime.url}
+              withoutText
+              rating={anime.rating ?? 0}
+            />
           </div>
         </div>
       </div>
