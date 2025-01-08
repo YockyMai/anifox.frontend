@@ -7,6 +7,6 @@
   }
 
   &__thumbs {
-    @apply absolute bottom-0 z-10 translate-y-1/2;
+    @apply absolute bottom-0 z-10 w-full translate-y-1/2;
   }
 }
