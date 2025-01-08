@@ -1,16 +1,13 @@
 import { IconPlayerPlayFilled } from '@tabler/icons-react'
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
 
 import { Button } from '@/common/components'
-import { AnimePageParams } from '@/screens/anime/anime.interface'
-import { ROUTES } from '@/screens/pages.routes'
+
+import { PLAYER_ANCHOR } from './watch-anime-button.const'
 
 export const WatchAnimeButton = () => {
-  const { animeUrl } = useParams<AnimePageParams>()
-
   return (
-    <Link href={ROUTES.CATALOG.ANIME.WATCH.replace(':animeUrl', animeUrl)}>
+    <Link href={PLAYER_ANCHOR}>
       <Button fullWidth icon={<IconPlayerPlayFilled />}>
         Смотреть аниме
       </Button>

@@ -1,13 +1,12 @@
 'use client'
 
-import clsx from 'clsx'
 import { Provider, useAtomValue } from 'jotai'
 import { memo, useRef } from 'react'
 
 import { getPlayerLinkFromParams } from '../../helpers/get-player-link-from-params'
 import { useInitKodikPlayer } from '../../hooks'
 import { $kodikPlayerAtoms } from '../../store/kodik-player'
-import { KodikPlayerHeader } from '../kodik-player-header/kodik-player-header'
+import { KodikSidebar } from '../kodik-sidebar'
 import './kodik-player.css'
 import { KodikPlayerProps } from './kodik-player.interface'
 
@@ -17,20 +16,12 @@ const KodikPlayer = ({ animeUrl }: KodikPlayerProps) => {
   const selectedTranslation = useAtomValue(
     $kodikPlayerAtoms.selectedTranslationAtom
   )
-  const isWideMode = useAtomValue($kodikPlayerAtoms.isWideMode)
 
   useInitKodikPlayer({ animeUrl })
 
   return (
     <div className='kodik-player-container'>
-      <KodikPlayerHeader />
-
-      <div
-        className={clsx(
-          'kodik-player-container__frame',
-          `kodik-player-container__frame__${isWideMode ? 'wide' : 'default'}`
-        )}
-      >
+      <div className='kodik-player-container__frame'>
         {selectedTranslation && (
           <iframe
             ref={kodikPlayerRef}
@@ -44,6 +35,8 @@ const KodikPlayer = ({ animeUrl }: KodikPlayerProps) => {
           />
         )}
       </div>
+
+      <KodikSidebar />
     </div>
   )
 }

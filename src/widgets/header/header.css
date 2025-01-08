@@ -19,5 +19,13 @@
 
   &__nav {
     @apply text-sm text-slate-300;
+
+    &__link {
+      @apply hover:text-inherit;
+
+      &_active {
+        @apply text-orange-300 hover:text-orange-300;
+      }
+    }
   }
 }

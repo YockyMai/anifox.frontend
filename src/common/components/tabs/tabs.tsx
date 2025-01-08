@@ -1,10 +1,12 @@
 'use client'
 
 import { useHover } from '@anifox/hooks'
+import clsx from 'clsx'
 import { useRef, useState } from 'react'
 
 import { Transition } from '../transition'
 import { TabItem } from './components/tab-item'
+import { getTabsStyles } from './helpers'
 import { useActiveBarPosition } from './hooks'
 import { useHoveredIndicatorPosition } from './hooks/use-hovered-indicator-position'
 import './tabs.css'
@@ -13,7 +15,10 @@ import { TabsProps } from './tabs.interface'
 export const Tabs = ({
   tabs,
   activeTab,
+  hoverColor,
+  activeTabColor,
   onChange,
+  fullWidth,
   withoutActiveBar,
   withoutHoverIndicator
 }: TabsProps) => {
@@ -29,7 +34,11 @@ export const Tabs = ({
   const { hoverProps, isHovered } = useHover()
 
   return (
-    <div {...hoverProps} className='tabs'>
+    <div
+      {...hoverProps}
+      style={getTabsStyles(hoverColor, activeTabColor)}
+      className={clsx('tabs', fullWidth && 'tabs_full-width')}
+    >
       {tabs.map(({ content, key, onClick }) => (
         <TabItem
           onClick={(key) => {

@@ -1,4 +1,6 @@
 .input {
+  --input-label-color: inherit;
+
   &__label {
     @apply text-sm;
   }
@@ -15,6 +17,7 @@
     input {
       @apply h-[--input-height] w-full;
       font-size: var(--input-font-size);
+      color: var(--input-label-color);
     }
   }
 

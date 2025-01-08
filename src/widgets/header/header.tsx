@@ -40,8 +40,20 @@ export const Header = () => {
 
         <nav className='site-header__nav'>
           <Tabs
+            activeTabColor='#FB9A3C'
+            hoverColor='rgba(255, 255, 255, 0.15)'
             tabs={links.map(({ content, path }) => ({
-              content: <Link href={path}>{content}</Link>,
+              content: (
+                <Link
+                  className={clsx(
+                    'site-header__nav__link',
+                    path === activeTab && 'site-header__nav__link_active'
+                  )}
+                  href={path}
+                >
+                  {content}
+                </Link>
+              ),
               key: path
             }))}
             activeTab={activeTab}

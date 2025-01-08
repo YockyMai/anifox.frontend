@@ -11,7 +11,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@anifox/hooks": "^1.0.0",
+    "@anifox/hooks": "^1.1.0",
     "@fancyapps/ui": "^5.0.36",
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-dialog": "^1.1.1",
@@ -28,6 +28,7 @@
     "embla-carousel-react": "^8.3.0",
     "embla-carousel-wheel-gestures": "^8.0.1",
     "framer-motion": "^11.3.30",
+    "fuse.js": "^7.0.0",
     "jotai": "^2.8.3",
     "jwt-decode": "^4.0.0",
     "lodash.clonedeep": "^4.5.0",

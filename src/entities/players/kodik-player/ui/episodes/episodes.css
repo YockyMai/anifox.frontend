@@ -1,0 +1,3 @@
+.episodes {
+  @apply grid grid-rows-[auto_1fr];
+}

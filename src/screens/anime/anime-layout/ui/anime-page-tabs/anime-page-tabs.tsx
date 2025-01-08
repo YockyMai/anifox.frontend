@@ -1,6 +1,6 @@
 'use client'
 
-import { IconPlayerPlay, IconBook, IconUsers } from '@tabler/icons-react'
+import { IconBook, IconUsers } from '@tabler/icons-react'
 import Link from 'next/link'
 import { useParams, usePathname } from 'next/navigation'
 import { useEffect, useMemo, useState } from 'react'
@@ -23,19 +23,9 @@ export const AnimePageTabs = () => {
 
   const tabs = useMemo(() => {
     const animeOverviewUrl = `${ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', animeUrl)}`
-    const watchAnimeUrl = `${ROUTES.CATALOG.ANIME.WATCH.replace(':animeUrl', animeUrl)}`
     const animeCharactersUrl = `${ROUTES.CATALOG.ANIME.CHARACTERS.replace(':animeUrl', animeUrl)}`
 
     return [
-      {
-        content: (
-          <Link className='anime-page-tabs__tab' href={watchAnimeUrl}>
-            <IconPlayerPlay />
-            Смотреть
-          </Link>
-        ),
-        key: watchAnimeUrl
-      },
       {
         content: (
           <Link className='anime-page-tabs__tab' href={animeOverviewUrl}>

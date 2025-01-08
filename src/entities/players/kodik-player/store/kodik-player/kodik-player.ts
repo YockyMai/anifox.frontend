@@ -8,5 +8,3 @@ export const selectedEpisodeAtom = atom<AnimeEpisode | null>(null)
 export const selectedTranslationAtom = atom<AnimeEpisodeTranslation | null>(
   null
 )
-
-export const isWideMode = atom<boolean>(false)

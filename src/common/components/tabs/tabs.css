@@ -1,6 +1,10 @@
 .tabs {
   @apply relative flex cursor-pointer;
 
+  &_full-width {
+    @apply w-full;
+  }
+
   &__active-bar {
     @apply absolute bottom-0 h-[2px] rounded-sm transition-all;
   }
@@ -14,6 +18,6 @@
   }
 
   &__hover-indicator_color {
-    @apply bg-black/5;
+    @apply bg-[--hover-color];
   }
 }

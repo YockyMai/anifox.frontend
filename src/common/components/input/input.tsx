@@ -6,6 +6,7 @@ import { UIVariants } from '@/common/types/ui-variants'
 
 import './input.css'
 import { InputProps } from './input.interface'
+import { getInputStyles } from './lib'
 
 // eslint-disable-next-line react/display-name
 export const Input = forwardRef(
@@ -18,6 +19,7 @@ export const Input = forwardRef(
       size = UISizes.MD,
       disabled,
       error,
+      customColors,
       variant = UIVariants.LIGHT,
       ...other
     }: InputProps,
@@ -25,6 +27,7 @@ export const Input = forwardRef(
   ) => {
     return (
       <div
+        style={customColors && getInputStyles(customColors)}
         className={clsx(
           'input',
           size && `input_${size}`,

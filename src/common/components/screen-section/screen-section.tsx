@@ -4,7 +4,7 @@ import { ScreenSectionProps } from './screen-section.interface'
 export const ScreenSection = ({ title, children }: ScreenSectionProps) => {
   return (
     <div className='screen-section'>
-      <p className='screen-section__title'>{title}</p>
+      {title && <p className='screen-section__title'>{title}</p>}
       {children}
     </div>
   )

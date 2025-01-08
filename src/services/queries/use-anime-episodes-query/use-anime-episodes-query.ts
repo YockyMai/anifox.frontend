@@ -2,7 +2,10 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 
 import { FetchAnimeEpisodesParams, api } from '@/services/api'
 
-import { ANIME_EPISODES_QUERY_KEY } from './use-anime-episodes-query.const'
+import {
+  ANIME_EPISODES_QUERY_KEY,
+  testData
+} from './use-anime-episodes-query.const'
 
 export const useAnimeEpisodesQuery = ({
   animeUrl,
@@ -12,9 +15,10 @@ export const useAnimeEpisodesQuery = ({
   useInfiniteQuery({
     queryKey: [ANIME_EPISODES_QUERY_KEY.replace('animeUrl', animeUrl)],
     queryFn: async () => {
-      const { data } = await api.fetchAnimeEpisodes({ animeUrl, limit, sort })
+      // const { data } = await api.fetchAnimeEpisodes({ animeUrl, limit, sort })
 
-      return data
+      // return data
+      return testData
     },
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) =>

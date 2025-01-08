@@ -1,0 +1,11 @@
+.kodik-sidebar {
+  @apply grid grid-rows-[auto_1fr] overflow-hidden rounded-lg bg-slate-900;
+
+  .container {
+    @apply px-3;
+  }
+
+  &__tab {
+    @apply flex h-14 items-center justify-center;
+  }
+}

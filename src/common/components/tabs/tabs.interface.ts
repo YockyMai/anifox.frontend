@@ -12,4 +12,7 @@ export type TabsProps = {
   onChange?: (key: string) => void
   withoutHoverIndicator?: boolean
   withoutActiveBar?: boolean
+  hoverColor?: string
+  activeTabColor?: string
+  fullWidth?: boolean
 }

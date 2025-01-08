@@ -6,4 +6,5 @@ export type TabProps = {
   onClick: (key: string) => void
   onHover?: (key: string) => void
   tabKey: string
+  activeTabColor?: string
 }
