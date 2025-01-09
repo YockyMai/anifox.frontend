@@ -15,10 +15,10 @@ export const useAnimeEpisodesQuery = ({
   useInfiniteQuery({
     queryKey: [ANIME_EPISODES_QUERY_KEY.replace('animeUrl', animeUrl)],
     queryFn: async () => {
-      // const { data } = await api.fetchAnimeEpisodes({ animeUrl, limit, sort })
+      const { data } = await api.fetchAnimeEpisodes({ animeUrl, limit, sort })
 
-      // return data
-      return testData
+      return data
+      // return testData
     },
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) =>
