@@ -1,11 +1,25 @@
 .kodik-sidebar {
-  @apply grid grid-rows-[auto_1fr] overflow-hidden rounded-lg bg-slate-900;
+  @apply overflow-hidden drop-shadow-2xl;
+  @apply grid grid-rows-[auto_1fr] rounded-lg;
+  @apply bg-white dark:bg-slate-900;
 
   .container {
     @apply px-3;
   }
 
+  &__tabs_container {
+    @apply bg-slate-50 dark:bg-slate-950;
+
+    .tab-item_active {
+      @apply text-slate-700 dark:text-white;
+    }
+  }
+
   &__tab {
     @apply flex h-14 items-center justify-center;
+
+    p {
+      @apply font-bold;
+    }
   }
 }

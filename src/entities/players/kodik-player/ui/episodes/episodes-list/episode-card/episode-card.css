@@ -1,25 +1,28 @@
 .episode-card {
   @apply grid h-[100px] w-full grid-cols-[130px_auto] gap-x-3 p-2;
-  @apply transition-colors hover:bg-black/50;
+  @apply transition-colors hover:bg-black/5 dark:hover:bg-black/50;
   @apply text-left;
 
   &__image-container {
     @apply overflow-hidden;
   }
+
   &__image {
     @apply h-full rounded object-cover;
   }
+
   &__content {
     &__title {
-      @apply line-clamp-1 text-lg text-white;
+      @apply line-clamp-1 text-lg font-semibold text-slate-600 dark:text-white;
     }
     &__description {
-      @apply line-clamp-3 text-xs text-slate-400;
+      @apply line-clamp-3 text-xs dark:text-slate-400;
     }
   }
 
   &_selected {
-    @apply bg-white/10 hover:bg-white/10;
+    @apply bg-black/10 transition-colors hover:bg-black/10 dark:bg-white/15 dark:hover:bg-white/10;
+
     .episodeInfo {
       .episodeInfoTitle {
         @apply text-orange-300;

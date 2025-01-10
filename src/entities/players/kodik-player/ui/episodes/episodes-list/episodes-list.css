@@ -1,7 +1,7 @@
 .episodes__list {
   @apply h-full overflow-hidden rounded-b-[10px];
 
-  @apply bg-slate-900/80 backdrop-blur-xl;
+  @apply bg-white backdrop-blur-xl dark:bg-slate-900/80;
 
   &__content {
     @apply scrollbar-hide hover:scrollbar;

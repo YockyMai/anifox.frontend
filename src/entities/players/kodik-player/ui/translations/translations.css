@@ -1,10 +1,14 @@
 .translations {
   &__item {
     @apply flex h-[50px] w-full items-center justify-between gap-x-3 px-3 py-3;
-    @apply font-normal transition-colors hover:bg-black/50;
+    @apply font-normal transition-colors;
+
+    @apply hover:bg-black/5;
+    @apply dark:hover:bg-black/50;
 
     &_selected {
-      @apply bg-white/10 text-white hover:bg-white/10;
+      @apply bg-black/10 hover:bg-black/10;
+      @apply dark:bg-white/10 dark:text-white dark:hover:bg-white/10;
     }
   }
 }

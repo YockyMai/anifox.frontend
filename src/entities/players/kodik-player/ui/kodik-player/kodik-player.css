@@ -2,7 +2,7 @@
   @apply relative mx-auto grid w-full grid-cols-[auto_400px] gap-x-4 py-5;
 
   &__frame {
-    @apply mx-auto aspect-[12/6] w-full;
+    @apply mx-auto aspect-[12/6] w-full drop-shadow-2xl;
   }
 }
 

@@ -8,6 +8,7 @@ import { useAnimeQuery } from '@/services/queries'
 
 import { AnimePageParams } from '../anime.interface'
 import { AnimeFranchise } from './anime-franchise'
+import './anime-overview.css'
 import { AnimeScreenshots } from './anime-screenshots'
 import { AnimeVideos } from './anime-videos'
 
@@ -28,8 +29,8 @@ export const AnimeOverviewScreen = () => {
         </ScreenSection>
       </div>
 
-      <div id='player' className='mx-auto my-14 bg-slate-800 px-11 py-14'>
-        <p className='text-2xl text-slate-300'>
+      <div id='player' className='anime-overview__player'>
+        <p className='anime-overview__player__title'>
           Смотреть аниме &quot;{data!.title}&quot;
         </p>
         <KodikPlayer animeUrl={animeUrl} />

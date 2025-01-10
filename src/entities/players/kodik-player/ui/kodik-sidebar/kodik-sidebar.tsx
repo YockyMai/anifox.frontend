@@ -12,10 +12,10 @@ export const KodikSidebar = () => {
 
   return (
     <div className='kodik-sidebar'>
-      <div className='bg-slate-950'>
+      <div className='kodik-sidebar__tabs_container'>
         <Tabs
-          activeTabColor='#FFFFFF'
           fullWidth
+          withoutHoverIndicator
           activeTab={activeTab}
           tabs={[
             {
