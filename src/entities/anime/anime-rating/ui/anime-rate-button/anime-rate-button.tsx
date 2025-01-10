@@ -4,9 +4,7 @@ import { IconStarFilled } from '@tabler/icons-react'
 import { useMemo } from 'react'
 
 import { Badge, Button, HoverCard } from '@/common/components'
-import { UIColors } from '@/common/types/ui-colors'
 import { UISizes } from '@/common/types/ui-sizes'
-import { useAnimeRatingQuery } from '@/services/queries/use-anime-rating-query'
 
 import { getColorByRating } from '../../lib/get-color-by-rating'
 import './anime-rate-button.css'
@@ -20,8 +18,6 @@ export const AnimeRateButton = ({
   withoutText,
   openDelay
 }: AnimeRateButtonProps) => {
-  const { data } = useAnimeRatingQuery(animeUrl)
-
   const color = getColorByRating(rating)
 
   const trigger = useMemo(() => {
@@ -54,7 +50,7 @@ export const AnimeRateButton = ({
         position='bottom'
         trigger={trigger}
       >
-        <AnimeRateDropdown ratingDistribution={data ?? []} />
+        <AnimeRateDropdown ratingDistribution={[]} />
       </HoverCard>
     </div>
   )
