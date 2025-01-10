@@ -46,8 +46,6 @@ export type { AnimeTranslation } from './fetch-anime-translation'
 
 export type { RelatedAnime } from './fetch-related-anime'
 
-export type { AnimeRating } from './fetch-anime-rating'
-
 export type { SignUpParams } from './sign-up'
 
 export type { AnimeVideo } from './fetch-anime-videos'
@@ -57,3 +55,9 @@ export type {
   FetchAnimeSchedulesResponse,
   AnimeScheduleDay
 } from './fetch-anime-schedules'
+
+export type {
+  AnimeCharacter,
+  FetchAnimeCharactersParams,
+  FetchAnimeCharactersResponse
+} from './fetch-anime-characters'

@@ -1,0 +1,7 @@
+.infinity-loading-container {
+  @apply relative;
+
+  &__load-more-trigger {
+    @apply absolute bottom-96;
+  }
+}
