@@ -1,5 +1,3 @@
-import { AnimeRating } from '@/services/api'
-
 export type AnimeRateDropdownProps = {
-  ratingDistribution?: AnimeRating[]
+  ratingDistribution?: { rating: number; count: number }[]
 }
