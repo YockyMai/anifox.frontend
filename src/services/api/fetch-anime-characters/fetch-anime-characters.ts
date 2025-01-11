@@ -8,7 +8,7 @@ import {
 export const fetchAnimeCharacters = async (
   params: FetchAnimeCharactersParams
 ) => {
-  const { animeUrl, limit, page, role } = params
+  const { animeUrl, limit = 24, page = 0, role, search } = params
 
   const response = await publicHttp.get<FetchAnimeCharactersResponse>(
     `anime/${animeUrl}/characters`,
@@ -16,7 +16,8 @@ export const fetchAnimeCharacters = async (
       searchParams: {
         limit,
         page,
-        ...(role && { role })
+        ...(role && { role }),
+        ...(search && { search })
       }
     }
   )

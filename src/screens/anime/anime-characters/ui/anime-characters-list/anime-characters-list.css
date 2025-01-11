@@ -5,4 +5,8 @@
 
   @apply mx-auto justify-between gap-x-8 gap-y-6 max-sm:gap-x-4 max-sm:gap-y-3;
   @apply container relative;
+
+  &__no-list {
+    @apply mx-auto mt-10 flex w-fit items-center gap-x-3;
+  }
 }

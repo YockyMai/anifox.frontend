@@ -1,5 +1,7 @@
 'use client'
 
+import { IconMoodSad, IconSquareX } from '@tabler/icons-react'
+import { useAtomValue } from 'jotai'
 import { useParams } from 'next/navigation'
 import React, { Fragment } from 'react'
 
@@ -8,16 +10,30 @@ import { AnimeCharacterCard } from '@/entities/anime-characters'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { useAnimeCharactersQuery } from '@/services/queries'
 
+import { $animeCharactersFilterAtoms } from '../../atoms'
+import { ANIME_CHARACTERS_LOADER } from './anime-characters-list.const'
 import './anime-characters-list.css'
 
 export const AnimeCharactersList = () => {
   const { animeUrl } = useParams<AnimePageParams>()
 
+  const search = useAtomValue(
+    $animeCharactersFilterAtoms.search.debouncedValueAtom
+  )
+
+  const role = useAtomValue($animeCharactersFilterAtoms.role)
+
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useAnimeCharactersQuery({
-      animeUrl
+      animeUrl,
+      search,
+      role
     })
-
+  console.log(
+    data?.pages?.[0].characters.length === 0 && data.pages.length === 1,
+    role || search,
+    !isLoading
+  )
   return (
     <InfinityLoadingContainer
       fetchNextPage={fetchNextPage}
@@ -32,7 +48,33 @@ export const AnimeCharactersList = () => {
             ))}
           </Fragment>
         ))}
+
+        {((isFetchingNextPage && hasNextPage) || isLoading) &&
+          ANIME_CHARACTERS_LOADER}
       </div>
+
+      {!hasNextPage &&
+        !isLoading &&
+        !isFetchingNextPage &&
+        (data?.pages.length ?? 0) === 0 && (
+          <div className='anime-characters-list__no-list'>
+            <IconMoodSad />
+            <p>Пока-что у нас нет данных о персонажах из этого аниме</p>
+          </div>
+        )}
+
+      {data?.pages?.[0].characters.length === 0 &&
+        data.pages.length === 1 &&
+        (role || search) &&
+        !isLoading && (
+          <div className='anime-characters-list__no-list'>
+            <IconMoodSad />
+            <p>
+              Мы ничего не нашли :(
+              <br /> попробуйте другие фильтры
+            </p>
+          </div>
+        )}
     </InfinityLoadingContainer>
   )
 }

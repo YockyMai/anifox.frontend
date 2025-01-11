@@ -9,7 +9,12 @@ export const useAnimeCharactersQuery = (
   params: UseAnimeCharactersQueryParams
 ) =>
   useInfiniteQuery({
-    queryKey: [ANIME_CHARACTERS_QUERY_KEY, params.role, params.animeUrl],
+    queryKey: [
+      ANIME_CHARACTERS_QUERY_KEY,
+      params.role,
+      params.search,
+      params.animeUrl
+    ],
     queryFn: async ({ pageParam = 0 }) => {
       const { data } = await api.fetchAnimeCharacters({
         ...params,

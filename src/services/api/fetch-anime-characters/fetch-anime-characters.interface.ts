@@ -13,6 +13,7 @@ export type FetchAnimeCharactersResponse = {
 export type FetchAnimeCharactersParams = {
   page: number
   limit: number
-  role?: string
+  role?: string | null
   animeUrl: string
+  search?: string
 }

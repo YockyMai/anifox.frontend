@@ -1,0 +1,30 @@
+.anime-characters-filters {
+  @apply flex items-center gap-x-3 px-2;
+
+  &__role {
+    @apply min-w-44 cursor-pointer whitespace-nowrap text-center;
+  }
+
+  &__role-option {
+    @apply flex h-7 cursor-pointer items-center px-2 hover:bg-slate-200;
+
+    p {
+      @apply text-sm;
+    }
+
+    &_selected {
+      @apply bg-slate-100;
+      p {
+        @apply text-orange-400;
+      }
+    }
+  }
+
+  &__title {
+    @apply bg-slate-600 py-2 text-center text-sm text-white;
+  }
+
+  &__hover-card {
+    @apply overflow-hidden rounded bg-slate-50 drop-shadow-xl;
+  }
+}

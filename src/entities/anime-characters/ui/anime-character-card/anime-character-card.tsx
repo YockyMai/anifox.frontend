@@ -9,7 +9,10 @@ import { AnimeCharacterCardProps } from './anime-character-card.interface'
 export const AnimeCharacterCard = ({ character }: AnimeCharacterCardProps) => {
   return (
     <div className='anime-character-card'>
-      <div className='anime-character-card__image'>
+      <div className='anime-character-card__top-section'>
+        <div className='anime-character-card__role'>
+          <p>{character.role} роль</p>
+        </div>
         <Link href={'#'}>
           <div className='anime-character-card__image__element'>
             <Image
