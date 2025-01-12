@@ -13,8 +13,10 @@ import { usePrefetchScreenshotsQuery } from '@/services/queries/use-anime-screen
 const Anime = async ({ params }: { params: AnimePageParams }) => {
   const queryClient = new QueryClient()
 
-  await usePrefetchScreenshotsQuery(params.animeUrl, queryClient)
-  await usePrefetchAnimeVideosQuery(params.animeUrl, queryClient)
+  await Promise.all([
+    usePrefetchScreenshotsQuery(params.animeUrl, queryClient),
+    usePrefetchAnimeVideosQuery(params.animeUrl, queryClient)
+  ])
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

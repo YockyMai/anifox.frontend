@@ -5,7 +5,7 @@
   }
 
   &__category {
-    @apply flex items-center gap-x-2 text-slate-700;
+    @apply flex items-center gap-x-2;
     p {
       @apply text-lg font-bold;
     }

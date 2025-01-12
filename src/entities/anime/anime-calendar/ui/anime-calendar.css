@@ -1,8 +1,8 @@
 .anime-calendar {
-  @apply container rounded-xl py-10 drop-shadow-xl;
+  @apply container rounded-xl py-6 drop-shadow-xl;
 
   &__title {
-    @apply mb-5 flex items-center gap-x-2 text-slate-700;
+    @apply mb-5 flex items-center gap-x-2;
     p {
       @apply text-xl font-bold;
     }

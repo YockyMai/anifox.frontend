@@ -8,6 +8,8 @@ import {
 export const usePrefetchAnimeCatalogLandingData = async (
   queryClient: QueryClient
 ) => {
-  await usePrefetchAllTimePopularAnimeListQuery(queryClient)
-  await usePrefetchMostRatedAnimeListQuery(queryClient)
+  await Promise.all([
+    usePrefetchAllTimePopularAnimeListQuery(queryClient),
+    usePrefetchMostRatedAnimeListQuery(queryClient)
+  ])
 }

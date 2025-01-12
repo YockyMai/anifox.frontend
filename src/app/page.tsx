@@ -14,11 +14,11 @@ import { usePrefetchAnimeCatalogLandingData } from '@/widgets/anime-catalog-land
 const Home = async () => {
   const queryClient = new QueryClient()
 
-  await usePrefetchComingOutAnimeQuery(queryClient)
-
-  await usePrefetchAnimeCatalogLandingData(queryClient)
-
-  await usePrefetchAnimeWeekSchedulesQuery(queryClient)
+  await Promise.all([
+    usePrefetchComingOutAnimeQuery(queryClient),
+    usePrefetchAnimeCatalogLandingData(queryClient),
+    usePrefetchAnimeWeekSchedulesQuery(queryClient)
+  ])
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
