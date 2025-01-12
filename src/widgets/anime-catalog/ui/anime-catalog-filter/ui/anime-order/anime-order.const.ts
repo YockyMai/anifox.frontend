@@ -1,6 +1,4 @@
-import { AnimeOrderVariants } from '@/services/api'
-
-export const ANIME_ORDER_OPTIONS: Record<string, AnimeOrderVariants> = {
+export const ANIME_ORDER_OPTIONS = {
   UPDATE: 'Update',
   AIRED: 'Aired',
   RELEASED: 'Released',

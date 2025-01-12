@@ -1,5 +1,4 @@
 import { useAtomValue } from 'jotai'
-import { useMemo } from 'react'
 
 import { $animeCatalogFilterAtoms } from '../../model'
 
@@ -17,36 +16,18 @@ export const useAnimeListQueryParams = () => {
   const studio = useAtomValue($animeCatalogFilterAtoms.studio)
   const sort = useAtomValue($animeCatalogFilterAtoms.sort)
 
-  const params = useMemo(
-    () => ({
-      genres: genres,
-      minimal_age: minimalAge,
-      order,
-      rating_mpa: ratingMpa,
-      search,
-      season,
-      status,
-      type,
-      years,
-      translations: translations,
-      studio,
-      sort
-    }),
-    [
-      genres,
-      minimalAge,
-      order,
-      ratingMpa,
-      search,
-      season,
-      sort,
-      status,
-      studio,
-      translations,
-      type,
-      years
-    ]
-  )
-
-  return params
+  return {
+    genres,
+    minimal_age: minimalAge,
+    order,
+    rating_mpa: ratingMpa,
+    search,
+    season,
+    status,
+    type,
+    years,
+    translations,
+    studio,
+    sort
+  }
 }

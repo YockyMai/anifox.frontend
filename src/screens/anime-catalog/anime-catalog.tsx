@@ -9,7 +9,7 @@ import {
   AnimeCatalogList
 } from '@/widgets/anime-catalog/ui'
 
-import { useSyncAnimeCatalogSearchParams } from './hooks/use-sync-anime-catalog-search-params'
+import { useSyncAnimeCatalogSearchParams } from './hooks'
 
 export const AnimeCatalogScreen = () => {
   useSyncAnimeCatalogSearchParams()

@@ -5,9 +5,12 @@ import { useAtom } from 'jotai'
 import { MultiSelect } from '@/common/components'
 import { SelectOption } from '@/common/components/select/select.interface'
 import { useAnimeGenresQuery } from '@/services/queries'
+import { useAnimeCatalogFilterContext } from '@/widgets/anime-catalog/context/anime-catalog-filter.context'
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model/anime-catalog-filter'
 
 export const Genres = () => {
+  const { changeSearchParams } = useAnimeCatalogFilterContext()
+
   const { data, isLoading } = useAnimeGenresQuery()
   const [genres, setGenres] = useAtom($animeCatalogFilterAtoms.genres)
 
@@ -28,9 +31,10 @@ export const Genres = () => {
 
     const genres = genreOptions
       .filter((genre) => options.some((option) => option.value === genre.value))
-      .map((genre) => ({ id: genre.value, name: genre.label }))
+      .map((genre) => genre.value)
 
-    setGenres(genres.map(({ id }) => id))
+    setGenres(genres)
+    changeSearchParams({ genres })
   }
 
   return (

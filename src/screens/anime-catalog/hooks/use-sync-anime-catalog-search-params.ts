@@ -1,9 +1,7 @@
 'use client'
 
-import { useSetAtom } from 'jotai'
 import { useHydrateAtoms } from 'jotai/utils'
 import { useSearchParams } from 'next/navigation'
-import { useEffect } from 'react'
 
 import {
   AnimeMinimalAge,
@@ -19,19 +17,6 @@ import { ANIME_SORT_DIRECTION } from '@/widgets/anime-catalog/model'
 
 export const useSyncAnimeCatalogSearchParams = () => {
   const searchParams = useSearchParams()
-
-  const setStatus = useSetAtom($animeCatalogFilterAtoms.status)
-  const setSearch = useSetAtom($animeCatalogFilterAtoms.search)
-  const setGenres = useSetAtom($animeCatalogFilterAtoms.genres)
-  const setMinimalAge = useSetAtom($animeCatalogFilterAtoms.minimalAge)
-  const setRatingMpa = useSetAtom($animeCatalogFilterAtoms.ratingMpa)
-  const setSeason = useSetAtom($animeCatalogFilterAtoms.season)
-  const setType = useSetAtom($animeCatalogFilterAtoms.type)
-  const setYears = useSetAtom($animeCatalogFilterAtoms.years)
-  const setTranslations = useSetAtom($animeCatalogFilterAtoms.translations)
-  const setStudio = useSetAtom($animeCatalogFilterAtoms.studio)
-  const setSort = useSetAtom($animeCatalogFilterAtoms.sort)
-  const setOrder = useSetAtom($animeCatalogFilterAtoms.order)
 
   const status = searchParams.get('status') as AnimeStatuses | null
   const search = searchParams.get('search') ?? ''
@@ -63,45 +48,5 @@ export const useSyncAnimeCatalogSearchParams = () => {
     [$animeCatalogFilterAtoms.studio, studio],
     [$animeCatalogFilterAtoms.sort, sort],
     [$animeCatalogFilterAtoms.order, order]
-  ])
-
-  useEffect(() => {
-    setStatus(status)
-    setSearch(search)
-    setGenres(genres)
-    setMinimalAge(minimalAge)
-    setRatingMpa(ratingMpa)
-    setSeason(season)
-    setType(type)
-    setYears(years)
-    setTranslations(translations)
-    setStudio(studio)
-    setSort(sort)
-    setOrder(order)
-  }, [
-    status,
-    search,
-    genres,
-    minimalAge,
-    ratingMpa,
-    season,
-    type,
-    years,
-    translations,
-    studio,
-    sort,
-    order,
-    setStatus,
-    setSearch,
-    setGenres,
-    setMinimalAge,
-    setRatingMpa,
-    setSeason,
-    setType,
-    setYears,
-    setTranslations,
-    setStudio,
-    setSort,
-    setOrder
   ])
 }

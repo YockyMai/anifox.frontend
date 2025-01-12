@@ -10,6 +10,8 @@ import { useAtom } from 'jotai'
 
 import { HoverCard, UnstyledButton } from '@/common/components'
 import { AnimeOrderVariants } from '@/services/api'
+import { useAnimeCatalogFilterContext } from '@/widgets/anime-catalog/context/anime-catalog-filter.context'
+import { useChangeSearchParams } from '@/widgets/anime-catalog/hooks'
 import { ANIME_SORT_DIRECTION } from '@/widgets/anime-catalog/model'
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model/anime-catalog-filter'
 
@@ -20,8 +22,11 @@ export const AnimeOrder = () => {
   const [order, setOrder] = useAtom($animeCatalogFilterAtoms.order)
   const [sort, setSort] = useAtom($animeCatalogFilterAtoms.sort)
 
+  const { changeSearchParams } = useAnimeCatalogFilterContext()
+
   const selectOrder = (order: AnimeOrderVariants) => {
     setOrder(order)
+    changeSearchParams({ order })
   }
 
   const toggleSort = () => {

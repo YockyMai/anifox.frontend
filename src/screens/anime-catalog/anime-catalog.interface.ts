@@ -8,11 +8,6 @@ import {
   AnimeTypeVariants
 } from '@/services/api'
 
-export type AnimeCatalogPageSearchPreset =
-  | 'all-time-popular'
-  | 'most-rated'
-  | 'popular-ongoing'
-
 export type AnimeCatalogPageSearchParams = {
   status?: AnimeStatuses | null
   search?: string | null
@@ -26,6 +21,4 @@ export type AnimeCatalogPageSearchParams = {
   studio?: string | null
   sort?: AnimeSortDirection
   order?: AnimeOrderVariants | null
-
-  preset?: AnimeCatalogPageSearchPreset
 }

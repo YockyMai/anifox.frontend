@@ -2,6 +2,9 @@ export const ROUTES = {
   HOME: '/',
   CATALOG: {
     ROOT: '/anime',
+    POPULAR: '/anime/popular',
+    MOST_RATED: '/anime/most-rated',
+    POPULAR_ONGOING: '/anime/popular-ongoing',
     ANIME: {
       ROOT: '/anime/:animeUrl',
       CHARACTERS: '/anime/:animeUrl/characters',

@@ -1,7 +1,6 @@
 import { usePathname } from 'next/navigation'
 import { useEffect, useMemo, useState } from 'react'
 
-import { createAnimeCatalogSearchParams } from '@/screens/anime-catalog'
 import { ROUTES } from '@/screens/pages.routes'
 
 export const useHeaderLinks = () => {
@@ -15,13 +14,11 @@ export const useHeaderLinks = () => {
       },
       {
         content: 'Популярное',
-        // TODO: потом всякие такие фильтры будут контролироваться через params
-        path: `${ROUTES.CATALOG.ROOT}?${createAnimeCatalogSearchParams({ preset: 'all-time-popular', order: 'Rating' })}`
+        path: `${ROUTES.CATALOG.POPULAR}`
       },
       {
         content: 'Новое',
-        // TODO: потом всякие такие фильтры будут контролироваться через params
-        path: `${ROUTES.CATALOG.ROOT}?${createAnimeCatalogSearchParams({ preset: 'popular-ongoing', order: 'Rating', status: 'Ongoing' })}`
+        path: ROUTES.CATALOG.POPULAR_ONGOING
       }
     ]
 

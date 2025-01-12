@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react'
 
 import { $headerAtoms } from '@/widgets/header/store'
 
+import { AnimeCatalogFilterContext } from '../../context/anime-catalog-filter.context'
+import { useChangeSearchParams } from '../../hooks'
 import './anime-catalog-filter.css'
 import { AnimeOrder } from './ui'
 import { AnimeFilters } from './ui'
@@ -16,6 +18,8 @@ export const AnimeCatalogFilter = () => {
   const [isSticky, setIsSticky] = useState(
     typeof window !== 'undefined' ? window.scrollY : 0 >= 100
   )
+
+  const changeSearchParams = useChangeSearchParams()
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -32,19 +36,21 @@ export const AnimeCatalogFilter = () => {
   }, [])
 
   return (
-    <div
-      className={clsx(
-        'anime-catalog-filter',
-        isSticky && 'anime-catalog-filter_sticky',
-        !headerIsVisible && 'anime-catalog-filter_without-header'
-      )}
-    >
-      <div className='anime-catalog-filter__container'>
-        <div className='anime-catalog-filter__left-section'>
-          <AnimeOrder />
-          <AnimeFilters />
+    <AnimeCatalogFilterContext.Provider value={{ changeSearchParams }}>
+      <div
+        className={clsx(
+          'anime-catalog-filter',
+          isSticky && 'anime-catalog-filter_sticky',
+          !headerIsVisible && 'anime-catalog-filter_without-header'
+        )}
+      >
+        <div className='anime-catalog-filter__container'>
+          <div className='anime-catalog-filter__left-section'>
+            <AnimeOrder />
+            <AnimeFilters />
+          </div>
         </div>
       </div>
-    </div>
+    </AnimeCatalogFilterContext.Provider>
   )
 }

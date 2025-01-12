@@ -6,14 +6,18 @@ import { useAtom } from 'jotai'
 import { useEffect, useState } from 'react'
 
 import { Input } from '@/common/components'
+import { useAnimeCatalogFilterContext } from '@/widgets/anime-catalog/context/anime-catalog-filter.context'
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model'
 
 import './search.css'
 
 export const Search = () => {
+  const { changeSearchParams } = useAnimeCatalogFilterContext()
+
   const [search, setSearch] = useAtom($animeCatalogFilterAtoms.search)
 
   const [searchValue, setSearchValue] = useState(search)
+
   useEffect(() => {
     setSearchValue(search)
   }, [search])
@@ -22,6 +26,9 @@ export const Search = () => {
 
   useEffect(() => {
     setSearch(debouncedValue)
+    if (debouncedValue) {
+      changeSearchParams({ search: debouncedValue })
+    }
   }, [debouncedValue, setSearch])
 
   const clearSearch = () => {

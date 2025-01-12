@@ -1,0 +1,60 @@
+'use client'
+
+import { useAtomCallback } from 'jotai/utils'
+import { useRouter } from 'next/navigation'
+import { useCallback } from 'react'
+
+import { ROUTES } from '@/screens/pages.routes'
+import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog'
+
+import { AnimeCatalogPageSearchParams } from '../../../screens/anime-catalog/anime-catalog.interface'
+import { createAnimeCatalogSearchParams } from '../../../screens/anime-catalog/lib'
+
+export const useChangeSearchParams = () => {
+  const router = useRouter()
+
+  const getSearchParams = useAtomCallback(
+    useCallback((get) => {
+      const status = get($animeCatalogFilterAtoms.status)
+      const search = get($animeCatalogFilterAtoms.search)
+      const genres = get($animeCatalogFilterAtoms.genres)
+      const minimalAge = get($animeCatalogFilterAtoms.minimalAge)
+      const ratingMpa = get($animeCatalogFilterAtoms.ratingMpa)
+      const season = get($animeCatalogFilterAtoms.season)
+      const type = get($animeCatalogFilterAtoms.type)
+      const years = get($animeCatalogFilterAtoms.years)
+      const translations = get($animeCatalogFilterAtoms.translations)
+      const studio = get($animeCatalogFilterAtoms.studio)
+      const sort = get($animeCatalogFilterAtoms.sort)
+      const order = get($animeCatalogFilterAtoms.order)
+
+      return {
+        status,
+        search,
+        genres,
+        minimalAge,
+        ratingMpa,
+        season,
+        type,
+        years,
+        translations,
+        studio,
+        sort,
+        order
+      }
+    }, [])
+  )
+
+  const changeSearchParams = useCallback(
+    (params: AnimeCatalogPageSearchParams) => {
+      const currentSearchParams = getSearchParams()
+
+      router.replace(
+        `${ROUTES.CATALOG.ROOT}?${createAnimeCatalogSearchParams({ ...currentSearchParams, ...params })}`
+      )
+    },
+    []
+  )
+
+  return changeSearchParams
+}

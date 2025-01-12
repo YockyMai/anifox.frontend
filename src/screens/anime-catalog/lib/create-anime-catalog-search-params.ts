@@ -7,7 +7,6 @@ export const createAnimeCatalogSearchParams = (
 
   for (const [key, value] of Object.entries(params)) {
     if (Array.isArray(value)) {
-      // Если value — массив, добавляем каждое значение
       for (const val of value) {
         urlSearchParams.append(key, val.toString())
       }
