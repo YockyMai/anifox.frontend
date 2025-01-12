@@ -14,9 +14,8 @@ export const AnimeCharacterCard = ({ character }: AnimeCharacterCardProps) => {
           <p>{character.role} роль</p>
         </div>
         <Link href={'#'}>
-          <div className='anime-character-card__image__element'>
+          <div className='anime-character-card__image'>
             <Image
-              fit='cover'
               width='100%'
               height='100%'
               src={character.image}

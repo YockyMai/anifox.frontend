@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Nunito } from 'next/font/google'
 
 import { NavigationProgress } from '@/common/components'
+import { YMLoader } from '@/common/lib/ym'
 import { Providers } from '@/providers'
 import { Footer } from '@/widgets/footer'
 import { Header } from '@/widgets/header'
@@ -26,6 +27,7 @@ const RootLayout = ({
   return (
     <html lang='en'>
       <body className={nunitoSans.className}>
+        <YMLoader />
         <Providers>
           <NavigationProgress />
           <div className='app'>

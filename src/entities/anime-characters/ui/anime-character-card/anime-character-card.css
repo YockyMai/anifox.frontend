@@ -4,7 +4,7 @@
   @apply transition-transform;
 
   &__role {
-    @apply absolute bottom-1 left-1/2 w-[90%] -translate-x-1/2;
+    @apply absolute bottom-1 left-1/2 z-10 w-[90%] -translate-x-1/2;
     @apply rounded bg-slate-800/60 p-2 text-white backdrop-blur-xl;
 
     p {
@@ -17,10 +17,10 @@
   }
 
   &__image {
-    @apply relative w-full overflow-hidden max-xl:h-auto xl:h-64;
+    @apply aspect-[3/4] w-full overflow-hidden rounded;
 
-    &__element {
-      @apply h-full w-full overflow-hidden rounded;
+    img {
+      @apply h-full w-full scale-105 object-cover;
     }
   }
 
