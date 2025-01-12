@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation'
 
 import { ScreenSection } from '@/common/components'
 import { KodikPlayer } from '@/entities/players/kodik-player'
-import { useAnimeQuery } from '@/services/queries'
+import { useAnimeQuery, useAnimeVideosQuery } from '@/services/queries'
 
 import { AnimePageParams } from '../anime.interface'
 import { AnimeFranchise } from './anime-franchise'
@@ -17,6 +17,9 @@ export const AnimeOverviewScreen = () => {
 
   const { data } = useAnimeQuery(animeUrl)
 
+  const { data: videos = [], isLoading: isVideosLoading } =
+    useAnimeVideosQuery(animeUrl)
+
   return (
     <div className='anime-overview'>
       <div className='container'>
@@ -24,9 +27,11 @@ export const AnimeOverviewScreen = () => {
           <AnimeScreenshots />
         </ScreenSection>
 
-        <ScreenSection title='Трейлеры и видео'>
-          <AnimeVideos />
-        </ScreenSection>
+        {!isVideosLoading && videos.length > 0 && (
+          <ScreenSection title='Трейлеры и видео'>
+            <AnimeVideos />
+          </ScreenSection>
+        )}
       </div>
 
       <div id='player' className='anime-overview__player'>

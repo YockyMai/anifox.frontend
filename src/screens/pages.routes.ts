@@ -8,6 +8,9 @@ export const ROUTES = {
       REVIEWS: '/anime/:animeUrl/reviews'
     }
   },
+  CHARACTER: {
+    ROOT: '/character/:id'
+  },
   SETTINGS: '/settings',
   LOGIN: '/login',
   SIGN_UP: '/signup',

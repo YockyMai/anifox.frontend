@@ -1,0 +1,5 @@
+.character-pictures {
+  --image-height: 160px;
+
+  height: var(--image-height);
+}

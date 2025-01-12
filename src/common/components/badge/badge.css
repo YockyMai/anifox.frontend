@@ -46,7 +46,7 @@
   }
 
   &_green {
-    --badge-bg-color: theme('colors.green.400');
+    --badge-bg-color: theme('colors.green.500');
   }
 
   &_red {

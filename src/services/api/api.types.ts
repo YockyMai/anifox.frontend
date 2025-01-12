@@ -61,3 +61,5 @@ export type {
   FetchAnimeCharactersParams,
   FetchAnimeCharactersResponse
 } from './fetch-anime-characters'
+
+export type { FetchCharacterResponse } from './fetch-character'

@@ -9,7 +9,11 @@ import { AnimeCardPanel } from '../anime-card-panel'
 import './anime-card.css'
 import { AnimeCardProps } from './anime-card.interface'
 
-export const AnimeCard = ({ anime, withoutPanel }: AnimeCardProps) => {
+export const AnimeCard = ({
+  anime,
+  characterRole,
+  withoutPanel
+}: AnimeCardProps) => {
   return (
     <div className='relative w-full'>
       <HoverCard
@@ -34,6 +38,12 @@ export const AnimeCard = ({ anime, withoutPanel }: AnimeCardProps) => {
                   />
                 </div>
               </Link>
+
+              {characterRole && (
+                <div className='anime-card__character-role'>
+                  <p>{characterRole} роль</p>
+                </div>
+              )}
             </div>
             <Link
               title={anime.title}

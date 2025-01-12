@@ -1,0 +1,25 @@
+.character-info {
+  &__header {
+    @apply bg-slate-50 pt-[--header-height];
+
+    &__content {
+      @apply container relative grid grid-cols-[220px_auto] gap-x-9 pb-6 pt-12;
+    }
+  }
+
+  &__image {
+    @apply absolute left-0 top-0 aspect-[3/4] w-full;
+  }
+
+  &__name {
+    @apply flex flex-col gap-y-3 pt-4;
+
+    &__main {
+      @apply text-3xl font-bold;
+    }
+  }
+
+  &__body {
+    @apply container grid min-h-40 grid-cols-[220px_auto] gap-x-9 pt-6;
+  }
+}
