@@ -44,7 +44,7 @@ export const HomeCarousel = () => {
   const { data } = useComingOutAnimeQuery()
 
   const filteredData = useMemo(
-    () => data!.filter((anime) => anime.image.cover),
+    () => data?.filter((anime) => anime.image.cover) ?? [],
     [data]
   )
 
