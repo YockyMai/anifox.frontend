@@ -1,6 +1,6 @@
 'use client'
 
-import { IconMoodSad, IconSquareX } from '@tabler/icons-react'
+import { IconMoodSad } from '@tabler/icons-react'
 import { useAtomValue } from 'jotai'
 import { useParams } from 'next/navigation'
 import React, { Fragment } from 'react'
@@ -29,11 +29,7 @@ export const AnimeCharactersList = () => {
       search,
       role
     })
-  console.log(
-    data?.pages?.[0].characters.length === 0 && data.pages.length === 1,
-    role || search,
-    !isLoading
-  )
+
   return (
     <InfinityLoadingContainer
       fetchNextPage={fetchNextPage}

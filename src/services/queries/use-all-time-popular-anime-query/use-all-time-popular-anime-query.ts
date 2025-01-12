@@ -13,8 +13,7 @@ export const useAllTimePopularAnimeListQuery = () =>
       const { data } = await api.fetchAnimeList({
         page: 0,
         limit: 7,
-        sort: 'Desc',
-        order: 'Random'
+        order: 'Rating'
       })
 
       return data

@@ -17,7 +17,7 @@ const calcSlideSize = (
   }
 
   let visibleSlidesCount: number | null = null
-  // console.log(windowWidth)
+
   if (windowWidth <= BREAKPOINTS.SM && breakpoints?.SM) {
     visibleSlidesCount = breakpoints.SM
   }
@@ -43,7 +43,7 @@ const calcSlideSize = (
 
 export const useSlideSize = (breakpoints?: CarouselBreakpoints) => {
   const windowWidth = useAtomValue($windowAtoms.windowWidth)
-  console.log(windowWidth)
+
   const [slideSize, setSlideSize] = useState<string | null>(
     calcSlideSize(windowWidth, breakpoints)
   )

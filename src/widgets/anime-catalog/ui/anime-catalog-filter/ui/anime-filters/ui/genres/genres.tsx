@@ -11,7 +11,10 @@ export const Genres = () => {
   const { data, isLoading } = useAnimeGenresQuery()
   const [genres, setGenres] = useAtom($animeCatalogFilterAtoms.genres)
 
-  const values = genres.map((genre) => ({ label: genre.name, value: genre.id }))
+  const values = genres.map((id) => ({
+    label: data?.find((genre) => genre.id === id)?.name ?? '',
+    value: id
+  }))
 
   const genreOptions = data?.map(({ name, id }) => ({
     value: id,
@@ -27,7 +30,7 @@ export const Genres = () => {
       .filter((genre) => options.some((option) => option.value === genre.value))
       .map((genre) => ({ id: genre.value, name: genre.label }))
 
-    setGenres(genres)
+    setGenres(genres.map(({ id }) => id))
   }
 
   return (

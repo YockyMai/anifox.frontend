@@ -2,7 +2,8 @@ import { QueryClient } from '@tanstack/react-query'
 
 import {
   usePrefetchAllTimePopularAnimeListQuery,
-  usePrefetchMostRatedAnimeListQuery
+  usePrefetchMostRatedAnimeListQuery,
+  usePrefetchPopularOngoingQuery
 } from '@/services/queries'
 
 export const usePrefetchAnimeCatalogLandingData = async (
@@ -10,6 +11,7 @@ export const usePrefetchAnimeCatalogLandingData = async (
 ) => {
   await Promise.all([
     usePrefetchAllTimePopularAnimeListQuery(queryClient),
-    usePrefetchMostRatedAnimeListQuery(queryClient)
+    usePrefetchMostRatedAnimeListQuery(queryClient),
+    usePrefetchPopularOngoingQuery(queryClient)
   ])
 }

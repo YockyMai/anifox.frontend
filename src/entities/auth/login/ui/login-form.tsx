@@ -24,7 +24,7 @@ export const LoginForm = ({
     handleSubmit
   } = useForm({ resolver: yupResolver(loginSchema) })
 
-  const { login, isLoading } = useLogin(onLoginSuccess)
+  const { login, error, isLoading } = useLogin(onLoginSuccess)
 
   const onSubmit = (fields: LoginSchema) => {
     login(fields)
@@ -63,6 +63,8 @@ export const LoginForm = ({
           Войти
         </Button>
       </div>
+
+      {error && <p className='text-center text-sm text-red-400'>{error}</p>}
 
       <p className='mt-1 text-center text-sm'>
         Еще нет аккаунта?{' '}

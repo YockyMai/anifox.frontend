@@ -12,6 +12,7 @@ export type AnimeOrderVariants =
   | 'Released'
   | 'Random'
   | 'Rating'
+
 export type AnimeSortDirection = 'Asc' | 'Desc'
 
 export type AnimeTypeVariants =

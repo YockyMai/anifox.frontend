@@ -15,6 +15,7 @@ export const useLogin = (
 ) => {
   const setUser = useSetAtom($userAtoms.user)
 
+  const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
   const login = async (params: LoginParams) => {
@@ -33,6 +34,7 @@ export const useLogin = (
 
       onSuccess?.(user)
     } catch (e) {
+      setError('Неверный логин или пароль')
       if (e instanceof Error) {
         onError?.(e)
       }
@@ -43,6 +45,7 @@ export const useLogin = (
 
   return {
     login,
-    isLoading
+    isLoading,
+    error
   }
 }

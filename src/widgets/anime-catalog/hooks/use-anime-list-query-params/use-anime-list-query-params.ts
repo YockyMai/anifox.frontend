@@ -19,7 +19,7 @@ export const useAnimeListQueryParams = () => {
 
   const params = useMemo(
     () => ({
-      genres: genres.map(({ id }) => id),
+      genres: genres,
       minimal_age: minimalAge,
       order,
       rating_mpa: ratingMpa,
@@ -28,7 +28,7 @@ export const useAnimeListQueryParams = () => {
       status,
       type,
       years,
-      translations: translations.map(({ id }) => id.toString()),
+      translations: translations,
       studio,
       sort
     }),

@@ -2,8 +2,7 @@
 
 import { useParams } from 'next/navigation'
 
-import { Image, ScreenSection } from '@/common/components'
-import { Carousel } from '@/common/components'
+import { ScreenSection } from '@/common/components'
 import { AnimeCard } from '@/entities/anime/anime-card'
 import { useCharacterQuery } from '@/services/queries'
 

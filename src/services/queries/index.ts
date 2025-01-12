@@ -59,3 +59,8 @@ export {
   useCharacterQuery,
   usePrefetchCharacterQuery
 } from './use-character-query'
+
+export {
+  usePopularOngoingQuery,
+  usePrefetchPopularOngoingQuery
+} from './use-popular-ongoing-query'
