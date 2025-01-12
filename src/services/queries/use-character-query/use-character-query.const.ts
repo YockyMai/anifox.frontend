@@ -1,1 +1,1 @@
-export const CHARACTER_QUERY_KEY = 'coming-out-anime-query-key'
+export const CHARACTER_QUERY_KEY = 'character-query-key'
