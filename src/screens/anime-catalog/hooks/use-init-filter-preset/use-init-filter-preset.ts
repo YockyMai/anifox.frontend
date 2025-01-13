@@ -31,16 +31,12 @@ export const useInitFilterPreset = (preset: FilterPreset) => {
 
   const setMostRatedPreset = useAtomCallback(
     useCallback((_, set) => {
-      console.log('setMostRatedPreset')
-
       set($animeCatalogFilterAtoms.order, ANIME_ORDER_OPTIONS.RATING)
     }, [])
   )
 
   const setPopularOngoingPreset = useAtomCallback(
     useCallback((_, set) => {
-      console.log('setPopularOngoingPreset')
-
       set($animeCatalogFilterAtoms.order, ANIME_ORDER_OPTIONS.RATING)
       set($animeCatalogFilterAtoms.status, ANIME_STATUSES.ONGOING)
     }, [])
@@ -48,7 +44,6 @@ export const useInitFilterPreset = (preset: FilterPreset) => {
 
   const setMostPopularPreset = useAtomCallback(
     useCallback((_, set) => {
-      console.log('setMostPopularPreset')
       set($animeCatalogFilterAtoms.order, ANIME_ORDER_OPTIONS.RATING)
     }, [])
   )

@@ -11,7 +11,6 @@ export const LoginScreen = () => {
   const router = useRouter()
 
   const onLoginSuccess = () => {
-    console.log('login success')
     router.replace(ROUTES.HOME)
   }
 

@@ -13,10 +13,11 @@ const nunitoSans = Nunito({ subsets: ['latin', 'cyrillic'] })
 
 export const metadata: Metadata = {
   title: {
-    default: 'Смотреть аниме в хорошем качестве',
-    template: '%s | ANIFOX'
+    default: 'ANIFOX | Смотри, отслеживай и наслаждайся любимыми аниме онлайн!',
+    template: 'ANIFOX | %s'
   },
-  description: 'Отслеживание и отзывы'
+  description:
+    'ANIFOX — Твой помощник в мире аниме! Здесь ты можешь смотреть любимые тайтлы в отличном качестве, отслеживать свой прогресс, составлять свои списки и делиться оценками с друзьями.'
 }
 
 const RootLayout = ({

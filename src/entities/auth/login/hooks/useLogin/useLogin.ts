@@ -34,6 +34,7 @@ export const useLogin = (
 
       onSuccess?.(user)
     } catch (e) {
+      console.error(e)
       setError('Неверный логин или пароль')
       if (e instanceof Error) {
         onError?.(e)
