@@ -1,13 +1,13 @@
 import { Metadata } from 'next'
 
-import { AnimeCatalogVariants } from '@/screens/anime-catalog'
+import { AnimePopularScreen } from '@/screens/anime-catalog'
 
 export const metadata: Metadata = {
   title: 'Популярные аниме'
 }
 
 const Popular = () => {
-  return <AnimeCatalogVariants.AnimePopularScreen />
+  return <AnimePopularScreen />
 }
 
 export default Popular

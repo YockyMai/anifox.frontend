@@ -1,5 +1,3 @@
-export { AnimeCatalogScreen } from './anime-catalog'
-
+export * from './anime-catalog'
 export * from './lib'
-
-export * as AnimeCatalogVariants from './variants'
+export * from './variants'

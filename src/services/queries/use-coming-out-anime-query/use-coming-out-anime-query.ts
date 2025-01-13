@@ -2,8 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query'
 
-import { api } from '@/services/api'
-import { ANIME_SORT_DIRECTION } from '@/widgets/anime-catalog/model'
+import { ANIME_SORT_DIRECTION, api } from '@/services/api'
 import { ANIME_ORDER_OPTIONS } from '@/widgets/anime-catalog/ui/anime-catalog-filter/ui/anime-order/anime-order.const'
 
 import { COMING_OUT_ANIME_QUERY_KEY } from './use-coming-out-anime-query.const'

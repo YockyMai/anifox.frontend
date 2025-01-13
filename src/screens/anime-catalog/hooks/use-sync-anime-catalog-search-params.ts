@@ -4,6 +4,7 @@ import { useHydrateAtoms } from 'jotai/utils'
 import { useSearchParams } from 'next/navigation'
 
 import {
+  ANIME_SORT_DIRECTION,
   AnimeMinimalAge,
   AnimeOrderVariants,
   AnimeRatingMpa,
@@ -13,7 +14,6 @@ import {
   AnimeTypeVariants
 } from '@/services/api'
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog'
-import { ANIME_SORT_DIRECTION } from '@/widgets/anime-catalog/model'
 
 export const useSyncAnimeCatalogSearchParams = () => {
   const searchParams = useSearchParams()

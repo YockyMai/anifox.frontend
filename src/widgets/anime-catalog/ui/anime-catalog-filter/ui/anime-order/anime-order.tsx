@@ -9,10 +9,8 @@ import { clsx } from 'clsx'
 import { useAtom } from 'jotai'
 
 import { HoverCard, UnstyledButton } from '@/common/components'
-import { AnimeOrderVariants } from '@/services/api'
+import { ANIME_SORT_DIRECTION, AnimeOrderVariants } from '@/services/api'
 import { useAnimeCatalogFilterContext } from '@/widgets/anime-catalog/context/anime-catalog-filter.context'
-import { useChangeSearchParams } from '@/widgets/anime-catalog/hooks'
-import { ANIME_SORT_DIRECTION } from '@/widgets/anime-catalog/model'
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model/anime-catalog-filter'
 
 import { ANIME_ORDER_OPTIONS } from './anime-order.const'

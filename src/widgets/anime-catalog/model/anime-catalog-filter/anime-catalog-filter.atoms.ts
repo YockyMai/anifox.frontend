@@ -1,6 +1,7 @@
 import { atom } from 'jotai'
 
 import {
+  ANIME_SORT_DIRECTION,
   AnimeMinimalAge,
   AnimeOrderVariants,
   AnimeRatingMpa,
@@ -10,20 +11,20 @@ import {
   AnimeTypeVariants
 } from '@/services/api'
 
-import { ANIME_SORT_DIRECTION } from './anime-catalog-filter.const'
+import { DEFAULT_ATOMS } from './anime-catalog-filter.const'
 
-export const status = atom<AnimeStatuses | null>(null)
-export const search = atom('')
-export const genres = atom<string[]>([])
-export const minimalAge = atom<AnimeMinimalAge | null>(null)
-export const ratingMpa = atom<AnimeRatingMpa | null>(null)
-export const season = atom<AnimeSeasons | null>(null)
-export const type = atom<AnimeTypeVariants | null>(null)
-export const years = atom<string[]>([])
-export const translations = atom<string[]>([])
-export const studio = atom<string | null>(null)
-export const sort = atom<AnimeSortDirection>(ANIME_SORT_DIRECTION.DESC)
-export const order = atom<AnimeOrderVariants | null>(null)
+export const status = atom<AnimeStatuses | null>(DEFAULT_ATOMS.status)
+export const search = atom(DEFAULT_ATOMS.search)
+export const genres = atom<string[]>(DEFAULT_ATOMS.genres)
+export const minimalAge = atom<AnimeMinimalAge | null>(DEFAULT_ATOMS.minimalAge)
+export const ratingMpa = atom<AnimeRatingMpa | null>(DEFAULT_ATOMS.ratingMpa)
+export const season = atom<AnimeSeasons | null>(DEFAULT_ATOMS.season)
+export const type = atom<AnimeTypeVariants | null>(DEFAULT_ATOMS.type)
+export const years = atom<string[]>(DEFAULT_ATOMS.years)
+export const translations = atom<string[]>(DEFAULT_ATOMS.translations)
+export const studio = atom<string | null>(DEFAULT_ATOMS.studio)
+export const sort = atom<AnimeSortDirection>(DEFAULT_ATOMS.sort)
+export const order = atom<AnimeOrderVariants | null>(DEFAULT_ATOMS.order)
 
 export const isFilterActive = atom<boolean>((get) =>
   [

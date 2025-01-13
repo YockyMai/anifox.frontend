@@ -1,13 +1,13 @@
 import { Metadata } from 'next'
 
-import { AnimeCatalogVariants } from '@/screens/anime-catalog'
+import { AnimePopularOngoingScreen } from '@/screens/anime-catalog'
 
 export const metadata: Metadata = {
   title: 'Популярные аниме'
 }
 
 const PopularOngoing = () => {
-  return <AnimeCatalogVariants.AnimePopularScreen />
+  return <AnimePopularOngoingScreen />
 }
 
 export default PopularOngoing

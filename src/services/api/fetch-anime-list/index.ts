@@ -10,3 +10,5 @@ export type {
   FetchAnimeListParams,
   AnimeSortDirection
 } from './fetch-anime-list.interface'
+
+export * from './fetch-anime-list.const'

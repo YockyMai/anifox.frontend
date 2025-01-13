@@ -1,3 +1,3 @@
-export { AnimeMostRatedScreen } from './anime-most-rated'
-export { AnimePopularScreen } from './anime-popular'
-export { AnimePopularOngoingScreen } from './anime-popular-ongoing'
+export * from './anime-most-rated'
+export * from './anime-popular'
+export * from './anime-popular-ongoing'
