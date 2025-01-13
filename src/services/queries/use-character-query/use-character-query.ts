@@ -3,8 +3,6 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { api } from '@/services/api'
-import { ANIME_SORT_DIRECTION } from '@/widgets/anime-catalog/model'
-import { ANIME_ORDER_OPTIONS } from '@/widgets/anime-catalog/ui/anime-catalog-filter/ui/anime-order/anime-order.const'
 
 import { CHARACTER_QUERY_KEY } from './use-character-query.const'
 

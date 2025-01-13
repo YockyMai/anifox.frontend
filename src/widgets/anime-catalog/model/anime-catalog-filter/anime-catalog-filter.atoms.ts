@@ -1,7 +1,6 @@
 import { atom } from 'jotai'
 
 import {
-  ANIME_SORT_DIRECTION,
   AnimeMinimalAge,
   AnimeOrderVariants,
   AnimeRatingMpa,
