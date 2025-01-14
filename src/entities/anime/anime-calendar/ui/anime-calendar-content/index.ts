@@ -1,1 +1,1 @@
-export { default as AnimeCalendarSlider } from './anime-calendar-slider'
+export { default as AnimeCalendarContent } from './anime-calendar-content'

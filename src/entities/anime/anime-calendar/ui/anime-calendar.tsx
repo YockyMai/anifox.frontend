@@ -11,8 +11,8 @@ import { ANIME_SCHEDULE_DAY } from '@/services/api'
 import { useAnimeSchedulesQuery } from '@/services/queries'
 
 import { checkIsWeekday } from '../helpers'
-import AnimeCalendarContent from './anime-calendar-content/anime-calendar-content'
-import { AnimeCalendarTrigger } from './anime-calendar-trigger/anime-calendar-trigger'
+import { AnimeCalendarContent } from './anime-calendar-content'
+import { AnimeCalendarTrigger } from './anime-calendar-trigger'
 import './anime-calendar.css'
 
 const AnimeCalendar = () => {

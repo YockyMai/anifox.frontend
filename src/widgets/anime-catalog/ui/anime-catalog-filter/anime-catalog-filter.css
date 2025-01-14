@@ -7,7 +7,7 @@
   }
 
   &__left-section {
-    @apply flex items-end gap-3;
+    @apply grid grid-cols-[40px_1fr] items-end gap-3;
   }
 
   &_sticky {

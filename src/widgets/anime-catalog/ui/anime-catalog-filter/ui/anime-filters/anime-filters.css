@@ -2,6 +2,6 @@
   @apply flex gap-3;
 
   &__filter {
-    @apply w-56;
+    @apply w-56 min-w-56;
   }
 }
