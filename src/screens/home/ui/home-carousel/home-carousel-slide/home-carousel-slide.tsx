@@ -33,7 +33,7 @@ export const HomeCarouselSlide = ({ anime }: HomeCarouselSlideProps) => {
         <Image
           alt={anime.title}
           className='home-carousel-slide__image'
-          src={anime.image.cover}
+          src={anime.image.cover!}
         />
       </div>
 

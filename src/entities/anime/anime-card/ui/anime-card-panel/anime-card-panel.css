@@ -2,7 +2,7 @@
   @apply relative overflow-hidden rounded-md bg-slate-100 drop-shadow dark:bg-slate-800;
 
   &__cover-image {
-    @apply h-16 w-full;
+    @apply relative h-16 w-full;
   }
 
   &__rating-mpa {

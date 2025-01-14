@@ -18,11 +18,9 @@ export const CharacterInfo = () => {
       <div className='character-info__header'>
         <div className='character-info__header__content'>
           <div className='relative'>
-            <Image
-              src={data!.image}
-              alt='character image'
-              className='character-info__image'
-            />
+            <div className='character-info__image'>
+              <Image src={data!.image} alt='character image' />
+            </div>
           </div>
 
           <div className='character-info__name'>

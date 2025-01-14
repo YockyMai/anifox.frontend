@@ -15,11 +15,9 @@ export const AnimeCardPanel = ({ anime }: AnimeCardPanelProps) => {
   return (
     <div style={cardAccentColorsStyles} className='anime-card-panel'>
       {anime.image?.cover && (
-        <Image
-          alt={`Постер аниме ${anime.title}`}
-          className='anime-card-panel__cover-image'
-          src={anime.image?.cover}
-        />
+        <div className='anime-card-panel__cover-image'>
+          <Image alt={`Постер аниме ${anime.title}`} src={anime.image?.cover} />
+        </div>
       )}
 
       {anime.minimal_age ? (

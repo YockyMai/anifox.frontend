@@ -16,12 +16,7 @@ export const AnimeCharacterCard = ({ character }: AnimeCharacterCardProps) => {
         </div>
         <Link href={ROUTES.CHARACTER.ROOT.replace(':id', character.id)}>
           <div className='anime-character-card__image'>
-            <Image
-              width='100%'
-              height='100%'
-              src={character.image}
-              alt='Изображение отсутсвует'
-            />
+            <Image src={character.image} alt='Изображение отсутсвует' />
           </div>
         </Link>
       </div>

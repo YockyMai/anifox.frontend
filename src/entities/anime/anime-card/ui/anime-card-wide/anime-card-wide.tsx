@@ -10,7 +10,7 @@ export const AnimeCardWide = ({ anime, isActive }: AnimeCardSimpleProps) => {
     <div className='anime-card-wide'>
       <Image
         className='anime-card-wide__image'
-        src={anime.image.cover ?? anime.image.large}
+        src={anime.image.cover ?? anime.image.medium}
         alt={anime.title}
       />
       <div
