@@ -7,7 +7,6 @@ import { KodikPlayer } from '@/entities/players/kodik-player'
 import { useAnimeQuery, useAnimeVideosQuery } from '@/services/queries'
 
 import { AnimePageParams } from '../anime.interface'
-import { AnimeFranchise } from './anime-franchise'
 import './anime-overview.css'
 import { AnimeScreenshots } from './anime-screenshots'
 import { AnimeVideos } from './anime-videos'
