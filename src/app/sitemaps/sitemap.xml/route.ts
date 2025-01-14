@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 
-export const convertDate = (date: Date) => dayjs(date).format('YYYY-MM-DD')
+const convertDate = (date: Date) => dayjs(date).format('YYYY-MM-DD')
 
 // index sitemap
 export async function GET() {
