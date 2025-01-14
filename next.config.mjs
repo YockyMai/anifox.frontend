@@ -19,6 +19,15 @@ const nextConfig = {
           }
         ]
       : []
+  },
+  async redirects() {
+    return [
+      {
+        source: '/anime/title/:slug*',
+        destination: '/anime/:slug*',
+        permanent: true
+      }
+    ]
   }
 }
 
