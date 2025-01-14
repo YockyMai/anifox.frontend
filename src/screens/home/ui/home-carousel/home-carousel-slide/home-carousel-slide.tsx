@@ -30,11 +30,7 @@ export const HomeCarouselSlide = ({ anime }: HomeCarouselSlideProps) => {
   return (
     <div className='home-carousel-slide' style={accentColor}>
       <div className='home-carousel-slide__image'>
-        <Image
-          alt={anime.title}
-          className='home-carousel-slide__image'
-          src={anime.image.cover!}
-        />
+        <Image alt={anime.title} src={anime.image.cover!} />
       </div>
 
       <motion.div
@@ -43,11 +39,9 @@ export const HomeCarouselSlide = ({ anime }: HomeCarouselSlideProps) => {
         transition={{ delay: 0.3 }}
         className='home-carousel-slide__content'
       >
-        <Image
-          className='home-carousel-slide__content__image'
-          alt='anime poster'
-          src={anime.image.medium}
-        />
+        <div className='home-carousel-slide__content__image'>
+          <Image alt='anime poster' src={anime.image.medium} />
+        </div>
         <div className='home-carousel-slide__content__info'>
           <p className='home-carousel-slide__content__info__title'>
             {anime.title}

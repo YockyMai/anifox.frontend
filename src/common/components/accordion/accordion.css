@@ -1,0 +1,51 @@
+.accordion {
+  &__item {
+    @apply relative my-3 overflow-hidden rounded;
+
+    background-color: color-mix(
+      in srgb,
+      var(--accordion-color) 5%,
+      transparent
+    );
+
+    &_orange {
+      --accordion-color: theme(colors.orange.300);
+      --accordion-text-color: theme(colors.orange.400);
+    }
+
+    &_green {
+      --accordion-color: theme(colors.green.500);
+      --accordion-text-color: theme(colors.green.600);
+    }
+
+    &_red {
+      --accordion-color: theme(colors.red.500);
+      --accordion-text-color: theme(colors.red.600);
+    }
+
+    &_purple {
+      --accordion-color: theme(colors.purple.400);
+      --accordion-text-color: theme(colors.purple.600);
+    }
+  }
+
+  &__header {
+    @apply flex;
+  }
+
+  &__trigger {
+    @apply flex h-[45px] flex-1 items-center justify-between px-5 text-base outline-none;
+  }
+
+  &__content {
+    @apply overflow-hidden px-5 text-base data-[state=closed]:animate-accordionSlideUp data-[state=open]:animate-accordionSlideDown;
+  }
+
+  &__line {
+    @apply absolute left-0 top-0 h-full w-1 bg-[--accordion-color];
+  }
+
+  &__chevron {
+    @apply text-[--accordion-text-color];
+  }
+}

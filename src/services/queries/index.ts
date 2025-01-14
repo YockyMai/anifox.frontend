@@ -48,11 +48,6 @@ export {
   usePrefetchAnimeSchedulesQuery
 } from './use-anime-schedule-query'
 
-export {
-  useAnimeWeekSchedulesQuery,
-  usePrefetchAnimeWeekSchedulesQuery
-} from './use-anime-week-schedule-query'
-
 export { useAnimeCharactersQuery } from './use-anime-characters-query'
 
 export {

@@ -6,7 +6,7 @@ import {
 
 import { HomeScreen } from '@/screens/home'
 import {
-  usePrefetchAnimeWeekSchedulesQuery,
+  usePrefetchAnimeSchedulesQuery,
   usePrefetchComingOutAnimeQuery
 } from '@/services/queries'
 import { usePrefetchAnimeCatalogLandingData } from '@/widgets/anime-catalog-landing/api/prefetch-anime-catalog-landing-data'
@@ -17,7 +17,7 @@ const Home = async () => {
   await Promise.all([
     usePrefetchComingOutAnimeQuery(queryClient),
     usePrefetchAnimeCatalogLandingData(queryClient),
-    usePrefetchAnimeWeekSchedulesQuery(queryClient)
+    usePrefetchAnimeSchedulesQuery(queryClient)
   ])
 
   return (

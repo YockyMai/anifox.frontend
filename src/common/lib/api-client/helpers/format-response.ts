@@ -1,5 +1,15 @@
 import { ApiClientResponse } from '../api-client.interface'
 
+const parseData = async (response: Response) => {
+  try {
+    const data = await response.json()
+
+    return data
+  } catch {
+    return undefined
+  }
+}
+
 export const formatResponse = async <T = any>(
   response: Response
 ): Promise<ApiClientResponse<T>> => {
@@ -7,7 +17,7 @@ export const formatResponse = async <T = any>(
     throw new Error(response.statusText)
   }
 
-  const data = (await response.json()) as T
+  const data = await parseData(response)
 
   return getParsedResponseObject(response, data)
 }
@@ -26,6 +36,6 @@ const getParsedResponseObject = <T>(response: Response, data?: T) => {
     text: response.text,
     type: response.type,
     url: response.url,
-    data: data ?? (undefined as T)
+    data: data as T
   }
 }

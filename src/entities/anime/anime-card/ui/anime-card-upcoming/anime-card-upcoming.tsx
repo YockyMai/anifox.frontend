@@ -21,6 +21,7 @@ export const AnimeCardUpcoming = ({ anime }: AnimeCardUpcomingProps) => {
     anime.accent_color,
     'light'
   )
+
   return (
     <Link
       style={accentColorsStyles}
@@ -33,17 +34,18 @@ export const AnimeCardUpcoming = ({ anime }: AnimeCardUpcomingProps) => {
           src={anime.image.medium}
           alt={anime.title}
           width={50}
+          height={70}
         />
         <div className='anime-card-upcoming__body'>
           <div>
             <p className='anime-card-upcoming__title'>{anime.title}</p>
             <div className='anime-card-upcoming__episodes'>
               <Badge color='red' size='sm'>
-                Вышла {anime.episodes ?? 0} серия
+                Вышла {anime.episodes_aired ?? 0} серия
               </Badge>
               <IconArrowRight size={16} />
               <Badge color='green' size='sm'>
-                Выйдет {(anime.episodes ?? 0) + 1} серия
+                Выйдет {(anime.episodes_aired ?? 0) + 1} серия
               </Badge>
             </div>
           </div>

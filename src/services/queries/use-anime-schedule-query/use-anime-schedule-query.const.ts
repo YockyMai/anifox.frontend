@@ -1,1 +1,1 @@
-export const ANIME_SCHEDULES_QUERY_KEY = 'anime-schedules:day-of-week'
+export const ANIME_SCHEDULES_QUERY_KEY = 'anime-schedules:date'

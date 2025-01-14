@@ -1,0 +1,11 @@
+.anime-calendar-trigger {
+  @apply flex items-center gap-x-2 text-[--accordion-text-color];
+
+  &__number {
+    @apply flex items-center text-xl font-bold;
+  }
+
+  &__label {
+    @apply text-sm font-bold;
+  }
+}

@@ -10,9 +10,17 @@ export type AnimeScheduleDay =
   | 'sunday'
 
 export type FetchAnimeSchedulesParams = {
-  day: AnimeScheduleDay
+  date: string
+  limit?: number
+  page?: number
 }
 
 export type FetchAnimeSchedulesResponse = {
-  [key in AnimeScheduleDay]: Anime[]
+  monday: Anime[]
+  tuesday: Anime[]
+  wednesday: Anime[]
+  thursday: Anime[]
+  friday: Anime[]
+  saturday: Anime[]
+  sunday: Anime[]
 }

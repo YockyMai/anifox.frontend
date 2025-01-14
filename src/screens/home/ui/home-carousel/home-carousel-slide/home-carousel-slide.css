@@ -4,10 +4,6 @@
 
   &__image {
     @apply absolute left-0 top-0 -z-10 h-full w-full select-none brightness-90;
-
-    &__element {
-      @apply pointer-events-none h-full w-full select-none;
-    }
   }
 
   &__content {
@@ -15,7 +11,7 @@
     @apply flex w-fit items-center justify-between;
 
     &__image {
-      @apply w-32;
+      @apply relative aspect-[3/4] w-32;
     }
 
     &__info {

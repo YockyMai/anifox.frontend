@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import { Carousel } from '@/common/components'
-import { EmblaApi, Slide } from '@/common/components/carousel'
+import { EmblaApi } from '@/common/components/carousel'
 import { AnimeCardWide } from '@/entities/anime/anime-card'
 import { useComingOutAnimeQuery } from '@/services/queries'
 import { useToggleHeaderOpacity } from '@/widgets/header'
@@ -62,34 +62,15 @@ export const HomeCarousel = () => {
     []
   )
 
-  const carouselSlides = useMemo<Slide[]>(
-    () =>
-      filteredData.map((anime) => ({
-        content: <HomeCarouselSlide anime={anime} />,
-        size: '100%'
-      })),
-    [filteredData]
-  )
-
-  const thumbs = useMemo(
-    () =>
-      filteredData.map((anime, index) => ({
-        content: (
-          <div className='mx-1' onClick={() => setCurrentSlide(index)}>
-            <AnimeCardWide isActive={index === currentSlide} anime={anime} />
-          </div>
-        ),
-        size: 220
-      })),
-    [filteredData, currentSlide]
-  )
-
   return (
     <div className='home-carousel' ref={ref}>
       <Carousel
         autoplay={autoplayOptions}
         loop
-        slides={carouselSlides}
+        slides={filteredData.map((anime) => ({
+          content: <HomeCarouselSlide anime={anime} />,
+          size: '100%'
+        }))}
         slideSpacing={0}
         onInitEmbla={setCarouselApi}
       />
@@ -97,7 +78,17 @@ export const HomeCarousel = () => {
         <Carousel
           hideButtons
           dragFree
-          slides={thumbs}
+          slides={filteredData.map((anime, index) => ({
+            content: (
+              <div className='mx-1' onClick={() => setCurrentSlide(index)}>
+                <AnimeCardWide
+                  isActive={index === currentSlide}
+                  anime={anime}
+                />
+              </div>
+            ),
+            size: 220
+          }))}
           onInitEmbla={setThumbsCarouselApi}
           slideSpacing={0}
         />

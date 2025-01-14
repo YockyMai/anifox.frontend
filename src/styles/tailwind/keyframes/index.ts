@@ -1,3 +1,4 @@
+import { accordionSlideDown, accordionSlideUp } from './accordion-slide'
 import { fadeOut, fadeIn } from './fade'
 import { scaleIn, scaleOut } from './scale'
 import { slide } from './slide'
@@ -11,6 +12,8 @@ export const bootstrapKeyframes = (): Record<
     ...fadeIn(),
     ...scaleIn(),
     ...scaleOut(),
-    ...slide()
+    ...slide(),
+    ...accordionSlideDown(),
+    ...accordionSlideUp()
   }
 }
