@@ -2,6 +2,6 @@
   @apply py-3;
 
   &__title {
-    @apply mb-1 text-lg font-bold;
+    @apply mb-1 text-base font-bold sm:text-lg;
   }
 }

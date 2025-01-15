@@ -1,6 +1,9 @@
 .home-carousel-slide {
-  @apply relative h-[600px] w-full;
-  @apply flex flex-col justify-center px-32 py-10;
+  @apply relative w-full;
+  @apply flex flex-col justify-center;
+
+  @apply h-[400px] items-center px-1 sm:aspect-[12/6] sm:h-auto;
+  @apply lg:aspect-[12/4] lg:items-start lg:px-32 lg:py-10;
 
   &__image {
     @apply absolute left-0 top-0 -z-10 h-full w-full select-none brightness-90;
@@ -8,14 +11,14 @@
 
   &__content {
     @apply select-none gap-3 rounded bg-black/30 py-5 pl-5 pr-8 backdrop-blur-xl;
-    @apply flex w-fit items-center justify-between;
+    @apply grid w-fit max-w-full grid-cols-[100px_1fr] items-center justify-between overflow-hidden lg:grid-cols-[128px_1fr];
 
     &__image {
-      @apply relative aspect-[3/4] w-32;
+      @apply relative aspect-[3/4] w-full;
     }
 
     &__info {
-      @apply flex flex-col gap-y-2;
+      @apply flex flex-col gap-y-2 text-nowrap;
 
       &__title {
         @apply text-2xl font-bold text-white;

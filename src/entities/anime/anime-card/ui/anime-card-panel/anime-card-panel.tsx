@@ -1,6 +1,6 @@
 'use client'
 
-import { UnstyledButton, Image, Badge } from '@/common/components'
+import { UnstyledButton, Image, Badge, MarqueeText } from '@/common/components'
 
 import { getAnimeAccentColorStyles } from '../../helpers'
 import './anime-card-panel.css'
@@ -37,43 +37,46 @@ export const AnimeCardPanel = ({ anime }: AnimeCardPanelProps) => {
       )}
 
       <div className='anime-card-panel__content'>
-        <h3 title={anime.title} className='anime-card-panel__title'>
-          {anime.title}
-        </h3>
+        <MarqueeText paddingX={15}>
+          <h3 title={anime.title} className='anime-card-panel__title'>
+            {anime.title}
+          </h3>
+        </MarqueeText>
+        <div className='px-4'>
+          <p className='anime-card-panel__season'>
+            {anime.season && anime.season}
+            {anime.season && anime.year && ', '}
+            {anime.year && `${anime.year} год`}
+          </p>
 
-        <p className='anime-card-panel__season'>
-          {anime.season && anime.season}
-          {anime.season && anime.year && ', '}
-          {anime.year && `${anime.year} год`}
-        </p>
+          <div className='anime-card-panel__studio'>
+            {anime.studio && anime.studio.length > 0 && (
+              <p className='anime-card-panel__studio__name'>
+                Студия {anime.studio[0].name}
+              </p>
+            )}
+            <div className='anime-card-panel__progress'>
+              <p>{anime.episodes_aired} серий</p>
+              <p>—</p>
+              <p className='anime-card-panel__status'>
+                {anime.status === 'Ongoing' ? 'Онгоинг' : 'Выпущен'}
+              </p>
+            </div>
+          </div>
 
-        <div className='anime-card-panel__studio'>
-          {anime.studio && anime.studio.length > 0 && (
-            <p className='anime-card-panel__studio__name'>
-              Студия {anime.studio[0].name}
-            </p>
+          {anime.genres && anime.genres.length > 0 && (
+            <div className='anime-card-panel__genres'>
+              {anime.genres.map(({ name, id }, index) => {
+                if (index < 3)
+                  return (
+                    <div className='anime-card-panel__genre' key={id}>
+                      {name}
+                    </div>
+                  )
+              })}
+            </div>
           )}
-          <div className='anime-card-panel__progress'>
-            <p>{anime.episodes_aired} серий</p>
-            <p>—</p>
-            <p className='anime-card-panel__status'>
-              {anime.status === 'Ongoing' ? 'Онгоинг' : 'Выпущен'}
-            </p>
-          </div>
         </div>
-
-        {anime.genres && anime.genres.length > 0 && (
-          <div className='anime-card-panel__genres'>
-            {anime.genres.map(({ name, id }, index) => {
-              if (index < 3)
-                return (
-                  <div className='anime-card-panel__genre' key={id}>
-                    {name}
-                  </div>
-                )
-            })}
-          </div>
-        )}
       </div>
     </div>
   )

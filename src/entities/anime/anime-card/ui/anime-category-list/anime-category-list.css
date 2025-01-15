@@ -2,12 +2,16 @@
   @apply container mx-auto;
   &__header {
     @apply flex items-center justify-between pb-3;
+
+    a {
+      @apply text-sm sm:text-base;
+    }
   }
 
   &__category {
     @apply flex items-center gap-x-2;
     p {
-      @apply text-lg font-bold;
+      @apply text-base font-bold sm:text-lg;
     }
   }
 
