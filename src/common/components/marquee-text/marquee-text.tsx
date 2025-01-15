@@ -85,7 +85,11 @@ export const MarqueeText = ({
 
   return (
     <div ref={inViewRef} {...other}>
-      <div className='marquee-text-container' ref={containerRef}>
+      <div
+        className='marquee-text-container'
+        style={{ paddingLeft: !scrollNeeded ? paddingX : undefined }}
+        ref={containerRef}
+      >
         <div className='w-0 max-w-full select-none overflow-hidden whitespace-nowrap opacity-0'>
           {children}
         </div>
