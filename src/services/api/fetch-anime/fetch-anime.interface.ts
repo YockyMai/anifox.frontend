@@ -39,6 +39,7 @@ export type AnimeResponse = {
   linkPlayer: string
   accentColor?: string
   rating?: number
+  rating_count?: number
   shikimori_rating?: number
   translations: AnimeTranslation[]
 }

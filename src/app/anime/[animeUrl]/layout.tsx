@@ -45,10 +45,15 @@ const AnimeLayout = async ({
       ? data.genres.map(({ name }) => name).join(', ')
       : undefined,
     datePublished: data?.aired_on,
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: data?.shikimori_rating
-    }
+    ...(data?.rating && data?.rating_count
+      ? {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: data?.rating,
+            ratingCount: data?.rating_count
+          }
+        }
+      : {})
   }
 
   return (
