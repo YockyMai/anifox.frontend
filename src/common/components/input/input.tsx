@@ -21,6 +21,7 @@ export const Input = forwardRef(
       error,
       customColors,
       variant = UIVariants.LIGHT,
+      reverseColor,
       ...other
     }: InputProps,
     ref: ForwardedRef<HTMLInputElement>
@@ -32,6 +33,7 @@ export const Input = forwardRef(
           'input',
           size && `input_${size}`,
           disabled && 'input_disabled',
+          reverseColor && 'input_revere-color',
           `input_${variant}`
         )}
       >

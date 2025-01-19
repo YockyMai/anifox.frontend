@@ -1,36 +1,51 @@
 'use client'
 
 import { useHover } from '@anifox/hooks'
+import { IconMenu, IconMenu2 } from '@tabler/icons-react'
 import { clsx } from 'clsx'
 import { useAtom, useAtomValue } from 'jotai'
 import Link from 'next/link'
 
-import { AnifoxLogo, Tabs } from '@/common/components'
+import { AnifoxLogo, UnstyledButton } from '@/common/components'
+import { UIVariants } from '@/common/types/ui-variants'
+import { useSyncSiteTheme } from '@/entities/site-theme'
 import { ROUTES } from '@/screens/pages.routes'
 
 import './header.css'
-import { useOnChangeHeaderVisibility } from './hooks'
-import { useHeaderLinks } from './hooks/use-header-links'
+import { useIsMobileHeader, useOnChangeHeaderVisibility } from './hooks'
 import { $headerAtoms } from './store'
+import { MobileMenu } from './ui/mobile-menu/mobile-menu'
+import { NavigatePanel } from './ui/navigate-panel/navigate-panel'
+import { RandomAnimeButton } from './ui/random-anime-button'
 import { UserButton } from './ui/user-button/user-button'
 
 export const Header = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useAtom(
+    $headerAtoms.isMobileMenuOpen
+  )
+
   const [isVisible, setIsVisible] = useAtom($headerAtoms.isVisible)
+
   const isTransparent = useAtomValue($headerAtoms.isTransparent)
+  const isMobileHeader = useIsMobileHeader()
 
   useOnChangeHeaderVisibility((isVisible) => setIsVisible(isVisible))
 
-  const { links, activeTab, setActiveTab } = useHeaderLinks()
-
   const { hoverProps, isHovered } = useHover()
+
+  useSyncSiteTheme()
 
   return (
     <header
       {...hoverProps}
       className={clsx(
         'site-header',
-        isTransparent && !isHovered && 'site-header__transparent',
-        !isVisible && 'site-header__hidden'
+        isTransparent &&
+          !isHovered &&
+          !isMobileHeader &&
+          'site-header__transparent',
+        !isVisible && !isMobileHeader && 'site-header__hidden',
+        !isMobileHeader && !isMobileMenuOpen && 'site-header--with-shadow'
       )}
     >
       <div className='site-header__section'>
@@ -38,34 +53,26 @@ export const Header = () => {
           <AnifoxLogo />
         </Link>
 
-        <nav className='site-header__nav'>
-          <Tabs
-            activeTabColor='#FB9A3C'
-            hoverColor='rgba(255, 255, 255, 0.15)'
-            tabs={links.map(({ content, path }) => ({
-              content: (
-                <Link
-                  className={clsx(
-                    'site-header__nav__link',
-                    path === activeTab && 'site-header__nav__link_active'
-                  )}
-                  href={path}
-                >
-                  {content}
-                </Link>
-              ),
-              key: path
-            }))}
-            activeTab={activeTab}
-            onChange={(key) => setActiveTab(key)}
-            withoutActiveBar
+        {!isMobileHeader && <NavigatePanel />}
+
+        {!isMobileHeader && (
+          <RandomAnimeButton
+            variant={isTransparent ? UIVariants.FILLED : UIVariants.LIGHT}
           />
-        </nav>
+        )}
       </div>
 
-      <div className='site-header__section'>
-        <UserButton />
-      </div>
+      {isMobileHeader ? (
+        <UnstyledButton onClick={() => setIsMobileMenuOpen((prev) => !prev)}>
+          {isMobileMenuOpen ? <IconMenu2 /> : <IconMenu />}
+        </UnstyledButton>
+      ) : (
+        <div className='site-header__section'>
+          <UserButton />
+        </div>
+      )}
+
+      {isMobileHeader && <MobileMenu />}
     </header>
   )
 }

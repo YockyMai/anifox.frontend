@@ -13,7 +13,7 @@ export interface ButtonProps
   size?: UISize
   withRipple?: boolean
   variant?: UIVariant
-  color?: UIColor | 'light-blue'
+  color?: UIColor
   icon?: ReactNode
   rightIcon?: ReactNode
   fullWidth?: boolean

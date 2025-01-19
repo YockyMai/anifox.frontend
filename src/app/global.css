@@ -72,6 +72,7 @@ h3 {
     display: flex;
     flex: 1 0 auto;
     min-height: 100%;
+    @apply mt-[--header-height] md:mt-0;
 
     main {
       min-width: 100%;

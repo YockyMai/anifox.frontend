@@ -35,6 +35,7 @@ export class ApiClient {
 
     const response = await fetch(requestUrl, {
       headers: { ...this.headers, ...config.headers },
+      cache: 'force-cache',
       ...otherConfig
     })
 

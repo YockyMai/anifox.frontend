@@ -1,33 +1,34 @@
+'use client'
+
 import { IconUserFilled } from '@tabler/icons-react'
-import { useAtomValue } from 'jotai'
-import Link from 'next/link'
+import { useAtomValue, useSetAtom } from 'jotai'
+import { useRouter } from 'next/navigation'
 
 import { Button } from '@/common/components'
-import { UIVariants } from '@/common/types/ui-variants'
 import { $userAtoms } from '@/entities/user/atoms'
 import { ROUTES } from '@/screens/pages.routes'
 
+import { $headerAtoms } from '../../store'
+import './user-button.css'
+
 export const UserButton = () => {
+  const router = useRouter()
+
+  const setIsMobileMenuOpen = useSetAtom($headerAtoms.isMobileMenuOpen)
   const user = useAtomValue($userAtoms.user)
 
-  if (!user) {
-    return (
-      <Link href={ROUTES.LOGIN}>
-        <Button
-          icon={<IconUserFilled />}
-          color={'light-blue'}
-          size={'sm'}
-          variant={UIVariants.OUTLINE}
-        >
-          Войти
-        </Button>
-      </Link>
-    )
+  const handleClick = () => {
+    setIsMobileMenuOpen(false)
+    router.push(ROUTES.LOGIN)
   }
 
   return (
-    <div>
-      <Button variant={UIVariants.OUTLINE}>{user.email}</Button>
-    </div>
+    <Button
+      icon={<IconUserFilled />}
+      onClick={handleClick}
+      className='user-button'
+    >
+      {user ? user.nickname : 'Войти в аккаунт'}
+    </Button>
   )
 }

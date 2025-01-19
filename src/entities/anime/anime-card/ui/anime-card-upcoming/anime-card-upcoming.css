@@ -1,5 +1,5 @@
 .anime-card-upcoming {
-  @apply rounded-md bg-white/80 p-2;
+  @apply rounded-md bg-white/80 p-2 dark:bg-slate-800/80;
 
   @apply grid max-w-full grid-cols-[auto_1fr] items-center gap-x-2;
 

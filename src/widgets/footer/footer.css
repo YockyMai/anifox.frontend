@@ -1,5 +1,5 @@
 .footer {
-  @apply mt-16 bg-slate-200 py-5;
+  @apply mt-16 bg-slate-200 py-5 dark:bg-slate-800;
 
   &__container {
     @apply container flex justify-between;

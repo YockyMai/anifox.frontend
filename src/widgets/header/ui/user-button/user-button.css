@@ -1,0 +1,5 @@
+.user-button {
+  @apply flex w-full items-center justify-center gap-x-3 rounded-lg px-3 py-1.5 text-sm text-white;
+
+  @apply bg-gradient-to-r from-indigo-500 to-indigo-600;
+}
