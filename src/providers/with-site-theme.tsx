@@ -1,13 +1,12 @@
 'use client'
 
-import { useAtomValue } from 'jotai'
-import { useEffect } from 'react'
+import { ReactNode, useEffect } from 'react'
 
-import { $siteThemeAtom } from '@/common/store/site-theme'
 import { SITE_THEME } from '@/common/types/site-theme'
+import { useSiteTheme } from '@/entities/site-theme'
 
-export const useSyncSiteTheme = () => {
-  const siteTheme = useAtomValue($siteThemeAtom)
+export const WithSiteTheme = ({ children }: { children: ReactNode }) => {
+  const siteTheme = useSiteTheme()
 
   useEffect(() => {
     if (siteTheme === SITE_THEME.DARK) {
@@ -16,4 +15,6 @@ export const useSyncSiteTheme = () => {
       document.documentElement.classList.remove('dark')
     }
   }, [siteTheme])
+
+  return <>{children}</>
 }

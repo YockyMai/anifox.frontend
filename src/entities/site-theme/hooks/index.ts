@@ -1,1 +1,1 @@
-export * from './use-sync-site-theme'
+export * from './use-site-theme'

@@ -8,7 +8,6 @@ import Link from 'next/link'
 
 import { AnifoxLogo, UnstyledButton } from '@/common/components'
 import { UIVariants } from '@/common/types/ui-variants'
-import { useSyncSiteTheme } from '@/entities/site-theme'
 import { ROUTES } from '@/screens/pages.routes'
 
 import './header.css'
@@ -32,8 +31,6 @@ export const Header = () => {
   useOnChangeHeaderVisibility((isVisible) => setIsVisible(isVisible))
 
   const { hoverProps, isHovered } = useHover()
-
-  useSyncSiteTheme()
 
   return (
     <header

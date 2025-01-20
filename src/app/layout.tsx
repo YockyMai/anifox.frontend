@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Nunito } from 'next/font/google'
 
-import { NavigationProgress } from '@/common/components'
+import { NavigationProgress, NoSSR } from '@/common/components'
 import { YMLoader } from '@/common/lib/ym'
 import { Providers } from '@/providers'
 import { Footer } from '@/widgets/footer'
@@ -32,7 +32,9 @@ const RootLayout = ({
         <Providers>
           <NavigationProgress />
           <div className='app'>
-            <Header />
+            <NoSSR>
+              <Header />
+            </NoSSR>
             <div className={'app__layout'}>
               <main>{children}</main>
             </div>
