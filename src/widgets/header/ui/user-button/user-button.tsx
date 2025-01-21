@@ -5,11 +5,12 @@ import { useAtomValue, useSetAtom } from 'jotai'
 import { useRouter } from 'next/navigation'
 
 import { Button } from '@/common/components'
+import { UIColors } from '@/common/types/ui-colors'
+import { UISizes } from '@/common/types/ui-sizes'
 import { $userAtoms } from '@/entities/user/atoms'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { $headerAtoms } from '../../store'
-import './user-button.css'
 
 export const UserButton = () => {
   const router = useRouter()
@@ -26,7 +27,10 @@ export const UserButton = () => {
     <Button
       icon={<IconUserFilled />}
       onClick={handleClick}
-      className='user-button'
+      fullWidth
+      size={UISizes.SM}
+      color={UIColors.PURPLE}
+      variant='gradient'
     >
       {user ? user.nickname : 'Войти в аккаунт'}
     </Button>

@@ -12,8 +12,6 @@
   &__element {
     @apply flex items-center rounded-lg px-4 py-2 drop-shadow-sm;
 
-    @apply bg-[--input-bg-color];
-
     input {
       @apply h-[--input-height] w-full;
       font-size: var(--input-font-size);
@@ -56,10 +54,21 @@
     --input-font-size: theme('fontSize.2xl');
   }
 
-  &_light {
-    --input-bg-color: theme('backgroundColor.white');
+  &_radius-none {
+    .input__element {
+      @apply rounded-none;
+    }
   }
+
+  &_light {
+    .input__element {
+      @apply bg-white dark:bg-slate-800;
+    }
+  }
+
   &_filled {
-    --input-bg-color: theme('backgroundColor.slate.100');
+    .input__element {
+      @apply bg-slate-100 dark:bg-slate-900;
+    }
   }
 }

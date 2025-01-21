@@ -7,6 +7,7 @@ import { Providers } from '@/providers'
 import { Footer } from '@/widgets/footer'
 import { Header } from '@/widgets/header'
 
+import { initThemeScript } from './@lib/init-theme-script'
 import './global.css'
 
 const nunitoSans = Nunito({ subsets: ['latin', 'cyrillic'] })
@@ -26,15 +27,16 @@ const RootLayout = ({
   children: React.ReactNode
 }>) => {
   return (
-    <html lang='en'>
+    <html lang='en' suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: initThemeScript }} />
+      </head>
       <body className={nunitoSans.className}>
         <YMLoader />
         <Providers>
           <NavigationProgress />
           <div className='app'>
-            <NoSSR>
-              <Header />
-            </NoSSR>
+            <Header />
             <div className={'app__layout'}>
               <main>{children}</main>
             </div>

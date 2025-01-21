@@ -71,7 +71,7 @@ export const RandomAnimeButton = ({
       {...hoverProps}
       color={UIColors.PURPLE}
       radius={UISizes.MD}
-      size='sm'
+      size={UISizes.SM}
       variant={variant}
       icon={<IconDice3Filled />}
       onClick={handleClick}

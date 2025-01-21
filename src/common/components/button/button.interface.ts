@@ -12,7 +12,7 @@ export interface ButtonProps
   children: ReactNode
   size?: UISize
   withRipple?: boolean
-  variant?: UIVariant
+  variant?: UIVariant | 'gradient'
   color?: UIColor
   icon?: ReactNode
   rightIcon?: ReactNode

@@ -1,8 +1,11 @@
 .anime-overview {
   &__player {
-    @apply mx-auto my-14 bg-slate-200 px-11 py-14 dark:bg-slate-800;
+    @apply mx-auto my-14 bg-slate-200 px-2 py-14 dark:bg-slate-800;
+    @apply md:px-11;
+
     &__title {
-      @apply text-2xl font-bold dark:text-slate-300;
+      @apply font-bold dark:text-slate-300;
+      @apply text-lg xl:text-2xl;
     }
   }
 }

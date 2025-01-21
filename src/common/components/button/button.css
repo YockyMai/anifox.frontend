@@ -13,12 +13,15 @@
   }
 
   &_filled {
+    @apply bg-[--button-bg-color];
+  }
+
+  &_gradient {
     @apply bg-gradient-to-r from-[--button-bg-color-from] to-[--button-bg-color-to];
   }
 
   &_outline {
-    @apply bg-transparent outline outline-2;
-    color: var(--button-bg-color);
+    @apply bg-transparent text-[--button-bg-color] outline outline-2;
   }
 
   &_light {

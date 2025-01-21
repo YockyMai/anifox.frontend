@@ -1,5 +1,5 @@
 .badge {
-  @apply px-2 py-0.5 font-normal;
+  @apply px-2 py-0.5 text-center font-normal;
 
   &_sm {
     @apply text-xs;

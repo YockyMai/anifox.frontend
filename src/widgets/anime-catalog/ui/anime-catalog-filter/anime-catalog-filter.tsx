@@ -4,7 +4,6 @@ import { clsx } from 'clsx'
 import { useAtomValue } from 'jotai'
 import { useEffect, useState } from 'react'
 
-import { $windowAtoms } from '@/common/store/window'
 import { $headerAtoms } from '@/widgets/header/store'
 
 import { AnimeCatalogFilterContext } from '../../context/anime-catalog-filter.context'
@@ -15,10 +14,7 @@ import { AnimeFilters } from './ui'
 import { CarouselFilters } from './ui/carousel-filters/carousel-filters'
 
 export const AnimeCatalogFilter = () => {
-  const windowWidth = useAtomValue($windowAtoms.windowWidth)
   const headerIsVisible = useAtomValue($headerAtoms.isVisible)
-
-  const canUseSlider = windowWidth <= 1500
 
   const [isSticky, setIsSticky] = useState(
     typeof window !== 'undefined' ? window.scrollY : 0 >= 100
@@ -43,22 +39,24 @@ export const AnimeCatalogFilter = () => {
   return (
     <AnimeCatalogFilterContext.Provider value={{ changeSearchParams }}>
       <div
+        suppressHydrationWarning
         className={clsx(
           'anime-catalog-filter',
           isSticky && 'anime-catalog-filter_sticky',
           !headerIsVisible && 'anime-catalog-filter_without-header'
         )}
       >
-        {canUseSlider ? (
+        <div className='2xl:hidden'>
           <CarouselFilters />
-        ) : (
+        </div>
+        <div className='hidden 2xl:block'>
           <div className='anime-catalog-filter__container'>
             <div className='anime-catalog-filter__left-section'>
               <AnimeOrder />
               <AnimeFilters />
             </div>
           </div>
-        )}
+        </div>
       </div>
     </AnimeCatalogFilterContext.Provider>
   )

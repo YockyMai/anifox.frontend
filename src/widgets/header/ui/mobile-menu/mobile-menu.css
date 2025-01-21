@@ -1,7 +1,13 @@
 .mobile-menu {
   @apply shadow-sm shadow-black/10;
-  @apply fixed left-0 top-[--header-height] z-50 w-full overflow-hidden px-2;
-  @apply bg-slate-800 backdrop-blur-3xl;
+  @apply fixed left-0 z-50 w-full overflow-hidden px-2;
+  @apply top-[--header-height] bg-slate-800 backdrop-blur-3xl;
 
   @apply flex flex-col gap-y-3;
+
+  @apply transition-transform duration-500;
+
+  &_header-hidden {
+    @apply -translate-y-[--header-height];
+  }
 }

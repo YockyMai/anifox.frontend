@@ -1,7 +1,13 @@
 .kodik-sidebar {
-  @apply overflow-hidden drop-shadow-2xl;
-  @apply grid grid-rows-[auto_1fr] rounded-lg;
+  @apply h-full overflow-hidden drop-shadow-2xl;
+  @apply grid grid-rows-[auto_1fr];
   @apply bg-white dark:bg-slate-900;
+
+  @apply rounded-b-lg xl:rounded-lg;
+
+  &_episodes {
+    @apply h-[525px] xl:h-full;
+  }
 
   .container {
     @apply px-3;

@@ -9,7 +9,10 @@ import { AnimeCatalogScreen } from '@/screens/anime-catalog'
 import { usePrefetchAnimeCatalogLandingData } from '@/widgets/anime-catalog-landing/api/prefetch-anime-catalog-landing-data'
 
 export const metadata: Metadata = {
-  title: 'Поиск аниме'
+  title: 'Поиск аниме',
+  alternates: {
+    canonical: `${process.env.HOST}/anime`
+  }
 }
 
 const AnimeCatalog = async () => {

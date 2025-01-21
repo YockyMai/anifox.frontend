@@ -23,8 +23,8 @@ export const AnimeScreenshots = () => {
   if (!data) return null
 
   return (
-    <Fancybox>
-      <div className='anime-screenshots'>
+    <div className='anime-screenshots'>
+      <Fancybox>
         <Carousel
           slides={(data ?? []).map((src) => ({
             content: <AnimeScreenshot key={src} src={src} alt={''} />,
@@ -34,7 +34,7 @@ export const AnimeScreenshots = () => {
           slideSpacing={10}
           align='end'
         />
-      </div>
-    </Fancybox>
+      </Fancybox>
+    </div>
   )
 }

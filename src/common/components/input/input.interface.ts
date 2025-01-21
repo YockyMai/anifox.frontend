@@ -27,4 +27,5 @@ export interface InputProps
   variant?: UIVariant
   customColors?: InputCustomColors
   reverseColor?: boolean
+  radius?: UISize | 'none'
 }

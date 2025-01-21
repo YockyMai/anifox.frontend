@@ -5,16 +5,23 @@
 
   @apply flex items-center justify-between px-4;
 
-  &--with-shadow {
-    @apply shadow-sm shadow-black/10;
-  }
+  @apply shadow-sm shadow-black/10;
 
   &__hidden {
     @apply -translate-y-full;
   }
 
   &__transparent {
-    @apply bg-slate-800/70;
+    /* only for > md */
+    @apply md:bg-slate-800/70;
+  }
+
+  &__desktop {
+    @apply hidden md:block;
+  }
+
+  &__mobile {
+    @apply block md:hidden;
   }
 
   &__section {

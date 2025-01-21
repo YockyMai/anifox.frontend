@@ -1,13 +1,14 @@
 'use client'
 
 import { useHover } from '@anifox/hooks'
-import { IconMenu, IconMenu2 } from '@tabler/icons-react'
+import { IconMenu2 } from '@tabler/icons-react'
 import { clsx } from 'clsx'
-import { useAtom, useAtomValue } from 'jotai'
+import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import Link from 'next/link'
 
 import { AnifoxLogo, UnstyledButton } from '@/common/components'
 import { UIVariants } from '@/common/types/ui-variants'
+import { SiteThemeToggler } from '@/entities/site-theme'
 import { ROUTES } from '@/screens/pages.routes'
 
 import './header.css'
@@ -19,9 +20,7 @@ import { RandomAnimeButton } from './ui/random-anime-button'
 import { UserButton } from './ui/user-button/user-button'
 
 export const Header = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useAtom(
-    $headerAtoms.isMobileMenuOpen
-  )
+  const setIsMobileMenuOpen = useSetAtom($headerAtoms.isMobileMenuOpen)
 
   const [isVisible, setIsVisible] = useAtom($headerAtoms.isVisible)
 
@@ -37,12 +36,8 @@ export const Header = () => {
       {...hoverProps}
       className={clsx(
         'site-header',
-        isTransparent &&
-          !isHovered &&
-          !isMobileHeader &&
-          'site-header__transparent',
-        !isVisible && !isMobileHeader && 'site-header__hidden',
-        !isMobileHeader && !isMobileMenuOpen && 'site-header--with-shadow'
+        isTransparent && !isHovered && 'site-header__transparent',
+        !isVisible && 'site-header__hidden'
       )}
     >
       <div className='site-header__section'>
@@ -50,24 +45,38 @@ export const Header = () => {
           <AnifoxLogo />
         </Link>
 
-        {!isMobileHeader && <NavigatePanel />}
+        <div className='site-header__desktop'>
+          <NavigatePanel />
+        </div>
 
-        {!isMobileHeader && (
+        <div className='site-header__desktop'>
           <RandomAnimeButton
-            variant={isTransparent ? UIVariants.FILLED : UIVariants.LIGHT}
+            variant={isTransparent ? UIVariants.OUTLINE : UIVariants.LIGHT}
           />
-        )}
+        </div>
       </div>
 
-      {isMobileHeader ? (
-        <UnstyledButton onClick={() => setIsMobileMenuOpen((prev) => !prev)}>
-          {isMobileMenuOpen ? <IconMenu2 /> : <IconMenu />}
-        </UnstyledButton>
-      ) : (
+      <div className='site-header__desktop'>
         <div className='site-header__section'>
+          <SiteThemeToggler />
           <UserButton />
         </div>
-      )}
+      </div>
+
+      <div className='site-header__mobile'>
+        <div className='site-header__section'>
+          <SiteThemeToggler />
+          <UnstyledButton
+            onClick={(e) => {
+              e.stopPropagation()
+              e.preventDefault()
+              setIsMobileMenuOpen((prev) => !prev)
+            }}
+          >
+            <IconMenu2 />
+          </UnstyledButton>
+        </div>
+      </div>
 
       {isMobileHeader && <MobileMenu />}
     </header>
