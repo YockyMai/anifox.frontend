@@ -53,7 +53,7 @@ export const useChangeSearchParams = () => {
         `${ROUTES.CATALOG.ROOT}?${createAnimeCatalogSearchParams({ ...currentSearchParams, ...params })}`
       )
     },
-    []
+    [getSearchParams, router]
   )
 
   return changeSearchParams

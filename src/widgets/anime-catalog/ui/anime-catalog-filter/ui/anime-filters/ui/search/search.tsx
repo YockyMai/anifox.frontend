@@ -29,7 +29,7 @@ export const Search = () => {
     if (debouncedValue) {
       changeSearchParams({ search: debouncedValue })
     }
-  }, [debouncedValue, setSearch])
+  }, [changeSearchParams, debouncedValue, setSearch])
 
   const clearSearch = () => {
     setSearch('')

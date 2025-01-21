@@ -10,14 +10,12 @@ import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { usePrefetchAnimeVideosQuery } from '@/services/queries'
 import { usePrefetchScreenshotsQuery } from '@/services/queries/use-anime-screenshots-query'
 
-const Anime = async ({ params }: { params: Promise<AnimePageParams> }) => {
-  const { animeUrl } = await params
-
+const Anime = async ({ params }: { params: AnimePageParams }) => {
   const queryClient = new QueryClient()
 
   await Promise.all([
-    usePrefetchScreenshotsQuery(animeUrl, queryClient),
-    usePrefetchAnimeVideosQuery(animeUrl, queryClient)
+    usePrefetchScreenshotsQuery(params.animeUrl, queryClient),
+    usePrefetchAnimeVideosQuery(params.animeUrl, queryClient)
   ])
 
   return (

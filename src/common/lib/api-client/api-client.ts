@@ -7,7 +7,6 @@ import {
   ApiClientOptions,
   ApiClientPostQueryConfig,
   ApiClientPutQueryConfig,
-  ApiClientQueryConfig,
   ApiClientResponse
 } from './api-client.interface'
 import { formatResponse } from './helpers/format-response'
@@ -35,7 +34,6 @@ export class ApiClient {
 
     const response = await fetch(requestUrl, {
       headers: { ...this.headers, ...config.headers },
-      cache: 'force-cache',
       ...otherConfig
     })
 
