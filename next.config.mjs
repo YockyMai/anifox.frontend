@@ -11,7 +11,8 @@ const nextConfig = {
     ]
   },
   async rewrites() {
-    return process.env.NODE_ENV === 'development'
+    return process.env.NODE_ENV === 'development' &&
+      Boolean(process.env.USE_PROXY)
       ? [
           {
             source: '/api/:path*',
