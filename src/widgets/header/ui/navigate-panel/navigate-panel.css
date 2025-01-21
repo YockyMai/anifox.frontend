@@ -1,0 +1,15 @@
+.navigate-panel {
+  @apply rounded bg-slate-900/70 px-1.5 text-sm text-slate-300;
+
+  &--transparent {
+    @apply bg-slate-900/50 backdrop-blur-3xl;
+  }
+
+  &__link {
+    @apply hover:text-inherit;
+
+    &_active {
+      @apply text-orange-300 hover:text-orange-300;
+    }
+  }
+}

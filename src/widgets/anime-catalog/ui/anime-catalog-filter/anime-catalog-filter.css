@@ -11,12 +11,12 @@
   }
 
   &_sticky {
-    @apply bg-light/50 pt-2 drop-shadow-sm backdrop-blur-md transition-all duration-500;
+    @apply bg-light/50 pt-2 drop-shadow-sm backdrop-blur-md transition-all duration-500 dark:bg-slate-800/50;
 
     .input__label,
     .select__label,
     .multi-select__label {
-      @apply text-slate-700 transition-colors duration-500 !important;
+      @apply text-slate-700 transition-colors duration-500 dark:text-slate-300 !important;
     }
   }
 

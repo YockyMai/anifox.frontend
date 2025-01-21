@@ -7,8 +7,12 @@ import { User } from '@/entities/user/atoms/user.interface'
 
 import { UserAtomsHydrator } from './user-atoms-hydrator'
 
-export const WithAuthProvider = ({ children }: { children: ReactNode }) => {
-  const cookiesStorage = cookies()
+export const WithAuthProvider = async ({
+  children
+}: {
+  children: ReactNode
+}) => {
+  const cookiesStorage = await cookies()
 
   const accessToken = cookiesStorage.get(COOKIES.ACCESS_TOKEN_KEY)?.value
 

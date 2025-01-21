@@ -12,7 +12,6 @@ import { AnimeEpisode } from '@/services/api'
 import { EpisodeSelectionCard } from './episode-card'
 import { EPISODE_CARD_HEIGHT } from './episodes-list.const'
 import './episodes-list.css'
-import { getEpisodeListHeight } from './episodes-list.helpers'
 import { EpisodesListProps } from './episodes-list.interface'
 
 export const EpisodesList = ({ episodes }: EpisodesListProps) => {
@@ -40,8 +39,6 @@ export const EpisodesList = ({ episodes }: EpisodesListProps) => {
     [selectedTranslation, setSelectedEpisode, setSelectedTranslation]
   )
 
-  const height = getEpisodeListHeight(episodes.length)
-
   const [ref, size] = useElementSize<HTMLDivElement>()
 
   return (
@@ -49,7 +46,7 @@ export const EpisodesList = ({ episodes }: EpisodesListProps) => {
       <FixedSizeList
         className='episodes__list__content'
         height={size.height}
-        width={400}
+        width={'100%'}
         itemSize={EPISODE_CARD_HEIGHT}
         itemCount={episodes.length}
         initialScrollOffset={

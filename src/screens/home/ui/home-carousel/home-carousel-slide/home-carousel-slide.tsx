@@ -2,13 +2,10 @@
 
 import { IconHeartFilled, IconPlayerPlayFilled } from '@tabler/icons-react'
 import { motion } from 'framer-motion'
-import { useAtomValue } from 'jotai'
 import Link from 'next/link'
 import { useMemo } from 'react'
 
 import { Button, Image, MarqueeText } from '@/common/components'
-import { BREAKPOINTS } from '@/common/const/breakpoints'
-import { $windowAtoms } from '@/common/store/window'
 import { UISizes } from '@/common/types/ui-sizes'
 import { getAnimeAccentColorStyles } from '@/entities/anime/anime-card/helpers'
 import { ROUTES } from '@/screens/pages.routes'
@@ -18,8 +15,6 @@ import './home-carousel-slide.css'
 import { HomeCarouselSlideProps } from './home-carousel-slide.interface'
 
 export const HomeCarouselSlide = ({ anime }: HomeCarouselSlideProps) => {
-  const windowWidth = useAtomValue($windowAtoms.windowWidth)
-
   const genres = useMemo(() => {
     const genres = anime?.genres ? [...anime.genres] : []
 
@@ -44,17 +39,11 @@ export const HomeCarouselSlide = ({ anime }: HomeCarouselSlideProps) => {
           <Image alt='anime poster' src={anime.image.medium} />
         </div>
         <div className='home-carousel-slide__content__info'>
-          {windowWidth > BREAKPOINTS.XL ? (
+          <MarqueeText>
             <p className='home-carousel-slide__content__info__title'>
               {anime.title}
             </p>
-          ) : (
-            <MarqueeText>
-              <p className='home-carousel-slide__content__info__title'>
-                {anime.title}
-              </p>
-            </MarqueeText>
-          )}
+          </MarqueeText>
 
           <div className='flex flex-wrap gap-1'>
             {genres.map(({ name, id }) => (

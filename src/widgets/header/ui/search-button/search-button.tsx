@@ -1,7 +1,12 @@
 import { IconSearch } from '@tabler/icons-react'
 
-import { Input } from '@/common/components'
+import { Button, Input } from '@/common/components'
+import { UIColors } from '@/common/types/ui-colors'
 
 export const SearchButton = () => {
-  return <Input icon={<IconSearch />} size='sm' placeholder='Поиск' />
+  return (
+    <Button color={UIColors.PURPLE} icon={<IconSearch />} variant='outline'>
+      Поиск
+    </Button>
+  )
 }

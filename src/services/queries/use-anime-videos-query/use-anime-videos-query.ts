@@ -10,6 +10,6 @@ export const useAnimeVideosQuery = (animeUrl: string) =>
     queryFn: async () => {
       const { data } = await api.fetchAnimeVideos(animeUrl)
 
-      return data
+      return data ?? []
     }
   })

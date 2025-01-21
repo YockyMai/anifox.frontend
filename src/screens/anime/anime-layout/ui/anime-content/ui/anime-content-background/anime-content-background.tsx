@@ -34,14 +34,14 @@ export const AnimeContentBackground = () => {
     setImageSrc(imageSrc)
   }, [animeData, imagesData])
 
-  if (!imageSrc) return null
-
   return (
     <div ref={ref} className='anime-content-background'>
-      <div
-        className='anime-content-background__image'
-        style={{ backgroundImage: `url(${imageSrc})` }}
-      />
+      {imageSrc && (
+        <div
+          className='anime-content-background__image'
+          style={{ backgroundImage: `url(${imageSrc})` }}
+        />
+      )}
     </div>
   )
 }

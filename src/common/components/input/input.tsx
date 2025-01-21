@@ -21,6 +21,8 @@ export const Input = forwardRef(
       error,
       customColors,
       variant = UIVariants.LIGHT,
+      reverseColor,
+      radius = UISizes.LG,
       ...other
     }: InputProps,
     ref: ForwardedRef<HTMLInputElement>
@@ -32,7 +34,9 @@ export const Input = forwardRef(
           'input',
           size && `input_${size}`,
           disabled && 'input_disabled',
-          `input_${variant}`
+          reverseColor && 'input_revere-color',
+          `input_${variant}`,
+          `input_radius-${radius}`
         )}
       >
         {label && <label className='input__label'>{label}</label>}

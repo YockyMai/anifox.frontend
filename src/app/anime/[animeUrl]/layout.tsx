@@ -27,13 +27,15 @@ const AnimeLayout = async ({
   params
 }: {
   children: ReactNode
-  params: AnimePageParams
+  params: Promise<AnimePageParams>
 }) => {
+  const { animeUrl } = await params
+
   const queryClient = new QueryClient()
 
-  await usePrefetchAnimeQuery(params.animeUrl, queryClient)
+  await usePrefetchAnimeQuery(animeUrl, queryClient)
 
-  const { data } = await api.fetchAnime(params.animeUrl)
+  const { data } = await api.fetchAnime(animeUrl)
 
   const jsonLd: WithContext<Movie> = {
     '@context': 'https://schema.org',

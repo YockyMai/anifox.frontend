@@ -1,5 +1,5 @@
 .anime-page-tabs {
-  @apply flex w-full justify-center bg-slate-400/30;
+  @apply flex w-full justify-center bg-slate-400/30 dark:bg-slate-800/50;
 
   &__tab {
     @apply flex items-center gap-x-1;

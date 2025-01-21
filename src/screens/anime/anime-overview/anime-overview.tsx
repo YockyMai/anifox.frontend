@@ -1,8 +1,9 @@
 'use client'
 
+import { IconMenu2 } from '@tabler/icons-react'
 import { useParams } from 'next/navigation'
 
-import { ScreenSection } from '@/common/components'
+import { MarqueeText, ScreenSection } from '@/common/components'
 import { KodikPlayer } from '@/entities/players/kodik-player'
 import { useAnimeQuery, useAnimeVideosQuery } from '@/services/queries'
 
@@ -34,9 +35,11 @@ export const AnimeOverviewScreen = () => {
       </div>
 
       <div id='player' className='anime-overview__player'>
-        <p className='anime-overview__player__title'>
-          Смотреть аниме &quot;{data!.title}&quot;
-        </p>
+        <MarqueeText>
+          <p className='anime-overview__player__title'>
+            Смотреть аниме &quot;{data!.title}&quot;
+          </p>
+        </MarqueeText>
         <KodikPlayer animeUrl={animeUrl} />
       </div>
 

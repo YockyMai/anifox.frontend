@@ -1,11 +1,8 @@
 import { IconArrowRight } from '@tabler/icons-react'
-import { useAtomValue } from 'jotai'
 import Link from 'next/link'
 import React from 'react'
 
 import { Badge, Image, MarqueeText, Tooltip } from '@/common/components'
-import { BREAKPOINTS } from '@/common/const/breakpoints'
-import { $windowAtoms } from '@/common/store/window'
 import { AnimeFavoriteButton } from '@/entities/anime/anime-favorite'
 import { AnimeListButton } from '@/entities/anime/anime-list'
 import { AnimeRateButton } from '@/entities/anime/anime-rating'
@@ -16,8 +13,6 @@ import './anime-card-upcoming.css'
 import { AnimeCardUpcomingProps } from './anime-card-upcoming.interface'
 
 export const AnimeCardUpcoming = ({ anime }: AnimeCardUpcomingProps) => {
-  const windowWidth = useAtomValue($windowAtoms.windowWidth)
-
   const accentColorsStyles = getAnimeAccentColorStyles(
     anime.accent_color,
     'light'
@@ -47,41 +42,22 @@ export const AnimeCardUpcoming = ({ anime }: AnimeCardUpcomingProps) => {
                 Выйдет {(anime.episodes_aired ?? 0) + 1} серия
               </Badge>
             </div>
-
-            {windowWidth < BREAKPOINTS.SM && (
-              <div className='anime-card-upcoming__actions mt-1.5'>
-                <AnimeFavoriteButton animeUrl={anime.url} />
-                <AnimeListButton
-                  openDelay={300}
-                  animeUrl={anime.url}
-                  withoutTitle
-                />
-                <AnimeRateButton
-                  openDelay={300}
-                  animeUrl={anime.url}
-                  withoutText
-                  rating={anime.rating ?? 0}
-                />
-              </div>
-            )}
           </div>
 
-          {windowWidth >= BREAKPOINTS.SM && (
-            <div className='anime-card-upcoming__actions'>
-              <AnimeFavoriteButton animeUrl={anime.url} />
-              <AnimeListButton
-                openDelay={300}
-                animeUrl={anime.url}
-                withoutTitle
-              />
-              <AnimeRateButton
-                openDelay={300}
-                animeUrl={anime.url}
-                withoutText
-                rating={anime.rating ?? 0}
-              />
-            </div>
-          )}
+          <div className='anime-card-upcoming__actions'>
+            <AnimeFavoriteButton animeUrl={anime.url} />
+            <AnimeListButton
+              openDelay={300}
+              animeUrl={anime.url}
+              withoutTitle
+            />
+            <AnimeRateButton
+              openDelay={300}
+              animeUrl={anime.url}
+              withoutText
+              rating={anime.rating ?? 0}
+            />
+          </div>
         </div>
       </div>
     </Link>

@@ -41,9 +41,9 @@ export const AnimeCharactersFilters = () => {
 
   return (
     <Input
-      size='sm'
+      size={UISizes.SM}
       icon={<IconSearch />}
-      placeholder='Поиск по названию'
+      placeholder='Поиск'
       value={localSearch}
       onChange={(e) => handleSearchChange(e.target.value)}
       rightIcon={

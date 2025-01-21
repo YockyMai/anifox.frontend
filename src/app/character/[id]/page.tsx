@@ -21,12 +21,18 @@ export const generateMetadata = async ({
   return metadata
 }
 
-const Character = async ({ params }: { params: { id: string } }) => {
+const Character = async ({
+  params
+}: {
+  params: Promise<CharacterPageParams>
+}) => {
+  const { id } = await params
+
   const queryClient = new QueryClient()
 
-  await usePrefetchCharacterQuery(params.id, queryClient)
+  await usePrefetchCharacterQuery(id, queryClient)
 
-  const { data } = await api.fetchCharacter(params.id)
+  const { data } = await api.fetchCharacter(id)
 
   const jsonLd: WithContext<Person> = {
     '@context': 'https://schema.org',

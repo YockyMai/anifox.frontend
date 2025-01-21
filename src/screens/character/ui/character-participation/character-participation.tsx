@@ -19,13 +19,13 @@ export const CharacterParticipation = () => {
     <>
       <div className='character-participation'>
         {data?.pictures?.length ? (
-          <ScreenSection title='Фотографии:'>
+          <ScreenSection title='Фотографии'>
             <CharacterPictures />
           </ScreenSection>
         ) : undefined}
 
         {data?.roles?.length ? (
-          <ScreenSection title='Участие в аниме:'>
+          <ScreenSection title='Участие в аниме'>
             <div className='anifox-grid'>
               {data?.roles.map(({ anime, role }) => (
                 <AnimeCard characterRole={role} key={anime.url} anime={anime} />

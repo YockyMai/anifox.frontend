@@ -6,8 +6,8 @@ import { ReactNode, useEffect } from 'react'
 import { $windowAtoms } from '@/common/store/window'
 
 export const WithWindowProvider = ({ children }: { children: ReactNode }) => {
-  const setWindowHeight = useSetAtom($windowAtoms.windowHeight)
   const setWindowWidth = useSetAtom($windowAtoms.windowWidth)
+  const setWindowHeight = useSetAtom($windowAtoms.windowHeight)
 
   useEffect(() => {
     const onWindowResize = () => {

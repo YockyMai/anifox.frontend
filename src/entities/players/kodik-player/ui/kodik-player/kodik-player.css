@@ -1,11 +1,19 @@
-.kodik-player-container {
-  @apply relative mx-auto grid w-full grid-cols-[auto_400px] gap-x-4 py-5;
+.kodik-player {
+  @apply relative mx-auto grid w-full gap-x-4 py-5;
 
-  &__frame {
+  @apply xl:grid-cols-[auto_400px];
+
+  &__frame-container {
     @apply mx-auto aspect-[12/6] w-full drop-shadow-2xl;
   }
-}
 
-.kodik-player {
-  @apply h-full w-full rounded-lg;
+  &__frame {
+    @apply h-full w-full;
+
+    @apply rounded-t-lg xl:rounded-lg;
+  }
+
+  &__sidebar-desktop {
+    @apply hidden xl:block;
+  }
 }

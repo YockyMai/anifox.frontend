@@ -3,6 +3,6 @@
 
   &__image {
     @apply h-full w-full scale-105 bg-cover bg-center;
-    @apply animate-fade-in;
+    @apply animate-fade-in dark:brightness-90;
   }
 }

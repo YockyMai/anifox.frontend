@@ -1,6 +1,6 @@
 export type SiteTheme = 'light' | 'dark'
 
-export enum SiteThemes {
-  LIGHT = 'light',
-  DARK = 'dark'
-}
+export const SITE_THEME = {
+  LIGHT: 'light',
+  DARK: 'dark'
+} as const

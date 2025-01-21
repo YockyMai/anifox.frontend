@@ -1,26 +1,33 @@
 'use client'
 
 import { useHover } from '@anifox/hooks'
+import { IconMenu2 } from '@tabler/icons-react'
 import { clsx } from 'clsx'
-import { useAtom, useAtomValue } from 'jotai'
+import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import Link from 'next/link'
 
-import { AnifoxLogo, Tabs } from '@/common/components'
+import { AnifoxLogo, UnstyledButton } from '@/common/components'
+import { UIVariants } from '@/common/types/ui-variants'
+import { SiteThemeToggler } from '@/entities/site-theme'
 import { ROUTES } from '@/screens/pages.routes'
 
 import './header.css'
-import { useOnChangeHeaderVisibility } from './hooks'
-import { useHeaderLinks } from './hooks/use-header-links'
+import { useIsMobileHeader, useOnChangeHeaderVisibility } from './hooks'
 import { $headerAtoms } from './store'
+import { MobileMenu } from './ui/mobile-menu/mobile-menu'
+import { NavigatePanel } from './ui/navigate-panel/navigate-panel'
+import { RandomAnimeButton } from './ui/random-anime-button'
 import { UserButton } from './ui/user-button/user-button'
 
 export const Header = () => {
+  const setIsMobileMenuOpen = useSetAtom($headerAtoms.isMobileMenuOpen)
+
   const [isVisible, setIsVisible] = useAtom($headerAtoms.isVisible)
+
   const isTransparent = useAtomValue($headerAtoms.isTransparent)
+  const isMobileHeader = useIsMobileHeader()
 
   useOnChangeHeaderVisibility((isVisible) => setIsVisible(isVisible))
-
-  const { links, activeTab, setActiveTab } = useHeaderLinks()
 
   const { hoverProps, isHovered } = useHover()
 
@@ -38,34 +45,40 @@ export const Header = () => {
           <AnifoxLogo />
         </Link>
 
-        <nav className='site-header__nav'>
-          <Tabs
-            activeTabColor='#FB9A3C'
-            hoverColor='rgba(255, 255, 255, 0.15)'
-            tabs={links.map(({ content, path }) => ({
-              content: (
-                <Link
-                  className={clsx(
-                    'site-header__nav__link',
-                    path === activeTab && 'site-header__nav__link_active'
-                  )}
-                  href={path}
-                >
-                  {content}
-                </Link>
-              ),
-              key: path
-            }))}
-            activeTab={activeTab}
-            onChange={(key) => setActiveTab(key)}
-            withoutActiveBar
+        <div className='site-header__desktop'>
+          <NavigatePanel />
+        </div>
+
+        <div className='site-header__desktop'>
+          <RandomAnimeButton
+            variant={isTransparent ? UIVariants.OUTLINE : UIVariants.LIGHT}
           />
-        </nav>
+        </div>
       </div>
 
-      <div className='site-header__section'>
-        <UserButton />
+      <div className='site-header__desktop'>
+        <div className='site-header__section'>
+          <SiteThemeToggler />
+          <UserButton />
+        </div>
       </div>
+
+      <div className='site-header__mobile'>
+        <div className='site-header__section'>
+          <SiteThemeToggler />
+          <UnstyledButton
+            onClick={(e) => {
+              e.stopPropagation()
+              e.preventDefault()
+              setIsMobileMenuOpen((prev) => !prev)
+            }}
+          >
+            <IconMenu2 />
+          </UnstyledButton>
+        </div>
+      </div>
+
+      {isMobileHeader && <MobileMenu />}
     </header>
   )
 }

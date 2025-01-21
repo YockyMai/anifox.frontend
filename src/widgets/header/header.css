@@ -1,31 +1,30 @@
 .site-header {
   @apply fixed left-0 top-0 z-50;
   @apply flex h-[--header-height] w-full items-center justify-center bg-slate-800;
-  @apply shadow-sm shadow-black/10 transition-all duration-500;
+  @apply transition-all duration-500;
 
   @apply flex items-center justify-between px-4;
+
+  @apply shadow-sm shadow-black/10;
 
   &__hidden {
     @apply -translate-y-full;
   }
 
   &__transparent {
-    @apply bg-slate-800/50;
+    /* only for > md */
+    @apply md:bg-slate-800/70;
+  }
+
+  &__desktop {
+    @apply hidden md:block;
+  }
+
+  &__mobile {
+    @apply block md:hidden;
   }
 
   &__section {
     @apply flex items-center gap-7;
-  }
-
-  &__nav {
-    @apply text-sm text-slate-300;
-
-    &__link {
-      @apply hover:text-inherit;
-
-      &_active {
-        @apply text-orange-300 hover:text-orange-300;
-      }
-    }
   }
 }

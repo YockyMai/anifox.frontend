@@ -1,6 +1,6 @@
 .character-info {
   &__header {
-    @apply bg-slate-50 pt-[--header-height];
+    @apply bg-slate-50 pt-[--header-height] dark:bg-slate-800;
 
     &__content {
       @apply container relative grid grid-cols-[220px_auto] gap-x-9 pb-6 pt-12;

@@ -26,4 +26,6 @@ export interface InputProps
   error?: ReactNode
   variant?: UIVariant
   customColors?: InputCustomColors
+  reverseColor?: boolean
+  radius?: UISize | 'none'
 }

@@ -5,6 +5,8 @@ import { useAtom } from 'jotai'
 import { useState } from 'react'
 
 import { Input } from '@/common/components'
+import { UISizes } from '@/common/types/ui-sizes'
+import { UIVariants } from '@/common/types/ui-variants'
 
 import { $episodesFilterAtoms } from '../episodes-list/atoms'
 
@@ -26,11 +28,12 @@ export const EpisodesSearch = () => {
       customColors={{
         inputBgColor: 'transparent'
       }}
+      radius='none'
       icon={<IconSearch />}
       value={localSearch}
       onChange={(e) => handleSearchChange(e.currentTarget.value)}
-      variant='light'
-      size='sm'
+      variant={UIVariants.LIGHT}
+      size={UISizes.SM}
       placeholder='Поиск по названию или номеру серии'
     />
   )

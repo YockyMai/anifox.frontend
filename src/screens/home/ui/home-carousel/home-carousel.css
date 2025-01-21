@@ -3,7 +3,6 @@
 
   &__shadow-transition {
     @apply absolute bottom-0 h-10 w-full;
-    @apply bg-gradient-to-t from-slate-100;
   }
 
   &__thumbs {
