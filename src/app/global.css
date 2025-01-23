@@ -59,22 +59,3 @@ h2 {
 h3 {
   @apply text-lg;
 }
-
-.app {
-  width: 100%;
-  overflow-x: hidden;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  &__layout {
-    display: flex;
-    flex: 1 0 auto;
-    min-height: 100%;
-
-    main {
-      min-width: 100%;
-    }
-  }
-}

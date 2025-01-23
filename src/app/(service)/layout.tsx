@@ -1,14 +1,15 @@
 import type { Metadata } from 'next'
 import { Nunito } from 'next/font/google'
 
-import { NavigationProgress, NoSSR } from '@/common/components'
+import { NavigationProgress } from '@/common/components'
 import { YMLoader } from '@/common/lib/ym'
 import { Providers } from '@/providers'
 import { Footer } from '@/widgets/footer'
 import { Header } from '@/widgets/header'
 
-import { initThemeScript } from './@lib/init-theme-script'
-import './global.css'
+import { initThemeScript } from '../@lib/init-theme-script'
+import '../global.css'
+import './page.css'
 
 const nunitoSans = Nunito({ subsets: ['latin', 'cyrillic'] })
 
@@ -27,7 +28,7 @@ const RootLayout = ({
   children: React.ReactNode
 }>) => {
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang='ru' suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: initThemeScript }} />
       </head>
@@ -37,7 +38,7 @@ const RootLayout = ({
           <NavigationProgress />
           <div className='app'>
             <Header />
-            <div className={'app__layout'}>
+            <div className='app__layout'>
               <main>{children}</main>
             </div>
             <Footer />
