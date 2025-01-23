@@ -11,13 +11,18 @@ export const generatePageMetadata = async (
 
   const { data } = await api.fetchCharacter(id)
 
-  const otherNames =
-    data?.name_en || data?.name_kanji
-      ? `(${data?.name_en ?? ''}${data?.name_en || data?.name_kanji ? ', ' : ''}${data?.name_kanji ?? ''})`
-      : ''
+  const generateOtherNames = () => {
+    const names = [data?.name_en, data?.name_kanji].filter(Boolean)
+
+    if (!names.length) {
+      return ''
+    }
+
+    return `(${names.join(', ')})`
+  }
 
   const metadata: Metadata = {
-    title: `${data.name} ${otherNames}`,
+    title: `${data.name} ${generateOtherNames()}`,
     description: data?.about
   }
 

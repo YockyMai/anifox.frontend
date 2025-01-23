@@ -3,7 +3,7 @@ import {
   QueryClient,
   dehydrate
 } from '@tanstack/react-query'
-import { ReactNode } from 'react'
+import { ReactNode, Suspense } from 'react'
 import { WithContext, Movie } from 'schema-dts'
 
 import { GenerateMetadataProps } from '@/common/types/next'
@@ -13,6 +13,7 @@ import { api } from '@/services/api'
 import { usePrefetchAnimeQuery } from '@/services/queries'
 
 import { generatePageMetadata } from './@lib/generate-page-metadata'
+import Loading from './loading'
 
 export const generateMetadata = async ({
   params
@@ -64,7 +65,9 @@ const AnimeLayout = async ({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </section>
-      <AnimeScreenLayout>{children}</AnimeScreenLayout>
+      <AnimeScreenLayout>
+        <Suspense fallback={<Loading />}>{children}</Suspense>
+      </AnimeScreenLayout>
     </HydrationBoundary>
   )
 }

@@ -20,9 +20,7 @@ const Anime = async ({ params }: { params: AnimePageParams }) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Suspense fallback={<div>loading</div>}>
-        <AnimeOverviewScreen />
-      </Suspense>
+      <AnimeOverviewScreen />
     </HydrationBoundary>
   )
 }

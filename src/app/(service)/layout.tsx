@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Nunito } from 'next/font/google'
+import { Suspense } from 'react'
 
 import { NavigationProgress } from '@/common/components'
 import { YMLoader } from '@/common/lib/ym'
@@ -9,6 +10,7 @@ import { Header } from '@/widgets/header'
 
 import { initThemeScript } from '../@lib/init-theme-script'
 import '../global.css'
+import Loading from './loading'
 import './page.css'
 
 const nunitoSans = Nunito({ subsets: ['latin', 'cyrillic'] })
@@ -39,7 +41,9 @@ const RootLayout = ({
           <div className='app'>
             <Header />
             <div className='app__layout'>
-              <main>{children}</main>
+              <main>
+                <Suspense fallback={<Loading />}>{children}</Suspense>
+              </main>
             </div>
             <Footer />
           </div>

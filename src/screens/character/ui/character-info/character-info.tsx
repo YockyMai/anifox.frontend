@@ -13,6 +13,10 @@ export const CharacterInfo = () => {
 
   const { data } = useCharacterQuery(id)
 
+  const otherTitles = [data?.name_en, data?.name_kanji]
+    .filter(Boolean)
+    .join(', ')
+
   return (
     <div className='character-info'>
       <div className='character-info__header'>
@@ -29,10 +33,7 @@ export const CharacterInfo = () => {
             </div>
             {(data?.name_en || data?.name_kanji) && (
               <div>
-                <p>
-                  {data?.name_en && `${data?.name_en}, `}
-                  {data?.name_kanji}
-                </p>
+                <p>{otherTitles}</p>
               </div>
             )}
           </div>
