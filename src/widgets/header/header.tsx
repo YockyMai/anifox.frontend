@@ -26,8 +26,12 @@ export const Header = () => {
 
   const isTransparent = useAtomValue($headerAtoms.isTransparent)
   const isMobileHeader = useIsMobileHeader()
-
-  useOnChangeHeaderVisibility((isVisible) => setIsVisible(isVisible))
+  console.log('header')
+  useOnChangeHeaderVisibility((isVisible) => {
+    console.log('isVisibleChanged', isVisible)
+    console.log(isVisible)
+    setIsVisible(isVisible)
+  })
 
   const { hoverProps, isHovered } = useHover()
 

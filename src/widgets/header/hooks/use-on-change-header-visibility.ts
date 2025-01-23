@@ -8,7 +8,8 @@ export const useOnChangeHeaderVisibility = (
   useEffect(() => {
     const onScroll = () => {
       const scrollTop = window.scrollY ?? document.documentElement.scrollTop
-
+      console.log('scrollTop', scrollTop)
+      console.log('lastScrollTop', lastScrollTop)
       if (scrollTop > lastScrollTop) {
         cb(false)
       } else {
@@ -21,6 +22,8 @@ export const useOnChangeHeaderVisibility = (
     let lastScrollTop = 0
 
     document.addEventListener('scroll', onScroll)
+    console.log('scroll handler enabled')
+
     return () => {
       document.removeEventListener('scroll', onScroll)
     }
