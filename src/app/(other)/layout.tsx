@@ -1,5 +1,4 @@
 import '../global.css'
-import './page.css'
 
 const RootLayout = ({
   children
@@ -7,9 +6,9 @@ const RootLayout = ({
   children: React.ReactNode
 }>) => {
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang='ru' suppressHydrationWarning>
       <body>
-        <div className='app'>{children}</div>
+        <div className='h-screen w-screen'>{children}</div>
       </body>
     </html>
   )
