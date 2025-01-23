@@ -1,5 +1,3 @@
-'use client'
-
 // this page is needed to load the kodik player via iframe for other apps
 
 type KodikPageParams = { searchParams: { src: string } }
