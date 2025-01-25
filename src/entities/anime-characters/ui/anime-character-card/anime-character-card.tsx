@@ -1,7 +1,7 @@
-import Link from 'next/link'
 import React from 'react'
 
 import { Image } from '@/common/components'
+import { Link } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 
 import './anime-character-card.css'

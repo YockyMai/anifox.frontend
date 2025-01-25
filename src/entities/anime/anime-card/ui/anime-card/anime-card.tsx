@@ -1,8 +1,7 @@
 'use client'
 
-import Link from 'next/link'
-
 import { HoverCard, Image } from '@/common/components'
+import { Link } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { AnimeCardPanel } from '../anime-card-panel'

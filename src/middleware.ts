@@ -1,7 +1,9 @@
-import { NextRequest } from 'next/server'
+import createMiddleware from 'next-intl/middleware'
 
-import { COOKIES } from './common/const/cookies'
+import { routing } from './i18n/routing'
 
-export const middleware = (request: NextRequest) => {
-  const accessToken = request.cookies.get(COOKIES.ACCESS_TOKEN_KEY)?.value
+export default createMiddleware(routing)
+
+export const config = {
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)', '/([\\w-]+)?/users/(.+)']
 }

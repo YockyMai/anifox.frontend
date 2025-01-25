@@ -1,6 +1,6 @@
-import { usePathname } from 'next/navigation'
 import { useEffect, useMemo, useState } from 'react'
 
+import { usePathname } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 
 export const useHeaderLinks = () => {

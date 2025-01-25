@@ -4,12 +4,13 @@ import { Suspense } from 'react'
 
 import { NavigationProgress } from '@/common/components'
 import { YMLoader } from '@/common/lib/ym'
+import { Locale } from '@/i18n/types'
 import { Providers } from '@/providers'
 import { Footer } from '@/widgets/footer'
 import { Header } from '@/widgets/header'
 
-import { initThemeScript } from '../@lib/init-theme-script'
-import '../global.css'
+import { initThemeScript } from '../../@lib/init-theme-script'
+import '../../global.css'
 import Loading from './loading'
 import './page.css'
 
@@ -24,19 +25,21 @@ export const metadata: Metadata = {
     'ANIFOX — Твой помощник в мире аниме! Здесь ты можешь смотреть любимые тайтлы в отличном качестве, отслеживать свой прогресс, составлять свои списки и делиться оценками с друзьями.'
 }
 
-const RootLayout = ({
-  children
+const RootLayout = async ({
+  children,
+  params: { locale }
 }: Readonly<{
   children: React.ReactNode
+  params: { locale: Locale }
 }>) => {
   return (
-    <html lang='ru' suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: initThemeScript }} />
       </head>
       <body className={nunitoSans.className}>
         <YMLoader />
-        <Providers>
+        <Providers locale={locale}>
           <NavigationProgress />
           <div className='app'>
             <Header />

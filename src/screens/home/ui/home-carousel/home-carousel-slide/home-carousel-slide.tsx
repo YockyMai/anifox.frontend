@@ -2,12 +2,12 @@
 
 import { IconHeartFilled, IconPlayerPlayFilled } from '@tabler/icons-react'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
 import { useMemo } from 'react'
 
 import { Button, Image, MarqueeText } from '@/common/components'
 import { UISizes } from '@/common/types/ui-sizes'
 import { getAnimeAccentColorStyles } from '@/entities/anime/anime-card/helpers'
+import { Link } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { animations } from './home-carousel-slide.animations'

@@ -1,11 +1,12 @@
 'use client'
 
 import { IconBook, IconUsers } from '@tabler/icons-react'
-import Link from 'next/link'
-import { useParams, usePathname } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import { useEffect, useMemo, useState } from 'react'
 
 import { Tabs } from '@/common/components'
+import { usePathname } from '@/i18n/routing'
+import { Link } from '@/i18n/routing'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { ROUTES } from '@/screens/pages.routes'
 

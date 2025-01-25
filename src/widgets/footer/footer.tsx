@@ -4,9 +4,9 @@ import {
   IconBrandVk,
   IconBrandWindows
 } from '@tabler/icons-react'
-import Link from 'next/link'
 
 import { AnifoxLogo, Button } from '@/common/components'
+import { Link } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 
 import './footer.css'

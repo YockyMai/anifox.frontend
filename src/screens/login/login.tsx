@@ -1,8 +1,7 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-
 import { LoginForm } from '@/entities/auth/login/ui'
+import { useRouter } from '@/i18n/routing'
 
 import { ROUTES } from '../pages.routes'
 import './login.css'
