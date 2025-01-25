@@ -1,5 +1,6 @@
 'use client'
 
+import clsx from 'clsx'
 import { useParams } from 'next/navigation'
 
 import { Image, Spoiler, TextWithBreaks } from '@/common/components'
@@ -40,7 +41,12 @@ export const CharacterInfo = () => {
         </div>
       </div>
 
-      <div className='character-info__body'>
+      <div
+        className={clsx(
+          'character-info__body',
+          !data?.about && 'character-info__body__mobile-hidden'
+        )}
+      >
         <div />
         {data?.about && (
           <Spoiler maxHeight={145}>
