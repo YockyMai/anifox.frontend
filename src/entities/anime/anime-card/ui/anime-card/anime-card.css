@@ -14,7 +14,7 @@
     }
   }
 
-  &__character-role {
+  &__label {
     @apply absolute bottom-1 left-1/2 z-10 w-[90%] -translate-x-1/2;
     @apply rounded bg-slate-800/60 p-2 text-white backdrop-blur-xl;
 

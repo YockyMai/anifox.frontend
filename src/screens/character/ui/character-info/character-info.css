@@ -1,14 +1,18 @@
 .character-info {
   &__header {
-    @apply bg-slate-50 pt-[--header-height] dark:bg-slate-800;
+    @apply bg-slate-50 dark:bg-slate-800;
+    @apply pt-32 md:pt-[--header-height];
 
     &__content {
-      @apply container relative grid grid-cols-[220px_auto] gap-x-9 pb-6 pt-12;
+      @apply container relative grid pb-6 pt-12;
+      @apply grid-cols-[120px_auto] gap-x-5;
+      @apply sm:grid-cols-[220px_auto] sm:gap-x-9;
     }
   }
 
   &__image {
-    @apply absolute left-0 top-0 aspect-[3/4] w-full;
+    @apply absolute left-0 aspect-[3/4] w-full;
+    @apply max-sm:bottom-0 md:top-0;
   }
 
   &__name {
@@ -20,6 +24,8 @@
   }
 
   &__body {
-    @apply container grid min-h-40 grid-cols-[220px_auto] gap-x-9 pt-6;
+    @apply container grid min-h-40 pt-6;
+    @apply grid-cols-[0px_auto];
+    @apply sm:grid-cols-[220px_auto] sm:gap-x-9;
   }
 }

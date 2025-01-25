@@ -44,7 +44,7 @@ export type { AnimeMedia } from './fetch-anime-media'
 
 export type { AnimeTranslation } from './fetch-anime-translation'
 
-export type { RelatedAnime } from './fetch-related-anime'
+export type { AnimeRelated } from './fetch-related-anime'
 
 export type { SignUpParams } from './sign-up'
 

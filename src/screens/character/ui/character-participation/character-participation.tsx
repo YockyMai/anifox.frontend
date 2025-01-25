@@ -28,7 +28,11 @@ export const CharacterParticipation = () => {
           <ScreenSection title='Участие в аниме'>
             <div className='anifox-grid'>
               {data?.roles.map(({ anime, role }) => (
-                <AnimeCard characterRole={role} key={anime.url} anime={anime} />
+                <AnimeCard
+                  label={`${role} роль`}
+                  key={anime.url}
+                  anime={anime}
+                />
               ))}
             </div>
           </ScreenSection>

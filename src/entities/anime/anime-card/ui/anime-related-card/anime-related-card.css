@@ -1,0 +1,25 @@
+.anime-related-card {
+  @apply bg-slate-100 dark:bg-slate-800;
+  @apply overflow-hidden rounded-lg;
+  @apply grid grid-cols-[60px_auto] gap-x-3 p-2;
+
+  &__relation {
+    @apply bg-slate-700;
+  }
+
+  &__body {
+    @apply flex flex-col gap-y-3;
+  }
+
+  &__info {
+    @apply flex gap-x-2;
+  }
+
+  &__title {
+    @apply line-clamp-2 text-base;
+  }
+
+  &__rating {
+    @apply flex items-center gap-x-1;
+  }
+}

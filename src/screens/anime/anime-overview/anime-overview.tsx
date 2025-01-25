@@ -1,13 +1,17 @@
 'use client'
 
-import { IconMenu2 } from '@tabler/icons-react'
 import { useParams } from 'next/navigation'
 
 import { MarqueeText, ScreenSection } from '@/common/components'
 import { KodikPlayer } from '@/entities/players/kodik-player'
-import { useAnimeQuery, useAnimeVideosQuery } from '@/services/queries'
+import {
+  useAnimeQuery,
+  useAnimeRelatedQuery,
+  useAnimeVideosQuery
+} from '@/services/queries'
 
 import { AnimePageParams } from '../anime.interface'
+import { AnimeFranchise } from './anime-franchise'
 import './anime-overview.css'
 import { AnimeScreenshots } from './anime-screenshots'
 import { AnimeVideos } from './anime-videos'
@@ -19,6 +23,8 @@ export const AnimeOverviewScreen = () => {
 
   const { data: videos = [], isLoading: isVideosLoading } =
     useAnimeVideosQuery(animeUrl)
+
+  const { data: related = [] } = useAnimeRelatedQuery(animeUrl)
 
   return (
     <div className='anime-overview'>
@@ -43,11 +49,13 @@ export const AnimeOverviewScreen = () => {
         <KodikPlayer animeUrl={animeUrl} />
       </div>
 
-      {/* <div className='container'>
-        <ScreenSection title='Хронология'>
-          <AnimeFranchise />
-        </ScreenSection>
-      </div> */}
+      {related.length > 0 && (
+        <div className='container'>
+          <ScreenSection title='Хронология'>
+            <AnimeFranchise />
+          </ScreenSection>
+        </div>
+      )}
     </div>
   )
 }

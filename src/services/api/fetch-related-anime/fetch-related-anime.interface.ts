@@ -1,9 +1,8 @@
 import { Anime } from '../fetch-anime-list'
 
-export type RelatedAnime = {
+export type AnimeRelated = {
   anime: Anime
   relation: {
     type: string
-    typeEn: string
   }
 }

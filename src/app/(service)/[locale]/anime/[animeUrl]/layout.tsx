@@ -59,15 +59,16 @@ const AnimeLayout = async ({
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
+      <AnimeScreenLayout>
+        <Suspense fallback={<Loading />}>{children}</Suspense>
+      </AnimeScreenLayout>
+
       <section>
         <script
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </section>
-      <AnimeScreenLayout>
-        <Suspense fallback={<Loading />}>{children}</Suspense>
-      </AnimeScreenLayout>
     </HydrationBoundary>
   )
 }
