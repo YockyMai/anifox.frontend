@@ -1,9 +1,9 @@
 import clsx from 'clsx'
 import { useAtomValue } from 'jotai'
-import Link from 'next/link'
 import React from 'react'
 
 import { Tabs } from '@/common/components'
+import { Link } from '@/i18n/routing'
 import { useHeaderLinks } from '@/widgets/header/hooks/use-header-links'
 
 import { $headerAtoms } from '../../store'

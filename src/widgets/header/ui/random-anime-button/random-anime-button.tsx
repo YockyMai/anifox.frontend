@@ -2,13 +2,13 @@
 
 import { useHover } from '@anifox/hooks'
 import { IconDice3Filled } from '@tabler/icons-react'
-import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 
 import { Button } from '@/common/components'
 import { UIColors } from '@/common/types/ui-colors'
 import { UISizes } from '@/common/types/ui-sizes'
 import { UIVariants } from '@/common/types/ui-variants'
+import { useRouter } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 import { Anime, api } from '@/services/api'
 import { ANIME_ORDER_OPTIONS } from '@/widgets/anime-catalog/ui/anime-catalog-filter/ui/anime-order/anime-order.const'

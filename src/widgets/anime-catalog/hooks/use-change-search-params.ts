@@ -1,9 +1,9 @@
 'use client'
 
 import { useAtomCallback } from 'jotai/utils'
-import { useRouter } from 'next/navigation'
 import { useCallback } from 'react'
 
+import { useRouter } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog'
 

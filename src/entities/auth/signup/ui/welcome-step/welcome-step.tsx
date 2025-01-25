@@ -1,8 +1,7 @@
 'use client'
 
-import Link from 'next/link'
-
 import UnstyledButton from '@/common/components/unstyled-button/unstyled-button'
+import { Link } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { useStepsActions } from '../../hooks'

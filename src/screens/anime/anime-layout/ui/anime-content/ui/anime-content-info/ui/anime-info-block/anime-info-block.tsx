@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 
 import './anime-info-block.css'
 import { AnimeInfoBlockProps } from './anime-info-block.interface'

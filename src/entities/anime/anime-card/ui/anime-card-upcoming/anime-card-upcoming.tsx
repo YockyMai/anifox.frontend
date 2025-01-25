@@ -1,11 +1,11 @@
 import { IconArrowRight } from '@tabler/icons-react'
-import Link from 'next/link'
 import React from 'react'
 
 import { Badge, Image, MarqueeText, Tooltip } from '@/common/components'
 import { AnimeFavoriteButton } from '@/entities/anime/anime-favorite'
 import { AnimeListButton } from '@/entities/anime/anime-list'
 import { AnimeRateButton } from '@/entities/anime/anime-rating'
+import { Link } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { getAnimeAccentColorStyles } from '../../helpers'

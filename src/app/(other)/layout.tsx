@@ -1,4 +1,4 @@
-import '../global.css'
+import '../../global.css'
 
 const RootLayout = ({
   children
@@ -6,7 +6,7 @@ const RootLayout = ({
   children: React.ReactNode
 }>) => {
   return (
-    <html lang='ru' suppressHydrationWarning>
+    <html lang='en'>
       <body>
         <div className='h-screen w-screen'>{children}</div>
       </body>

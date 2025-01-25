@@ -1,7 +1,7 @@
 'use client'
 
 import { useAtomValue } from 'jotai'
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/router'
 import Confetti from 'react-confetti'
 
 import { $userAtoms } from '@/entities/user/atoms'

@@ -1,6 +1,5 @@
-import Link from 'next/link'
-
 import Badge from '@/common/components/badge/badge'
+import { Link } from '@/i18n/routing'
 
 import { AnimeCard } from '../anime-card'
 import './anime-category-list.css'
