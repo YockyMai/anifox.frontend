@@ -1,17 +1,21 @@
 .anime-content {
   @apply relative bg-slate-200/80 dark:bg-slate-800/80;
+  @apply max-md:mt-[--header-height];
 
   &__body {
     @apply container relative z-10 mx-auto -mt-10;
-    @apply grid grid-cols-[220px_auto] max-lg:grid-cols-[120px_auto];
+    @apply grid;
+    @apply lg:grid-cols-[220px_auto];
+    @apply grid-rows-[auto_auto];
     @apply gap-6 pb-3 max-lg:gap-2 max-lg:px-2 lg:px-6;
   }
 
   &__poster {
     @apply relative flex flex-col gap-y-1.5;
+    @apply max-lg:mx-auto;
 
     &__image {
-      @apply h-80 overflow-hidden rounded object-cover max-lg:h-44;
+      @apply h-80 rounded;
     }
 
     &__badge {
@@ -27,11 +31,9 @@
     }
 
     &__title {
-      @apply mt-6 flex flex-wrap gap-x-1.5;
-      h1 {
-        @apply dark:text-white;
-        @apply max-lg:text-lg;
-      }
+      @apply mt-6;
+      @apply dark:text-white;
+      @apply max-lg:text-center;
     }
   }
 }

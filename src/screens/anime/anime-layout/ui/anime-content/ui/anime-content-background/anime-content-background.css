@@ -1,5 +1,5 @@
 .anime-content-background {
-  @apply aspect-[12/2] overflow-hidden;
+  @apply aspect-[12/2] overflow-hidden max-lg:aspect-[12/4];
 
   &__image {
     @apply h-full w-full scale-105 bg-cover bg-center;

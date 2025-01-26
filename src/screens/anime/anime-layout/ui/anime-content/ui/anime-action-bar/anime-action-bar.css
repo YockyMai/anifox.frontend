@@ -1,3 +1,4 @@
 .anime-action-bar {
   @apply flex gap-2;
+  @apply max-lg:w-full max-lg:justify-center;
 }

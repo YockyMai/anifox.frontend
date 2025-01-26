@@ -40,6 +40,14 @@ export const AnimeOverviewScreen = () => {
         )}
       </div>
 
+      {related.length > 0 && (
+        <div className='container'>
+          <ScreenSection title='Хронология'>
+            <AnimeFranchise />
+          </ScreenSection>
+        </div>
+      )}
+
       <div id='player' className='anime-overview__player'>
         <MarqueeText>
           <p className='anime-overview__player__title'>
@@ -48,14 +56,6 @@ export const AnimeOverviewScreen = () => {
         </MarqueeText>
         <KodikPlayer animeUrl={animeUrl} />
       </div>
-
-      {related.length > 0 && (
-        <div className='container'>
-          <ScreenSection title='Хронология'>
-            <AnimeFranchise />
-          </ScreenSection>
-        </div>
-      )}
     </div>
   )
 }

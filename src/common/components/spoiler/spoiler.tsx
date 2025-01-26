@@ -1,6 +1,7 @@
 'use client'
 
 import { useElementSize } from '@anifox/hooks'
+import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 
 import { UIColors } from '@/common/types/ui-colors'
@@ -8,7 +9,11 @@ import { UIColors } from '@/common/types/ui-colors'
 import { Badge } from '../badge'
 import { SpoilerProps } from './spoiler.interface'
 
-export const Spoiler = ({ children, maxHeight }: SpoilerProps) => {
+export const Spoiler = ({
+  children,
+  maxHeight,
+  buttonWidthFull
+}: SpoilerProps) => {
   const [ref, size] = useElementSize<HTMLDivElement>()
 
   const [isCollapsed, setIsCollapsed] = useState(true)
@@ -27,7 +32,10 @@ export const Spoiler = ({ children, maxHeight }: SpoilerProps) => {
       {size.height > maxHeight && (
         <Badge
           color={isCollapsed ? UIColors.GREEN : UIColors.RED}
-          className='w-fit cursor-pointer'
+          className={clsx(
+            'cursor-pointer',
+            buttonWidthFull ? 'w-full' : 'w-fit'
+          )}
           onClick={() => setIsCollapsed((prev) => !prev)}
         >
           {isCollapsed ? 'Показать еще' : 'Скрыть'}

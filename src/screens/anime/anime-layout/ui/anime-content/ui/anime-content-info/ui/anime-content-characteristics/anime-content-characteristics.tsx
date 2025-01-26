@@ -16,7 +16,7 @@ export const AnimeContentCharacteristics = () => {
 
   const { data } = useAnimeQuery(animeUrl)
 
-  const type = data?.type ?? '—'
+  const type = data?.type ?? '?'
   const status = data!.status
   const seasons = `${data!.episodes_aired || '?'} из ${data!.episodes || '?'}`
 

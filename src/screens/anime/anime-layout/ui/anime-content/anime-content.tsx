@@ -46,9 +46,7 @@ export const AnimeContent = () => {
           <div className='anime-content__info__top-section'>
             <AnimeActionBar />
 
-            <div className={'anime-content__info__title'}>
-              <h1>{data!.title}</h1>
-            </div>
+            <h1 className='anime-content__info__title'>{data!.title}</h1>
           </div>
 
           <AnimeContentInfo />

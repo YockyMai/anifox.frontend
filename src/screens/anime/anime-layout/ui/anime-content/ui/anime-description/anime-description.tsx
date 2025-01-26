@@ -3,7 +3,7 @@
 import { useParams } from 'next/navigation'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
-import { UnstyledButton } from '@/common/components'
+import { Spoiler, UnstyledButton } from '@/common/components'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { useAnimeQuery } from '@/services/queries'
 
@@ -47,28 +47,49 @@ export const AnimeDescription = () => {
   if (!data?.description) return null
 
   return (
-    <div ref={containerRef} className='anime-description'>
-      <div
-        style={{ maxHeight: isFullTextDisplayed ? '100%' : containerHeight }}
-      >
-        <p
-          style={{
-            maxHeight: textHeight && !isFullTextDisplayed ? textHeight : '100%'
-          }}
-          ref={descriptionRef}
-          className='anime-description__text'
+    <>
+      {/* only for PC */}
+      <div ref={containerRef} className='anime-description'>
+        <div
+          style={{ maxHeight: isFullTextDisplayed ? '100%' : containerHeight }}
         >
-          {data?.description}
-        </p>
-        {!textInBounds && (
-          <UnstyledButton
-            onClick={() => setIsFullTextDisplayed((prev) => !prev)}
-            className='anime-description__show-more-button'
+          <p
+            style={{
+              maxHeight:
+                textHeight && !isFullTextDisplayed ? textHeight : '100%'
+            }}
+            ref={descriptionRef}
+            className='anime-description__text'
           >
-            {isFullTextDisplayed ? 'Скрыть' : 'Показать еще'}
-          </UnstyledButton>
-        )}
+            {data?.description}
+          </p>
+          {!textInBounds && (
+            <UnstyledButton
+              onClick={() => setIsFullTextDisplayed((prev) => !prev)}
+              className='anime-description__show-more-button'
+            >
+              {isFullTextDisplayed ? 'Скрыть' : 'Показать еще'}
+            </UnstyledButton>
+          )}
+        </div>
       </div>
-    </div>
+
+      {/* only for mobile */}
+      <div className='anime-description-mobile'>
+        <p className='anime-description-mobile__title'>Описание</p>
+        <Spoiler buttonWidthFull maxHeight={220}>
+          <p
+            style={{
+              maxHeight:
+                textHeight && !isFullTextDisplayed ? textHeight : '100%'
+            }}
+            ref={descriptionRef}
+            className='anime-description__text'
+          >
+            {data?.description}
+          </p>
+        </Spoiler>
+      </div>
+    </>
   )
 }
