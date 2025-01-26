@@ -25,13 +25,22 @@ export const metadata: Metadata = {
     'ANIFOX — Твой помощник в мире аниме! Здесь ты можешь смотреть любимые тайтлы в отличном качестве, отслеживать свой прогресс, составлять свои списки и делиться оценками с друзьями.'
 }
 
-const RootLayout = async ({
-  children,
-  params: { locale }
-}: Readonly<{
-  children: React.ReactNode
-  params: { locale: Locale }
-}>) => {
+const RootLayout = async (
+  props: Readonly<{
+    children: React.ReactNode
+    params: { locale: Locale }
+  }>
+) => {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
+  const {
+    children
+  } = props;
+
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>

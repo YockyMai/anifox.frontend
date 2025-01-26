@@ -1,15 +1,12 @@
 import { Metadata } from 'next'
 
-import { GenerateMetadataProps } from '@/common/types/next'
 import { CharacterPageParams } from '@/screens/character/character.interface'
 import { api } from '@/services/api'
 
 export const generatePageMetadata = async (
-  params: GenerateMetadataProps<CharacterPageParams>['params']
+  params: CharacterPageParams
 ): Promise<Metadata> => {
-  const id = (await params).id
-
-  const { data } = await api.fetchCharacter(id)
+  const { data } = await api.fetchCharacter(params.id)
 
   const generateOtherNames = () => {
     const names = [data?.name_en, data?.name_kanji].filter(Boolean)

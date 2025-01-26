@@ -1,15 +1,12 @@
 import { Metadata } from 'next'
 
-import { GenerateMetadataProps } from '@/common/types/next'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { api } from '@/services/api'
 
 export const generatePageMetadata = async (
-  params: GenerateMetadataProps<AnimePageParams>['params']
+  params: AnimePageParams
 ): Promise<Metadata> => {
-  const animeUrl = (await params).animeUrl
-
-  const { data } = await api.fetchAnime(animeUrl)
+  const { data } = await api.fetchAnime(params.animeUrl)
 
   const englishTitle = data.english.filter((title) => title !== 'null')[0]
   const year = data.year

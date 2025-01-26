@@ -15,21 +15,25 @@ import { usePrefetchAnimeQuery } from '@/services/queries'
 import { generatePageMetadata } from './@lib/generate-page-metadata'
 import Loading from './loading'
 
-export const generateMetadata = async ({
-  params
-}: GenerateMetadataProps<AnimePageParams>) => {
+export const generateMetadata = async (props: GenerateMetadataProps<AnimePageParams>) => {
+  const params = await props.params;
   const metadata = generatePageMetadata(params)
 
   return metadata
 }
 
-const AnimeLayout = async ({
-  children,
-  params
-}: {
-  children: ReactNode
-  params: AnimePageParams
-}) => {
+const AnimeLayout = async (
+  props: {
+    children: ReactNode
+    params: Promise<AnimePageParams>
+  }
+) => {
+  const params = await props.params;
+
+  const {
+    children
+  } = props;
+
   const queryClient = new QueryClient()
 
   await usePrefetchAnimeQuery(params.animeUrl, queryClient)

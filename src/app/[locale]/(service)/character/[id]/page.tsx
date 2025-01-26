@@ -13,15 +13,15 @@ import { usePrefetchCharacterQuery } from '@/services/queries'
 
 import { generatePageMetadata } from './@lib/generate-page-metadata'
 
-export const generateMetadata = async ({
-  params
-}: GenerateMetadataProps<CharacterPageParams>) => {
+export const generateMetadata = async (props: GenerateMetadataProps<CharacterPageParams>) => {
+  const params = await props.params;
   const metadata = generatePageMetadata(params)
 
   return metadata
 }
 
-const Character = async ({ params }: { params: CharacterPageParams }) => {
+const Character = async (props: { params: Promise<CharacterPageParams> }) => {
+  const params = await props.params;
   const queryClient = new QueryClient()
 
   await usePrefetchCharacterQuery(params.id, queryClient)
