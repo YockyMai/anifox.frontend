@@ -6,18 +6,18 @@ import {
 
 import { HomeScreen } from '@/screens/home'
 import {
-  usePrefetchAnimeSchedulesQuery,
-  usePrefetchComingOutAnimeQuery
+  prefetchAnimeSchedulesQuery,
+  prefetchComingOutAnimeQuery
 } from '@/services/queries'
-import { usePrefetchAnimeCatalogLandingData } from '@/widgets/anime-catalog-landing/api/prefetch-anime-catalog-landing-data'
+import { prefetchAnimeCatalogLandingData } from '@/widgets/anime-catalog-landing/api/prefetch-anime-catalog-landing-data'
 
 const Home = async () => {
   const queryClient = new QueryClient()
 
   await Promise.all([
-    usePrefetchComingOutAnimeQuery(queryClient),
-    usePrefetchAnimeCatalogLandingData(queryClient),
-    usePrefetchAnimeSchedulesQuery(queryClient)
+    prefetchComingOutAnimeQuery(queryClient),
+    prefetchAnimeCatalogLandingData(queryClient),
+    prefetchAnimeSchedulesQuery(queryClient)
   ])
 
   return (

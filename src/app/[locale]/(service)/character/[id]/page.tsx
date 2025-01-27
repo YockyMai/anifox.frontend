@@ -9,22 +9,24 @@ import { GenerateMetadataProps } from '@/common/types/next'
 import { CharacterScreen } from '@/screens/character'
 import { CharacterPageParams } from '@/screens/character/character.interface'
 import { api } from '@/services/api'
-import { usePrefetchCharacterQuery } from '@/services/queries'
+import { prefetchCharacterQuery } from '@/services/queries'
 
 import { generatePageMetadata } from './@lib/generate-page-metadata'
 
-export const generateMetadata = async (props: GenerateMetadataProps<CharacterPageParams>) => {
-  const params = await props.params;
+export const generateMetadata = async (
+  props: GenerateMetadataProps<CharacterPageParams>
+) => {
+  const params = await props.params
   const metadata = generatePageMetadata(params)
 
   return metadata
 }
 
 const Character = async (props: { params: Promise<CharacterPageParams> }) => {
-  const params = await props.params;
+  const params = await props.params
   const queryClient = new QueryClient()
 
-  await usePrefetchCharacterQuery(params.id, queryClient)
+  await prefetchCharacterQuery(params.id, queryClient)
 
   const { data } = await api.fetchCharacter(params.id)
 

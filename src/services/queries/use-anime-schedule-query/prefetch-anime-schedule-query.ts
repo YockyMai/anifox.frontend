@@ -5,7 +5,7 @@ import { api } from '@/services/api'
 
 import { ANIME_SCHEDULES_QUERY_KEY } from './use-anime-schedule-query.const'
 
-export const usePrefetchAnimeSchedulesQuery = (queryClient: QueryClient) => {
+export const prefetchAnimeSchedulesQuery = (queryClient: QueryClient) => {
   const date = dayjs(new Date()).format('DD-MM-YYYY')
 
   return queryClient.prefetchQuery({

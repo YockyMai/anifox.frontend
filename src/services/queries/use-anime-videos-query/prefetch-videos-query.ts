@@ -1,10 +1,10 @@
-import { QueryClient, useQuery } from '@tanstack/react-query'
+import { QueryClient } from '@tanstack/react-query'
 
 import { api } from '@/services/api'
 
 import { ANIME_VIDEOS_QUERY_KEY } from './use-anime-videos-query.const'
 
-export const usePrefetchAnimeVideosQuery = (
+export const prefetchAnimeVideosQuery = (
   animeUrl: string,
   queryClient: QueryClient
 ) =>

@@ -4,7 +4,7 @@ import { api } from '@/services/api'
 
 import { POPULAR_ONGOING_QUERY_KEY } from './use-popular-ongoing-query.const'
 
-export const usePrefetchPopularOngoingQuery = (queryClient: QueryClient) =>
+export const prefetchPopularOngoingQuery = (queryClient: QueryClient) =>
   queryClient.prefetchQuery({
     queryKey: [POPULAR_ONGOING_QUERY_KEY],
     queryFn: async () => {

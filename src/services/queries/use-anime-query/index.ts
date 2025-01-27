@@ -1,3 +1,3 @@
-export { useAnimeQuery } from './use-anime-query'
-export { usePrefetchAnimeQuery } from './use-prefetch-anime-query'
-export { ANIME_QUERY_KEY } from './use-anime-query.const'
+export * from './use-anime-query'
+export * from './prefetch-anime-query'
+export * from './use-anime-query.const'

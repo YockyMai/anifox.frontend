@@ -31,7 +31,7 @@ export const AnimeContentCharacteristics = () => {
       return dayjs(data!.aired_on).locale('ru').format('D MMM YYYYг')
     }
   }, [data])
-
+  console.log(data)
   const infos = useMemo(() => {
     const infos: AnimeInfoBlockItem[] = []
 
@@ -68,7 +68,7 @@ export const AnimeContentCharacteristics = () => {
 
     if (data!.status) {
       infos.push({
-        element: `Статус: ${status}`,
+        element: `Статус: ${status === 'Released' ? 'Выпущен' : 'Онгоинг'}`,
         href: `${ROUTES.CATALOG.ROOT}?status=${status}`,
         key: 'status'
       })

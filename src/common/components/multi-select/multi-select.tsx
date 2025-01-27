@@ -35,43 +35,41 @@ export const MultiSelect = ({
     typeof document === 'undefined' ? null : document.body
 
   return (
-    <>
+    <NoSSR>
       {label && <p className='multi-select__label'>{label}</p>}
-      <NoSSR>
-        <ReactSelect
-          menuPortalTarget={menuPortalTarget}
-          id={uniqueId}
-          onMenuClose={() => selectOnMenuClose(uniqueId)}
-          value={multiSelectValues}
-          onChange={(options) =>
-            onValuesChange?.(
-              options.map(({ label, value }) => ({ label, value }))
-            )
-          }
-          isSearchable={isSearchable}
-          isLoading={isLoading}
-          placeholder={placeholder}
-          noOptionsMessage={({ inputValue }) => {
-            return <NoOptionsMessage inputValue={inputValue} />
-          }}
-          components={{
-            ClearIndicator: ClearIndicator<true>,
-            DropdownIndicator: DropdownIndicator<true>,
-            MultiValue,
-            Menu: (props) => (
-              <components.Menu {...props} className='select__menu' />
-            )
-          }}
-          options={options}
-          className='select'
-          classNamePrefix='select'
-          isClearable
-          unstyled
-          closeMenuOnSelect={false}
-          hideSelectedOptions={false}
-          isMulti
-        />
-      </NoSSR>
-    </>
+      <ReactSelect
+        menuPortalTarget={menuPortalTarget}
+        id={uniqueId}
+        onMenuClose={() => selectOnMenuClose(uniqueId)}
+        value={multiSelectValues}
+        onChange={(options) =>
+          onValuesChange?.(
+            options.map(({ label, value }) => ({ label, value }))
+          )
+        }
+        isSearchable={isSearchable}
+        isLoading={isLoading}
+        placeholder={placeholder}
+        noOptionsMessage={({ inputValue }) => {
+          return <NoOptionsMessage inputValue={inputValue} />
+        }}
+        components={{
+          ClearIndicator: ClearIndicator<true>,
+          DropdownIndicator: DropdownIndicator<true>,
+          MultiValue,
+          Menu: (props) => (
+            <components.Menu {...props} className='select__menu' />
+          )
+        }}
+        options={options}
+        className='select'
+        classNamePrefix='select'
+        isClearable
+        unstyled
+        closeMenuOnSelect={false}
+        hideSelectedOptions={false}
+        isMulti
+      />
+    </NoSSR>
   )
 }

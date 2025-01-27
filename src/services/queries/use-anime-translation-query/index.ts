@@ -1,1 +1,1 @@
-export { useAnimeTranslationsQuery } from './use-anime-translation-query'
+export * from './use-anime-translation-query'

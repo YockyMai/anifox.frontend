@@ -6,7 +6,7 @@ import {
 import { Metadata } from 'next'
 
 import { AnimeCatalogScreen } from '@/screens/anime-catalog'
-import { usePrefetchAnimeCatalogLandingData } from '@/widgets/anime-catalog-landing/api/prefetch-anime-catalog-landing-data'
+import { prefetchAnimeCatalogLandingData } from '@/widgets/anime-catalog-landing/api'
 
 export const metadata: Metadata = {
   title: 'Поиск аниме',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const AnimeCatalog = async () => {
   const queryClient = new QueryClient()
 
-  await usePrefetchAnimeCatalogLandingData(queryClient)
+  await prefetchAnimeCatalogLandingData(queryClient)
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

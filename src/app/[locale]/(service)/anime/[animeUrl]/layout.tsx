@@ -4,62 +4,41 @@ import {
   dehydrate
 } from '@tanstack/react-query'
 import { ReactNode, Suspense } from 'react'
-import { WithContext, Movie } from 'schema-dts'
 
 import { GenerateMetadataProps } from '@/common/types/next'
 import { AnimeScreenLayout } from '@/screens/anime/anime-layout'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { api } from '@/services/api'
-import { usePrefetchAnimeQuery } from '@/services/queries'
+import { prefetchAnimeQuery } from '@/services/queries'
 
+import { generateJsonLd } from './@lib/generate-json-ld'
 import { generatePageMetadata } from './@lib/generate-page-metadata'
 import Loading from './loading'
 
-export const generateMetadata = async (props: GenerateMetadataProps<AnimePageParams>) => {
-  const params = await props.params;
+export const generateMetadata = async (
+  props: GenerateMetadataProps<AnimePageParams>
+) => {
+  const params = await props.params
   const metadata = generatePageMetadata(params)
 
   return metadata
 }
 
-const AnimeLayout = async (
-  props: {
-    children: ReactNode
-    params: Promise<AnimePageParams>
-  }
-) => {
-  const params = await props.params;
+const AnimeLayout = async (props: {
+  children: ReactNode
+  params: Promise<AnimePageParams>
+}) => {
+  const params = await props.params
 
-  const {
-    children
-  } = props;
+  const { children } = props
 
   const queryClient = new QueryClient()
 
-  await usePrefetchAnimeQuery(params.animeUrl, queryClient)
+  await prefetchAnimeQuery(params.animeUrl, queryClient)
 
   const { data } = await api.fetchAnime(params.animeUrl)
 
-  const jsonLd: WithContext<Movie> = {
-    '@context': 'https://schema.org',
-    '@type': 'Movie',
-    image: data.image?.medium,
-    name: data.title,
-    description: data?.description,
-    genre: data?.genres
-      ? data.genres.map(({ name }) => name).join(', ')
-      : undefined,
-    datePublished: data?.aired_on,
-    ...(data?.rating && data?.rating_count
-      ? {
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: data?.rating,
-            ratingCount: data?.rating_count
-          }
-        }
-      : {})
-  }
+  const jsonLd = generateJsonLd(data)
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

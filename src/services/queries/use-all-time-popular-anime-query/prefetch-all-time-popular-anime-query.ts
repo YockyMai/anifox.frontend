@@ -2,17 +2,19 @@ import { QueryClient } from '@tanstack/react-query'
 
 import { api } from '@/services/api'
 
-import { MOST_RATED_ANIME_QUERY_KEY } from './use-most-rated-anime-query.const'
+import { ALL_TIME_POPULAR_ANIME_QUERY_KEY } from './use-all-time-popular-anime-query.const'
 
-export const usePrefetchMostRatedAnimeListQuery = (queryClient: QueryClient) =>
+export const prefetchAllTimePopularAnimeListQuery = (
+  queryClient: QueryClient
+) =>
   queryClient.prefetchQuery({
-    queryKey: [MOST_RATED_ANIME_QUERY_KEY],
+    queryKey: [ALL_TIME_POPULAR_ANIME_QUERY_KEY],
     queryFn: async () => {
       const { data } = await api.fetchAnimeList({
         page: 0,
         limit: 7,
         sort: 'Desc',
-        order: 'Rating'
+        order: 'Random'
       })
 
       return data

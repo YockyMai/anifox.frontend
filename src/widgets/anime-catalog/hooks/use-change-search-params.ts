@@ -49,9 +49,19 @@ export const useChangeSearchParams = () => {
     (params: AnimeCatalogPageSearchParams) => {
       const currentSearchParams = getSearchParams()
 
-      router.replace(
-        `${ROUTES.CATALOG.ROOT}?${createAnimeCatalogSearchParams({ ...currentSearchParams, ...params })}`
-      )
+      const filteredSearchParams = Object.entries({
+        ...currentSearchParams,
+        ...params
+      })
+        .filter(
+          ([, value]) => value !== undefined && value !== null && value !== ''
+        )
+        .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {})
+
+      router.replace({
+        pathname: ROUTES.CATALOG.ROOT,
+        query: filteredSearchParams
+      })
     },
     [getSearchParams, router]
   )
