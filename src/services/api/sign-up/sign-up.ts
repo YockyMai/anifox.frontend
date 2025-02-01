@@ -1,9 +1,9 @@
-import { publicHttp } from '@/services/http'
+import { http } from '@/services/http'
 
-import { SignUpParams } from './sign-up.interface'
+import { SignupParams } from './sign-up.interface'
 
-export const signup = async (params: SignUpParams) => {
-  const response = await publicHttp.post(`/auth/registration`, {
+export const signup = async (params: SignupParams) => {
+  const response = await http.post(`/auth/registration`, {
     body: params
   })
 

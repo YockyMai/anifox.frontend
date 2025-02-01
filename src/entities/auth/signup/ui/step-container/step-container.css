@@ -2,7 +2,7 @@
   @apply flex h-full w-full flex-col justify-between p-12;
 
   &__title {
-    @apply pb-10 text-center text-lg font-bold text-black;
+    @apply pb-10 text-center text-lg font-bold text-black dark:text-white;
   }
 
   &__buttons {

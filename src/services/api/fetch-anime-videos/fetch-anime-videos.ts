@@ -1,11 +1,9 @@
-import { publicHttp } from '@/services/http'
+import { http } from '@/services/http'
 
 import { AnimeVideo } from './fetch-anime-videos.interface'
 
 export const fetchAnimeVideos = async (animeUrl: string) => {
-  const response = await publicHttp.get<AnimeVideo[]>(
-    `anime/${animeUrl}/videos`
-  )
+  const response = await http.get<AnimeVideo[]>(`anime/${animeUrl}/videos`)
 
   return response
 }

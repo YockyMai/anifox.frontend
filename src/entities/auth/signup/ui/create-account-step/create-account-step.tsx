@@ -7,7 +7,7 @@ import { UISizes } from '@/common/types/ui-sizes'
 
 import { $signupAtoms } from '../../atoms'
 import { STEPS } from '../../atoms/signup.const'
-import { UseCreateAccount } from '../../hooks/use-create-account'
+import { useCreateAccount } from '../../hooks/use-create-account'
 import { StepContainer } from '../step-container'
 import './create-account-step.css'
 
@@ -22,7 +22,7 @@ export const CreateAccountStep = () => {
     setStep(STEPS.ERROR)
   }
 
-  UseCreateAccount(onSuccess, onError)
+  useCreateAccount(onSuccess, onError)
 
   return (
     <StepContainer title='⏳ Загрузка'>

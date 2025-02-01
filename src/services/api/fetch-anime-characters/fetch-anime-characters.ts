@@ -1,4 +1,4 @@
-import { publicHttp } from '@/services/http'
+import { http } from '@/services/http'
 
 import {
   FetchAnimeCharactersResponse,
@@ -10,7 +10,7 @@ export const fetchAnimeCharacters = async (
 ) => {
   const { animeUrl, limit = 24, page = 0, role, search } = params
 
-  const response = await publicHttp.get<FetchAnimeCharactersResponse>(
+  const response = await http.get<FetchAnimeCharactersResponse>(
     `anime/${animeUrl}/characters`,
     {
       searchParams: {

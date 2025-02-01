@@ -1,4 +1,4 @@
-import { getPrivateHttp } from '@/services/http'
+import { http } from '@/services/http'
 
 import {
   FetchFavoriteAnimeListResponse,
@@ -10,9 +10,7 @@ export const fetchFavoriteAnimeList = async ({
   limit = 15,
   page = 0
 }: FetchFavoriteAnimeListParams) => {
-  const privateHttp = getPrivateHttp()
-
-  const response = await privateHttp.get<FetchFavoriteAnimeListResponse>(
+  const response = await http.get<FetchFavoriteAnimeListResponse>(
     `/users/anime/favorite/${status}`,
     {
       searchParams: {

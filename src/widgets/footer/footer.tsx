@@ -24,7 +24,16 @@ export const Footer = () => {
               <AnifoxLogo withoutImage />
             </Link>
           </div>
-          <p>© anifox.club 2023 - current time</p>
+
+          <div>
+            <Link
+              className='footer__category__link'
+              href={ROUTES.RIGHT_HOLDERS}
+            >
+              Для правообладателей
+            </Link>
+            <p>© anifox.club 2023 - current time</p>
+          </div>
         </div>
         <div className='footer__right'>
           <div className='footer__category'>

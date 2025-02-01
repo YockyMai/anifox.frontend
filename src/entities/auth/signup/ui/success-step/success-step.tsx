@@ -1,10 +1,10 @@
 'use client'
 
 import { useAtomValue } from 'jotai'
-import { useRouter } from 'next/router'
 import Confetti from 'react-confetti'
 
 import { $userAtoms } from '@/entities/user/atoms'
+import { useRouter } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { useResetSignupForm } from '../../hooks'
@@ -22,7 +22,8 @@ export const SuccessStep = () => {
         label: 'Перейти в профиль',
         onClick: () => {
           if (user) {
-            router.replace(ROUTES.PROFILE.ROOT.replace('login', user.login))
+            // router.replace(ROUTES.PROFILE.ROOT.replace('login', user.login))
+            router.replace(ROUTES.HOME)
             resetForm()
           }
         }

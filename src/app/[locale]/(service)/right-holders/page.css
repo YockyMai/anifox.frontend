@@ -1,0 +1,33 @@
+.right-holders {
+  @apply container mx-auto mt-[--header-height] pt-10;
+
+  &__list {
+    @apply mx-auto max-w-[90%] list-disc;
+
+    &__item {
+      @apply py-2;
+    }
+  }
+
+  &__copyrights {
+    h1 {
+      @apply mb-5 text-center;
+    }
+  }
+
+  &__box {
+    @apply mx-auto mb-5 rounded bg-slate-200 px-10 py-5 dark:bg-slate-800 max-md:max-w-[95%];
+
+    h3 {
+      @apply mb-3 dark:text-white;
+    }
+  }
+
+  &__links-container {
+    @apply mx-auto mt-5 max-md:max-w-[95%];
+  }
+
+  &__links {
+    @apply mt-1 flex flex-wrap items-center gap-x-3;
+  }
+}

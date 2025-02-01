@@ -38,16 +38,14 @@ export const Genres = () => {
   }
 
   return (
-    <>
-      <MultiSelect
-        isSearchable
-        isLoading={isLoading}
-        label={'Жанры'}
-        placeholder={'Любой'}
-        values={values}
-        onValuesChange={onSelectGenre}
-        options={genreOptions ?? []}
-      />
-    </>
+    <MultiSelect
+      isSearchable
+      isLoading={isLoading}
+      label={'Жанры'}
+      placeholder={'Любой'}
+      values={values}
+      onValuesChange={onSelectGenre}
+      options={genreOptions ?? []}
+    />
   )
 }

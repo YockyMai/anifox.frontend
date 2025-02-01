@@ -1,65 +1,16 @@
-// export types
-export type {
-  AnimeEpisode,
-  AnimeEpisodeTranslation,
-  FetchAnimeEpisodesParams,
-  FetchAnimeEpisodesResponse,
-  fetchAnimeEpisodes
-} from './fetch-anime-episodes'
-
-export type {
-  Anime,
-  AnimeMinimalAge,
-  AnimeOrderVariants,
-  AnimeRatingMpa,
-  AnimeSeasons,
-  AnimeStatuses,
-  AnimeTypeVariants,
-  FetchAnimeListParams,
-  AnimeSortDirection
-} from './fetch-anime-list'
-
-export type {
-  FetchAnimeFavoriteAnimeListResponse,
-  FetchFavoriteAnimeListParams
-} from './fetch-favorite-anime-list'
-
-export type {
-  FetchAnimeScreenshotsParams,
-  FetchAnimeScreenshotsResponse
-} from './fetch-anime-screenshots'
-
-export type {
-  AnimeTrackStatuses,
-  SetAnimeStatusParams
-} from './set-anime-status'
-
-export type { AnimeImageVariants, AnimeResponse } from './fetch-anime'
-
-export type { AnimeGenre } from './fetch-anime-genres'
-
-export type { AnimeStudio } from './fetch-anime-studios'
-
-export type { AnimeMedia } from './fetch-anime-media'
-
-export type { AnimeTranslation } from './fetch-anime-translation'
-
-export type { AnimeRelated } from './fetch-related-anime'
-
-export type { SignUpParams } from './sign-up'
-
-export type { AnimeVideo } from './fetch-anime-videos'
-
-export type {
-  FetchAnimeSchedulesParams,
-  FetchAnimeSchedulesResponse,
-  AnimeScheduleDay
-} from './fetch-anime-schedules'
-
-export type {
-  AnimeCharacter,
-  FetchAnimeCharactersParams,
-  FetchAnimeCharactersResponse
-} from './fetch-anime-characters'
-
-export type { FetchCharacterResponse } from './fetch-character'
+export * from './fetch-anime-episodes/fetch-anime-episodes.interface'
+export * from './fetch-anime-list/fetch-anime-list.interface'
+export * from './fetch-favorite-anime-list/fetch-favorite-anime-list.interface'
+export * from './fetch-anime-screenshots/fetch-anime-screenshots.interface'
+export * from './set-anime-status/set-anime-status.interface'
+export * from './fetch-anime/fetch-anime.interface'
+export * from './fetch-anime-genres/fetch-anime-genres.interface'
+export * from './fetch-anime-studios/fetch-anime-studios.interface'
+export * from './fetch-anime-media/fetch-anime-media.interface'
+export * from './fetch-anime-translation/fetch-anime-translation.interface'
+export * from './fetch-related-anime/fetch-related-anime.interface'
+export * from './sign-up/sign-up.interface'
+export * from './fetch-anime-videos/fetch-anime-videos.interface'
+export * from './fetch-anime-schedules/fetch-anime-schedules.interface'
+export * from './fetch-anime-characters/fetch-anime-characters.interface'
+export * from './fetch-character/fetch-character.interface'
