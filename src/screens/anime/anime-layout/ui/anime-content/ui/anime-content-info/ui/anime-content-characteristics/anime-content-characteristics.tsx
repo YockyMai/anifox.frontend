@@ -12,22 +12,26 @@ import { AnimeInfoBlockItem } from '../anime-info-block/anime-info-block.interfa
 export const AnimeContentCharacteristics = () => {
   const { animeUrl } = useParams<AnimePageParams>()!
 
-  const { data } = useAnimeQuery(animeUrl!)
+  const { data, isLoading } = useAnimeQuery(animeUrl!)
 
   const type = data?.type ?? '?'
-  const status = data!.status
-  const seasons = `${data!.episodes_aired || '?'} из ${data!.episodes || '?'}`
+  const status = data?.status ?? '?'
+  const seasons = `${data?.episodes_aired ?? '?'} из ${data?.episodes ?? '?'}`
 
   const releasedAt = useMemo(() => {
-    if (data!.released_on) {
-      return dayjs(data!.released_on).locale('ru').format('D MMM YYYYг')
+    if (!data?.released_on) {
+      return '?'
     }
+
+    return dayjs(data.released_on).locale('ru').format('D MMM YYYYг')
   }, [data])
 
   const airedAt = useMemo(() => {
-    if (data!.aired_on) {
-      return dayjs(data!.aired_on).locale('ru').format('D MMM YYYYг')
+    if (!data?.aired_on) {
+      return '?'
     }
+
+    return dayjs(data.aired_on).locale('ru').format('D MMM YYYYг')
   }, [data])
 
   const infos = useMemo(() => {

@@ -17,9 +17,7 @@ import {
 export const AnimeContent = () => {
   const { animeUrl } = useParams<AnimePageParams>()!
 
-  const { data } = useAnimeQuery(animeUrl!)
-
-  if (!data) return null
+  const { data, isSuccess } = useAnimeQuery(animeUrl!)
 
   return (
     <div className='anime-content'>
@@ -27,17 +25,23 @@ export const AnimeContent = () => {
 
       <div className='anime-content__body'>
         <div className='anime-content__poster'>
-          <Image
-            className='anime-content__poster__image'
-            src={data?.image.large ?? ''}
-            alt='Постер аниме'
-            width={220}
-            height={320}
-          />
+          {isSuccess ? (
+            <Image
+              className='anime-content__poster__image'
+              src={data.image.large}
+              alt='Постер аниме'
+              width={220}
+              height={320}
+            />
+          ) : (
+            <div className='anime-content__poster__image-loader' />
+          )}
 
-          <Badge className={'anime-content__poster__badge'}>
-            {data?.minimal_age ? `${data!.minimal_age}+` : data?.rating_mpa}
-          </Badge>
+          {isSuccess && (
+            <Badge className={'anime-content__poster__badge'}>
+              {data?.minimal_age ? `${data.minimal_age}+` : data?.rating_mpa}
+            </Badge>
+          )}
 
           <WatchAnimeButton />
         </div>
@@ -46,11 +50,15 @@ export const AnimeContent = () => {
           <div className='anime-content__info__top-section'>
             <AnimeActionBar />
 
-            <h1 className='anime-content__info__title'>{data!.title}</h1>
+            {isSuccess ? (
+              <h1 className='anime-content__info__title'>{data.title}</h1>
+            ) : (
+              <div className='anime-content__info__title-loader' />
+            )}
           </div>
 
           <AnimeContentInfo />
-          <AnimeDescription />
+          {isSuccess && <AnimeDescription />}
         </div>
       </div>
     </div>

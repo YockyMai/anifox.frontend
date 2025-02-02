@@ -6,7 +6,7 @@ import { Button } from '@/common/components'
 import { ROUTES } from '../pages.routes'
 import { POLICY_CONTENT } from './right-holders.const'
 
-export const RightHolders = () => {
+export const RightHoldersScreen = () => {
   return (
     <div className='right-holders'>
       <div className='right-holders__copyrights'>

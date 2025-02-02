@@ -1,1 +1,1 @@
-export { AnimeScreenshots } from './anime-screenshots'
+export * from './anime-screenshots'

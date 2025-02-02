@@ -25,6 +25,8 @@ const Image = (
       ref={ref}
     >
       <img
+        width={width}
+        height={height}
         style={{ objectFit: fit }}
         {...other}
         onLoad={onLoad}

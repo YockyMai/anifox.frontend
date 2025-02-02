@@ -1,5 +1,5 @@
 .image {
-  @apply relative overflow-hidden rounded;
+  @apply relative h-full w-full overflow-hidden rounded;
 
   &__view {
     @apply absolute left-0 top-0 h-full w-full object-cover opacity-0 transition-opacity duration-300;

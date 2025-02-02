@@ -42,8 +42,6 @@ export const AnimeDescription = () => {
 
   const { data } = useAnimeQuery(animeUrl!)
 
-  if (!data?.description) return null
-
   return (
     <>
       {/* only for PC */}

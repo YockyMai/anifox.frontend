@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
 import { AnimeCatalogScreen } from './anime-catalog'
 import { AnimeCharactersScreen } from './anime/anime-characters'
@@ -8,7 +8,7 @@ import { AnimeOverviewScreen } from './anime/anime-overview'
 import { HomeLayout, HomeScreen } from './home'
 import { LoginScreen } from './login'
 import { ROUTES } from './pages.routes'
-import { RightHolders } from './right-holders'
+import { RightHoldersScreen } from './right-holders'
 import { SignupScreen } from './signup'
 
 export const Screens = () => {
@@ -29,10 +29,11 @@ export const Screens = () => {
             />
           </Route>
         </Route>
-        {/* <Route path='*' element={'NOT FOUND'} /> */}
-        <Route path={ROUTES.RIGHT_HOLDERS} element={<RightHolders />} />
+        <Route path={ROUTES.RIGHT_HOLDERS} element={<RightHoldersScreen />} />
         <Route path={ROUTES.LOGIN} element={<LoginScreen />} />
         <Route path={ROUTES.SIGN_UP} element={<SignupScreen />} />
+
+        <Route path='*' element={'NOT FOUND'} />
       </Route>
     </Routes>
   )

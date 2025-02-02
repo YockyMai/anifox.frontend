@@ -14,7 +14,7 @@ export const Select = ({
   label,
   placeholder,
   options,
-  isSearchable,
+  isSearchable = false,
   isLoading,
   onValueChange,
   value

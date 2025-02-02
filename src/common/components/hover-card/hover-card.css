@@ -1,5 +1,5 @@
 .hover-card-content {
-  @apply bg-slate-50 drop-shadow;
+  @apply bg-slate-50 drop-shadow dark:bg-slate-800;
 
   @apply w-fit rounded px-2 py-1;
 

@@ -5,6 +5,7 @@ import { KodikPlayer } from '@/entities/players/kodik-player'
 import {
   useAnimeQuery,
   useAnimeRelatedQuery,
+  useAnimeScreenshotsQuery,
   useAnimeVideosQuery
 } from '@/services/queries'
 
@@ -19,27 +20,34 @@ export const AnimeOverviewScreen = () => {
 
   const { data } = useAnimeQuery(animeUrl!)
 
-  const { data: videos = [], isLoading: isVideosLoading } = useAnimeVideosQuery(
+  const { data: screenshots, isLoading: isLoadingScreenshots } =
+    useAnimeScreenshotsQuery(animeUrl!)
+
+  const { data: videos, isLoading: isLoadingVideos } = useAnimeVideosQuery(
     animeUrl!
   )
 
-  const { data: related = [] } = useAnimeRelatedQuery(animeUrl!)
+  const { data: related, isLoading: isLoadingRelated } = useAnimeRelatedQuery(
+    animeUrl!
+  )
 
   return (
     <div className='anime-overview'>
       <div className='container'>
-        <ScreenSection title='Кадры из аниме'>
-          <AnimeScreenshots />
-        </ScreenSection>
+        {!isLoadingScreenshots && screenshots && screenshots.length > 0 && (
+          <ScreenSection title='Кадры из аниме'>
+            <AnimeScreenshots />
+          </ScreenSection>
+        )}
 
-        {!isVideosLoading && videos.length > 0 && (
+        {!isLoadingVideos && videos && videos.length > 0 && (
           <ScreenSection title='Трейлеры и видео'>
             <AnimeVideos />
           </ScreenSection>
         )}
       </div>
 
-      {related.length > 0 && (
+      {!isLoadingRelated && related && related.length > 0 && (
         <div className='container'>
           <ScreenSection title='Хронология'>
             <AnimeFranchise />
