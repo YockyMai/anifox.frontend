@@ -1,10 +1,10 @@
 import { IconStar } from '@tabler/icons-react'
 import clsx from 'clsx'
+import { Link } from 'react-router-dom'
 
 import { Image, MarqueeText } from '@/common/components'
 import { Badge } from '@/common/components'
 import { UIColors } from '@/common/types/ui-colors'
-import { Link } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 
 import './anime-related-card.css'
@@ -16,7 +16,7 @@ export const AnimeRelatedCard = ({
 }: AnimeSimilarCardProps) => {
   return (
     <div className='anime-related-card'>
-      <Link href={ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', anime.url)}>
+      <Link to={ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', anime.url)}>
         <Image
           width={60}
           height={130}

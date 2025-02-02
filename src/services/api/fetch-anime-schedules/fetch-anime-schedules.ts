@@ -13,7 +13,7 @@ export const fetchAnimeSchedules = async ({
   const response = await http.get<FetchAnimeSchedulesResponse>(
     `anime/schedules`,
     {
-      searchParams: {
+      params: {
         date,
         limit,
         page

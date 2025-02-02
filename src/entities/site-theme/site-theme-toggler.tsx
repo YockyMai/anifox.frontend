@@ -1,5 +1,3 @@
-'use client'
-
 import { IconMoon, IconSun } from '@tabler/icons-react'
 import { useAtom } from 'jotai'
 import React from 'react'

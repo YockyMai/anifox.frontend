@@ -40,7 +40,7 @@ export const fetchAnimeList = async ({
       { paramName: 'translation', array: translations }
     ])}`,
     {
-      searchParams: params
+      params
     }
   )
 

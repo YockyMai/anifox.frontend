@@ -1,8 +1,6 @@
-'use client'
-
 import dayjs from 'dayjs'
-import { useParams } from 'next/navigation'
 import { useMemo } from 'react'
+import { useParams } from 'react-router-dom'
 
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { ROUTES } from '@/screens/pages.routes'
@@ -14,7 +12,7 @@ import { AnimeInfoBlockItem } from '../anime-info-block/anime-info-block.interfa
 export const AnimeContentCharacteristics = () => {
   const { animeUrl } = useParams<AnimePageParams>()!
 
-  const { data } = useAnimeQuery(animeUrl)
+  const { data } = useAnimeQuery(animeUrl!)
 
   const type = data?.type ?? '?'
   const status = data!.status
@@ -31,7 +29,7 @@ export const AnimeContentCharacteristics = () => {
       return dayjs(data!.aired_on).locale('ru').format('D MMM YYYYг')
     }
   }, [data])
-  console.log(data)
+
   const infos = useMemo(() => {
     const infos: AnimeInfoBlockItem[] = []
 

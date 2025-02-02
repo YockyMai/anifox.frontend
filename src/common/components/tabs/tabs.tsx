@@ -1,5 +1,3 @@
-'use client'
-
 import { useHover } from '@anifox/hooks'
 import clsx from 'clsx'
 import { useRef, useState } from 'react'

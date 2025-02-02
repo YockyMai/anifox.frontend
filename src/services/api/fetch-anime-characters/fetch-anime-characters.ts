@@ -13,7 +13,7 @@ export const fetchAnimeCharacters = async (
   const response = await http.get<FetchAnimeCharactersResponse>(
     `anime/${animeUrl}/characters`,
     {
-      searchParams: {
+      params: {
         limit,
         page,
         ...(role && { role }),

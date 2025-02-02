@@ -1,5 +1,3 @@
-'use client'
-
 import { useDebounce } from '@anifox/hooks'
 import { IconSearch, IconX } from '@tabler/icons-react'
 import { useAtom } from 'jotai'

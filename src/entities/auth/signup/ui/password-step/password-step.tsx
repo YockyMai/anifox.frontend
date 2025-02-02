@@ -1,5 +1,3 @@
-'use client'
-
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useSetAtom } from 'jotai'
 import { useForm } from 'react-hook-form'

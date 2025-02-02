@@ -1,5 +1,3 @@
-'use client'
-
 import { useElementSize } from '@anifox/hooks'
 import { useAtom } from 'jotai'
 import { useCallback, useRef } from 'react'

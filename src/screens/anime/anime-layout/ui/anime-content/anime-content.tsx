@@ -1,8 +1,6 @@
-'use client'
+import { useParams } from 'react-router-dom'
 
-import Image from 'next/image'
-import { useParams } from 'next/navigation'
-
+import { Image } from '@/common/components'
 import { Badge } from '@/common/components'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { useAnimeQuery } from '@/services/queries'
@@ -19,7 +17,9 @@ import {
 export const AnimeContent = () => {
   const { animeUrl } = useParams<AnimePageParams>()!
 
-  const { data } = useAnimeQuery(animeUrl)
+  const { data } = useAnimeQuery(animeUrl!)
+
+  if (!data) return null
 
   return (
     <div className='anime-content'>
@@ -36,7 +36,7 @@ export const AnimeContent = () => {
           />
 
           <Badge className={'anime-content__poster__badge'}>
-            {data!.minimal_age ? `${data!.minimal_age}+` : data!.rating_mpa}
+            {data?.minimal_age ? `${data!.minimal_age}+` : data?.rating_mpa}
           </Badge>
 
           <WatchAnimeButton />

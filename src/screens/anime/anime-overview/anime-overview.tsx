@@ -1,6 +1,4 @@
-'use client'
-
-import { useParams } from 'next/navigation'
+import { useParams } from 'react-router-dom'
 
 import { MarqueeText, ScreenSection } from '@/common/components'
 import { KodikPlayer } from '@/entities/players/kodik-player'
@@ -19,12 +17,13 @@ import { AnimeVideos } from './anime-videos'
 export const AnimeOverviewScreen = () => {
   const { animeUrl } = useParams<AnimePageParams>()
 
-  const { data } = useAnimeQuery(animeUrl)
+  const { data } = useAnimeQuery(animeUrl!)
 
-  const { data: videos = [], isLoading: isVideosLoading } =
-    useAnimeVideosQuery(animeUrl)
+  const { data: videos = [], isLoading: isVideosLoading } = useAnimeVideosQuery(
+    animeUrl!
+  )
 
-  const { data: related = [] } = useAnimeRelatedQuery(animeUrl)
+  const { data: related = [] } = useAnimeRelatedQuery(animeUrl!)
 
   return (
     <div className='anime-overview'>
@@ -51,10 +50,10 @@ export const AnimeOverviewScreen = () => {
       <div id='player' className='anime-overview__player'>
         <MarqueeText>
           <p className='anime-overview__player__title'>
-            Смотреть аниме &quot;{data!.title}&quot;
+            Смотреть аниме &quot;{data?.title}&quot;
           </p>
         </MarqueeText>
-        <KodikPlayer animeUrl={animeUrl} />
+        <KodikPlayer animeUrl={animeUrl!} />
       </div>
     </div>
   )

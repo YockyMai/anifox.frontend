@@ -1,5 +1,3 @@
-'use client'
-
 import NProgress from 'nprogress'
 import { useEffect } from 'react'
 

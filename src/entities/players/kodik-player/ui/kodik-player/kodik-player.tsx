@@ -1,5 +1,3 @@
-'use client'
-
 import clsx from 'clsx'
 import { Provider, useAtomValue } from 'jotai'
 import { memo, useRef } from 'react'

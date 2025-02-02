@@ -1,7 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import { Button } from '@/common/components'
-import { Link } from '@/i18n/routing'
 
 import { ROUTES } from '../pages.routes'
 import { POLICY_CONTENT } from './right-holders.const'
@@ -14,7 +14,7 @@ export const RightHolders = () => {
       </div>
       <div className='right-holders__box'>
         <h3>
-          Деятельность сайта <Link href={ROUTES.HOME}>anifox.club</Link>{' '}
+          Деятельность сайта <Link to={ROUTES.HOME}>anifox.club</Link>{' '}
           осуществляется в соответствии с законодательством Российской Федерации
           в области защиты информации и авторских прав на контент.
         </h3>
@@ -33,7 +33,7 @@ export const RightHolders = () => {
           нарушает ваши авторские права, или же дискредитирует Вашу компанию,
           предоставляя неверную или искаженную информацию, пожалуйста свяжитесь
           с нами по почте{' '}
-          <Link target='_blank' href='mailto: abuse@anifox.club'>
+          <Link target='_blank' to='mailto: abuse@anifox.club'>
             abuse@anifox.club{' '}
           </Link>
           для решения этого вопроса.
@@ -66,11 +66,11 @@ export const RightHolders = () => {
         <div className='right-holders__links'>
           <Link
             target='_blank'
-            href='https://developers.google.com/youtube/terms/api-services-terms-of-service-ru'
+            to='https://developers.google.com/youtube/terms/api-services-terms-of-service-ru'
           >
             <Button>YouTube</Button>
           </Link>
-          <Link target='_blank' href='https://rutube.ru/info/agreement/'>
+          <Link target='_blank' to='https://rutube.ru/info/agreement/'>
             <Button>RuTube</Button>
           </Link>
         </div>

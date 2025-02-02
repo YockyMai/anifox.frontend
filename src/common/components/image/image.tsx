@@ -1,46 +1,47 @@
-'use client'
-
+import { IconPhotoOff } from '@tabler/icons-react'
 import { clsx } from 'clsx'
-import NextImage from 'next/image'
-import { ForwardedRef, forwardRef } from 'react'
+import { ForwardedRef, forwardRef, useContext, useState } from 'react'
 
-import { BLUR_DATA_URL } from './image.const'
 import './image.css'
 import { ImageProps } from './image.interface'
 
 const Image = (
-  {
-    alt,
-    width,
-    height,
-    className,
-    fit = 'cover',
-    src,
-    quality,
-    priority,
-    ...other
-  }: ImageProps,
-  ref: ForwardedRef<HTMLImageElement>
+  { fit, alt, width, height, className, ...other }: ImageProps,
+  ref: ForwardedRef<HTMLDivElement>
 ) => {
-  const sizeAttached =
-    typeof width !== 'undefined' && typeof height !== 'undefined'
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [isError, setIsError] = useState(false)
+  const onLoad = () => {
+    setIsLoaded(true)
+  }
+  const onError = () => {
+    setIsError(true)
+  }
 
   return (
-    <NextImage
-      priority={priority}
-      blurDataURL={BLUR_DATA_URL}
-      placeholder='blur'
-      style={{ objectFit: fit }}
-      quality={quality}
-      fill={!sizeAttached}
-      width={sizeAttached ? width : undefined}
-      height={sizeAttached ? height : undefined}
-      ref={ref}
-      src={src ?? ''}
-      alt={alt ?? 'Отсутствует изображение'}
+    <div
+      style={{ width, height }}
       className={clsx('image', className)}
-      {...other}
-    />
+      ref={ref}
+    >
+      <img
+        style={{ objectFit: fit }}
+        {...other}
+        onLoad={onLoad}
+        onError={onError}
+        alt={alt}
+        className={clsx('image__view', isLoaded && 'image_loaded')}
+      />
+      {!isLoaded && !isError && (
+        <span className={clsx('image__status', 'image__loader')} />
+      )}
+      {!isLoaded && isError && (
+        <div className='image__status image__error image_loaded'>
+          <IconPhotoOff />
+          <p>{'Изображение отсутсвует'}</p>
+        </div>
+      )}
+    </div>
   )
 }
 

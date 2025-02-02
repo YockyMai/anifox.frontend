@@ -1,5 +1,3 @@
-'use client'
-
 import { IconSearch } from '@tabler/icons-react'
 import { useAtom } from 'jotai'
 import { useState } from 'react'

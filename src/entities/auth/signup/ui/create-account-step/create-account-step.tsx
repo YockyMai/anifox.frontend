@@ -1,5 +1,3 @@
-'use client'
-
 import { useSetAtom } from 'jotai'
 
 import { Loader } from '@/common/components'

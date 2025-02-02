@@ -1,5 +1,3 @@
-'use client'
-
 import './anime-card-skeleton.css'
 
 export const AnimeCardSkeleton = () => {

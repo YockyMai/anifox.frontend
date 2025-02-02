@@ -4,9 +4,9 @@ import {
   IconBrandVk,
   IconBrandWindows
 } from '@tabler/icons-react'
+import { Link } from 'react-router-dom'
 
 import { AnifoxLogo, Button } from '@/common/components'
-import { Link } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 
 import './footer.css'
@@ -17,19 +17,16 @@ export const Footer = () => {
       <div className='footer__container'>
         <div className='footer__left'>
           <div>
-            <Link href={ROUTES.HOME}>
+            <Link to={ROUTES.HOME}>
               <AnifoxLogo withoutText />
             </Link>
-            <Link href={ROUTES.HOME}>
+            <Link to={ROUTES.HOME}>
               <AnifoxLogo withoutImage />
             </Link>
           </div>
 
           <div>
-            <Link
-              className='footer__category__link'
-              href={ROUTES.RIGHT_HOLDERS}
-            >
+            <Link className='footer__category__link' to={ROUTES.RIGHT_HOLDERS}>
               Для правообладателей
             </Link>
             <p>© anifox.club 2023 - current time</p>
@@ -39,7 +36,7 @@ export const Footer = () => {
           <div className='footer__category'>
             <p className='footer__category__title'>Соцсети</p>
             <div className='footer__category__content'>
-              <Link target='_blank' href='https://t.me/anifoxclub'>
+              <Link target='_blank' to='https://t.me/anifoxclub'>
                 <Button
                   fullWidth
                   size='sm'
@@ -51,7 +48,7 @@ export const Footer = () => {
                   Телеграм
                 </Button>
               </Link>
-              <Link target='_blank' href='https://vk.com/anifox.club'>
+              <Link target='_blank' to='https://vk.com/anifox.club'>
                 <Button
                   fullWidth
                   size='sm'
@@ -69,7 +66,7 @@ export const Footer = () => {
           <div className='footer__category'>
             <p className='footer__category__title'>Приложения</p>
             <div className='footer__category__content'>
-              <Link href={ROUTES.APPS.ANDROID}>
+              <Link to={ROUTES.APPS.ANDROID}>
                 <Button
                   fullWidth
                   size='sm'
@@ -81,7 +78,7 @@ export const Footer = () => {
                   Android
                 </Button>
               </Link>
-              <Link href='#'>
+              <Link to='#'>
                 <Button
                   fullWidth
                   size='sm'

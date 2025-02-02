@@ -1,10 +1,8 @@
-'use client'
-
 import { useAtomValue } from 'jotai'
 import Confetti from 'react-confetti'
+import { useNavigate } from 'react-router-dom'
 
 import { $userAtoms } from '@/entities/user/atoms'
-import { useRouter } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { useResetSignupForm } from '../../hooks'
@@ -12,7 +10,7 @@ import { StepContainer } from '../step-container'
 
 export const SuccessStep = () => {
   const resetForm = useResetSignupForm()
-  const router = useRouter()
+  const navigate = useNavigate()
 
   const user = useAtomValue($userAtoms.user)
 
@@ -23,7 +21,7 @@ export const SuccessStep = () => {
         onClick: () => {
           if (user) {
             // router.replace(ROUTES.PROFILE.ROOT.replace('login', user.login))
-            router.replace(ROUTES.HOME)
+            navigate(ROUTES.HOME)
             resetForm()
           }
         }

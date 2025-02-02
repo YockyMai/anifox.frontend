@@ -1,6 +1,4 @@
-'use client'
-
-import { useParams } from 'next/navigation'
+import { useParams } from 'react-router-dom'
 
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { useAnimeEpisodesQuery } from '@/services/queries'
@@ -13,7 +11,11 @@ import './episodes.css'
 export const Episodes = () => {
   const { animeUrl } = useParams<AnimePageParams>()
 
-  const { data } = useAnimeEpisodesQuery({ animeUrl, page: 0, limit: 10000 })
+  const { data } = useAnimeEpisodesQuery({
+    animeUrl: animeUrl!,
+    page: 0,
+    limit: 10000
+  })
 
   const episodes = useFilteredEpisodes(data)
 

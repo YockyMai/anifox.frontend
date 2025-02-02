@@ -1,5 +1,3 @@
-'use client'
-
 import { useHover } from '@anifox/hooks'
 import { IconSearch } from '@tabler/icons-react'
 import clsx from 'clsx'

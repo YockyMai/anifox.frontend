@@ -1,5 +1,3 @@
-'use client'
-
 import { useResetSignupForm } from '../../hooks'
 import { StepContainer } from '../step-container'
 

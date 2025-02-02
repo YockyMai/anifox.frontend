@@ -1,7 +1,5 @@
-'use client'
-
-import { useParams } from 'next/navigation'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 import { Spoiler, UnstyledButton } from '@/common/components'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
@@ -42,7 +40,7 @@ export const AnimeDescription = () => {
     }
   }, [containerHeight])
 
-  const { data } = useAnimeQuery(animeUrl)
+  const { data } = useAnimeQuery(animeUrl!)
 
   if (!data?.description) return null
 

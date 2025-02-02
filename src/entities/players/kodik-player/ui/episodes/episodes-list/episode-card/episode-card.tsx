@@ -1,5 +1,6 @@
 import { clsx } from 'clsx'
-import Image from 'next/image'
+
+import { Image } from '@/common/components'
 
 import './episode-card.css'
 import { EpisodeCardProps } from './episode-card.interface'

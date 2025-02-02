@@ -1,5 +1,4 @@
-import Badge from '@/common/components/badge/badge'
-import { Link } from '@/i18n/routing'
+import { Link } from 'react-router-dom'
 
 import { AnimeCard } from '../anime-card'
 import './anime-category-list.css'
@@ -19,7 +18,7 @@ export const AnimeCategoryList = ({
           <p>{category}</p>
         </div>
 
-        {categoryLink && <Link href={categoryLink}>Показать все</Link>}
+        {categoryLink && <Link to={categoryLink}>Показать все</Link>}
       </div>
       <div className='anime-category-list__content'>
         {items.map((anime) => (

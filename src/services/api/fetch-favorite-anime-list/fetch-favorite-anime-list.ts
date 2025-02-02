@@ -13,7 +13,7 @@ export const fetchFavoriteAnimeList = async ({
   const response = await http.get<FetchFavoriteAnimeListResponse>(
     `/users/anime/favorite/${status}`,
     {
-      searchParams: {
+      params: {
         limit,
         page
       }

@@ -1,9 +1,7 @@
-'use client'
-
 import { useAtomCallback } from 'jotai/utils'
 import { useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-import { useRouter } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog'
 
@@ -11,7 +9,7 @@ import { AnimeCatalogPageSearchParams } from '../../../screens/anime-catalog/ani
 import { createAnimeCatalogSearchParams } from '../../../screens/anime-catalog/lib'
 
 export const useChangeSearchParams = () => {
-  const router = useRouter()
+  const navigate = useNavigate()
 
   const getSearchParams = useAtomCallback(
     useCallback((get) => {
@@ -58,12 +56,9 @@ export const useChangeSearchParams = () => {
         )
         .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {})
 
-      router.replace({
-        pathname: ROUTES.CATALOG.ROOT,
-        query: filteredSearchParams
-      })
+      navigate(ROUTES.CATALOG.ROOT, { state: filteredSearchParams })
     },
-    [getSearchParams, router]
+    [getSearchParams, navigate]
   )
 
   return changeSearchParams

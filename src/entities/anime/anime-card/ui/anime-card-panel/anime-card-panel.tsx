@@ -1,5 +1,3 @@
-'use client'
-
 import { UnstyledButton, Image, Badge, MarqueeText } from '@/common/components'
 
 import { getAnimeAccentColorStyles } from '../../helpers'

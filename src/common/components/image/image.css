@@ -1,3 +1,23 @@
 .image {
-  @apply rounded;
+  @apply relative overflow-hidden rounded;
+
+  &__view {
+    @apply absolute left-0 top-0 h-full w-full object-cover opacity-0 transition-opacity duration-300;
+  }
+
+  &_loaded {
+    @apply opacity-100;
+  }
+
+  &__error {
+    @apply absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center transition-opacity;
+  }
+
+  &__loader {
+    @apply animate-pulse bg-slate-200 dark:bg-slate-800;
+  }
+
+  &__status {
+    @apply absolute left-0 top-0 h-full w-full rounded px-2;
+  }
 }

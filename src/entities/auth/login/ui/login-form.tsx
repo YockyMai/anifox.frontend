@@ -1,12 +1,10 @@
-'use client'
-
 import { yupResolver } from '@hookform/resolvers/yup'
 import { IconLogin } from '@tabler/icons-react'
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 import { Button, Input, UnstyledButton } from '@/common/components'
 import { UISizes } from '@/common/types/ui-sizes'
-import { Link } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { useLogin } from '../hooks'
@@ -73,7 +71,7 @@ export const LoginForm = ({
             Создать аккаунт
           </UnstyledButton>
         ) : (
-          <Link className='text-orange-300' href={ROUTES.SIGN_UP}>
+          <Link className='text-orange-300' to={ROUTES.SIGN_UP}>
             Создать аккаунт
           </Link>
         )}

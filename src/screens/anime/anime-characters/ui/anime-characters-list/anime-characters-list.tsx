@@ -1,9 +1,7 @@
-'use client'
-
 import { IconMoodSad } from '@tabler/icons-react'
 import { useAtomValue } from 'jotai'
-import { useParams } from 'next/navigation'
 import React, { Fragment } from 'react'
+import { useParams } from 'react-router-dom'
 
 import { InfinityLoadingContainer } from '@/common/components'
 import { AnimeCharacterCard } from '@/entities/anime-characters'
@@ -15,7 +13,7 @@ import { ANIME_CHARACTERS_LOADER } from './anime-characters-list.const'
 import './anime-characters-list.css'
 
 export const AnimeCharactersList = () => {
-  const { animeUrl } = useParams<AnimePageParams>()
+  const params = useParams<AnimePageParams>()
 
   const search = useAtomValue(
     $animeCharactersFilterAtoms.search.debouncedValueAtom
@@ -25,7 +23,7 @@ export const AnimeCharactersList = () => {
 
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useAnimeCharactersQuery({
-      animeUrl,
+      animeUrl: params.animeUrl!,
       search,
       role
     })

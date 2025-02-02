@@ -1,7 +1,5 @@
-'use client'
-
 import { useHydrateAtoms } from 'jotai/utils'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'react-router-dom'
 
 import {
   ANIME_SORT_DIRECTION,
@@ -16,7 +14,7 @@ import {
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog'
 
 export const useSyncAnimeCatalogSearchParams = () => {
-  const searchParams = useSearchParams()
+  const [searchParams] = useSearchParams()
 
   const status = searchParams.get('status') as AnimeStatuses | null
   const search = searchParams.get('search') ?? ''

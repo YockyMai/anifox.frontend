@@ -1,5 +1,3 @@
-'use client'
-
 import { useElementSize } from '@anifox/hooks'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'

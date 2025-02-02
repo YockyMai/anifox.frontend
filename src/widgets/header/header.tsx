@@ -1,14 +1,12 @@
-'use client'
-
 import { useHover } from '@anifox/hooks'
 import { IconMenu2 } from '@tabler/icons-react'
 import { clsx } from 'clsx'
 import { useAtom, useAtomValue, useSetAtom } from 'jotai'
+import { Link } from 'react-router-dom'
 
 import { AnifoxLogo, UnstyledButton } from '@/common/components'
 import { UIVariants } from '@/common/types/ui-variants'
 import { SiteThemeToggler } from '@/entities/site-theme'
-import { Link } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 
 import './header.css'
@@ -41,7 +39,7 @@ export const Header = () => {
       )}
     >
       <div className='site-header__section'>
-        <Link href={ROUTES.HOME}>
+        <Link to={ROUTES.HOME}>
           <AnifoxLogo />
         </Link>
 

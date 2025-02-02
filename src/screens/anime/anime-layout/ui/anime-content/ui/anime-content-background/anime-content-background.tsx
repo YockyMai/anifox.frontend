@@ -1,8 +1,6 @@
-'use client'
-
-import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
+import { useParams } from 'react-router-dom'
 
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { useAnimeQuery, useAnimeScreenshotsQuery } from '@/services/queries'
@@ -18,8 +16,8 @@ export const AnimeContentBackground = () => {
 
   const { animeUrl } = useParams<AnimePageParams>()!
 
-  const { data: animeData } = useAnimeQuery(animeUrl)
-  const { data: imagesData } = useAnimeScreenshotsQuery(animeUrl)
+  const { data: animeData } = useAnimeQuery(animeUrl!)
+  const { data: imagesData } = useAnimeScreenshotsQuery(animeUrl!)
 
   const [imageSrc, setImageSrc] = useState<null | string>(null)
 

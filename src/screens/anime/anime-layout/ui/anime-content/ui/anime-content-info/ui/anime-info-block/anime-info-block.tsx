@@ -1,4 +1,4 @@
-import { Link } from '@/i18n/routing'
+import { Link } from 'react-router-dom'
 
 import './anime-info-block.css'
 import { AnimeInfoBlockProps } from './anime-info-block.interface'
@@ -12,7 +12,7 @@ export const AnimeInfoBlock = ({ infos, title }: AnimeInfoBlockProps) => {
         {infos.map(({ element, href, key }, index) =>
           href ? (
             <Link
-              href={href}
+              to={href}
               key={key ?? index}
               className='anime-info-block__item'
             >

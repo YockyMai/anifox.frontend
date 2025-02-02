@@ -1,5 +1,3 @@
-'use client'
-
 import { memo } from 'react'
 
 import { AnimeCardUpcoming } from '@/entities/anime/anime-card/ui'

@@ -1,5 +1,3 @@
-'use client'
-
 import useEmblaCarousel from 'embla-carousel-react'
 import { CSSProperties, memo, useEffect } from 'react'
 

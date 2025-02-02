@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
-import { usePathname } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 
 export const useHeaderLinks = () => {
-  const pathname = usePathname()
+  const { pathname } = useLocation()
 
   const links = useMemo(() => {
     const links = [

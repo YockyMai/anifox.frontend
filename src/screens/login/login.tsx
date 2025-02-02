@@ -1,16 +1,15 @@
-'use client'
+import { useNavigate } from 'react-router-dom'
 
 import { LoginForm } from '@/entities/auth/login/ui'
-import { useRouter } from '@/i18n/routing'
 
 import { ROUTES } from '../pages.routes'
 import './login.css'
 
 export const LoginScreen = () => {
-  const router = useRouter()
+  const navigate = useNavigate()
 
   const onLoginSuccess = () => {
-    router.replace(ROUTES.HOME)
+    navigate(ROUTES.HOME)
   }
 
   return (

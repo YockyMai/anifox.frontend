@@ -1,5 +1,3 @@
-'use client'
-
 import { IconChartArrows, IconStars, IconTrendingUp } from '@tabler/icons-react'
 
 import { AnimeCategoryList } from '@/entities/anime/anime-card'

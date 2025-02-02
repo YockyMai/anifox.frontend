@@ -1,7 +1,5 @@
-'use client'
-
-import { useParams } from 'next/navigation'
 import { ReactNode } from 'react'
+import { useParams } from 'react-router-dom'
 
 import { Carousel, Fancybox } from '@/common/components'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
@@ -18,7 +16,7 @@ export type NoSSRProps = {
 
 export const AnimeScreenshots = () => {
   const { animeUrl } = useParams<AnimePageParams>()
-  const { data } = useAnimeScreenshotsQuery(animeUrl)
+  const { data } = useAnimeScreenshotsQuery(animeUrl!)
 
   if (!data) return null
 

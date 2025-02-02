@@ -1,5 +1,3 @@
-'use client'
-
 import { useAtomCallback } from 'jotai/utils'
 import { useCallback, useEffect } from 'react'
 
