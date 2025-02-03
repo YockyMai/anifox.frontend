@@ -1,0 +1,47 @@
+.welcome {
+  @apply container mx-auto;
+
+  @apply grid grid-cols-2 items-center gap-x-24;
+  @apply max-lg:grid-cols-1 max-lg:gap-y-24;
+
+  &__logo {
+    @apply flex items-baseline gap-x-1.5;
+
+    &__main {
+      @apply text-xl font-extrabold text-red-400 dark:text-red-300;
+    }
+
+    &__sub {
+      @apply text-lg font-bold text-orange-300 dark:text-orange-200;
+    }
+  }
+
+  &__title {
+    @apply mt-6 text-4xl font-extrabold text-slate-700 dark:text-white;
+  }
+
+  &__description {
+    @apply mb-5 mt-8 text-lg;
+  }
+
+  &__features {
+    @apply grid grid-cols-2 grid-rows-2 gap-5;
+    @apply max-sm:grid-cols-1;
+  }
+
+  &__feature {
+    @apply transition-transform hover:scale-105;
+    @apply rounded-xl bg-white p-8 dark:bg-slate-800;
+
+    &__icon {
+      @apply w-fit rounded-full bg-orange-300/10 p-5;
+      svg {
+        @apply stroke-orange-300 dark:stroke-orange-300;
+      }
+    }
+
+    &__title {
+      @apply py-5 text-xl font-bold dark:text-white;
+    }
+  }
+}

@@ -1,1 +1,1 @@
-export { AnimeCatalogLanding } from './anime-catalog-landing'
+export * from './anime-catalog-landing'

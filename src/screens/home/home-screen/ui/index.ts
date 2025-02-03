@@ -1,1 +1,2 @@
-export { HomeCarousel } from './home-carousel'
+export * from './home-carousel'
+export * from './welcome'

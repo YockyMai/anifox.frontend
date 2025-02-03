@@ -58,7 +58,7 @@ export const AnimeContent = () => {
           </div>
 
           <AnimeContentInfo />
-          {isSuccess && <AnimeDescription />}
+          <AnimeDescription />
         </div>
       </div>
     </div>
