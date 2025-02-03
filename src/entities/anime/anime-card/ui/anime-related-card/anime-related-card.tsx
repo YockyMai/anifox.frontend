@@ -1,6 +1,6 @@
 import { IconStar } from '@tabler/icons-react'
 import clsx from 'clsx'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 import { Image, MarqueeText } from '@/common/components'
 import { Badge } from '@/common/components'

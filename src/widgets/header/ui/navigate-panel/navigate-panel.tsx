@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { useAtomValue } from 'jotai'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 import { Tabs } from '@/common/components'
 import { useHeaderLinks } from '@/widgets/header/hooks/use-header-links'

@@ -1,7 +1,11 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router'
 
-import { AnimeCatalogScreen } from './anime-catalog'
+import {
+  AnimeCatalogScreen,
+  AnimePopularOngoingScreen,
+  AnimePopularScreen
+} from './anime-catalog'
 import { AnimeCharactersScreen } from './anime/anime-characters'
 import { AnimeScreenLayout } from './anime/anime-layout'
 import { AnimeOverviewScreen } from './anime/anime-overview'
@@ -18,6 +22,14 @@ export const Screens = () => {
         <Route index element={<HomeScreen />} />
         <Route path={ROUTES.CATALOG.ROOT}>
           <Route index element={<AnimeCatalogScreen />} />
+          <Route
+            path={ROUTES.CATALOG.POPULAR}
+            element={<AnimePopularScreen />}
+          />
+          <Route
+            path={ROUTES.CATALOG.POPULAR_ONGOING}
+            element={<AnimePopularOngoingScreen />}
+          />
           <Route
             path={ROUTES.CATALOG.ANIME.ROOT}
             element={<AnimeScreenLayout />}

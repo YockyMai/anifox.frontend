@@ -1,5 +1,5 @@
 import { ReactNode, useMemo } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 
 import { Carousel, Fancybox } from '@/common/components'
 import { AnimePageParams } from '@/screens/anime/anime.interface'

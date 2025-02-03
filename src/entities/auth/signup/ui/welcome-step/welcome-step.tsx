@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 import UnstyledButton from '@/common/components/unstyled-button/unstyled-button'
 import { ROUTES } from '@/screens/pages.routes'

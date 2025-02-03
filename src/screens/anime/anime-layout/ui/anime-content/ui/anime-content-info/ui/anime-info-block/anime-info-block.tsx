@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 import './anime-info-block.css'
 import { AnimeInfoBlockProps } from './anime-info-block.interface'

@@ -1,5 +1,5 @@
 import { IconPlayerPlayFilled } from '@tabler/icons-react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 import { Button } from '@/common/components'
 

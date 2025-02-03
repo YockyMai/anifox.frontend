@@ -1,6 +1,6 @@
 import { IconArrowRight } from '@tabler/icons-react'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 import { Badge, Image, MarqueeText } from '@/common/components'
 import { AnimeFavoriteButton } from '@/entities/anime/anime-favorite'

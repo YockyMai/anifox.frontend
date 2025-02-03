@@ -1,6 +1,6 @@
 import { IconUserFilled } from '@tabler/icons-react'
 import { useAtomValue, useSetAtom } from 'jotai'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 
 import { Button } from '@/common/components'
 import { UIColors } from '@/common/types/ui-colors'

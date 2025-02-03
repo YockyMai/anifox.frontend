@@ -9,7 +9,7 @@ export default defineConfig({
     watch: {
       usePolling: true
     },
-    VITE_HOST: true,
+    host: true,
     strictPort: true,
     port: 8000,
     allowedHosts: ['anifox.org']

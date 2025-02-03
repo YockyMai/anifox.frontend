@@ -1,6 +1,6 @@
 import { useAtomCallback } from 'jotai/utils'
 import { useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 
 import { ROUTES } from '@/screens/pages.routes'
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog'

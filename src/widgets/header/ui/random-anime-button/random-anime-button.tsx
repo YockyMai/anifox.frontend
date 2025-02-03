@@ -1,7 +1,7 @@
 import { useHover } from '@anifox/hooks'
 import { IconDice3Filled } from '@tabler/icons-react'
 import { useCallback, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 
 import { Button } from '@/common/components'
 import { UIColors } from '@/common/types/ui-colors'

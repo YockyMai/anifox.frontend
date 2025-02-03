@@ -2,7 +2,7 @@ import { useHover } from '@anifox/hooks'
 import { IconMenu2 } from '@tabler/icons-react'
 import { clsx } from 'clsx'
 import { useAtom, useAtomValue, useSetAtom } from 'jotai'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 import { AnifoxLogo, UnstyledButton } from '@/common/components'
 import { UIVariants } from '@/common/types/ui-variants'

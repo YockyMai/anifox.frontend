@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { IconLogin } from '@tabler/icons-react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 import { Button, Input, UnstyledButton } from '@/common/components'
 import { UISizes } from '@/common/types/ui-sizes'

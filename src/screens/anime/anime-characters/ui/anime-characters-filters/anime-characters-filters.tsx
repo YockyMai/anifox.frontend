@@ -2,7 +2,7 @@ import { IconSearch } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { useAtom } from 'jotai'
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 
 import { HoverCard, Input } from '@/common/components'
 import Badge from '@/common/components/badge/badge'

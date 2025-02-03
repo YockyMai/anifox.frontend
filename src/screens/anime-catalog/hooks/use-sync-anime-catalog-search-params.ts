@@ -1,5 +1,5 @@
 import { useHydrateAtoms } from 'jotai/utils'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router'
 
 import {
   ANIME_SORT_DIRECTION,

@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router'
 
 import { NavigationProgress, ScreenLoader } from '@/common/components'
 import { Footer } from '@/widgets/footer'

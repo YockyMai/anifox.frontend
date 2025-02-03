@@ -30,10 +30,8 @@
 
   &__title-loader {
     @apply mt-1 h-10 max-sm:h-8;
-    &:first-child {
-      @apply mb-1 h-4 w-full animate-pulse rounded bg-slate-200 dark:bg-slate-800 max-sm:h-3;
-    }
-    &:last-child {
+
+    div {
       @apply h-4 w-[40%] animate-pulse rounded bg-slate-200 dark:bg-slate-800 max-sm:h-3;
     }
   }

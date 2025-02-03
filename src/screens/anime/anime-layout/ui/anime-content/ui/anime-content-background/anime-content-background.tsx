@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { useAnimeQuery, useAnimeScreenshotsQuery } from '@/services/queries'

@@ -1,7 +1,7 @@
 import { IconMoodSad } from '@tabler/icons-react'
 import { useAtomValue } from 'jotai'
 import React, { Fragment } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 
 import { InfinityLoadingContainer } from '@/common/components'
 import { AnimeCharacterCard } from '@/entities/anime-characters'

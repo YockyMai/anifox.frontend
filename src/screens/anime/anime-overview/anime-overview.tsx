@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 
 import { MarqueeText, ScreenSection } from '@/common/components'
 import { KodikPlayer } from '@/entities/players/kodik-player'
@@ -30,7 +30,6 @@ export const AnimeOverviewScreen = () => {
   const { data: related, isLoading: isLoadingRelated } = useAnimeRelatedQuery(
     animeUrl!
   )
-
   return (
     <div className='anime-overview'>
       <div className='container'>

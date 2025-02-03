@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router'
 
 import { WithAuthProvider } from './with-auth-provider'
 import { WithReactQueryProvider } from './with-react-query-provider'

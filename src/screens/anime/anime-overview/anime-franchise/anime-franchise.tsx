@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 
 import { Carousel } from '@/common/components'
 import { AnimeCard } from '@/entities/anime/anime-card'

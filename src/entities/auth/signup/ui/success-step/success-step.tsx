@@ -1,6 +1,6 @@
 import { useAtomValue } from 'jotai'
 import Confetti from 'react-confetti'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 
 import { $userAtoms } from '@/entities/user/atoms'
 import { ROUTES } from '@/screens/pages.routes'

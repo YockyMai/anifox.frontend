@@ -8,7 +8,6 @@ export const AnimeCardSkeleton = () => {
       </div>
       <div className='anime-card-skeleton__title-loader'>
         <div />
-        <div />
       </div>
     </div>
   )

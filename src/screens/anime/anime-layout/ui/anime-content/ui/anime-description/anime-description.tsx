@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 
 import { Spoiler, UnstyledButton } from '@/common/components'
 import { AnimePageParams } from '@/screens/anime/anime.interface'

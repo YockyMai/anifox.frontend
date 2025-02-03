@@ -4,7 +4,7 @@ import {
   IconBrandVk,
   IconBrandWindows
 } from '@tabler/icons-react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 import { AnifoxLogo, Button } from '@/common/components'
 import { ROUTES } from '@/screens/pages.routes'
