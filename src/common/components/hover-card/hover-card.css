@@ -11,7 +11,7 @@
   }
 
   &__arrow {
-    @apply fill-slate-50;
+    @apply fill-slate-50 dark:fill-slate-800;
   }
 }
 

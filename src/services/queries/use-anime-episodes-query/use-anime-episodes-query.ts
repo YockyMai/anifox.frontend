@@ -15,7 +15,6 @@ export const useAnimeEpisodesQuery = ({
       const { data } = await api.fetchAnimeEpisodes({ animeUrl, limit, sort })
 
       return data
-      // return testData
     },
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) =>

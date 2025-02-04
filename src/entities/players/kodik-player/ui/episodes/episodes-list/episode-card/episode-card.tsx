@@ -1,6 +1,8 @@
 import { clsx } from 'clsx'
 
-import { Image } from '@/common/components'
+import { Badge, HoverCard, Image } from '@/common/components'
+import { UIColors } from '@/common/types/ui-colors'
+import { UISizes } from '@/common/types/ui-sizes'
 
 import './episode-card.css'
 import { EpisodeCardProps } from './episode-card.interface'
@@ -21,6 +23,36 @@ export const EpisodeSelectionCard = ({
           height={84}
           alt={episode.title ?? ''}
         />
+        {(episode.filler || episode.recap) && (
+          <div className='episode-card__additional-info'>
+            <HoverCard
+              openDelay={500}
+              trigger={
+                <Badge className='' size={UISizes.SM} color={UIColors.RED}>
+                  Филлер
+                </Badge>
+              }
+            >
+              <p className='text-xs'>
+                Филлер — серия, не связанная с основным сюжетом
+              </p>
+            </HoverCard>
+
+            <HoverCard
+              openDelay={500}
+              trigger={
+                <Badge className='' size={UISizes.SM} color={UIColors.PURPLE}>
+                  Рекап
+                </Badge>
+              }
+            >
+              <p className='text-xs'>
+                Рекап — разновидность филлера, эпизод с воспоминаниями одного
+                или нескольких героев о пережитых событиях
+              </p>
+            </HoverCard>
+          </div>
+        )}
       </div>
 
       <div className='episode-card__content'>

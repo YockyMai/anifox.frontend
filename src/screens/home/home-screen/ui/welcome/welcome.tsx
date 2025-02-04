@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 import { Button } from '@/common/components'
+import { ROUTES } from '@/screens/pages.routes'
 
 import { FEATURES } from './welcome.const'
 import './welcome.css'
@@ -22,12 +24,16 @@ export const WelcomeBlock = () => {
           списки и делиться оценками с друзьями.
         </p>
         <div className='flex gap-x-3'>
-          <Button color='red' variant='gradient'>
-            Войти в аккаунт
-          </Button>
-          <Button color='orange' variant='gradient'>
-            Создать аккаунт
-          </Button>
+          <Link to={ROUTES.LOGIN}>
+            <Button color='red' variant='gradient'>
+              Войти в аккаунт
+            </Button>
+          </Link>
+          <Link to={ROUTES.SIGN_UP}>
+            <Button color='orange' variant='gradient'>
+              Создать аккаунт
+            </Button>
+          </Link>
         </div>
       </div>
       <div className='welcome__features'>
