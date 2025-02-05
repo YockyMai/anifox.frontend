@@ -9,6 +9,7 @@ import {
 import { AnimeCharactersScreen } from './anime/anime-characters'
 import { AnimeScreenLayout } from './anime/anime-layout'
 import { AnimeOverviewScreen } from './anime/anime-overview'
+import { CharacterScreen } from './character'
 import { HomeLayout, HomeScreen } from './home'
 import { LoginScreen } from './login'
 import { ROUTES } from './pages.routes'
@@ -41,6 +42,8 @@ export const Screens = () => {
             />
           </Route>
         </Route>
+        <Route path={ROUTES.CHARACTER.ROOT} element={<CharacterScreen />} />
+
         <Route path={ROUTES.RIGHT_HOLDERS} element={<RightHoldersScreen />} />
         <Route path={ROUTES.LOGIN} element={<LoginScreen />} />
         <Route path={ROUTES.SIGN_UP} element={<SignupScreen />} />

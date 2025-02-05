@@ -22,7 +22,7 @@ export const CharacterInfo = () => {
         <div className='character-info__header__content'>
           <div className='relative'>
             <div className='character-info__image'>
-              <Image src={data!.image} alt='character image' />
+              <Image src={data?.image} alt='character image' />
             </div>
           </div>
 
