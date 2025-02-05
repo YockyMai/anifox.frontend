@@ -5,7 +5,8 @@ FROM node:18.13.0-alpine
 WORKDIR /app
 
 COPY . .
-COPY .env .
+COPY .env.local .
+COPY .env.production .
 
 RUN npm install -g pnpm
 
