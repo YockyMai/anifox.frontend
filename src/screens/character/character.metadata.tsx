@@ -1,7 +1,7 @@
 import React from 'react'
-import { Helmet } from 'react-helmet-async'
 import { useParams } from 'react-router'
 
+import { Helmet } from '@/common/components'
 import { useCharacterQuery } from '@/services/queries'
 
 import { CharacterPageParams } from './character.interface'
@@ -9,7 +9,7 @@ import { CharacterPageParams } from './character.interface'
 export const CharacterMetadata = () => {
   const { id } = useParams<CharacterPageParams>()
 
-  const { data } = useCharacterQuery(id!)
+  const { data, isFetching } = useCharacterQuery(id!)
 
   const generateOtherNames = () => {
     const names = [data?.name_en, data?.name_kanji].filter(Boolean)
@@ -23,7 +23,7 @@ export const CharacterMetadata = () => {
   }
 
   return (
-    <Helmet>
+    <Helmet isLoading={isFetching}>
       <title>{metadata.title}</title>
       <meta name='description' content={metadata.description} />
       {metadata.image && <meta property='og:image' content={metadata.image} />}

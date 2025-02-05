@@ -1,5 +1,4 @@
-import React from 'react'
-import { Helmet } from 'react-helmet-async'
+import { Helmet } from '@/common/components'
 
 export const AnimeCatalogMetadata = () => {
   const host = import.meta.env.VITE_HOST

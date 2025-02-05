@@ -1,6 +1,6 @@
-import { Helmet } from 'react-helmet-async'
 import { useParams } from 'react-router'
 
+import { Helmet } from '@/common/components'
 import { useAnimeQuery } from '@/services/queries'
 
 import { AnimePageParams } from '../anime.interface'
@@ -8,17 +8,13 @@ import { AnimePageParams } from '../anime.interface'
 export const AnimeLayoutMetadata = () => {
   const { animeUrl } = useParams<AnimePageParams>()
 
-  const { data, isSuccess } = useAnimeQuery(animeUrl!)
-
-  if (!isSuccess) {
-    return null
-  }
+  const { data, isFetching } = useAnimeQuery(animeUrl!)
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Movie',
-    image: data.image?.medium,
-    name: data.title,
+    image: data?.image?.medium,
+    name: data?.title,
     description: data?.description,
     genre: data?.genres
       ? data.genres.map(({ name }) => name).join(', ')
@@ -35,20 +31,20 @@ export const AnimeLayoutMetadata = () => {
       : {})
   }
 
-  const englishTitle = data.english?.filter((title) => title !== 'null')[0]
-  const year = data.year
+  const englishTitle = data?.english?.filter((title) => title !== 'null')[0]
+  const year = data?.year
   const otherTitleInfo = Boolean(englishTitle || year)
     ? `(${englishTitle ?? ''}${englishTitle && year ? ', ' : ''}${year ?? ''})`
     : ''
 
-  const pageTitle = `${data.title} — смотреть аниме ${otherTitleInfo}`.trim()
+  const pageTitle = `${data?.title} — смотреть аниме ${otherTitleInfo}`.trim()
 
   return (
-    <Helmet>
+    <Helmet isLoading={isFetching}>
       <title>{pageTitle}</title>
-      <meta name='description' content={data.description} />
+      <meta name='description' content={data?.description} />
       <meta property='og:type' content='video.movie' />
-      {data.image && <meta property='og:image' content={data.image.medium} />}
+      {data?.image && <meta property='og:image' content={data.image.medium} />}
       <script type='application/ld+json'>{JSON.stringify(jsonLd)}</script>
     </Helmet>
   )

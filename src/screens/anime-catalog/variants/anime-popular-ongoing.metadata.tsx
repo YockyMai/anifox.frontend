@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+import { Helmet } from '@/common/components'
 
 export const AnimePopularOngoingMetadata = () => {
   return (
