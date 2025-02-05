@@ -7,7 +7,7 @@ export const Helmet = (props: HelmetProps) => {
 
   if (isLoading) {
     return (
-      <ReactHelmet titleTemplate='%s' {...helmetLoaderProps}>
+      <ReactHelmet {...helmetLoaderProps}>
         <title>Загрузка...</title>
       </ReactHelmet>
     )
