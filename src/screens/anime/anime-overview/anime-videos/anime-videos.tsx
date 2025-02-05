@@ -13,7 +13,7 @@ export const AnimeVideos = () => {
 
   const { animeUrl } = useParams<AnimePageParams>()
 
-  const { data = [], isLoading } = useAnimeVideosQuery(animeUrl!)
+  const { data = [] } = useAnimeVideosQuery(animeUrl!)
 
   return (
     <div ref={containerRef} className='w-full'>
