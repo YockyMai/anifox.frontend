@@ -7,6 +7,7 @@ import {
   AnimeCatalogList
 } from '@/widgets/anime-catalog/ui'
 
+import { AnimeCatalogMetadata } from './anime-catalog.metadata'
 import { useSyncAnimeCatalogSearchParams } from './hooks'
 
 export const AnimeCatalogScreen = () => {
@@ -16,6 +17,8 @@ export const AnimeCatalogScreen = () => {
 
   return (
     <div className='mt-[100]'>
+      <AnimeCatalogMetadata />
+
       <AnimeCatalogFilter />
       {isFilterActive ? (
         <AnimeCatalogList />

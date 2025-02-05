@@ -5,6 +5,8 @@ import { NavigationProgress, ScreenLoader } from '@/common/components'
 import { Footer } from '@/widgets/footer'
 import { Header } from '@/widgets/header'
 
+import { HomeLayoutMetadata } from './home-layout.metadata'
+
 export const HomeLayout = () => {
   return (
     <>
@@ -20,6 +22,7 @@ export const HomeLayout = () => {
         </div>
         <Footer />
       </div>
+      <HomeLayoutMetadata />
     </>
   )
 }
