@@ -1,2 +1,2 @@
-export { useComingOutAnimeQuery } from './use-coming-out-anime-query'
-export { usePrefetchComingOutAnimeQuery } from './use-prefetch-coming-out-anime-query'
+export * from './use-coming-out-anime-query'
+export * from './prefetch-coming-out-anime-query'

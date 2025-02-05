@@ -1,11 +1,11 @@
-'use client'
-
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useAtom } from 'jotai'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Input } from '@/common/components'
+import { UIVariants } from '@/common/types/ui-variants'
+import { api } from '@/services/api'
 
 import { $signupAtoms } from '../../atoms'
 import { useStepsActions } from '../../hooks'
@@ -21,6 +21,7 @@ export const LoginStep = () => {
     register,
     handleSubmit,
     reset,
+    setError,
     formState: { errors }
   } = useForm({ resolver: yupResolver(loginSchema), defaultValues: { login } })
 
@@ -28,16 +29,24 @@ export const LoginStep = () => {
     reset({ login })
   }, [login, reset])
 
+  const handleLoginSubmit = handleSubmit(async (fields) => {
+    try {
+      await api.checkLogin(fields.login)
+
+      setLogin(fields.login)
+      incrementStep()
+    } catch {
+      setError('login', { message: 'Такой логин уже существует' })
+    }
+  })
+
   return (
     <StepContainer
       title='🔑 Введите ваш Логин'
       prevButton={{ label: 'Назад', onClick: decrementStep }}
       nextButton={{
         label: 'Далее',
-        onClick: handleSubmit((fields) => {
-          setLogin(fields.login)
-          incrementStep()
-        })
+        onClick: handleLoginSubmit
       }}
     >
       <Input
@@ -45,6 +54,7 @@ export const LoginStep = () => {
         error={errors.login?.message}
         label='Логин'
         placeholder='kaneki_ken'
+        variant={UIVariants.FILLED}
       />
       <p className='step-container__description'>
         Логин будет отображаться в ссылке вашего профиля, а также, его можно

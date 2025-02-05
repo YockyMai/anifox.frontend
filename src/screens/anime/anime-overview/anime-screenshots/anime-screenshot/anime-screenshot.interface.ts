@@ -1,4 +1,5 @@
 export type AnimeScreenshotProps = {
-  src: string
+  src?: string
   alt?: string
+  isLoading?: boolean
 }

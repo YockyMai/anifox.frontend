@@ -1,7 +1,5 @@
-'use client'
-
 import clsx from 'clsx'
-import { useParams } from 'next/navigation'
+import { useParams } from 'react-router'
 
 import { Image, Spoiler, TextWithBreaks } from '@/common/components'
 import { useCharacterQuery } from '@/services/queries'
@@ -12,7 +10,7 @@ import './character-info.css'
 export const CharacterInfo = () => {
   const { id } = useParams<CharacterPageParams>()
 
-  const { data } = useCharacterQuery(id)
+  const { data } = useCharacterQuery(id!)
 
   const otherTitles = [data?.name_en, data?.name_kanji]
     .filter(Boolean)
@@ -24,7 +22,7 @@ export const CharacterInfo = () => {
         <div className='character-info__header__content'>
           <div className='relative'>
             <div className='character-info__image'>
-              <Image src={data!.image} alt='character image' />
+              <Image src={data?.image} alt='character image' />
             </div>
           </div>
 

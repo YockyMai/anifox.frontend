@@ -1,5 +1,3 @@
-import { ANIME_SORT_DIRECTION } from '@/services/api'
-
 export const DEFAULT_ATOMS = {
   status: null,
   search: '',
@@ -11,6 +9,6 @@ export const DEFAULT_ATOMS = {
   years: [],
   translations: [],
   studio: null,
-  sort: ANIME_SORT_DIRECTION.DESC,
+  sort: null,
   order: null
 }

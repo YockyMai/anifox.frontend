@@ -1,1 +1,1 @@
-export { AnimeFranchise } from './anime-franchise'
+export * from './anime-franchise'

@@ -1,5 +1,4 @@
-import { AnimeEpisode } from '../fetch-anime-episodes'
-import { Anime } from '../fetch-anime-list'
+import { Anime, AnimeEpisode } from '../api.types'
 
 export type RecentlyWatchedEpisode = {
   anime: Anime

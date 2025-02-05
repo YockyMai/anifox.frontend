@@ -4,7 +4,11 @@
   @apply text-left;
 
   &__image-container {
-    @apply overflow-hidden;
+    @apply relative overflow-hidden;
+  }
+
+  &__additional-info {
+    @apply absolute left-0.5 top-0.5 flex items-center gap-x-0.5;
   }
 
   &__image {

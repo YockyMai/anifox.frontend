@@ -1,6 +1,5 @@
-'use client'
-
 import { useAtom } from 'jotai'
+import { useMemo } from 'react'
 
 import { Select } from '@/common/components'
 import { AnimeStatuses } from '@/services/api'
@@ -14,19 +13,22 @@ export const Status = () => {
 
   const [status, setStatus] = useAtom($animeCatalogFilterAtoms.status)
 
+  const value = useMemo(
+    () => STATUS_OPTIONS.find((option) => option.value === status),
+    [status]
+  )
+
   return (
-    <div>
-      <Select
-        value={status}
-        onValueChange={(option) => {
-          const newValue = option ? (option.value as AnimeStatuses) : null
-          setStatus(newValue)
-          changeSearchParams({ status: newValue })
-        }}
-        options={STATUS_OPTIONS}
-        label={'Статус'}
-        placeholder={'Любой'}
-      />
-    </div>
+    <Select
+      value={value}
+      onValueChange={(option) => {
+        const newValue = option ? (option.value as AnimeStatuses) : null
+        setStatus(newValue)
+        changeSearchParams({ status: newValue })
+      }}
+      options={STATUS_OPTIONS}
+      label={'Статус'}
+      placeholder={'Любой'}
+    />
   )
 }

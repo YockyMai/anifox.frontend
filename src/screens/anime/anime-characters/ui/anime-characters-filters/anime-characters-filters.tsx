@@ -1,10 +1,8 @@
-'use client'
-
 import { IconSearch } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { useAtom } from 'jotai'
-import { useParams } from 'next/navigation'
 import React, { useState } from 'react'
+import { useParams } from 'react-router'
 
 import { HoverCard, Input } from '@/common/components'
 import Badge from '@/common/components/badge/badge'
@@ -33,7 +31,7 @@ export const AnimeCharactersFilters = () => {
   const { animeUrl } = useParams<AnimePageParams>()
 
   const { data } = useAnimeCharactersQuery({
-    animeUrl,
+    animeUrl: animeUrl!,
     search
   })
 

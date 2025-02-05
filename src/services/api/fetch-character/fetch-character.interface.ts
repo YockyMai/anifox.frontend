@@ -1,4 +1,4 @@
-import { Anime } from '../fetch-anime-list'
+import { Anime } from '../api.types'
 
 export type FetchCharacterResponse = {
   id: string

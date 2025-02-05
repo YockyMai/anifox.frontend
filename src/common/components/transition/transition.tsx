@@ -1,5 +1,3 @@
-'use client'
-
 import { clsx } from 'clsx'
 import { CSSProperties, useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'

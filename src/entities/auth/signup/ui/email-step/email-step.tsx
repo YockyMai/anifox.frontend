@@ -1,11 +1,11 @@
-'use client'
-
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useAtom } from 'jotai'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Input } from '@/common/components'
+import { UIVariants } from '@/common/types/ui-variants'
+import { api } from '@/services/api'
 
 import { $signupAtoms } from '../../atoms'
 import { useStepsActions } from '../../hooks'
@@ -21,6 +21,7 @@ export const EmailStep = () => {
     register,
     handleSubmit,
     reset,
+    setError,
     formState: { errors }
   } = useForm({ resolver: yupResolver(emailSchema), defaultValues: { email } })
 
@@ -28,16 +29,24 @@ export const EmailStep = () => {
     reset({ email })
   }, [email, reset])
 
+  const handleSubmitEmail = handleSubmit(async (fields) => {
+    try {
+      await api.checkEmail(fields.email)
+
+      setEmail(fields.email)
+      incrementStep()
+    } catch {
+      setError('email', { message: 'Такой email уже существует' })
+    }
+  })
+
   return (
     <StepContainer
       title='💌 Введите ваш email'
       prevButton={{ label: 'Назад', onClick: decrementStep }}
       nextButton={{
         label: 'Далее',
-        onClick: handleSubmit((fields) => {
-          setEmail(fields.email)
-          incrementStep()
-        })
+        onClick: handleSubmitEmail
       }}
     >
       <Input
@@ -46,6 +55,7 @@ export const EmailStep = () => {
         autoFocus
         label='Email'
         placeholder='ghoul@gmail.com'
+        variant={UIVariants.FILLED}
       />
 
       <p className='step-container__description'>

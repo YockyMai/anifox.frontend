@@ -7,4 +7,5 @@ export type AnimeCategoryListProps = {
   categoryLink?: string
   items: Anime[]
   icon: ReactNode
+  isLoading: boolean
 }

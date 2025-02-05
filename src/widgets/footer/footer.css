@@ -19,7 +19,11 @@
     }
 
     &__content {
-      @apply flex flex-col gap-y-3;
+      @apply flex flex-col flex-wrap gap-y-3;
+    }
+
+    &__link {
+      @apply font-normal;
     }
   }
 }

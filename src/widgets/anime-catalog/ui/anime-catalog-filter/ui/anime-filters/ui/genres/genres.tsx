@@ -1,5 +1,3 @@
-'use client'
-
 import { useAtom } from 'jotai'
 
 import { MultiSelect } from '@/common/components'
@@ -13,7 +11,6 @@ export const Genres = () => {
 
   const { data, isLoading } = useAnimeGenresQuery()
   const [genres, setGenres] = useAtom($animeCatalogFilterAtoms.genres)
-
   const values = genres.map((id) => ({
     label: data?.find((genre) => genre.id === id)?.name ?? '',
     value: id

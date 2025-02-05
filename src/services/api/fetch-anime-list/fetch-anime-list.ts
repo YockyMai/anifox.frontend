@@ -1,5 +1,5 @@
 import { createArrayQueryParams } from '@/common/lib/query'
-import { publicHttp } from '@/services/http'
+import { http } from '@/services/http'
 
 import { Anime, FetchAnimeListParams } from './fetch-anime-list.interface'
 
@@ -33,14 +33,14 @@ export const fetchAnimeList = async ({
     ...(sort && { sort })
   }
 
-  const response = await publicHttp.get<Anime[]>(
+  const response = await http.get<Anime[]>(
     `anime${createArrayQueryParams([
       { paramName: 'genres', array: genres },
       { paramName: 'year', array: years },
       { paramName: 'translation', array: translations }
     ])}`,
     {
-      searchParams: params
+      params
     }
   )
 

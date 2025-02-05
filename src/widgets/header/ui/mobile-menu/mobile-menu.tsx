@@ -1,5 +1,3 @@
-'use client'
-
 import { useOutsideClick } from '@anifox/hooks'
 import clsx from 'clsx'
 import { motion } from 'framer-motion'

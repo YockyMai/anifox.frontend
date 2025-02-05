@@ -8,14 +8,12 @@ export const useResetSignupForm = () => {
   const setBirthday = useSetAtom($signupAtoms.birthday)
   const setEmail = useSetAtom($signupAtoms.email)
   const setLogin = useSetAtom($signupAtoms.login)
-  const setNickname = useSetAtom($signupAtoms.nickname)
 
   const resetForm = () => {
     setStep(STEPS.WELCOME)
     setBirthday(undefined)
     setEmail('')
     setLogin('')
-    setNickname('')
   }
 
   return resetForm

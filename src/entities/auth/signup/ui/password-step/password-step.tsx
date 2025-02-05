@@ -1,10 +1,9 @@
-'use client'
-
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useSetAtom } from 'jotai'
 import { useForm } from 'react-hook-form'
 
 import { Input } from '@/common/components'
+import { UIVariants } from '@/common/types/ui-variants'
 
 import { $signupAtoms } from '../../atoms'
 import { useStepsActions } from '../../hooks'
@@ -41,7 +40,7 @@ export const PasswordStep = () => {
         error={errors.password?.message}
         autoFocus
         label='Пароль'
-        variant='outline'
+        variant={UIVariants.FILLED}
         placeholder='********'
         type='password'
       />

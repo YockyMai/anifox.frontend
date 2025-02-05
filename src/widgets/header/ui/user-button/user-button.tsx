@@ -1,26 +1,24 @@
-'use client'
-
 import { IconUserFilled } from '@tabler/icons-react'
 import { useAtomValue, useSetAtom } from 'jotai'
+import { useNavigate } from 'react-router'
 
 import { Button } from '@/common/components'
 import { UIColors } from '@/common/types/ui-colors'
 import { UISizes } from '@/common/types/ui-sizes'
 import { $userAtoms } from '@/entities/user/atoms'
-import { useRouter } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { $headerAtoms } from '../../store'
 
 export const UserButton = () => {
-  const router = useRouter()
+  const navigate = useNavigate()
 
   const setIsMobileMenuOpen = useSetAtom($headerAtoms.isMobileMenuOpen)
   const user = useAtomValue($userAtoms.user)
 
   const handleClick = () => {
     setIsMobileMenuOpen(false)
-    router.push(ROUTES.LOGIN)
+    navigate(ROUTES.LOGIN)
   }
 
   return (

@@ -1,13 +1,18 @@
-import { ReactNode } from 'react'
+import { Suspense } from 'react'
+import { Outlet } from 'react-router'
+
+import { ScreenLoader } from '@/common/components'
 
 import { AnimeContent, AnimePageTabs } from './ui'
 
-export const AnimeScreenLayout = ({ children }: { children: ReactNode }) => {
+export const AnimeScreenLayout = () => {
   return (
     <>
       <AnimeContent />
       <AnimePageTabs />
-      {children}
+      <Suspense fallback={<ScreenLoader />}>
+        <Outlet />
+      </Suspense>
     </>
   )
 }

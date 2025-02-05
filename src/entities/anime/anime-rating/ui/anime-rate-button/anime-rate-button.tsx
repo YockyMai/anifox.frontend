@@ -1,5 +1,3 @@
-'use client'
-
 import { IconStarFilled } from '@tabler/icons-react'
 import { useMemo } from 'react'
 

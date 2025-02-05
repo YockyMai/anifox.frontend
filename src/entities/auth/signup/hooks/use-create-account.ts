@@ -1,4 +1,5 @@
 import cookies from 'cookie'
+import dayjs from 'dayjs'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { jwtDecode } from 'jwt-decode'
 import { useEffect } from 'react'
@@ -9,7 +10,7 @@ import { $userAtoms } from '@/entities/user/atoms'
 import { User } from '@/entities/user/atoms/user.interface'
 import { api } from '@/services/api'
 
-export const UseCreateAccount = (
+export const useCreateAccount = (
   onSuccess: () => void,
   onError: () => void
 ) => {
@@ -18,7 +19,6 @@ export const UseCreateAccount = (
   const birthday = useAtomValue($signupAtoms.birthday)
   const email = useAtomValue($signupAtoms.email)
   const login = useAtomValue($signupAtoms.login)
-  const nickname = useAtomValue($signupAtoms.nickname)
   const password = useAtomValue($signupAtoms.password)
 
   useEffect(() => {
@@ -27,8 +27,8 @@ export const UseCreateAccount = (
         await api.signup({
           email,
           login,
-          nickname,
-          password
+          password,
+          birthday: dayjs(birthday ?? new Date()).format('YYYY-MM-DD')
         })
 
         await api.login({

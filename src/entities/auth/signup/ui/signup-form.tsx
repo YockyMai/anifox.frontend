@@ -1,5 +1,3 @@
-'use client'
-
 import { AnimatePresence } from 'framer-motion'
 import { useAtomValue } from 'jotai'
 
@@ -13,7 +11,6 @@ import { CreateAccountStep } from './create-account-step'
 import { EmailStep } from './email-step'
 import { ErrorStep } from './error-step'
 import { LoginStep } from './login-step'
-import { NicknameStep } from './nickname-step'
 import { PasswordStep } from './password-step'
 import './signup-form.css'
 import { SignupFormProps } from './signup-form.interface'
@@ -39,7 +36,6 @@ export const SignupForm = ({
         {step === STEPS.WELCOME && <WelcomeStep onLoginClick={onLoginClick} />}
         {step === STEPS.EMAIL && <EmailStep />}
         {step === STEPS.LOGIN && <LoginStep />}
-        {step === STEPS.NICKNAME && <NicknameStep />}
         {step === STEPS.BIRTHDAY && <BirthdayStep />}
         {step === STEPS.PASSWORD && <PasswordStep />}
         {step === STEPS.CREATE_ACCOUNT && <CreateAccountStep />}

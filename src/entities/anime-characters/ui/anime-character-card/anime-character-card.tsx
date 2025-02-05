@@ -1,7 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 import { Image } from '@/common/components'
-import { Link } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 
 import './anime-character-card.css'
@@ -14,7 +14,7 @@ export const AnimeCharacterCard = ({ character }: AnimeCharacterCardProps) => {
         <div className='anime-character-card__role'>
           <p>{character.role} роль</p>
         </div>
-        <Link href={ROUTES.CHARACTER.ROOT.replace(':id', character.id)}>
+        <Link to={ROUTES.CHARACTER.ROOT.replace(':id', character.id)}>
           <div className='anime-character-card__image'>
             <Image src={character.image} alt='Изображение отсутсвует' />
           </div>
@@ -23,7 +23,7 @@ export const AnimeCharacterCard = ({ character }: AnimeCharacterCardProps) => {
       <Link
         title={character.name}
         className='anime-character-card__title'
-        href={ROUTES.CHARACTER.ROOT.replace(':id', character.id)}
+        to={ROUTES.CHARACTER.ROOT.replace(':id', character.id)}
       >
         {character.name}
       </Link>

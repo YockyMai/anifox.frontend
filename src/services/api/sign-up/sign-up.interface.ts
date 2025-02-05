@@ -1,6 +1,6 @@
-export type SignUpParams = {
+export type SignupParams = {
   login: string
   email: string
   password: string
-  nickname: string
+  birthday: string
 }

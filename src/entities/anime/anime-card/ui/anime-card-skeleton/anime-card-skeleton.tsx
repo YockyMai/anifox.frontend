@@ -1,5 +1,3 @@
-'use client'
-
 import './anime-card-skeleton.css'
 
 export const AnimeCardSkeleton = () => {
@@ -9,7 +7,6 @@ export const AnimeCardSkeleton = () => {
         <div className='anime-card-skeleton__image-loader' />
       </div>
       <div className='anime-card-skeleton__title-loader'>
-        <div />
         <div />
       </div>
     </div>

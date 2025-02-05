@@ -1,7 +1,5 @@
-'use client'
-
-import { useParams } from 'next/navigation'
 import { useMemo } from 'react'
+import { useParams } from 'react-router'
 
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { ROUTES } from '@/screens/pages.routes'
@@ -11,7 +9,7 @@ import { AnimeInfoBlock } from '../anime-info-block'
 
 export const AnimeContentGenres = () => {
   const { animeUrl } = useParams<AnimePageParams>()!
-  const { data } = useAnimeQuery(animeUrl)
+  const { data } = useAnimeQuery(animeUrl!)
 
   const infos = useMemo(() => {
     const genres = data?.genres ?? []

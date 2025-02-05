@@ -22,7 +22,7 @@ export const type = atom<AnimeTypeVariants | null>(DEFAULT_ATOMS.type)
 export const years = atom<string[]>(DEFAULT_ATOMS.years)
 export const translations = atom<string[]>(DEFAULT_ATOMS.translations)
 export const studio = atom<string | null>(DEFAULT_ATOMS.studio)
-export const sort = atom<AnimeSortDirection>(DEFAULT_ATOMS.sort)
+export const sort = atom<AnimeSortDirection | null>(DEFAULT_ATOMS.sort)
 export const order = atom<AnimeOrderVariants | null>(DEFAULT_ATOMS.order)
 
 export const isFilterActive = atom<boolean>((get) =>

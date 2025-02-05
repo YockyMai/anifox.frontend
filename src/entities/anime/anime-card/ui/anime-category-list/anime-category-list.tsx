@@ -1,7 +1,8 @@
-import Badge from '@/common/components/badge/badge'
-import { Link } from '@/i18n/routing'
+import { useMemo } from 'react'
+import { Link } from 'react-router'
 
 import { AnimeCard } from '../anime-card'
+import { AnimeCardSkeleton } from '../anime-card-skeleton'
 import './anime-category-list.css'
 import { AnimeCategoryListProps } from './anime-category-list.interface'
 
@@ -9,8 +10,16 @@ export const AnimeCategoryList = ({
   category,
   categoryLink,
   items,
-  icon
+  icon,
+  isLoading
 }: AnimeCategoryListProps) => {
+  const loaders = useMemo(
+    () =>
+      Array.from({ length: 7 }).map((_, index) => (
+        <AnimeCardSkeleton key={index} />
+      )),
+    []
+  )
   return (
     <div className='anime-category-list'>
       <div className='anime-category-list__header'>
@@ -19,12 +28,18 @@ export const AnimeCategoryList = ({
           <p>{category}</p>
         </div>
 
-        {categoryLink && <Link href={categoryLink}>Показать все</Link>}
+        {categoryLink && <Link to={categoryLink}>Показать все</Link>}
       </div>
       <div className='anime-category-list__content'>
-        {items.map((anime) => (
-          <AnimeCard anime={anime} key={anime.url} />
-        ))}
+        {isLoading ? (
+          loaders
+        ) : (
+          <>
+            {items.map((anime) => (
+              <AnimeCard anime={anime} key={anime.url} />
+            ))}
+          </>
+        )}
       </div>
     </div>
   )

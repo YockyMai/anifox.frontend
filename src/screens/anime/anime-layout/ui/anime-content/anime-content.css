@@ -18,6 +18,10 @@
       @apply h-80 rounded;
     }
 
+    &__image-loader {
+      @apply h-[320px] w-[220px] animate-pulse bg-slate-300 dark:bg-slate-800;
+    }
+
     &__badge {
       @apply absolute left-1 top-2;
     }
@@ -34,6 +38,10 @@
       @apply mt-6;
       @apply dark:text-white;
       @apply max-lg:text-center;
+    }
+
+    &__title-loader {
+      @apply mt-6 h-[32px] w-1/2 animate-pulse rounded bg-slate-300 dark:bg-slate-800;
     }
   }
 }

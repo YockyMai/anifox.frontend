@@ -1,3 +1,8 @@
+import { useParams } from 'react-router'
+
+import { AnimePageParams } from '@/screens/anime/anime.interface'
+import { useAnimeQuery } from '@/services/queries'
+
 import './anime-content-info.css'
 import {
   AnimeContentCharacteristics,
@@ -6,11 +11,19 @@ import {
 } from './ui'
 
 export const AnimeContentInfo = () => {
+  const { animeUrl } = useParams<AnimePageParams>()!
+
+  const { isSuccess } = useAnimeQuery(animeUrl!)
+
   return (
     <div className='anime-content-info'>
-      <AnimeContentCharacteristics />
-      <AnimeContentStudios />
-      <AnimeContentGenres />
+      {isSuccess && (
+        <>
+          <AnimeContentCharacteristics />
+          <AnimeContentStudios />
+          <AnimeContentGenres />
+        </>
+      )}
     </div>
   )
 }

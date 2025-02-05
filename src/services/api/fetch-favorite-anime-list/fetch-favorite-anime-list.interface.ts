@@ -1,5 +1,4 @@
-import { Anime } from '../fetch-anime-list'
-import { AnimeTrackStatuses } from '../set-anime-status'
+import { Anime, AnimeTrackStatuses } from '../api.types'
 
 export type FetchFavoriteAnimeListParams = {
   status: AnimeTrackStatuses

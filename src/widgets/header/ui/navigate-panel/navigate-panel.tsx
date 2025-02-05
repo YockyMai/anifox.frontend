@@ -1,9 +1,9 @@
 import clsx from 'clsx'
 import { useAtomValue } from 'jotai'
 import React from 'react'
+import { Link } from 'react-router'
 
 import { Tabs } from '@/common/components'
-import { Link } from '@/i18n/routing'
 import { useHeaderLinks } from '@/widgets/header/hooks/use-header-links'
 
 import { $headerAtoms } from '../../store'
@@ -31,7 +31,7 @@ export const NavigatePanel = () => {
                 'navigate-panel__link',
                 path === activeTab && 'navigate-panel__link_active'
               )}
-              href={path}
+              to={path}
             >
               {content}
             </Link>

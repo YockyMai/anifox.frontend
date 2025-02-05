@@ -1,5 +1,8 @@
 import { clsx } from 'clsx'
-import Image from 'next/image'
+
+import { Badge, HoverCard, Image } from '@/common/components'
+import { UIColors } from '@/common/types/ui-colors'
+import { UISizes } from '@/common/types/ui-sizes'
 
 import './episode-card.css'
 import { EpisodeCardProps } from './episode-card.interface'
@@ -20,10 +23,41 @@ export const EpisodeSelectionCard = ({
           height={84}
           alt={episode.title ?? ''}
         />
+        {(episode.filler || episode.recap) && (
+          <div className='episode-card__additional-info'>
+            <HoverCard
+              openDelay={500}
+              trigger={
+                <Badge className='' size={UISizes.SM} color={UIColors.RED}>
+                  Филлер
+                </Badge>
+              }
+            >
+              <p className='text-xs'>
+                Филлер — серия, не связанная с основным сюжетом
+              </p>
+            </HoverCard>
+
+            <HoverCard
+              openDelay={500}
+              trigger={
+                <Badge className='' size={UISizes.SM} color={UIColors.PURPLE}>
+                  Рекап
+                </Badge>
+              }
+            >
+              <p className='text-xs'>
+                Рекап — разновидность филлера, эпизод с воспоминаниями одного
+                или нескольких героев о пережитых событиях
+              </p>
+            </HoverCard>
+          </div>
+        )}
       </div>
 
       <div className='episode-card__content'>
         <p
+          title={episode.title}
           className={clsx(
             'episode-card__content__title',
             !episode.description && 'line-clamp-none'
@@ -37,7 +71,10 @@ export const EpisodeSelectionCard = ({
             </>
           )}
         </p>
-        <p className={'episode-card__content__description'}>
+        <p
+          title={episode.description ?? ''}
+          className={'episode-card__content__description'}
+        >
           {episode.description}
         </p>
       </div>

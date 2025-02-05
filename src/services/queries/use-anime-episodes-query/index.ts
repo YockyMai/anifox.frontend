@@ -1,1 +1,1 @@
-export { useAnimeEpisodesQuery } from './use-anime-episodes-query'
+export * from './use-anime-episodes-query'

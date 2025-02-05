@@ -1,5 +1,3 @@
-'use client'
-
 import { useRef } from 'react'
 import ReactSelect, { components } from 'react-select'
 
@@ -16,7 +14,7 @@ export const Select = ({
   label,
   placeholder,
   options,
-  isSearchable,
+  isSearchable = false,
   isLoading,
   onValueChange,
   value

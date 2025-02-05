@@ -1,7 +1,6 @@
-'use client'
+import { Link } from 'react-router'
 
 import { HoverCard, Image } from '@/common/components'
-import { Link } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { AnimeCardPanel } from '../anime-card-panel'
@@ -33,7 +32,7 @@ const Trigger = ({ anime, label }: AnimeCardProps) => {
   return (
     <div className='anime-card'>
       <div className='anime-card__image'>
-        <Link href={ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', anime.url)}>
+        <Link to={ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', anime.url)}>
           <div className='anime-card__image__element'>
             <Image src={anime.image.medium} alt='Изображение отсутсвует' />
           </div>
@@ -48,7 +47,7 @@ const Trigger = ({ anime, label }: AnimeCardProps) => {
       <Link
         title={anime.title}
         className='anime-card__title'
-        href={ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', anime.url)}
+        to={ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', anime.url)}
       >
         {anime.title}
       </Link>

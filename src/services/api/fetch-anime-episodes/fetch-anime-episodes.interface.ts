@@ -21,5 +21,6 @@ export type AnimeEpisode = {
   recap: boolean
   number: number
   image: string
+  filler: boolean
   translations: AnimeEpisodeTranslation[]
 }

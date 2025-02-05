@@ -1,12 +1,11 @@
-'use client'
-
 import { yupResolver } from '@hookform/resolvers/yup'
 import { IconLogin } from '@tabler/icons-react'
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router'
 
 import { Button, Input, UnstyledButton } from '@/common/components'
 import { UISizes } from '@/common/types/ui-sizes'
-import { Link } from '@/i18n/routing'
+import { UIVariants } from '@/common/types/ui-variants'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { useLogin } from '../hooks'
@@ -39,6 +38,7 @@ export const LoginForm = ({
           label='Логин или email'
           error={errors.user_identifier?.message}
           placeholder='example@some.com'
+          variant={UIVariants.FILLED}
           {...register('user_identifier')}
         />
 
@@ -48,6 +48,7 @@ export const LoginForm = ({
           placeholder='Пароль'
           type='password'
           rightIcon
+          variant={UIVariants.FILLED}
           {...register('password')}
         />
       </div>
@@ -73,7 +74,7 @@ export const LoginForm = ({
             Создать аккаунт
           </UnstyledButton>
         ) : (
-          <Link className='text-orange-300' href={ROUTES.SIGN_UP}>
+          <Link className='text-orange-300' to={ROUTES.SIGN_UP}>
             Создать аккаунт
           </Link>
         )}

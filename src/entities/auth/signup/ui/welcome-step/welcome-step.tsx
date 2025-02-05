@@ -1,7 +1,6 @@
-'use client'
+import { Link } from 'react-router'
 
 import UnstyledButton from '@/common/components/unstyled-button/unstyled-button'
-import { Link } from '@/i18n/routing'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { useStepsActions } from '../../hooks'
@@ -21,7 +20,7 @@ export const WelcomeStep = ({ onLoginClick }: WelcomeStepProps) => {
               Вход
             </UnstyledButton>
           ) : (
-            <Link className='text-orange-300' href={ROUTES.LOGIN}>
+            <Link className='text-orange-300' to={ROUTES.LOGIN}>
               Вход
             </Link>
           )}

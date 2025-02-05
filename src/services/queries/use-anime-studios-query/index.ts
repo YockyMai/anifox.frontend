@@ -1,1 +1,1 @@
-export { useAnimeStudiosQuery } from './use-anime-studios-query'
+export * from './use-anime-studios-query'

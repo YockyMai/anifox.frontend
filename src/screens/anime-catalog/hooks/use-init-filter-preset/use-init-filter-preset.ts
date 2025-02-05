@@ -1,5 +1,3 @@
-'use client'
-
 import { useAtomCallback } from 'jotai/utils'
 import { useCallback, useEffect } from 'react'
 
@@ -11,7 +9,7 @@ import { ANIME_ORDER_OPTIONS } from '@/widgets/anime-catalog/ui/anime-catalog-fi
 import { FILTER_PRESET } from './use-init-filter-preset.const'
 import { FilterPreset } from './use-init-filter-preset.interface'
 
-export const useInitFilterPreset = (preset: FilterPreset) => {
+export const useInitFilterPreset = (preset?: FilterPreset) => {
   const resetFilter = useAtomCallback(
     useCallback((_, set) => {
       set($animeCatalogFilterAtoms.status, DEFAULT_ATOMS.status)
@@ -51,18 +49,19 @@ export const useInitFilterPreset = (preset: FilterPreset) => {
   useEffect(() => {
     resetFilter()
 
-    switch (preset) {
-      case FILTER_PRESET.MOST_RATED:
-        setMostRatedPreset()
-        break
-      case FILTER_PRESET.MOST_POPULAR:
-        setMostPopularPreset()
-        break
-      case FILTER_PRESET.POPULAR_ONGOING:
-        setPopularOngoingPreset()
-        break
+    if (preset) {
+      switch (preset) {
+        case FILTER_PRESET.MOST_RATED:
+          setMostRatedPreset()
+          break
+        case FILTER_PRESET.MOST_POPULAR:
+          setMostPopularPreset()
+          break
+        case FILTER_PRESET.POPULAR_ONGOING:
+          setPopularOngoingPreset()
+          break
+      }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     preset,
     resetFilter,

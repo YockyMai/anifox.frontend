@@ -5,4 +5,8 @@
     @apply h-full w-full scale-105 bg-cover bg-center;
     @apply animate-fade-in dark:brightness-90;
   }
+
+  &__image-loader {
+    @apply h-full w-full scale-105 animate-pulse bg-slate-300 dark:bg-slate-800;
+  }
 }

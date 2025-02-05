@@ -1,7 +1,9 @@
-namespace NodeJS {
-  interface ProcessEnv {
-    NEXT_PUBLIC_API_URL: string
-    NEXT_PUBLIC_PROXY_HOST?: string
-    HOST: string
-  }
+interface ImportMetaEnv {
+  readonly VITE_PUBLIC_API_URL: string
+  readonly VITE_PUBLIC_PROXY_HOST?: string
+  readonly VITE_HOST: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
 }

@@ -1,5 +1,3 @@
-'use client'
-
 import { IconChartArrows, IconStars, IconTrendingUp } from '@tabler/icons-react'
 
 import { AnimeCategoryList } from '@/entities/anime/anime-card'
@@ -13,31 +11,41 @@ import {
 import './anime-catalog-landing.css'
 
 export const AnimeCatalogLanding = () => {
-  const { data: mostRatedAnimeData } = useMostRatedAnimeListQuery()
-  const { data: allTimePopularAnimeData } = useAllTimePopularAnimeListQuery()
-  const { data: popularOngoingData } = usePopularOngoingQuery()
+  const { data: mostRatedAnimeData = [], isLoading: isLoadingMostRatedAnime } =
+    useMostRatedAnimeListQuery()
+
+  const {
+    data: allTimePopularAnimeData = [],
+    isLoading: isLoadingAllTimePopularAnime
+  } = useAllTimePopularAnimeListQuery()
+
+  const { data: popularOngoingData = [], isLoading: isLoadingPopularOngoing } =
+    usePopularOngoingQuery()
 
   return (
     <div className='anime-catalog-landing'>
       <AnimeCategoryList
+        isLoading={isLoadingPopularOngoing}
+        icon={<IconChartArrows />}
+        category='Популярные новинки'
+        items={popularOngoingData}
+        categoryLink={ROUTES.CATALOG.POPULAR_ONGOING}
+      />
+
+      <AnimeCategoryList
+        isLoading={isLoadingAllTimePopularAnime}
         icon={<IconTrendingUp />}
         category='Самые популярные аниме'
-        items={allTimePopularAnimeData ?? []}
+        items={allTimePopularAnimeData}
         categoryLink={ROUTES.CATALOG.POPULAR}
       />
 
       <AnimeCategoryList
+        isLoading={isLoadingMostRatedAnime}
         icon={<IconStars />}
         category='Больше всего рейтинга'
-        items={mostRatedAnimeData ?? []}
+        items={mostRatedAnimeData}
         categoryLink={ROUTES.CATALOG.MOST_RATED}
-      />
-
-      <AnimeCategoryList
-        icon={<IconChartArrows />}
-        category='Популярные новинки'
-        items={popularOngoingData ?? []}
-        categoryLink={ROUTES.CATALOG.POPULAR_ONGOING}
       />
     </div>
   )

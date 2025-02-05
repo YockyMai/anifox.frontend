@@ -1,1 +1,1 @@
-export { AnimeVideos } from './anime-videos'
+export * from './anime-videos'

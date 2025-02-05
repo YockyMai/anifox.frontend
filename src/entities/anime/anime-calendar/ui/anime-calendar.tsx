@@ -1,5 +1,3 @@
-'use client'
-
 import { IconCalendarWeek } from '@tabler/icons-react'
 import dayjs from 'dayjs'
 import React, { memo } from 'react'

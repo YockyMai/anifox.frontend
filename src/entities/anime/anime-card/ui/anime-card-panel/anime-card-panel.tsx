@@ -1,5 +1,3 @@
-'use client'
-
 import { UnstyledButton, Image, Badge, MarqueeText } from '@/common/components'
 
 import { getAnimeAccentColorStyles } from '../../helpers'
@@ -59,7 +57,7 @@ export const AnimeCardPanel = ({ anime }: AnimeCardPanelProps) => {
               <p>{anime.episodes_aired} серий</p>
               <p>—</p>
               <p className='anime-card-panel__status'>
-                {anime.status === 'Ongoing' ? 'Онгоинг' : 'Выпущен'}
+                {anime.status === 'Released' ? 'Выпущен' : 'Онгоинг'}
               </p>
             </div>
           </div>

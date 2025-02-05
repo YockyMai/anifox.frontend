@@ -5,6 +5,10 @@
     @apply h-[--image-height] w-[247px] object-cover transition-all;
   }
 
+  &__loader {
+    @apply h-[--image-height] w-[247px] animate-pulse bg-slate-200 dark:bg-slate-700;
+  }
+
   &__icon {
     @apply absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-2xl;
     svg {

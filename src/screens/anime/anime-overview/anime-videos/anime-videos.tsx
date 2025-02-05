@@ -1,7 +1,5 @@
-'use client'
-
-import { useParams } from 'next/navigation'
 import { useRef } from 'react'
+import { useParams } from 'react-router'
 
 import { Carousel } from '@/common/components'
 import { useAnimeVideosQuery } from '@/services/queries'
@@ -15,7 +13,7 @@ export const AnimeVideos = () => {
 
   const { animeUrl } = useParams<AnimePageParams>()
 
-  const { data = [] } = useAnimeVideosQuery(animeUrl)
+  const { data = [] } = useAnimeVideosQuery(animeUrl!)
 
   return (
     <div ref={containerRef} className='w-full'>
@@ -25,7 +23,7 @@ export const AnimeVideos = () => {
         align='end'
         slides={data.map((video) => ({
           content: (
-            <div key={video.player_url} className={'anime-video'}>
+            <div key={video.player_url} className='anime-video'>
               <iframe
                 width={'100%'}
                 height={'100%'}

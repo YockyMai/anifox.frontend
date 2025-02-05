@@ -1,12 +1,8 @@
-'use client'
-
 import { IconBook, IconUsers } from '@tabler/icons-react'
-import { useParams } from 'next/navigation'
 import { useEffect, useMemo, useState } from 'react'
+import { Link, useLocation, useParams } from 'react-router'
 
 import { Tabs } from '@/common/components'
-import { usePathname } from '@/i18n/routing'
-import { Link } from '@/i18n/routing'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { ROUTES } from '@/screens/pages.routes'
 
@@ -14,7 +10,7 @@ import './anime-page-tabs.css'
 
 export const AnimePageTabs = () => {
   const { animeUrl } = useParams<AnimePageParams>()!
-  const pathname = usePathname()!
+  const { pathname } = useLocation()
 
   const [activeTab, setActiveTab] = useState(pathname)
 
@@ -23,13 +19,13 @@ export const AnimePageTabs = () => {
   }, [pathname])
 
   const tabs = useMemo(() => {
-    const animeOverviewUrl = `${ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', animeUrl)}`
-    const animeCharactersUrl = `${ROUTES.CATALOG.ANIME.CHARACTERS.replace(':animeUrl', animeUrl)}`
+    const animeOverviewUrl = `${ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', animeUrl!)}`
+    const animeCharactersUrl = `${ROUTES.CATALOG.ANIME.CHARACTERS.replace(':animeUrl', animeUrl!)}`
 
     return [
       {
         content: (
-          <Link className='anime-page-tabs__tab' href={animeOverviewUrl}>
+          <Link className='anime-page-tabs__tab' to={animeOverviewUrl}>
             <IconBook />
             Обзор
           </Link>
@@ -38,7 +34,7 @@ export const AnimePageTabs = () => {
       },
       {
         content: (
-          <Link className='anime-page-tabs__tab' href={animeCharactersUrl}>
+          <Link className='anime-page-tabs__tab' to={animeCharactersUrl}>
             <IconUsers />
             Персонажи
           </Link>

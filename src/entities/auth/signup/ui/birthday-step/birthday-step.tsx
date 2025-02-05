@@ -1,5 +1,3 @@
-'use client'
-
 import { yupResolver } from '@hookform/resolvers/yup'
 import dayjs from 'dayjs'
 import { useAtom } from 'jotai'

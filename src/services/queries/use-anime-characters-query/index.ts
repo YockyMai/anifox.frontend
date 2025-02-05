@@ -1,1 +1,1 @@
-export { useAnimeCharactersQuery } from './use-anime-characters-query'
+export * from './use-anime-characters-query'

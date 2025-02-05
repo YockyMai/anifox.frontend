@@ -1,5 +1,3 @@
-'use client'
-
 import { IconExclamationCircle, IconMoodSad } from '@tabler/icons-react'
 import { useInView } from 'framer-motion'
 import { Fragment, useEffect, useMemo, useRef } from 'react'

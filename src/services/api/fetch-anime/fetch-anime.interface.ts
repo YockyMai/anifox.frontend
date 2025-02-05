@@ -1,12 +1,12 @@
-import { AnimeGenre } from '../fetch-anime-genres'
 import {
+  AnimeGenre,
   AnimeRatingMpa,
   AnimeSeasons,
   AnimeStatuses,
+  AnimeStudio,
+  AnimeTranslation,
   AnimeTypeVariants
-} from '../fetch-anime-list'
-import { AnimeStudio } from '../fetch-anime-studios'
-import { AnimeTranslation } from '../fetch-anime-translation'
+} from '../api.types'
 
 export type AnimeImageVariants = {
   medium: string
@@ -35,7 +35,7 @@ export type AnimeResponse = {
   genres?: AnimeGenre[]
   status: AnimeStatuses
   rating_mpa: AnimeRatingMpa
-  minimal_age: number
+  minimal_age?: number
   linkPlayer: string
   accentColor?: string
   rating?: number
