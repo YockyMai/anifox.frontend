@@ -21,7 +21,6 @@ export const MinimalAge = () => {
         const newValue = option?.value
           ? (Number.parseInt(option.value) as AnimeMinimalAge)
           : null
-
         setMinimalAge(newValue)
         changeSearchParams({ minimalAge: newValue })
       }}

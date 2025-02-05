@@ -62,8 +62,6 @@ export const useInitFilterPreset = (preset?: FilterPreset) => {
           break
       }
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     preset,
     resetFilter,

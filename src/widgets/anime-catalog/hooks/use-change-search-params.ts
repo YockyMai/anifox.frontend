@@ -1,6 +1,6 @@
 import { useAtomCallback } from 'jotai/utils'
 import { useCallback } from 'react'
-import { useNavigate } from 'react-router'
+import { createSearchParams, useNavigate } from 'react-router'
 
 import { ROUTES } from '@/screens/pages.routes'
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog'
@@ -56,7 +56,13 @@ export const useChangeSearchParams = () => {
         )
         .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {})
 
-      navigate(ROUTES.CATALOG.ROOT, { state: filteredSearchParams })
+      if (Object.values(filteredSearchParams).length) {
+        const searchParams = createSearchParams(filteredSearchParams).toString()
+
+        navigate(`${ROUTES.CATALOG.ROOT}?${searchParams}`)
+      } else {
+        navigate(ROUTES.CATALOG.ROOT)
+      }
     },
     [getSearchParams, navigate]
   )

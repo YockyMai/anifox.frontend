@@ -31,6 +31,7 @@ export const Search = () => {
 
   const clearSearch = () => {
     setSearch('')
+    changeSearchParams({ search: '' })
   }
 
   return (

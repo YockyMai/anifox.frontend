@@ -1,6 +1,4 @@
-import { AnimeImageVariants } from '../fetch-anime'
-import { AnimeGenre } from '../fetch-anime-genres'
-import { AnimeStudio } from '../fetch-anime-studios'
+import { AnimeGenre, AnimeImageVariants, AnimeStudio } from '../api.types'
 
 export type AnimeMinimalAge = 18 | 16 | 12 | 6 | 0
 export type AnimeRatingMpa = 'PG' | 'PG-13' | 'R' | 'R+' | 'G'

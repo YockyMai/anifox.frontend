@@ -7,10 +7,9 @@ import {
   AnimeCatalogList
 } from '@/widgets/anime-catalog/ui'
 
-import { useInitFilterPreset, useSyncAnimeCatalogSearchParams } from './hooks'
+import { useSyncAnimeCatalogSearchParams } from './hooks'
 
 export const AnimeCatalogScreen = () => {
-  useInitFilterPreset()
   useSyncAnimeCatalogSearchParams()
 
   const isFilterActive = useAtomValue($animeCatalogFilterAtoms.isFilterActive)
