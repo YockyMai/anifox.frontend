@@ -1,11 +1,9 @@
-import { getPrivateHttp } from '@/services/http'
+import { http } from '@/services/http'
 
 import { RecentlyWatchedEpisode } from './fetch-recently-watched-episodes.interface'
 
 export const lastWatchedEpisodeQuery = async (animeUrl: string) => {
-  const privateHttp = getPrivateHttp()
-
-  const response = await privateHttp.get<RecentlyWatchedEpisode[]>(
+  const response = await http.get<RecentlyWatchedEpisode[]>(
     `/users/anime/${animeUrl}/recently`
   )
 

@@ -1,5 +1,5 @@
-import { useParams } from 'next/navigation'
 import React from 'react'
+import { useParams } from 'react-router'
 
 import { Carousel, Fancybox } from '@/common/components'
 import { useCharacterQuery } from '@/services/queries'
@@ -11,7 +11,7 @@ import './character-pictures.css'
 export const CharacterPictures = () => {
   const { id } = useParams<CharacterPageParams>()
 
-  const { data } = useCharacterQuery(id)
+  const { data } = useCharacterQuery(id!)
 
   return (
     <Fancybox>

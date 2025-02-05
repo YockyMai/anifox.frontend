@@ -1,4 +1,4 @@
-import { useParams } from 'next/navigation'
+import { useParams } from 'react-router'
 
 import { ScreenSection } from '@/common/components'
 import { AnimeCard } from '@/entities/anime/anime-card'
@@ -11,7 +11,7 @@ import './character-participation.css'
 export const CharacterParticipation = () => {
   const { id } = useParams<CharacterPageParams>()
 
-  const { data } = useCharacterQuery(id)
+  const { data } = useCharacterQuery(id!)
 
   return (
     <>
