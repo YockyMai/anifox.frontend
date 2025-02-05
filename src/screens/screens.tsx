@@ -11,6 +11,7 @@ import { AnimeScreenLayout } from './anime/anime-layout'
 import { AnimeOverviewScreen } from './anime/anime-overview'
 import { CharacterScreen } from './character'
 import { HomeLayout, HomeScreen } from './home'
+import { KodikScreen } from './kodik'
 import { LoginScreen } from './login'
 import { ROUTES } from './pages.routes'
 import { RightHoldersScreen } from './right-holders'
@@ -19,6 +20,8 @@ import { SignupScreen } from './signup'
 export const Screens = () => {
   return (
     <Routes>
+      <Route path={ROUTES.KODIK} element={<KodikScreen />} />
+
       <Route path={ROUTES.HOME} element={<HomeLayout />}>
         <Route index element={<HomeScreen />} />
         <Route path={ROUTES.CATALOG.ROOT}>
