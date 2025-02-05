@@ -1,8 +1,8 @@
 .login__form {
-  @apply w-full max-w-[500px] rounded-xl bg-slate-50 p-12;
+  @apply w-full max-w-[500px] rounded-xl bg-slate-50 p-12 dark:bg-slate-800;
 
   &__title {
-    @apply mb-7 text-center text-lg font-bold text-black;
+    @apply mb-7 text-center text-lg font-bold text-black dark:text-white;
   }
 
   &__fields {

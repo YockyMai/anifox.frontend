@@ -5,6 +5,7 @@ import { Link } from 'react-router'
 
 import { Button, Input, UnstyledButton } from '@/common/components'
 import { UISizes } from '@/common/types/ui-sizes'
+import { UIVariants } from '@/common/types/ui-variants'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { useLogin } from '../hooks'
@@ -37,6 +38,7 @@ export const LoginForm = ({
           label='Логин или email'
           error={errors.user_identifier?.message}
           placeholder='example@some.com'
+          variant={UIVariants.FILLED}
           {...register('user_identifier')}
         />
 
@@ -46,6 +48,7 @@ export const LoginForm = ({
           placeholder='Пароль'
           type='password'
           rightIcon
+          variant={UIVariants.FILLED}
           {...register('password')}
         />
       </div>
