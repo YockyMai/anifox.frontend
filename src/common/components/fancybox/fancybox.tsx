@@ -2,7 +2,6 @@ import { Fancybox as NativeFancybox } from '@fancyapps/ui'
 import '@fancyapps/ui/dist/fancybox/fancybox.css'
 import { useEffect, useRef } from 'react'
 
-import { NoSSR } from '../no-ssr'
 import {
   DEFAULT_DELEGATE_SELECTOR,
   DEFAULT_FANCYBOX_OPTIONS
@@ -29,9 +28,5 @@ export const Fancybox = ({
     }
   })
 
-  return (
-    <NoSSR>
-      <div ref={containerRef}>{children}</div>
-    </NoSSR>
-  )
+  return <div ref={containerRef}>{children}</div>
 }

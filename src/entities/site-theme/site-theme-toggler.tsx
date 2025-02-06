@@ -2,8 +2,7 @@ import { IconMoon, IconSun } from '@tabler/icons-react'
 import { useAtom } from 'jotai'
 import React from 'react'
 
-import { NoSSR } from '@/common/components'
-import UnstyledButton from '@/common/components/unstyled-button/unstyled-button'
+import { UnstyledButton } from '@/common/components'
 import { $siteThemeAtom } from '@/common/store/site-theme'
 import { SITE_THEME } from '@/common/types/site-theme'
 
@@ -22,10 +21,8 @@ export const SiteThemeToggler = () => {
   }
 
   return (
-    <NoSSR>
-      <UnstyledButton onClick={toggleTheme}>
-        {theme === SITE_THEME.LIGHT ? <IconSun /> : <IconMoon />}
-      </UnstyledButton>
-    </NoSSR>
+    <UnstyledButton onClick={toggleTheme}>
+      {theme === SITE_THEME.LIGHT ? <IconSun /> : <IconMoon />}
+    </UnstyledButton>
   )
 }

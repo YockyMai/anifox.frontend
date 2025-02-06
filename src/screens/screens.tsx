@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router'
 
 import {
   AnimeCatalogScreen,
+  AnimeMostRatedScreen,
   AnimePopularOngoingScreen,
   AnimePopularScreen
 } from './anime-catalog'
@@ -33,6 +34,10 @@ export const Screens = () => {
           <Route
             path={ROUTES.CATALOG.POPULAR_ONGOING}
             element={<AnimePopularOngoingScreen />}
+          />
+          <Route
+            path={ROUTES.CATALOG.MOST_RATED}
+            element={<AnimeMostRatedScreen />}
           />
           <Route
             path={ROUTES.CATALOG.ANIME.ROOT}

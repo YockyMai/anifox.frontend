@@ -2,7 +2,7 @@ import { IconCalendarWeek } from '@tabler/icons-react'
 import dayjs from 'dayjs'
 import React, { memo } from 'react'
 
-import Accordion from '@/common/components/accordion/accordion'
+import { Accordion } from '@/common/components'
 import { ACCORDION_TYPE } from '@/common/components/accordion/accordion.const'
 import { UIColors } from '@/common/types/ui-colors'
 import { ANIME_SCHEDULE_DAY } from '@/services/api'

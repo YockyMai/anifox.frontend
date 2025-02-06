@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import ReactSelect, { components } from 'react-select'
 
-import { NoSSR } from '../no-ssr'
 import {
   ClearIndicator,
   DropdownIndicator,
@@ -33,7 +32,7 @@ export const MultiSelect = ({
     typeof document === 'undefined' ? null : document.body
 
   return (
-    <NoSSR>
+    <>
       {label && <p className='multi-select__label'>{label}</p>}
       <ReactSelect
         menuPortalTarget={menuPortalTarget}
@@ -68,6 +67,6 @@ export const MultiSelect = ({
         hideSelectedOptions={false}
         isMulti
       />
-    </NoSSR>
+    </>
   )
 }

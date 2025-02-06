@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 
-import UnstyledButton from '@/common/components/unstyled-button/unstyled-button'
+import { UnstyledButton } from '@/common/components'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { useStepsActions } from '../../hooks'

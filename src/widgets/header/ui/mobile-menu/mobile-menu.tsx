@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { useAtom, useAtomValue } from 'jotai'
 import React, { useRef } from 'react'
 
-import { NoSSR, Portal } from '@/common/components'
+import { Portal } from '@/common/components'
 import { UIVariants } from '@/common/types/ui-variants'
 
 import { $headerAtoms } from '../../store'
@@ -27,39 +27,37 @@ export const MobileMenu = () => {
   })
 
   return (
-    <NoSSR>
-      <Portal>
-        <motion.div
-          ref={ref}
-          initial={false}
-          variants={{
-            open: {
-              height: 'auto'
-            },
-            closed: {
-              height: 0
-            }
-          }}
-          animate={isMobileMenuOpen ? 'open' : 'closed'}
-          className={clsx(
-            'mobile-menu',
-            !headerIsVisible && 'mobile-menu_header-hidden'
-          )}
-        >
-          <div className='mt-0.5'>
-            <NavigatePanel />
-          </div>
+    <Portal>
+      <motion.div
+        ref={ref}
+        initial={false}
+        variants={{
+          open: {
+            height: 'auto'
+          },
+          closed: {
+            height: 0
+          }
+        }}
+        animate={isMobileMenuOpen ? 'open' : 'closed'}
+        className={clsx(
+          'mobile-menu',
+          !headerIsVisible && 'mobile-menu_header-hidden'
+        )}
+      >
+        <div className='mt-0.5'>
+          <NavigatePanel />
+        </div>
 
-          <div className='mt-2 grid grid-cols-2 gap-x-3'>
-            <SearchButton />
-            <RandomAnimeButton variant={UIVariants.OUTLINE} />
-          </div>
+        <div className='mt-2 grid grid-cols-2 gap-x-3'>
+          <SearchButton />
+          <RandomAnimeButton variant={UIVariants.OUTLINE} />
+        </div>
 
-          <div className='my-2'>
-            <UserButton />
-          </div>
-        </motion.div>
-      </Portal>
-    </NoSSR>
+        <div className='my-2'>
+          <UserButton />
+        </div>
+      </motion.div>
+    </Portal>
   )
 }
