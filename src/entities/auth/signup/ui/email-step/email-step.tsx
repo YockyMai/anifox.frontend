@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useAtom } from 'jotai'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Input } from '@/common/components'
@@ -13,6 +13,8 @@ import { StepContainer } from '../step-container'
 import { emailSchema } from './email-step.schema'
 
 export const EmailStep = () => {
+  const [isEmailChecking, setIsEmailChecking] = useState(false)
+
   const [email, setEmail] = useAtom($signupAtoms.email)
 
   const { incrementStep, decrementStep } = useStepsActions()
@@ -30,13 +32,16 @@ export const EmailStep = () => {
   }, [email, reset])
 
   const handleSubmitEmail = handleSubmit(async (fields) => {
+    setIsEmailChecking(true)
+
     try {
       await api.checkEmail(fields.email)
-
       setEmail(fields.email)
       incrementStep()
     } catch {
       setError('email', { message: 'Такой email уже существует' })
+    } finally {
+      setIsEmailChecking(false)
     }
   })
 
@@ -46,7 +51,8 @@ export const EmailStep = () => {
       prevButton={{ label: 'Назад', onClick: decrementStep }}
       nextButton={{
         label: 'Далее',
-        onClick: handleSubmitEmail
+        onClick: handleSubmitEmail,
+        isLoading: isEmailChecking
       }}
     >
       <Input

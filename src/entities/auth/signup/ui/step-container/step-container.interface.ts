@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 type ButtonParams = {
   label: string
   onClick?: () => void
+  isLoading?: boolean
 }
 
 export type StepContainerProps = {

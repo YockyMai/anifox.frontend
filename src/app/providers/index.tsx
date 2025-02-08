@@ -1,16 +1,16 @@
 import { ReactNode } from 'react'
-import { BrowserRouter } from 'react-router'
 
 import { WithAuthProvider } from './with-auth-provider'
 import { WithReactHelmetProvider } from './with-react-helmet-provider'
 import { WithReactQueryProvider } from './with-react-query-provider'
+import { WithReactRouterProvider } from './with-react-router-provider'
 import { WithSiteTheme } from './with-site-theme'
 import { WithWindowProvider } from './with-window-provider'
 
 export const Providers = ({ children }: { children: ReactNode }) => {
   return (
     <WithReactHelmetProvider>
-      <BrowserRouter>
+      <WithReactRouterProvider>
         <WithReactQueryProvider>
           <WithAuthProvider>
             <WithWindowProvider>
@@ -18,7 +18,7 @@ export const Providers = ({ children }: { children: ReactNode }) => {
             </WithWindowProvider>
           </WithAuthProvider>
         </WithReactQueryProvider>
-      </BrowserRouter>
+      </WithReactRouterProvider>
     </WithReactHelmetProvider>
   )
 }

@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useAtom } from 'jotai'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Input } from '@/common/components'
@@ -13,6 +13,7 @@ import { StepContainer } from '../step-container'
 import { loginSchema } from './login-step.schema'
 
 export const LoginStep = () => {
+  const [isLoginChecking, setIsLoginChecking] = useState(false)
   const [login, setLogin] = useAtom($signupAtoms.login)
 
   const { incrementStep, decrementStep } = useStepsActions()
@@ -30,6 +31,7 @@ export const LoginStep = () => {
   }, [login, reset])
 
   const handleLoginSubmit = handleSubmit(async (fields) => {
+    setIsLoginChecking(true)
     try {
       await api.checkLogin(fields.login)
 
@@ -37,6 +39,8 @@ export const LoginStep = () => {
       incrementStep()
     } catch {
       setError('login', { message: 'Такой логин уже существует' })
+    } finally {
+      setIsLoginChecking(false)
     }
   })
 
@@ -46,7 +50,8 @@ export const LoginStep = () => {
       prevButton={{ label: 'Назад', onClick: decrementStep }}
       nextButton={{
         label: 'Далее',
-        onClick: handleLoginSubmit
+        onClick: handleLoginSubmit,
+        isLoading: isLoginChecking
       }}
     >
       <Input

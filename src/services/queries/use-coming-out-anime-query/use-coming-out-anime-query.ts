@@ -12,7 +12,7 @@ export const useComingOutAnimeQuery = () =>
       const { data } = await api.fetchAnimeList({
         order: ANIME_ORDER_OPTIONS.RELEASED
       })
-      console.log(import.meta)
+
       return data
     }
   })

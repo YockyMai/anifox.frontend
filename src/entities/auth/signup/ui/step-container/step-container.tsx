@@ -34,6 +34,7 @@ export const StepContainer = ({
         <div className='step-container__buttons'>
           {prevButton && (
             <Button
+              isLoading={prevButton.isLoading}
               onClick={prevButton.onClick}
               size={UISizes.SM}
               color={UIColors.RED}
@@ -45,6 +46,7 @@ export const StepContainer = ({
 
           {nextButton && (
             <Button
+              isLoading={nextButton.isLoading}
               onClick={nextButton.onClick}
               size={UISizes.SM}
               color={UIColors.ORANGE}
