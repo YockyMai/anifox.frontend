@@ -11,7 +11,7 @@ http.interceptors.request.use((config) => {
   const accessToken = cookie.parse(document.cookie)[COOKIES.ACCESS_TOKEN_KEY]
 
   if (accessToken) {
-    config.headers.Authorization = accessToken
+    config.headers.Authorization = `Bearer ${accessToken}`
   }
 
   return config
@@ -28,7 +28,7 @@ http.interceptors.response.use(
       error.config._isRetry = true
       try {
         const refreshToken = cookie.parse(document.cookie)[
-          COOKIES.ACCESS_TOKEN_KEY
+          COOKIES.REFRESH_TOKEN_KEY
         ]
 
         if (!refreshToken) return

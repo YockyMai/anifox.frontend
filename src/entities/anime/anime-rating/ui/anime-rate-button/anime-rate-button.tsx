@@ -48,7 +48,7 @@ export const AnimeRateButton = ({
         position='bottom'
         trigger={trigger}
       >
-        <AnimeRateDropdown ratingDistribution={[]} />
+        <AnimeRateDropdown animeUrl={animeUrl} ratingDistribution={[]} />
       </HoverCard>
     </div>
   )

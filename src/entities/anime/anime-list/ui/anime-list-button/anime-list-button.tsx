@@ -12,6 +12,8 @@ import { Badge, Button, HoverCard, UnstyledButton } from '@/common/components'
 import { UIColors } from '@/common/types/ui-colors'
 import { AuthModal } from '@/entities/auth/auth-modal'
 import { $userAtoms } from '@/entities/user/atoms'
+import { AnimeTrackStatuses } from '@/services/api'
+import { useAnimeStatusMutation } from '@/services/mutations'
 
 import { ANIME_LIST_VARIANTS } from '../../const/anime-list-variants'
 import './anime-list-button.css'
@@ -24,8 +26,11 @@ export const AnimeListButton = ({
   openDelay
 }: AnimeListButtonProps) => {
   const [authModalIsOpened, setAuthModalIsOpened] = useState(false)
+  const [status, setStatus] = useState<AnimeTrackStatuses | null>(null)
 
-  const user = useAtomValue($userAtoms.user)
+  const statusMutation = useAnimeStatusMutation()
+
+  const isAuth = useAtomValue($userAtoms.isAuth)
 
   const options = useMemo(
     () => [
@@ -53,8 +58,11 @@ export const AnimeListButton = ({
     []
   )
 
-  const addAnimeToList = (type: string) => {
-    if (!user) {
+  const addAnimeToList = (status: AnimeTrackStatuses) => {
+    if (isAuth) {
+      statusMutation.mutate({ animeUrl, status })
+    } else {
+      setStatus(status)
       setAuthModalIsOpened(true)
     }
   }
@@ -106,6 +114,12 @@ export const AnimeListButton = ({
       <AuthModal
         isOpen={authModalIsOpened}
         onClose={() => setAuthModalIsOpened(false)}
+        onAuthSuccess={() => {
+          if (status) {
+            statusMutation.mutate({ animeUrl, status })
+            setStatus(null)
+          }
+        }}
       />
     </>
   )

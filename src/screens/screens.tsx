@@ -1,5 +1,8 @@
+import { useAtomValue } from 'jotai'
 import React from 'react'
 import { Route, Routes } from 'react-router'
+
+import { $userAtoms } from '@/entities/user/atoms'
 
 import {
   AnimeCatalogScreen,
@@ -15,10 +18,14 @@ import { HomeLayout, HomeScreen } from './home'
 import { KodikScreen } from './kodik'
 import { LoginScreen } from './login'
 import { ROUTES } from './pages.routes'
+import { ProfileAnimeListScreen } from './profile/profile-anime-list'
+import { ProfileLayout } from './profile/profile-layout'
 import { RightHoldersScreen } from './right-holders'
 import { SignupScreen } from './signup'
 
 export const Screens = () => {
+  const isAuth = useAtomValue($userAtoms.isAuth)
+
   return (
     <Routes>
       <Route path={ROUTES.KODIK} element={<KodikScreen />} />
@@ -53,8 +60,20 @@ export const Screens = () => {
         <Route path={ROUTES.CHARACTER.ROOT} element={<CharacterScreen />} />
 
         <Route path={ROUTES.RIGHT_HOLDERS} element={<RightHoldersScreen />} />
-        <Route path={ROUTES.LOGIN} element={<LoginScreen />} />
-        <Route path={ROUTES.SIGN_UP} element={<SignupScreen />} />
+
+        {isAuth ? (
+          <>
+            <Route path={ROUTES.PROFILE.ROOT} element={<ProfileLayout />}>
+              <Route index element={<ProfileAnimeListScreen />} />
+              <Route path={ROUTES.PROFILE.FAVORITES} element={<></>} />
+            </Route>
+          </>
+        ) : (
+          <>
+            <Route path={ROUTES.LOGIN} element={<LoginScreen />} />
+            <Route path={ROUTES.SIGN_UP} element={<SignupScreen />} />
+          </>
+        )}
 
         <Route path='*' element={'NOT FOUND'} />
       </Route>

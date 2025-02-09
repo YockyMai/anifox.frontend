@@ -20,8 +20,9 @@ export const SuccessStep = () => {
         label: 'Перейти в профиль',
         onClick: () => {
           if (user) {
-            // router.replace(ROUTES.PROFILE.ROOT.replace('login', user.login))
-            navigate(ROUTES.HOME)
+            navigate(
+              ROUTES.PROFILE.ROOT.replace(':login', user.preferred_username)
+            )
             resetForm()
           }
         }

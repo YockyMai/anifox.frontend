@@ -1,6 +1,8 @@
+import { User } from '@/entities/user/atoms/user.interface'
+
 export type LoginFormProps = {
   onSignupClick?: () => void
-  onLoginSuccess?: () => void
+  onLoginSuccess?: (user: User) => void
 }
 
 export type LoginSchema = {

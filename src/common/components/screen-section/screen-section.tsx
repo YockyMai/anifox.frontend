@@ -16,9 +16,7 @@ export const ScreenSection = ({
       {(title || description) && (
         <div className='mb-1'>
           {title && <p className='screen-section__title'>{title}</p>}
-          {description && (
-            <p className='text-sm text-slate-500'>{description}</p>
-          )}
+          {description && <p className='text-slate-500'>{description}</p>}
         </div>
       )}
       {children}
