@@ -27,7 +27,7 @@ export const AnimeEpisodesHistory = () => {
       const isNewEpisode = dayjs().diff(dayjs(aired), 'day') < 7
 
       const className = clsx(
-        isNewEpisode && 'font-bold text-orange-400 dark:text-purple-400'
+        isNewEpisode && 'font-bold text-orange-400 dark:text-orange-300'
       )
 
       return {
