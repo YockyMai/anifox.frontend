@@ -1,6 +1,7 @@
 import { useElementSize } from '@anifox/hooks'
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+import React, { useState } from 'react'
 
 import { UIColors } from '@/common/types/ui-colors'
 
@@ -13,19 +14,17 @@ export const Spoiler = ({
   buttonWidthFull
 }: SpoilerProps) => {
   const [ref, size] = useElementSize<HTMLDivElement>()
-
   const [isCollapsed, setIsCollapsed] = useState(true)
 
   return (
     <div>
-      <div
-        style={{
-          maxHeight: isCollapsed ? maxHeight : undefined,
-          overflow: 'hidden'
-        }}
+      <motion.div
+        initial={{ maxHeight: maxHeight, overflow: 'hidden' }}
+        animate={{ maxHeight: isCollapsed ? maxHeight : size.height }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
       >
         <div ref={ref}>{children}</div>
-      </div>
+      </motion.div>
 
       {size.height > maxHeight && (
         <Badge

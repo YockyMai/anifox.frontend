@@ -10,6 +10,7 @@ import {
 } from '@/services/queries'
 
 import { AnimePageParams } from '../anime.interface'
+import { AnimeEpisodesHistory } from './anime-episodes-history/anime-episodes-history'
 import { AnimeFranchise } from './anime-franchise'
 import './anime-overview.css'
 import { AnimeScreenshots } from './anime-screenshots'
@@ -62,6 +63,8 @@ export const AnimeOverviewScreen = () => {
         </MarqueeText>
         <KodikPlayer animeUrl={animeUrl!} />
       </div>
+
+      <AnimeEpisodesHistory />
     </div>
   )
 }
