@@ -30,7 +30,7 @@ export const UserButton = () => {
       color={UIColors.PURPLE}
       variant='gradient'
     >
-      {user ? user.nickname : 'Войти в аккаунт'}
+      {user ? user.login : 'Войти в аккаунт'}
     </Button>
   )
 }
