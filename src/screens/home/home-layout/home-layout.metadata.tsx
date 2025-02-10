@@ -5,10 +5,9 @@ import { Helmet } from '@/common/components'
 export const HomeLayoutMetadata = () => {
   return (
     <Helmet titleTemplate='ANIFOX | %s'>
-      <title>Смотри, отслеживай и наслаждайся любимыми аниме онлайн!</title>
-      <meta
-        name='description'
-        content='ANIFOX — Твой помощник в мире аниме! Здесь ты можешь смотреть любимые тайтлы в отличном качестве, отслеживать свой прогресс, составлять свои списки и делиться оценками с друзьями.'
+      <link
+        href='https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap'
+        rel='stylesheet'
       />
     </Helmet>
   )

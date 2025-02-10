@@ -8,7 +8,7 @@ import { AnimePageParams } from '../anime.interface'
 export const AnimeLayoutMetadata = () => {
   const { animeUrl } = useParams<AnimePageParams>()
 
-  const { data, isFetching } = useAnimeQuery(animeUrl!)
+  const { data, isLoading } = useAnimeQuery(animeUrl!)
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -40,7 +40,7 @@ export const AnimeLayoutMetadata = () => {
   const pageTitle = `${data?.title} — смотреть аниме ${otherTitleInfo}`.trim()
 
   return (
-    <Helmet isLoading={isFetching}>
+    <Helmet isLoading={isLoading}>
       <title>{pageTitle}</title>
       <meta name='description' content={data?.description} />
       <meta property='og:type' content='video.movie' />

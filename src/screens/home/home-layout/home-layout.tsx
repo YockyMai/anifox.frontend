@@ -10,6 +10,7 @@ import { HomeLayoutMetadata } from './home-layout.metadata'
 export const HomeLayout = () => {
   return (
     <>
+      <HomeLayoutMetadata />
       <NavigationProgress />
       <div className='app'>
         <Header />
@@ -22,7 +23,6 @@ export const HomeLayout = () => {
         </div>
         <Footer />
       </div>
-      <HomeLayoutMetadata />
     </>
   )
 }

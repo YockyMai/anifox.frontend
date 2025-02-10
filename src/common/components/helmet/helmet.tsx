@@ -5,13 +5,9 @@ import { HelmetProps } from './helmet.interface'
 export const Helmet = (props: HelmetProps) => {
   const { children, helmetLoaderProps, isLoading, ...helmetProps } = props
 
-  if (isLoading) {
-    return (
-      <ReactHelmet {...helmetLoaderProps}>
-        <title>Загрузка...</title>
-      </ReactHelmet>
-    )
-  }
-
-  return <ReactHelmet {...helmetProps}>{children}</ReactHelmet>
+  return (
+    <ReactHelmet {...(isLoading ? helmetLoaderProps : helmetProps)}>
+      {isLoading ? <title>Загрузка...</title> : children}
+    </ReactHelmet>
+  )
 }

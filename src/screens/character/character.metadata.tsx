@@ -9,7 +9,7 @@ import { CharacterPageParams } from './character.interface'
 export const CharacterMetadata = () => {
   const { id } = useParams<CharacterPageParams>()
 
-  const { data, isFetching } = useCharacterQuery(id!)
+  const { data, isLoading } = useCharacterQuery(id!)
 
   const generateOtherNames = () => {
     const names = [data?.name_en, data?.name_kanji].filter(Boolean)
@@ -23,7 +23,7 @@ export const CharacterMetadata = () => {
   }
 
   return (
-    <Helmet isLoading={isFetching}>
+    <Helmet isLoading={isLoading}>
       <title>{metadata.title}</title>
       <meta name='description' content={metadata.description} />
       {metadata.image && <meta property='og:image' content={metadata.image} />}
