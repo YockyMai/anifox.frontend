@@ -1,3 +1,5 @@
+import { useSetAtom } from 'jotai'
+import { useEffect, useRef } from 'react'
 import { useParams } from 'react-router'
 
 import { MarqueeText, ScreenSection } from '@/common/components'
@@ -10,6 +12,7 @@ import {
 } from '@/services/queries'
 
 import { AnimePageParams } from '../anime.interface'
+import { $animePlayerRef } from '../store/anime-player-ref'
 import { AnimeEpisodesHistory } from './anime-episodes-history/anime-episodes-history'
 import { AnimeFranchise } from './anime-franchise'
 import './anime-overview.css'
@@ -17,6 +20,15 @@ import { AnimeScreenshots } from './anime-screenshots'
 import { AnimeVideos } from './anime-videos'
 
 export const AnimeOverviewScreen = () => {
+  const setPlayerRef = useSetAtom($animePlayerRef)
+  const playerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (playerRef) {
+      setPlayerRef(playerRef)
+    }
+  }, [playerRef])
+
   const { animeUrl } = useParams<AnimePageParams>()
 
   const { data } = useAnimeQuery(animeUrl!)
@@ -61,7 +73,7 @@ export const AnimeOverviewScreen = () => {
             Смотреть аниме &quot;{data?.title}&quot;
           </p>
         </MarqueeText>
-        <KodikPlayer animeUrl={animeUrl!} />
+        <KodikPlayer ref={playerRef} animeUrl={animeUrl!} />
       </div>
 
       <AnimeEpisodesHistory />

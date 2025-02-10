@@ -1,16 +1,21 @@
 import { IconPlayerPlayFilled } from '@tabler/icons-react'
-import { Link } from 'react-router'
+import { useAtomValue } from 'jotai'
 
 import { Button } from '@/common/components'
-
-import { PLAYER_ANCHOR } from './watch-anime-button.const'
+import { $animePlayerRef } from '@/screens/anime/store/anime-player-ref'
 
 export const WatchAnimeButton = () => {
+  const ref = useAtomValue($animePlayerRef)
+
   return (
-    <Link to={PLAYER_ANCHOR}>
-      <Button fullWidth icon={<IconPlayerPlayFilled />}>
-        Смотреть аниме
-      </Button>
-    </Link>
+    <Button
+      onClick={() => {
+        ref?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }}
+      fullWidth
+      icon={<IconPlayerPlayFilled />}
+    >
+      Смотреть аниме
+    </Button>
   )
 }
