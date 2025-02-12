@@ -22,7 +22,7 @@ export const WindowsScreen = () => {
   }, [location.hash, windowsContentRef.current])
 
   return (
-    <div>
+    <div className='max-lg:mt-12'>
       <div className='flex justify-center'>
         <UnstyledButton
           onClick={scrollToWindowsScreen}
