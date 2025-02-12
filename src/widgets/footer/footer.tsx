@@ -78,7 +78,7 @@ export const Footer = () => {
                   Android
                 </Button>
               </Link>
-              <Link to='#'>
+              <Link to={ROUTES.APPS.WINDOWS}>
                 <Button
                   fullWidth
                   size='sm'

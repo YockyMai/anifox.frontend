@@ -2,7 +2,7 @@
   @apply h-full overflow-hidden max-lg:hidden;
 
   &__text {
-    @apply overflow-hidden;
+    @apply overflow-hidden whitespace-pre-line;
   }
 
   &__show-more-button {
