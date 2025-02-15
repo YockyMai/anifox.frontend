@@ -1,8 +1,8 @@
+import { SoundWave, UnstyledButton } from '@anifox/ui'
 import clsx from 'clsx'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useAtom, useAtomValue } from 'jotai'
 
-import { SoundWave, UnstyledButton } from '@/common/components'
 import { $kodikPlayerAtoms } from '@/entities/players/kodik-player/store/kodik-player'
 
 import './translations.css'

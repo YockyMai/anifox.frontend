@@ -1,3 +1,4 @@
+import { Badge, Button, HoverCard, UnstyledButton } from '@anifox/ui'
 import {
   IconCheck,
   IconClockPlus,
@@ -8,7 +9,6 @@ import {
 import { useAtomValue } from 'jotai'
 import { useMemo, useState } from 'react'
 
-import { Badge, Button, HoverCard, UnstyledButton } from '@/common/components'
 import { UIColors } from '@/common/types/ui-colors'
 import { AuthModal } from '@/entities/auth/auth-modal'
 import { $userAtoms } from '@/entities/user/atoms'

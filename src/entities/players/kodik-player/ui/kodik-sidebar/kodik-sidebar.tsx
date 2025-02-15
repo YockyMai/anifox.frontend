@@ -1,8 +1,7 @@
+import { Tabs } from '@anifox/ui'
 import clsx from 'clsx'
 import { useAtom } from 'jotai'
 import React, { useMemo } from 'react'
-
-import { Tabs } from '@/common/components'
 
 import { $kodikPlayerAtoms } from '../../store/kodik-player'
 import { KODIK_TABS } from '../../store/kodik-player/kodik-player.const'

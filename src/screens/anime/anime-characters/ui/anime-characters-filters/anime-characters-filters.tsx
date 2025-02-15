@@ -1,11 +1,11 @@
+import { HoverCard, Input } from '@anifox/ui'
+import { Badge } from '@anifox/ui'
 import { IconSearch } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { useAtom } from 'jotai'
 import React, { useState } from 'react'
 import { useParams } from 'react-router'
 
-import { HoverCard, Input } from '@/common/components'
-import Badge from '@/common/components/badge/badge'
 import { UIColors } from '@/common/types/ui-colors'
 import { UISizes } from '@/common/types/ui-sizes'
 import { UIVariants } from '@/common/types/ui-variants'

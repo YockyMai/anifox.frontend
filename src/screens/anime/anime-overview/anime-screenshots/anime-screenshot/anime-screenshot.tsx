@@ -1,9 +1,7 @@
 import { useHover } from '@anifox/hooks'
+import { Transition, Image, DEFAULT_DELEGATE_VALUE } from '@anifox/ui'
 import { IconSearch } from '@tabler/icons-react'
 import clsx from 'clsx'
-
-import { Transition, Image } from '@/common/components'
-import { DEFAULT_DELEGATE_VALUE } from '@/common/components/fancybox'
 
 import './anime-screenshot.css'
 import { AnimeScreenshotProps } from './anime-screenshot.interface'

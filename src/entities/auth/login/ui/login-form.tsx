@@ -1,9 +1,9 @@
+import { Button, Input, UnstyledButton } from '@anifox/ui'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { IconLogin } from '@tabler/icons-react'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router'
 
-import { Button, Input, UnstyledButton } from '@/common/components'
 import { UISizes } from '@/common/types/ui-sizes'
 import { UIVariants } from '@/common/types/ui-variants'
 import { ROUTES } from '@/screens/pages.routes'

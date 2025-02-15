@@ -1,7 +1,0 @@
-.marquee-text-container {
-  @apply relative flex h-auto w-full items-center overflow-hidden text-nowrap;
-}
-
-.marquee-text {
-  @apply absolute inline-block text-nowrap will-change-transform;
-}

@@ -1,9 +1,16 @@
+import { ComponentRequirements, ThemeProvider } from '@anifox/ui'
 import { useHydrateAtoms } from 'jotai/utils'
 import { ReactNode, useEffect } from 'react'
 
 import { $siteThemeAtom } from '@/common/store/site-theme'
 import { SITE_THEME } from '@/common/types/site-theme'
 import { useSiteTheme } from '@/entities/site-theme'
+
+const requirements: ComponentRequirements = {
+  image: {
+    alt: 'Изображение отсутствует'
+  }
+}
 
 export const WithSiteTheme = ({ children }: { children: ReactNode }) => {
   const getTheme = () => {
@@ -34,5 +41,5 @@ export const WithSiteTheme = ({ children }: { children: ReactNode }) => {
     }
   }, [siteTheme])
 
-  return children
+  return <ThemeProvider requirements={requirements}>{children}</ThemeProvider>
 }

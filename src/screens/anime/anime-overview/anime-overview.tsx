@@ -1,8 +1,8 @@
+import { MarqueeText, ScreenSection } from '@anifox/ui'
 import { useSetAtom } from 'jotai'
 import { useEffect, useRef } from 'react'
 import { useParams } from 'react-router'
 
-import { MarqueeText, ScreenSection } from '@/common/components'
 import { KodikPlayer } from '@/entities/players/kodik-player'
 import {
   useAnimeQuery,

@@ -1,9 +1,7 @@
 import { useHover } from '@anifox/hooks'
+import { Image, Transition, DEFAULT_DELEGATE_VALUE } from '@anifox/ui'
 import { IconSearch } from '@tabler/icons-react'
 import clsx from 'clsx'
-
-import { Image, Transition } from '@/common/components'
-import { DEFAULT_DELEGATE_VALUE } from '@/common/components/fancybox'
 
 import './character-picture.css'
 import { CharacterPictureProps } from './character-picture.interface'

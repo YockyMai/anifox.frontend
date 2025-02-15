@@ -1,7 +1,7 @@
+import { Image } from '@anifox/ui'
+import { Badge } from '@anifox/ui'
 import { useParams } from 'react-router'
 
-import { Image } from '@/common/components'
-import { Badge } from '@/common/components'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { useAnimeQuery } from '@/services/queries'
 

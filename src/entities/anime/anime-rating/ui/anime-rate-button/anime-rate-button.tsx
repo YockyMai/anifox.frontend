@@ -1,7 +1,7 @@
+import { Badge, Button, HoverCard } from '@anifox/ui'
 import { IconStarFilled } from '@tabler/icons-react'
 import { useMemo } from 'react'
 
-import { Badge, Button, HoverCard } from '@/common/components'
 import { UISizes } from '@/common/types/ui-sizes'
 
 import { getColorByRating } from '../../lib/get-color-by-rating'

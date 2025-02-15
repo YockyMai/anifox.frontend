@@ -1,7 +1,7 @@
+import { Carousel } from '@anifox/ui'
 import { useRef } from 'react'
 import { useParams } from 'react-router'
 
-import { Carousel } from '@/common/components'
 import { useAnimeVideosQuery } from '@/services/queries'
 
 import { AnimePageParams } from '../../anime.interface'

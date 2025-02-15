@@ -1,6 +1,6 @@
+import { HoverCard, Image } from '@anifox/ui'
 import { Link } from 'react-router'
 
-import { HoverCard, Image } from '@/common/components'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { AnimeCardPanel } from '../anime-card-panel'

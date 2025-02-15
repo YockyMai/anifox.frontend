@@ -1,7 +1,7 @@
+import { Carousel } from '@anifox/ui'
 import { useMemo } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-import { Carousel } from '@/common/components'
 import { useComingOutAnimeQuery } from '@/services/queries'
 import { useToggleHeaderOpacity } from '@/widgets/header'
 

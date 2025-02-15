@@ -1,7 +1,7 @@
+import { Button } from '@anifox/ui'
 import { IconPlayerPlayFilled } from '@tabler/icons-react'
 import { useAtomValue } from 'jotai'
 
-import { Button } from '@/common/components'
 import { $animePlayerRef } from '@/screens/anime/store/anime-player-ref'
 
 export const WatchAnimeButton = () => {

@@ -1,9 +1,9 @@
 import { useElementSize } from '@anifox/hooks'
+import { UnstyledButton } from '@anifox/ui'
 import { useAtom } from 'jotai'
 import { useCallback, useRef } from 'react'
 import { FixedSizeList } from 'react-window'
 
-import { UnstyledButton } from '@/common/components'
 import { $kodikPlayerAtoms } from '@/entities/players/kodik-player/store/kodik-player'
 import { AnimeEpisode } from '@/services/api'
 

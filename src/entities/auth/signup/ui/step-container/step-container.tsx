@@ -1,6 +1,6 @@
+import { Button } from '@anifox/ui'
 import { motion } from 'framer-motion'
 
-import { Button } from '@/common/components'
 import { UIColors } from '@/common/types/ui-colors'
 import { UISizes } from '@/common/types/ui-sizes'
 

@@ -1,4 +1,4 @@
-import { UnstyledButton, Image, Badge, MarqueeText } from '@/common/components'
+import { UnstyledButton, Image, Badge, MarqueeText } from '@anifox/ui'
 
 import { getAnimeAccentColorStyles } from '../../helpers'
 import './anime-card-panel.css'
