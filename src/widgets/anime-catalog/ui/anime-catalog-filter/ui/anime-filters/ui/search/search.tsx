@@ -1,5 +1,4 @@
-import { useDebounce } from '@anifox/hooks'
-import { Input } from '@anifox/ui'
+import { Input, useDebounce } from '@anifox/ui'
 import { IconSearch, IconX } from '@tabler/icons-react'
 import { useAtom } from 'jotai'
 import { useEffect, useState } from 'react'

@@ -10,8 +10,8 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@anifox/hooks": "^1.1.0",
-    "@anifox/ui": "^1.6.3",
+    "@anifox/store": "^1.0.0",
+    "@anifox/ui": "^1.6.7",
     "@hookform/resolvers": "^3.9.0",
     "@tabler/icons-react": "^3.6.0",
     "@tanstack/react-query": "^5.45.0",

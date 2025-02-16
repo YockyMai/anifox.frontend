@@ -1,5 +1,4 @@
-import { useHover } from '@anifox/hooks'
-import { Button } from '@anifox/ui'
+import { Button, useHover } from '@anifox/ui'
 import { IconDice3Filled } from '@tabler/icons-react'
 import { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'

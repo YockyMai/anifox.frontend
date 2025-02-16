@@ -27,7 +27,7 @@ export const AnimeScreenshots = () => {
     }
 
     return data.map((src) => ({
-      content: <AnimeScreenshot key={src} src={src} alt={''} />,
+      content: <AnimeScreenshot key={src} src={src} />,
       size: ANIME_SCREENSHOT_SIZE.WIDTH
     }))
   }, [data, isLoading])

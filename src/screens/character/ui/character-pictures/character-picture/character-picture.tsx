@@ -1,5 +1,4 @@
-import { useHover } from '@anifox/hooks'
-import { Image, Transition, DEFAULT_DELEGATE_VALUE } from '@anifox/ui'
+import { Image, Transition, DEFAULT_DELEGATE_VALUE, useHover } from '@anifox/ui'
 import { IconSearch } from '@tabler/icons-react'
 import clsx from 'clsx'
 

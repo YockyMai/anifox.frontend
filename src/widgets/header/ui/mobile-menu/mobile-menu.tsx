@@ -1,5 +1,4 @@
-import { useOutsideClick } from '@anifox/hooks'
-import { Portal } from '@anifox/ui'
+import { Portal, useOutsideClick } from '@anifox/ui'
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
 import { useAtom, useAtomValue } from 'jotai'

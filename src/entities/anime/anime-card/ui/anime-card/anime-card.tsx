@@ -15,7 +15,6 @@ export const AnimeCard = ({ anime, label, withoutPanel }: AnimeCardProps) => {
       ) : (
         <HoverCard
           width={280}
-          closeDelay={80}
           position='right'
           unstyled
           triggerClassName='anime-card__tooltip-trigger'

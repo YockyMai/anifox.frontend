@@ -1,4 +1,4 @@
-import { Image } from '@anifox/ui'
+import { DEFAULT_DELEGATE_VALUE, Fancybox, Image } from '@anifox/ui'
 import { Badge } from '@anifox/ui'
 import { useParams } from 'react-router'
 
@@ -25,23 +25,32 @@ export const AnimeContent = () => {
 
       <div className='anime-content__body'>
         <div className='anime-content__poster'>
-          {isSuccess ? (
-            <Image
-              className='anime-content__poster__image'
-              src={data.image.large}
-              alt='Постер аниме'
-              width={220}
-              height={320}
-            />
-          ) : (
-            <div className='anime-content__poster__image-loader' />
-          )}
+          <div className='transition-transform hover:-translate-y-3 hover:scale-105'>
+            {isSuccess ? (
+              <Fancybox>
+                <a
+                  data-fancybox={DEFAULT_DELEGATE_VALUE}
+                  href={data.image.large}
+                >
+                  <Image
+                    className='anime-content__poster__image'
+                    src={data.image.large}
+                    alt='Постер аниме'
+                    width={220}
+                    height={320}
+                  />
+                </a>
+              </Fancybox>
+            ) : (
+              <div className='anime-content__poster__image-loader' />
+            )}
 
-          {isSuccess && (
-            <Badge className={'anime-content__poster__badge'}>
-              {data?.minimal_age ? `${data.minimal_age}+` : data?.rating_mpa}
-            </Badge>
-          )}
+            {isSuccess && (
+              <Badge className={'anime-content__poster__badge'}>
+                {data?.minimal_age ? `${data.minimal_age}+` : data?.rating_mpa}
+              </Badge>
+            )}
+          </div>
 
           <WatchAnimeButton />
         </div>
