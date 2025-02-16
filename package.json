@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@anifox/store": "^1.0.0",
-    "@anifox/ui": "^1.6.7",
+    "@anifox/ui": "^1.6.8",
     "@hookform/resolvers": "^3.9.0",
     "@tabler/icons-react": "^3.6.0",
     "@tanstack/react-query": "^5.45.0",
