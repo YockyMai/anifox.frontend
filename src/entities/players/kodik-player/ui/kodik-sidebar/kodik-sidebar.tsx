@@ -1,17 +1,17 @@
 import { Tabs } from '@anifox/ui'
 import clsx from 'clsx'
-import { useAtom } from 'jotai'
 import React, { useMemo } from 'react'
 
-import { $kodikPlayerAtoms } from '../../store/kodik-player'
-import { KODIK_TABS } from '../../store/kodik-player/kodik-player.const'
-import { KodikTabs } from '../../store/kodik-player/kodik-player.interface'
+import { useKodikPlayerStores } from '../../context/kodik-player.context'
+import { KODIK_TABS, KodikTabs } from '../../store/episode-selector'
 import { Episodes } from '../episodes'
 import { Translations } from '../translations'
 import './kodik-sidebar.css'
 
 export const KodikSidebar = () => {
-  const [activeTab, setActiveTab] = useAtom($kodikPlayerAtoms.activeTab)
+  const { $episodeSelector } = useKodikPlayerStores()
+
+  const activeTab = $episodeSelector.selectors.activeTab()
 
   const tabs = useMemo(
     () => [
@@ -36,7 +36,7 @@ export const KodikSidebar = () => {
   )
 
   const handleChangeActiveTab = (tab: string) => {
-    setActiveTab(tab as KodikTabs)
+    $episodeSelector.actions.setActiveTab(tab as KodikTabs)
   }
 
   return (

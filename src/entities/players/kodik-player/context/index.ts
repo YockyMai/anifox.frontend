@@ -1,2 +1,2 @@
-export * from './kodik-player'
+export * from './kodik-player.context'
 export * from './kodik-player.interface'

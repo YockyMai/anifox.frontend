@@ -1,23 +1,20 @@
 import { UnstyledButton, useElementSize } from '@anifox/ui'
-import { useAtom } from 'jotai'
-import { useCallback, useRef } from 'react'
+import { useCallback } from 'react'
 import { FixedSizeList } from 'react-window'
 
-import { $kodikPlayerAtoms } from '@/entities/players/kodik-player/store/kodik-player'
 import { AnimeEpisode } from '@/services/api'
 
+import { useKodikPlayerStores } from '../../../context'
 import { EpisodeSelectionCard } from './episode-card'
 import { EPISODE_CARD_HEIGHT } from './episodes-list.const'
 import './episodes-list.css'
 import { EpisodesListProps } from './episodes-list.interface'
 
 export const EpisodesList = ({ episodes }: EpisodesListProps) => {
-  const [selectedEpisode, setSelectedEpisode] = useAtom(
-    $kodikPlayerAtoms.selectedEpisodeAtom
-  )
-  const [selectedTranslation, setSelectedTranslation] = useAtom(
-    $kodikPlayerAtoms.selectedTranslationAtom
-  )
+  const { $kodikPlayer } = useKodikPlayerStores()
+
+  const selectedEpisode = $kodikPlayer.selectors.selectedEpisode()
+  const selectedTranslation = $kodikPlayer.selectors.selectedTranslation()
 
   const onChangeEpisode = useCallback(
     (episode: AnimeEpisode) => {
@@ -30,10 +27,10 @@ export const EpisodesList = ({ episodes }: EpisodesListProps) => {
           (translation) => translation.id === selectedTranslation.id
         ) ?? episode.translations[0]
 
-      setSelectedTranslation(translation)
-      setSelectedEpisode(episode)
+      $kodikPlayer.actions.setSelectedTranslation(translation)
+      $kodikPlayer.actions.setSelectedEpisode(episode)
     },
-    [selectedTranslation, setSelectedEpisode, setSelectedTranslation]
+    [selectedTranslation]
   )
 
   const [ref, size] = useElementSize<HTMLDivElement>()

@@ -1,5 +1,5 @@
 import { MultiSelect } from '@anifox/ui'
-import { SelectOption } from '@anifox/ui/select/select.interface'
+import { SelectOption } from '@anifox/ui/dist/components/select/select.interface'
 import { useAtom } from 'jotai'
 
 import { useAnimeGenresQuery } from '@/services/queries'

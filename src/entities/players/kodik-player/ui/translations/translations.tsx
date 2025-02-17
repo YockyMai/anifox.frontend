@@ -1,49 +1,66 @@
-import { SoundWave, UnstyledButton } from '@anifox/ui'
-import clsx from 'clsx'
-import { AnimatePresence, motion } from 'framer-motion'
-import { useAtom, useAtomValue } from 'jotai'
+import { Reorder } from 'framer-motion'
+import cloneDeep from 'lodash.clonedeep'
+import { useCallback, useMemo } from 'react'
 
-import { $kodikPlayerAtoms } from '@/entities/players/kodik-player/store/kodik-player'
+import { $preferredEpisodeTranslations } from '@/entities/translation/store'
+import { AnimeEpisodeTranslation } from '@/services/api'
 
+import { useKodikPlayerStores } from '../../context'
+import { Translation } from './translation'
 import './translations.css'
 
 export const Translations = () => {
-  const selectedEpisode = useAtomValue($kodikPlayerAtoms.selectedEpisodeAtom)
-  const [selectedTranslation, setSelectedTranslation] = useAtom(
-    $kodikPlayerAtoms.selectedTranslationAtom
-  )
+  const { $kodikPlayer } = useKodikPlayerStores()
 
-  if (!selectedEpisode) return null
+  const preferredTranslations =
+    $preferredEpisodeTranslations.selectors.preferredTranslations()
+  const selectedEpisode = $kodikPlayer.selectors.selectedEpisode()
+  const selectedTranslation = $kodikPlayer.selectors.selectedTranslation()
+
+  const translations = useMemo(() => {
+    const translations = cloneDeep(selectedEpisode?.translations ?? [])
+
+    const sorted = translations.sort((a, b) => {
+      const aTranslationIndex = preferredTranslations.find(
+        ({ translationId }) => translationId === a.id
+      )?.index
+      const bTranslationIndex = preferredTranslations.find(
+        ({ translationId }) => translationId === b.id
+      )?.index
+
+      if (!aTranslationIndex && !bTranslationIndex) {
+        return 0
+      } else if (!aTranslationIndex) {
+        return -1
+      } else if (!bTranslationIndex) {
+        return 1
+      }
+
+      return aTranslationIndex - bTranslationIndex
+    })
+
+    return sorted
+  }, [selectedEpisode?.translations, preferredTranslations])
+
+  const handleReorder = useCallback(
+    (values: AnimeEpisodeTranslation[]) =>
+      $preferredEpisodeTranslations.actions.reorder(
+        values.map(({ id }, index) => ({ index, translationId: id }))
+      ),
+    []
+  )
 
   return (
     <div className='translations'>
-      {selectedEpisode.translations.map((translation) => (
-        <UnstyledButton
-          key={translation.id}
-          className={clsx(
-            'translations__item',
-            selectedTranslation?.id === translation.id &&
-              'translations__item_selected'
-          )}
-          onClick={() => {
-            setSelectedTranslation(translation)
-          }}
-        >
-          <p>{translation.title}</p>
-
-          <AnimatePresence initial={false}>
-            {selectedTranslation?.id === translation.id && (
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0 }}
-              >
-                <SoundWave />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </UnstyledButton>
-      ))}
+      <Reorder.Group axis='y' onReorder={handleReorder} values={translations}>
+        {translations.map((translation) => (
+          <Translation
+            key={translation.id}
+            selectedTranslation={selectedTranslation}
+            translation={translation}
+          />
+        ))}
+      </Reorder.Group>
     </div>
   )
 }
