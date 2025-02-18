@@ -12,10 +12,9 @@ import { useMemo, useState } from 'react'
 import { UIColors } from '@/common/types/ui-colors'
 import { AuthModal } from '@/entities/auth/auth-modal'
 import { $userAtoms } from '@/entities/user/atoms'
-import { AnimeTrackStatuses } from '@/services/api'
+import { ANIME_LIST_VARIANTS, AnimeTrackStatuses } from '@/services/api'
 import { useAnimeStatusMutation } from '@/services/mutations'
 
-import { ANIME_LIST_VARIANTS } from '../../const/anime-list-variants'
 import { AnimeListButtonProps } from './anime-list-button.interface'
 
 export const AnimeListButton = ({
@@ -40,17 +39,17 @@ export const AnimeListButton = ({
       },
       {
         title: 'Запланировано',
-        value: ANIME_LIST_VARIANTS.IN_PLAN,
+        value: ANIME_LIST_VARIANTS.PLAN_TO_WATCH,
         icon: <IconClockPlus size={22} />
       },
       {
         title: 'Просмотрено',
-        value: ANIME_LIST_VARIANTS.WATCHED,
+        value: ANIME_LIST_VARIANTS.COMPLETED,
         icon: <IconCheck size={22} />
       },
       {
         title: 'Отложено',
-        value: ANIME_LIST_VARIANTS.POSTPONED,
+        value: ANIME_LIST_VARIANTS.ON_HOLD,
         icon: <IconZzz size={22} />
       }
     ],

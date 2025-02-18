@@ -1,11 +1,6 @@
 import { IconStarFilled } from '@tabler/icons-react'
 import { clsx } from 'clsx'
-import { useAtomValue } from 'jotai'
-import { useMemo, useState } from 'react'
-
-import { AuthModal } from '@/entities/auth/auth-modal'
-import { $userAtoms } from '@/entities/user/atoms'
-import { useAnimeRatingMutation } from '@/services/mutations'
+import { useMemo } from 'react'
 
 import { getColorByRating, getRatingDistribution } from '../../../../lib'
 import './anime-rate-dropdown.css'
@@ -13,28 +8,12 @@ import { AnimeRateDropdownProps } from './anime-rate-dropdown.interface'
 
 export const AnimeRateDropdown = ({
   ratingDistribution,
-  animeUrl
+  onRateAnime
 }: AnimeRateDropdownProps) => {
-  const [authModalIsOpened, setAuthModalIsOpened] = useState(false)
-  const [rating, setRating] = useState<number | null>(null)
-
-  const isAuth = useAtomValue($userAtoms.isAuth)
-
-  const ratingMutation = useAnimeRatingMutation()
-
   const { ratings } = useMemo(
     () => getRatingDistribution(ratingDistribution ?? []),
     [ratingDistribution]
   )
-
-  const rateAnime = (rating: number) => {
-    if (isAuth) {
-      ratingMutation.mutate({ animeUrl, rating })
-    } else {
-      setRating(rating)
-      setAuthModalIsOpened(true)
-    }
-  }
 
   return (
     <div className='rate-dropdown'>
@@ -42,7 +21,7 @@ export const AnimeRateDropdown = ({
 
       {ratings.map(({ rating, count, percentage }) => (
         <div
-          onClick={() => rateAnime(rating)}
+          onClick={() => onRateAnime(rating)}
           key={rating}
           className={clsx('rate-dropdown__row')}
         >
@@ -62,19 +41,6 @@ export const AnimeRateDropdown = ({
           </div>
         </div>
       ))}
-
-      <p></p>
-
-      <AuthModal
-        isOpen={authModalIsOpened}
-        onClose={() => setAuthModalIsOpened(false)}
-        onAuthSuccess={() => {
-          if (typeof rating === 'number') {
-            ratingMutation.mutate({ animeUrl, rating })
-            setRating(null)
-          }
-        }}
-      />
     </div>
   )
 }

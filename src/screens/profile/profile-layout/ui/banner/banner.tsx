@@ -1,13 +1,13 @@
 import { Image } from '@anifox/ui'
-import { useAtomValue } from 'jotai'
 import React from 'react'
 import { useInView } from 'react-intersection-observer'
 
-import { $userAtoms } from '@/entities/user/atoms'
+import { useProfileStores } from '@/entities/profile'
 import { useToggleHeaderOpacity } from '@/widgets/header'
 
 export const Banner = () => {
-  const user = useAtomValue($userAtoms.user)
+  const { $profile } = useProfileStores()
+  const user = $profile.selectors.user()
 
   const [inViewRef, isView] = useInView()
 

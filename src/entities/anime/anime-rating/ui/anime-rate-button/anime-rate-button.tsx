@@ -1,8 +1,12 @@
 import { Badge, Button, HoverCard } from '@anifox/ui'
 import { IconStarFilled } from '@tabler/icons-react'
-import { useMemo } from 'react'
+import { useAtomValue } from 'jotai'
+import { useMemo, useState } from 'react'
 
 import { UISizes } from '@/common/types/ui-sizes'
+import { AuthModal } from '@/entities/auth/auth-modal'
+import { $userAtoms } from '@/entities/user/atoms'
+import { useAnimeRatingMutation } from '@/services/mutations'
 
 import { getColorByRating } from '../../lib/get-color-by-rating'
 import './anime-rate-button.css'
@@ -16,6 +20,13 @@ export const AnimeRateButton = ({
   withoutText,
   openDelay
 }: AnimeRateButtonProps) => {
+  const isAuth = useAtomValue($userAtoms.isAuth)
+
+  const ratingMutation = useAnimeRatingMutation()
+
+  const [authModalIsOpened, setAuthModalIsOpened] = useState(false)
+  const [selectedRating, setSelectedRating] = useState<number | null>(null)
+
   const color = getColorByRating(rating)
 
   const trigger = useMemo(() => {
@@ -39,6 +50,15 @@ export const AnimeRateButton = ({
     )
   }, [color, size, withoutText])
 
+  const rateAnime = (rating: number) => {
+    if (isAuth) {
+      ratingMutation.mutate({ animeUrl, rating })
+    } else {
+      setSelectedRating(rating)
+      setAuthModalIsOpened(true)
+    }
+  }
+
   return (
     <div className='w-fit'>
       <HoverCard
@@ -48,8 +68,19 @@ export const AnimeRateButton = ({
         position='bottom'
         trigger={trigger}
       >
-        <AnimeRateDropdown animeUrl={animeUrl} ratingDistribution={[]} />
+        <AnimeRateDropdown onRateAnime={rateAnime} ratingDistribution={[]} />
       </HoverCard>
+
+      <AuthModal
+        isOpen={authModalIsOpened}
+        onClose={() => setAuthModalIsOpened(false)}
+        onAuthSuccess={() => {
+          if (typeof selectedRating === 'number') {
+            ratingMutation.mutate({ animeUrl, rating })
+            setSelectedRating(null)
+          }
+        }}
+      />
     </div>
   )
 }

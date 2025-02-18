@@ -6,7 +6,7 @@ export const setAnimeRating = async ({
   animeUrl,
   rating
 }: SetAnimeRatingParams) => {
-  const response = await http.post(
+  const response = await http.put(
     `/users/anime/${animeUrl}/rating`,
     {},
     { params: { rating } }

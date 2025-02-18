@@ -1,4 +1,4 @@
 export type AnimeRateDropdownProps = {
-  animeUrl: string
   ratingDistribution?: { rating: number; count: number }[]
+  onRateAnime: (rate: number) => void
 }
