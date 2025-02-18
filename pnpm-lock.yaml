@@ -19,8 +19,8 @@ importers:
         specifier: ^1.0.5
         version: 1.0.5
       '@anifox/ui':
-        specifier: ^1.6.12
-        version: 1.6.12(@anifox/store@1.1.0(@types/react@19.0.8)(react@18.3.1))(@anifox/tailwind-config@1.0.5)(@tabler/icons-react@3.6.0(react@18.3.1))(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(clsx@2.1.1)(embla-carousel@8.5.2)(framer-motion@11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-intersection-observer@9.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@6.0.11(@types/node@20.14.2)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.33.0)(yaml@2.4.5))
+        specifier: ^1.6.13
+        version: 1.6.13(@anifox/store@1.1.0(@types/react@19.0.8)(react@18.3.1))(@anifox/tailwind-config@1.0.5)(@tabler/icons-react@3.6.0(react@18.3.1))(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(clsx@2.1.1)(embla-carousel@8.5.2)(framer-motion@11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-intersection-observer@9.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@6.0.11(@types/node@20.14.2)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.33.0)(yaml@2.4.5))
       '@hookform/resolvers':
         specifier: ^3.9.0
         version: 3.9.0(react-hook-form@7.53.0(react@18.3.1))
@@ -174,10 +174,10 @@ packages:
   '@anifox/tailwind-config@1.0.5':
     resolution: {integrity: sha512-ohdff3DdYk/yqeu5OQUnII67GXF8QonULKX6YB8s9rNcNkGQRfUL2E0l0w2fym0+mOFIEYi7W8f4KLdibUUNZg==}
 
-  '@anifox/ui@1.6.12':
-    resolution: {integrity: sha512-FkN8pfxCWo/E70axKu9Q9pi9rWxtvXeu4EyRF9ap2WQOm6EBAYH8tNOXqWMS0BGrgT6nZV7ieeBZygJ/0Ufbkg==}
+  '@anifox/ui@1.6.13':
+    resolution: {integrity: sha512-kVDiu3XjOeZK1g+n6hZ3jY6XpzgS7HoUbtD8Vnz70SxiJcLX+5eVPfx7oQ7KMZFwnvYMeYTcldkM/B+aWRFRbQ==}
     peerDependencies:
-      '@anifox/store': ^1.0.1
+      '@anifox/store': ^1.1.0
       '@anifox/tailwind-config': ^1.0.5
       '@tabler/icons-react': ^3.3.0
       clsx: ^2.1.1
@@ -3911,7 +3911,7 @@ snapshots:
 
   '@anifox/tailwind-config@1.0.5': {}
 
-  '@anifox/ui@1.6.12(@anifox/store@1.1.0(@types/react@19.0.8)(react@18.3.1))(@anifox/tailwind-config@1.0.5)(@tabler/icons-react@3.6.0(react@18.3.1))(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(clsx@2.1.1)(embla-carousel@8.5.2)(framer-motion@11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-intersection-observer@9.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@6.0.11(@types/node@20.14.2)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.33.0)(yaml@2.4.5))':
+  '@anifox/ui@1.6.13(@anifox/store@1.1.0(@types/react@19.0.8)(react@18.3.1))(@anifox/tailwind-config@1.0.5)(@tabler/icons-react@3.6.0(react@18.3.1))(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(clsx@2.1.1)(embla-carousel@8.5.2)(framer-motion@11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-intersection-observer@9.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@6.0.11(@types/node@20.14.2)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.33.0)(yaml@2.4.5))':
     dependencies:
       '@anifox/store': 1.1.0(@types/react@19.0.8)(react@18.3.1)
       '@anifox/tailwind-config': 1.0.5
