@@ -1,6 +1,6 @@
+import { Button, Tooltip } from '@anifox/ui'
 import { IconHeartFilled } from '@tabler/icons-react'
 
-import { Button, Tooltip } from '@/common/components'
 import { UIColors } from '@/common/types/ui-colors'
 
 import './anime-favorite-button.css'

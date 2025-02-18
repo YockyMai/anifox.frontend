@@ -1,7 +1,6 @@
+import { ScreenLoader } from '@anifox/ui'
 import { Suspense } from 'react'
 import { Outlet } from 'react-router'
-
-import { ScreenLoader } from '@/common/components'
 
 import { AnimeLayoutMetadata } from './anime-layout.metadata'
 import { AnimeContent, AnimePageTabs } from './ui'

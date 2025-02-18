@@ -1,9 +1,5 @@
-import { useHover } from '@anifox/hooks'
+import { Image, DEFAULT_DELEGATE_VALUE, HoverIcon } from '@anifox/ui'
 import { IconSearch } from '@tabler/icons-react'
-import clsx from 'clsx'
-
-import { Transition, Image } from '@/common/components'
-import { DEFAULT_DELEGATE_VALUE } from '@/common/components/fancybox'
 
 import './anime-screenshot.css'
 import { AnimeScreenshotProps } from './anime-screenshot.interface'
@@ -13,30 +9,21 @@ export const AnimeScreenshot = ({
   alt,
   isLoading
 }: AnimeScreenshotProps) => {
-  const { isHovered, hoverProps } = useHover()
-
   return (
-    <div {...hoverProps} className='anime-screenshot'>
-      <a href={src} data-fancybox={DEFAULT_DELEGATE_VALUE}>
-        {isLoading ? (
-          <div className='anime-screenshot__loader' />
-        ) : (
-          <Image
-            className={clsx(
-              'anime-screenshot__image',
-              isHovered && 'brightness-50'
-            )}
-            alt={alt ?? ''}
-            src={src}
-          />
-        )}
-
-        <Transition mounded={isHovered}>
-          <div className='anime-screenshot__icon'>
-            <IconSearch />
-          </div>
-        </Transition>
-      </a>
-    </div>
+    <HoverIcon icon={<IconSearch className='stroke-white' />}>
+      <div className='h-[--image-height] w-auto cursor-pointer overflow-hidden rounded'>
+        <a href={src} data-fancybox={DEFAULT_DELEGATE_VALUE}>
+          {isLoading ? (
+            <div className='h-full w-[247px] animate-pulse bg-slate-200 dark:bg-slate-700' />
+          ) : (
+            <Image
+              className='h-full w-[247px] object-cover transition-all'
+              alt={alt ?? ''}
+              src={src}
+            />
+          )}
+        </a>
+      </div>
+    </HoverIcon>
   )
 }

@@ -1,6 +1,6 @@
+import { Select } from '@anifox/ui'
 import { useAtom } from 'jotai'
 
-import { Select } from '@/common/components'
 import { AnimeRatingMpa } from '@/services/api'
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model/anime-catalog-filter'
 

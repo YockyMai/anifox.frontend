@@ -1,9 +1,9 @@
+import { Image, MarqueeText } from '@anifox/ui'
+import { Badge } from '@anifox/ui'
 import { IconStar } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { Link } from 'react-router'
 
-import { Image, MarqueeText } from '@/common/components'
-import { Badge } from '@/common/components'
 import { UIColors } from '@/common/types/ui-colors'
 import { ROUTES } from '@/screens/pages.routes'
 

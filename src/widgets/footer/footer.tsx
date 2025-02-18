@@ -1,3 +1,4 @@
+import { AnifoxLogo, Button } from '@anifox/ui'
 import {
   IconBrandAndroid,
   IconBrandTelegram,
@@ -6,7 +7,6 @@ import {
 } from '@tabler/icons-react'
 import { Link } from 'react-router'
 
-import { AnifoxLogo, Button } from '@/common/components'
 import { ROUTES } from '@/screens/pages.routes'
 
 import './footer.css'
@@ -78,7 +78,7 @@ export const Footer = () => {
                   Android
                 </Button>
               </Link>
-              <Link to='#'>
+              <Link to={ROUTES.APPS.WINDOWS}>
                 <Button
                   fullWidth
                   size='sm'

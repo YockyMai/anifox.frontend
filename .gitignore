@@ -12,6 +12,7 @@
 # next.js
 /.next/
 /out/
+.yalc
 
 # production
 /build
@@ -38,3 +39,5 @@ yarn-error.log*
 next-env.d.ts
 
 *storybook.log
+
+yalc.lock

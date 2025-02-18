@@ -13,6 +13,7 @@ import {
 import { AnimeCharactersScreen } from './anime/anime-characters'
 import { AnimeScreenLayout } from './anime/anime-layout'
 import { AnimeOverviewScreen } from './anime/anime-overview'
+import { AppsScreen } from './apps/apps'
 import { CharacterScreen } from './character'
 import { HomeLayout, HomeScreen } from './home'
 import { KodikScreen } from './kodik'
@@ -74,6 +75,7 @@ export const Screens = () => {
             <Route path={ROUTES.SIGN_UP} element={<SignupScreen />} />
           </>
         )}
+        <Route path={ROUTES.APPS.ROOT} element={<AppsScreen />} />
 
         <Route path='*' element={'NOT FOUND'} />
       </Route>

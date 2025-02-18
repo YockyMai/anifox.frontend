@@ -1,8 +1,8 @@
+import { Input } from '@anifox/ui'
 import { IconSearch } from '@tabler/icons-react'
 import { useAtom } from 'jotai'
 import { useState } from 'react'
 
-import { Input } from '@/common/components'
 import { UISizes } from '@/common/types/ui-sizes'
 import { UIVariants } from '@/common/types/ui-variants'
 

@@ -1,16 +1,20 @@
+import { Button } from '@anifox/ui'
 import { IconPlayerPlayFilled } from '@tabler/icons-react'
-import { Link } from 'react-router'
 
-import { Button } from '@/common/components'
-
-import { PLAYER_ANCHOR } from './watch-anime-button.const'
+import { PLAYER_ELEMENT_ID } from '@/screens/anime/anime-overview'
 
 export const WatchAnimeButton = () => {
+  const scrollToPlayer = () => {
+    const player = document.getElementById(PLAYER_ELEMENT_ID)
+
+    if (player) {
+      player.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   return (
-    <Link to={PLAYER_ANCHOR}>
-      <Button fullWidth icon={<IconPlayerPlayFilled />}>
-        Смотреть аниме
-      </Button>
-    </Link>
+    <Button onClick={scrollToPlayer} fullWidth icon={<IconPlayerPlayFilled />}>
+      Смотреть аниме
+    </Button>
   )
 }

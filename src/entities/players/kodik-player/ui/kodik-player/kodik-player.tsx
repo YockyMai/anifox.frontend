@@ -1,31 +1,34 @@
-import clsx from 'clsx'
-import { Provider, useAtomValue } from 'jotai'
 import { memo, useRef } from 'react'
 
+import {
+  KodikPlayerStoresProvider,
+  useKodikPlayerStores
+} from '../../context/kodik-player.context'
 import { getPlayerLinkFromParams } from '../../helpers/get-player-link-from-params'
 import { useInitKodikPlayer } from '../../hooks'
-import { $kodikPlayerAtoms } from '../../store/kodik-player'
-import { KODIK_TABS } from '../../store/kodik-player/kodik-player.const'
 import { KodikSidebar } from '../kodik-sidebar'
 import './kodik-player.css'
 import { KodikPlayerProps } from './kodik-player.interface'
 
 const KodikPlayer = ({ animeUrl }: KodikPlayerProps) => {
-  const kodikPlayerRef = useRef<HTMLIFrameElement>(null)
+  const { $kodikPlayer } = useKodikPlayerStores()
 
-  const selectedTab = useAtomValue($kodikPlayerAtoms.activeTab)
-  const selectedTranslation = useAtomValue(
-    $kodikPlayerAtoms.selectedTranslationAtom
-  )
+  const playerRef = useRef<HTMLIFrameElement>(null)
 
-  useInitKodikPlayer({ animeUrl })
+  const selectedTranslation = $kodikPlayer.selectors.selectedTranslation()
+
+  const { isLoading } = useInitKodikPlayer({ animeUrl })
+
+  if (isLoading) {
+    return null
+  }
 
   return (
     <div className='kodik-player'>
       <div className='kodik-player__frame-container'>
         {selectedTranslation && (
           <iframe
-            ref={kodikPlayerRef}
+            ref={playerRef}
             className='kodik-player__frame'
             allowFullScreen
             src={getPlayerLinkFromParams(selectedTranslation.link, {
@@ -44,9 +47,9 @@ const KodikPlayer = ({ animeUrl }: KodikPlayerProps) => {
 
 const Root = ({ animeUrl }: KodikPlayerProps) => {
   return (
-    <Provider>
+    <KodikPlayerStoresProvider>
       <KodikPlayer animeUrl={animeUrl} />
-    </Provider>
+    </KodikPlayerStoresProvider>
   )
 }
 

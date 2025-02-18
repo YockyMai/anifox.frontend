@@ -1,7 +1,7 @@
+import { Image, Spoiler } from '@anifox/ui'
 import clsx from 'clsx'
 import { useParams } from 'react-router'
 
-import { Image, Spoiler, TextWithBreaks } from '@/common/components'
 import { useCharacterQuery } from '@/services/queries'
 
 import { CharacterPageParams } from '../../character.interface'
@@ -48,7 +48,7 @@ export const CharacterInfo = () => {
         <div />
         {data?.about && (
           <Spoiler maxHeight={145}>
-            <TextWithBreaks text={data.about} separator='.' />
+            <p className='whitespace-pre-line'>{data.about}</p>
           </Spoiler>
         )}
       </div>

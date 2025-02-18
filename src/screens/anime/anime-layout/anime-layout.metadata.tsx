@@ -1,6 +1,6 @@
 import { useParams } from 'react-router'
 
-import { Helmet } from '@/common/components'
+import { Helmet } from '@/common/lib/helmet'
 import { useAnimeQuery } from '@/services/queries'
 
 import { AnimePageParams } from '../anime.interface'

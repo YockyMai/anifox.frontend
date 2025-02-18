@@ -1,10 +1,10 @@
+import { ScreenSection, Table } from '@anifox/ui'
 import clsx from 'clsx'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ru'
 import React, { useMemo } from 'react'
 import { useParams } from 'react-router'
 
-import { ScreenSection, Table } from '@/common/components'
 import { useAnimeEpisodesHistoryQuery } from '@/services/queries'
 
 import { AnimePageParams } from '../../anime.interface'

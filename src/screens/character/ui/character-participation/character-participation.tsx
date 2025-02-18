@@ -1,6 +1,6 @@
+import { ScreenSection } from '@anifox/ui'
 import { useParams } from 'react-router'
 
-import { ScreenSection } from '@/common/components'
 import { AnimeCard } from '@/entities/anime/anime-card'
 import { useCharacterQuery } from '@/services/queries'
 

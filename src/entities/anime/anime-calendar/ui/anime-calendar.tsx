@@ -1,9 +1,8 @@
+import { Accordion } from '@anifox/ui'
 import { IconCalendarWeek } from '@tabler/icons-react'
 import dayjs from 'dayjs'
 import React, { memo } from 'react'
 
-import { Accordion } from '@/common/components'
-import { ACCORDION_TYPE } from '@/common/components/accordion/accordion.const'
 import { UIColors } from '@/common/types/ui-colors'
 import { ANIME_SCHEDULE_DAY } from '@/services/api'
 import { useAnimeSchedulesQuery } from '@/services/queries'
@@ -30,7 +29,7 @@ const AnimeCalendar = () => {
       </div>
 
       <Accordion
-        type={ACCORDION_TYPE.MULTIPLE}
+        type={'multiple'}
         defaultValue={[defaultValue]}
         items={Object.values(ANIME_SCHEDULE_DAY).map((day) => {
           const isWeekday = checkIsWeekday(day)

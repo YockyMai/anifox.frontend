@@ -1,10 +1,9 @@
-import { useOutsideClick } from '@anifox/hooks'
+import { Portal, useOutsideClick } from '@anifox/ui'
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
 import { useAtom, useAtomValue } from 'jotai'
 import React, { useRef } from 'react'
 
-import { Portal } from '@/common/components'
 import { UIVariants } from '@/common/types/ui-variants'
 
 import { $headerAtoms } from '../../store'

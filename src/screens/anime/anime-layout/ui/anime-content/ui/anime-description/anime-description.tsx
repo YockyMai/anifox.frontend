@@ -1,6 +1,6 @@
+import { Spoiler } from '@anifox/ui'
 import { useParams } from 'react-router'
 
-import { Spoiler } from '@/common/components'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { useAnimeQuery } from '@/services/queries'
 

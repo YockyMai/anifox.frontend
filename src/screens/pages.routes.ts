@@ -24,7 +24,8 @@ export const ROUTES = {
   },
   APPS: {
     ROOT: '/apps',
-    ANDROID: '/apps#android'
+    ANDROID: '/apps#android',
+    WINDOWS: '/apps#windows'
   },
   KODIK: '/kodik'
 }

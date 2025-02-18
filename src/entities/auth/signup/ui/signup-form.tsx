@@ -1,7 +1,7 @@
+import { ProgressBar } from '@anifox/ui'
 import { AnimatePresence } from 'framer-motion'
 import { useAtomValue } from 'jotai'
 
-import { ProgressBar } from '@/common/components'
 import { UISizes } from '@/common/types/ui-sizes'
 
 import { $signupAtoms } from '../atoms'

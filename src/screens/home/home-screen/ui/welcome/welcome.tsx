@@ -1,8 +1,8 @@
+import { Button } from '@anifox/ui'
 import { useAtomValue } from 'jotai'
 import React from 'react'
 import { Link } from 'react-router'
 
-import { Button } from '@/common/components'
 import { $userAtoms } from '@/entities/user/atoms'
 import { ROUTES } from '@/screens/pages.routes'
 

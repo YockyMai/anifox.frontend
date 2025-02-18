@@ -1,6 +1,6 @@
+import { Badge, HoverCard, Image } from '@anifox/ui'
 import { clsx } from 'clsx'
 
-import { Badge, HoverCard, Image } from '@/common/components'
 import { UIColors } from '@/common/types/ui-colors'
 import { UISizes } from '@/common/types/ui-sizes'
 

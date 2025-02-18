@@ -1,8 +1,8 @@
+import { Button } from '@anifox/ui'
 import { IconUserFilled } from '@tabler/icons-react'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { useNavigate } from 'react-router'
 
-import { Button } from '@/common/components'
 import { UIColors } from '@/common/types/ui-colors'
 import { UISizes } from '@/common/types/ui-sizes'
 import { $userAtoms } from '@/entities/user/atoms'

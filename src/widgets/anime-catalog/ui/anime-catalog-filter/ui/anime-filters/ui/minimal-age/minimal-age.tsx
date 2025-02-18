@@ -1,6 +1,6 @@
+import { Select } from '@anifox/ui'
 import { useAtom } from 'jotai'
 
-import { Select } from '@/common/components'
 import { AnimeMinimalAge } from '@/services/api'
 import { useAnimeCatalogFilterContext } from '@/widgets/anime-catalog/context/anime-catalog-filter.context'
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model/anime-catalog-filter'

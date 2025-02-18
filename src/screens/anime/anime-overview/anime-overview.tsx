@@ -1,6 +1,6 @@
+import { MarqueeText, ScreenSection } from '@anifox/ui'
 import { useParams } from 'react-router'
 
-import { MarqueeText, ScreenSection } from '@/common/components'
 import { KodikPlayer } from '@/entities/players/kodik-player'
 import {
   useAnimeQuery,
@@ -12,6 +12,7 @@ import {
 import { AnimePageParams } from '../anime.interface'
 import { AnimeEpisodesHistory } from './anime-episodes-history/anime-episodes-history'
 import { AnimeFranchise } from './anime-franchise'
+import { PLAYER_ELEMENT_ID } from './anime-overview.const'
 import './anime-overview.css'
 import { AnimeScreenshots } from './anime-screenshots'
 import { AnimeVideos } from './anime-videos'
@@ -55,7 +56,7 @@ export const AnimeOverviewScreen = () => {
         </div>
       )}
 
-      <div id='player' className='anime-overview__player'>
+      <div id={PLAYER_ELEMENT_ID} className='anime-overview__player'>
         <MarqueeText>
           <p className='anime-overview__player__title'>
             Смотреть аниме &quot;{data?.title}&quot;

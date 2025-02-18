@@ -1,6 +1,5 @@
+import { Modal } from '@anifox/ui'
 import { useEffect, useState } from 'react'
-
-import { Modal } from '@/common/components'
 
 import { LoginForm } from '../login'
 import { SignupForm } from '../signup'

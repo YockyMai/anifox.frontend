@@ -1,9 +1,8 @@
-import { useDebounce } from '@anifox/hooks'
+import { Input, useDebounce } from '@anifox/ui'
 import { IconSearch, IconX } from '@tabler/icons-react'
 import { useAtom } from 'jotai'
 import { useEffect, useState } from 'react'
 
-import { Input } from '@/common/components'
 import { useAnimeCatalogFilterContext } from '@/widgets/anime-catalog/context/anime-catalog-filter.context'
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model'
 
