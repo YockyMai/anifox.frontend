@@ -1,8 +1,8 @@
+import { UnstyledButton } from '@anifox/ui'
 import { IconMoon, IconSun } from '@tabler/icons-react'
 import { useAtom } from 'jotai'
 import React from 'react'
 
-import { UnstyledButton } from '@/common/components'
 import { $siteThemeAtom } from '@/common/store/site-theme'
 import { SITE_THEME } from '@/common/types/site-theme'
 

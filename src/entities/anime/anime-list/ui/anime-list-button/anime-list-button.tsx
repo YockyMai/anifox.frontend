@@ -1,3 +1,4 @@
+import { Badge, Button, HoverCard, UnstyledButton } from '@anifox/ui'
 import {
   IconCheck,
   IconClockPlus,
@@ -8,13 +9,11 @@ import {
 import { useAtomValue } from 'jotai'
 import { useMemo, useState } from 'react'
 
-import { Badge, Button, HoverCard, UnstyledButton } from '@/common/components'
 import { UIColors } from '@/common/types/ui-colors'
 import { AuthModal } from '@/entities/auth/auth-modal'
 import { $userAtoms } from '@/entities/user/atoms'
 
 import { ANIME_LIST_VARIANTS } from '../../const/anime-list-variants'
-import './anime-list-button.css'
 import { AnimeListButtonProps } from './anime-list-button.interface'
 
 export const AnimeListButton = ({
@@ -65,7 +64,7 @@ export const AnimeListButton = ({
         <Button
           color={UIColors.ORANGE}
           style={{ height: size, width: size }}
-          className='anime-status-button-without-text'
+          className='flex items-center justify-center p-3'
         >
           <IconStack2Filled />
         </Button>
@@ -73,8 +72,8 @@ export const AnimeListButton = ({
     }
 
     return (
-      <Badge className='anime-status-button'>
-        <p>Добавить в список</p>
+      <Badge className='flex h-full items-center gap-1 rounded bg-orange-300 px-2 text-orange-50'>
+        <p className='text-sm'>Добавить в список</p>
         <IconStack2Filled />
       </Badge>
     )
@@ -89,12 +88,12 @@ export const AnimeListButton = ({
         width={180}
         trigger={trigger}
       >
-        <div className='anime-status-button__dropdown'>
+        <div className='overflow-hidden rounded bg-slate-200 shadow dark:bg-slate-800'>
           {options.map((option) => (
             <UnstyledButton
               key={option.value}
               onClick={() => addAnimeToList(option.value)}
-              className='anime-status-button__dropdown__item'
+              className='flex w-full items-center justify-start gap-2 px-2 py-2 text-sm transition-colors hover:bg-slate-300 hover:dark:bg-slate-700 dark:hover:text-white'
             >
               {option.icon}
               {option.title}

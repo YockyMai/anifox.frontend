@@ -1,15 +1,30 @@
-import { atom } from 'jotai'
+import { createStore } from '@anifox/store'
+import { RefObject } from 'react'
 
 import { AnimeEpisode, AnimeEpisodeTranslation } from '@/services/api'
 
-import { KODIK_TABS } from './kodik-player.const'
-import { KodikTabs } from './kodik-player.interface'
+import {
+  InitKodikPlayerPayload,
+  KodikPlayerStore
+} from './kodik-player.interface'
 
-export const animeUrl = atom<string>('')
+const initialState: KodikPlayerStore = {
+  animeUrl: '',
+  selectedEpisode: null,
+  selectedTranslation: null
+}
 
-export const selectedEpisodeAtom = atom<AnimeEpisode | null>(null)
-export const selectedTranslationAtom = atom<AnimeEpisodeTranslation | null>(
-  null
-)
-
-export const activeTab = atom<KodikTabs>(KODIK_TABS.EPISODES)
+export const createKodikPlayerStore = () =>
+  createStore(initialState, {
+    initKodikPlayer: (state, payload: InitKodikPlayerPayload) => {
+      state.animeUrl = payload.animeUrl
+      state.selectedEpisode = payload.selectedEpisode
+      state.selectedTranslation = payload.selectedTranslation
+    },
+    setSelectedEpisode: (state, payload: AnimeEpisode) => {
+      state.selectedEpisode = payload
+    },
+    setSelectedTranslation: (state, payload: AnimeEpisodeTranslation) => {
+      state.selectedTranslation = payload
+    }
+  })

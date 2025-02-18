@@ -1,9 +1,9 @@
+import { Input } from '@anifox/ui'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useAtom } from 'jotai'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { Input } from '@/common/components'
 import { UIVariants } from '@/common/types/ui-variants'
 import { api } from '@/services/api'
 

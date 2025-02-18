@@ -1,8 +1,7 @@
+import { UnstyledButton } from '@anifox/ui'
 import { IconBrandWindows, IconChevronDown } from '@tabler/icons-react'
 import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router'
-
-import { UnstyledButton } from '@/common/components'
 
 import { SCREENS } from '../apps.const'
 

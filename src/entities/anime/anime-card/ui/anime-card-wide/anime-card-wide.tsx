@@ -1,6 +1,5 @@
+import { Image } from '@anifox/ui'
 import clsx from 'clsx'
-
-import { Image } from '@/common/components'
 
 import './anime-card-wide.css'
 import { AnimeCardSimpleProps } from './anime-card-wide.interface'

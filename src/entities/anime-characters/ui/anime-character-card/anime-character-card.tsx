@@ -1,7 +1,7 @@
+import { Image } from '@anifox/ui'
 import React from 'react'
 import { Link } from 'react-router'
 
-import { Image } from '@/common/components'
 import { ROUTES } from '@/screens/pages.routes'
 
 import './anime-character-card.css'

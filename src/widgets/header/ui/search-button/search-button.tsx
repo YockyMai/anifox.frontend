@@ -1,6 +1,6 @@
+import { Button, Input } from '@anifox/ui'
 import { IconSearch } from '@tabler/icons-react'
 
-import { Button, Input } from '@/common/components'
 import { UIColors } from '@/common/types/ui-colors'
 
 export const SearchButton = () => {

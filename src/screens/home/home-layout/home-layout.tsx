@@ -1,7 +1,7 @@
+import { NavigationProgress, ScreenLoader } from '@anifox/ui'
 import React, { Suspense } from 'react'
 import { Outlet } from 'react-router'
 
-import { NavigationProgress, ScreenLoader } from '@/common/components'
 import { Footer } from '@/widgets/footer'
 import { Header } from '@/widgets/header'
 

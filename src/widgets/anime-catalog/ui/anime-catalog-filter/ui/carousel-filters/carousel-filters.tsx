@@ -1,6 +1,5 @@
+import { Carousel } from '@anifox/ui'
 import React, { useMemo } from 'react'
-
-import { Carousel } from '@/common/components'
 
 import {
   AnimeType,

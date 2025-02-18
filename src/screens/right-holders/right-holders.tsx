@@ -1,7 +1,6 @@
+import { Button } from '@anifox/ui'
 import React from 'react'
 import { Link } from 'react-router'
-
-import { Button } from '@/common/components'
 
 import { ROUTES } from '../pages.routes'
 import { POLICY_CONTENT } from './right-holders.const'
