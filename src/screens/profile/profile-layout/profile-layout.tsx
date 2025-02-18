@@ -1,7 +1,6 @@
+import { ScreenLoader } from '@anifox/ui'
 import React, { Suspense } from 'react'
 import { Outlet } from 'react-router'
-
-import { ScreenLoader } from '@/common/components'
 
 import { Banner, ProfilePageTabs } from './ui'
 

@@ -1,8 +1,8 @@
+import { Image } from '@anifox/ui'
 import { useAtomValue } from 'jotai'
 import React from 'react'
 import { useInView } from 'react-intersection-observer'
 
-import { Image } from '@/common/components'
 import { $userAtoms } from '@/entities/user/atoms'
 import { useToggleHeaderOpacity } from '@/widgets/header'
 

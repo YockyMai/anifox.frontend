@@ -1,8 +1,8 @@
+import { Tabs } from '@anifox/ui'
 import { IconBook, IconHeart } from '@tabler/icons-react'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router'
 
-import { Tabs } from '@/common/components'
 import { ROUTES } from '@/screens/pages.routes'
 import { ProfilePageParams } from '@/screens/profile/profile.interface'
 
