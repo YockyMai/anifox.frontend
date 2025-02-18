@@ -14,9 +14,8 @@ export const AnimeCard = ({ anime, label, withoutPanel }: AnimeCardProps) => {
           width={280}
           position='right'
           unstyled
+          disableHoverableContent
           triggerClassName='!w-full'
-          closeDelay={0}
-          hideWhenDetached
           trigger={
             <div>
               <AnimeCardContent anime={anime} label={label} />
