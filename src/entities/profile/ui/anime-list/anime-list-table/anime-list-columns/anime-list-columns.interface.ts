@@ -1,6 +1,5 @@
 import { AnimeTrackStatuses } from '@/services/api'
 
-export type AnimeListTableProps = {
+export type AnimeListColumnsProps = {
   status: AnimeTrackStatuses
-  withReorder?: boolean
 }

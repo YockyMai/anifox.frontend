@@ -12,7 +12,11 @@ import { useMemo, useState } from 'react'
 import { UIColors } from '@/common/types/ui-colors'
 import { AuthModal } from '@/entities/auth/auth-modal'
 import { $userAtoms } from '@/entities/user/atoms'
-import { ANIME_LIST_VARIANTS, AnimeTrackStatuses } from '@/services/api'
+import {
+  ANIME_LIST_STATUSES,
+  AnimeTrackStatuses,
+  MAP_ANIME_LIST_STATUS_LABEL
+} from '@/services/api'
 import { useAnimeStatusMutation } from '@/services/mutations'
 
 import { AnimeListButtonProps } from './anime-list-button.interface'
@@ -33,23 +37,23 @@ export const AnimeListButton = ({
   const options = useMemo(
     () => [
       {
-        title: 'Смотрю',
-        value: ANIME_LIST_VARIANTS.WATCHING,
+        title: MAP_ANIME_LIST_STATUS_LABEL[ANIME_LIST_STATUSES.WATCHING],
+        value: ANIME_LIST_STATUSES.WATCHING,
         icon: <IconDeviceTvOld size={22} />
       },
       {
-        title: 'Запланировано',
-        value: ANIME_LIST_VARIANTS.PLAN_TO_WATCH,
+        title: MAP_ANIME_LIST_STATUS_LABEL[ANIME_LIST_STATUSES.PLAN_TO_WATCH],
+        value: ANIME_LIST_STATUSES.PLAN_TO_WATCH,
         icon: <IconClockPlus size={22} />
       },
       {
-        title: 'Просмотрено',
-        value: ANIME_LIST_VARIANTS.COMPLETED,
+        title: MAP_ANIME_LIST_STATUS_LABEL[ANIME_LIST_STATUSES.COMPLETED],
+        value: ANIME_LIST_STATUSES.COMPLETED,
         icon: <IconCheck size={22} />
       },
       {
-        title: 'Отложено',
-        value: ANIME_LIST_VARIANTS.ON_HOLD,
+        title: MAP_ANIME_LIST_STATUS_LABEL[ANIME_LIST_STATUSES.ON_HOLD],
+        value: ANIME_LIST_STATUSES.ON_HOLD,
         icon: <IconZzz size={22} />
       }
     ],

@@ -8,7 +8,11 @@ import { ROUTES } from '@/screens/pages.routes'
 import { AnimeStatusCardProps } from './anime-status-card.interface'
 import { AnimeStatusMenu } from './anime-status-menu'
 
-export const AnimeStatusCard = ({ anime, status }: AnimeStatusCardProps) => {
+export const AnimeStatusCard = ({
+  anime,
+  dragControls,
+  isDragging
+}: AnimeStatusCardProps) => {
   const { isHovered, hoverProps } = useHover()
 
   return (
@@ -37,7 +41,13 @@ export const AnimeStatusCard = ({ anime, status }: AnimeStatusCardProps) => {
         </div>
       </div>
 
-      <AnimeStatusMenu isCardHovered={isHovered} anime={anime} />
+      <AnimeStatusMenu
+        withDragging={false}
+        isDragging={isDragging}
+        isCardHovered={isHovered}
+        anime={anime}
+        dragControls={dragControls}
+      />
     </div>
   )
 }
