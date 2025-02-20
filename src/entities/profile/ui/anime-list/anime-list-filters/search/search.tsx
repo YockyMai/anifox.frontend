@@ -13,7 +13,12 @@ export const Search = () => {
       onChange={(e) => $animeListFilters.actions.setSearch(e.target.value)}
       label='Поиск по названию'
       placeholder='Поиск'
-      icon={<IconSearch />}
+      icon={
+        <IconSearch
+          className='cursor-pointer'
+          onClick={() => $animeListFilters.actions.setSearch('')}
+        />
+      }
       rightIcon={search.length ? <IconX /> : undefined}
     />
   )
