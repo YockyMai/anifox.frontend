@@ -3,6 +3,8 @@ import cookie from 'cookie'
 
 import { COOKIES } from '@/common/const'
 
+import { QUERIES_WITHOUT_HEADERS } from './http.const'
+
 export const http = axios.create({
   baseURL: import.meta.env.VITE_PUBLIC_API_URL
 })
@@ -10,7 +12,11 @@ export const http = axios.create({
 http.interceptors.request.use((config) => {
   const accessToken = cookie.parse(document.cookie)[COOKIES.ACCESS_TOKEN_KEY]
 
-  if (accessToken) {
+  const canAttachHeaders = QUERIES_WITHOUT_HEADERS.some(
+    (path) => !(config.url ?? '').includes(path)
+  )
+
+  if (accessToken && canAttachHeaders) {
     config.headers.Authorization = `Bearer ${accessToken}`
   }
 
@@ -34,7 +40,8 @@ http.interceptors.response.use(
         if (!refreshToken) return
 
         await http.get('/auth/refreshToken', {
-          params: { refreshToken }
+          params: { refreshToken },
+          headers: {}
         })
 
         return http.request(error.config)
