@@ -1,13 +1,17 @@
+import { Button } from '@anifox/ui'
+import { useAtomValue } from 'jotai'
 import React from 'react'
 import { Link } from 'react-router'
 
-import { Button } from '@/common/components'
+import { $userAtoms } from '@/entities/user/atoms'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { FEATURES } from './welcome.const'
 import './welcome.css'
 
 export const WelcomeBlock = () => {
+  const isAuth = useAtomValue($userAtoms.isAuth)
+
   return (
     <div className='welcome'>
       <div>
@@ -23,18 +27,26 @@ export const WelcomeBlock = () => {
           тайтлы в отличном качестве, отслеживать свой прогресс, составлять свои
           списки и делиться оценками с друзьями.
         </p>
-        <div className='flex gap-x-3'>
-          <Link to={ROUTES.LOGIN}>
-            <Button color='red' variant='gradient'>
-              Войти в аккаунт
-            </Button>
-          </Link>
-          <Link to={ROUTES.SIGN_UP}>
+        {isAuth ? (
+          <Link to={ROUTES.CATALOG.ROOT}>
             <Button color='orange' variant='gradient'>
-              Создать аккаунт
+              Смотреть аниме
             </Button>
           </Link>
-        </div>
+        ) : (
+          <div className='flex gap-x-3'>
+            <Link to={ROUTES.LOGIN}>
+              <Button color='red' variant='gradient'>
+                Войти в аккаунт
+              </Button>
+            </Link>
+            <Link to={ROUTES.SIGN_UP}>
+              <Button color='orange' variant='gradient'>
+                Создать аккаунт
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
       <div className='welcome__features'>
         {FEATURES.map(({ description, icon, title }) => (

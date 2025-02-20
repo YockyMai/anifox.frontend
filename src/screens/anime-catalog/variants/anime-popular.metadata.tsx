@@ -1,4 +1,4 @@
-import { Helmet } from '@/common/components'
+import { Helmet } from '@/common/lib/helmet'
 
 export const AnimePopularMetadata = () => {
   return (

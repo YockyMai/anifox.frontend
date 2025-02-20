@@ -1,8 +1,8 @@
+import { Button } from '@anifox/ui'
 import { IconUserFilled } from '@tabler/icons-react'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { useNavigate } from 'react-router'
 
-import { Button } from '@/common/components'
 import { UIColors } from '@/common/types/ui-colors'
 import { UISizes } from '@/common/types/ui-sizes'
 import { $userAtoms } from '@/entities/user/atoms'
@@ -18,7 +18,12 @@ export const UserButton = () => {
 
   const handleClick = () => {
     setIsMobileMenuOpen(false)
-    navigate(ROUTES.LOGIN)
+
+    if (user) {
+      navigate(ROUTES.PROFILE.ROOT.replace(':login', user.preferred_username))
+    } else {
+      navigate(ROUTES.LOGIN)
+    }
   }
 
   return (
@@ -30,7 +35,7 @@ export const UserButton = () => {
       color={UIColors.PURPLE}
       variant='gradient'
     >
-      {user ? user.login : 'Войти в аккаунт'}
+      {user ? user.preferred_username : 'Войти в аккаунт'}
     </Button>
   )
 }

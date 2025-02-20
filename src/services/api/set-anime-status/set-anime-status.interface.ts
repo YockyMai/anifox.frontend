@@ -1,9 +1,9 @@
 export type AnimeTrackStatuses =
-  | 'InPlan'
-  | 'Watching'
-  | 'Watched'
-  | 'Postponed'
-  | 'Dropped'
+  | 'plan_to_watch'
+  | 'watching'
+  | 'completed'
+  | 'dropped'
+  | 'on_hold'
 
 export type SetAnimeStatusParams = {
   animeUrl: string

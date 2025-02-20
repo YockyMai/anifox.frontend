@@ -1,7 +1,7 @@
+import { Image, Spoiler } from '@anifox/ui'
 import clsx from 'clsx'
 import { useParams } from 'react-router'
 
-import { Image, Spoiler } from '@/common/components'
 import { useCharacterQuery } from '@/services/queries'
 
 import { CharacterPageParams } from '../../character.interface'

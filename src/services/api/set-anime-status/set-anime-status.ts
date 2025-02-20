@@ -6,10 +6,10 @@ export const setAnimeStatus = async ({
   animeUrl,
   status
 }: SetAnimeStatusParams) => {
-  const response = await http.post(
-    `/users/anime/${animeUrl}/favorite`,
+  const response = await http.put(
+    `/users/anime/${animeUrl}/favourite`,
     {},
-    { params: { status, episodeNumber: 1 } }
+    { params: { status, episodes_watched: 1 } }
   )
 
   return response

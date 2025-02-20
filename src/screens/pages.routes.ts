@@ -19,7 +19,8 @@ export const ROUTES = {
   SIGN_UP: '/signup',
   RIGHT_HOLDERS: '/right-holders',
   PROFILE: {
-    ROOT: '/profile/:login'
+    ROOT: '/profile/:login',
+    FAVORITES: '/profile/:login/favorites'
   },
   APPS: {
     ROOT: '/apps',

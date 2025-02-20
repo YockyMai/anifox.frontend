@@ -1,8 +1,6 @@
-import { useSetAtom } from 'jotai'
-import { useEffect, useRef } from 'react'
+import { MarqueeText, ScreenSection } from '@anifox/ui'
 import { useParams } from 'react-router'
 
-import { MarqueeText, ScreenSection } from '@/common/components'
 import { KodikPlayer } from '@/entities/players/kodik-player'
 import {
   useAnimeQuery,
@@ -12,23 +10,14 @@ import {
 } from '@/services/queries'
 
 import { AnimePageParams } from '../anime.interface'
-import { $animePlayerRef } from '../store/anime-player-ref'
 import { AnimeEpisodesHistory } from './anime-episodes-history/anime-episodes-history'
 import { AnimeFranchise } from './anime-franchise'
+import { PLAYER_ELEMENT_ID } from './anime-overview.const'
 import './anime-overview.css'
 import { AnimeScreenshots } from './anime-screenshots'
 import { AnimeVideos } from './anime-videos'
 
 export const AnimeOverviewScreen = () => {
-  const setPlayerRef = useSetAtom($animePlayerRef)
-  const playerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (playerRef) {
-      setPlayerRef(playerRef)
-    }
-  }, [playerRef])
-
   const { animeUrl } = useParams<AnimePageParams>()
 
   const { data } = useAnimeQuery(animeUrl!)
@@ -67,13 +56,13 @@ export const AnimeOverviewScreen = () => {
         </div>
       )}
 
-      <div id='player' className='anime-overview__player'>
+      <div id={PLAYER_ELEMENT_ID} className='anime-overview__player'>
         <MarqueeText>
           <p className='anime-overview__player__title'>
             Смотреть аниме &quot;{data?.title}&quot;
           </p>
         </MarqueeText>
-        <KodikPlayer ref={playerRef} animeUrl={animeUrl!} />
+        <KodikPlayer animeUrl={animeUrl!} />
       </div>
 
       <AnimeEpisodesHistory />

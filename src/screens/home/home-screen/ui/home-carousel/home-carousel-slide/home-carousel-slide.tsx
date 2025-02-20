@@ -1,9 +1,9 @@
+import { Button, Image, MarqueeText } from '@anifox/ui'
 import { IconHeartFilled, IconPlayerPlayFilled } from '@tabler/icons-react'
 import { motion } from 'framer-motion'
 import { useMemo } from 'react'
 import { Link } from 'react-router'
 
-import { Button, Image, MarqueeText } from '@/common/components'
 import { UISizes } from '@/common/types/ui-sizes'
 import { getAnimeAccentColorStyles } from '@/entities/anime/anime-card/helpers'
 import { ROUTES } from '@/screens/pages.routes'

@@ -1,7 +1,7 @@
+import { Carousel, Fancybox } from '@anifox/ui'
 import React from 'react'
 import { useParams } from 'react-router'
 
-import { Carousel, Fancybox } from '@/common/components'
 import { useCharacterQuery } from '@/services/queries'
 
 import { CharacterPageParams } from '../../character.interface'

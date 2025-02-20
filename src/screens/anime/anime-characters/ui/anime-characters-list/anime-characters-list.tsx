@@ -1,9 +1,9 @@
+import { InfinityLoadingContainer } from '@anifox/ui'
 import { IconMoodSad } from '@tabler/icons-react'
 import { useAtomValue } from 'jotai'
 import React, { Fragment } from 'react'
 import { useParams } from 'react-router'
 
-import { InfinityLoadingContainer } from '@/common/components'
 import { AnimeCharacterCard } from '@/entities/anime-characters'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { useAnimeCharactersQuery } from '@/services/queries'

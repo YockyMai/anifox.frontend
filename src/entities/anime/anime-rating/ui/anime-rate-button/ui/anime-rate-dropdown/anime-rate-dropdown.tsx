@@ -7,7 +7,8 @@ import './anime-rate-dropdown.css'
 import { AnimeRateDropdownProps } from './anime-rate-dropdown.interface'
 
 export const AnimeRateDropdown = ({
-  ratingDistribution
+  ratingDistribution,
+  onRateAnime
 }: AnimeRateDropdownProps) => {
   const { ratings } = useMemo(
     () => getRatingDistribution(ratingDistribution ?? []),
@@ -19,7 +20,11 @@ export const AnimeRateDropdown = ({
       <p>Нажмите на звездочку чтобы оценить аниме</p>
 
       {ratings.map(({ rating, count, percentage }) => (
-        <div key={rating} className={clsx('rate-dropdown__row')}>
+        <div
+          onClick={() => onRateAnime(rating)}
+          key={rating}
+          className={clsx('rate-dropdown__row')}
+        >
           <div className='rate-dropdown__rating'>
             <IconStarFilled
               className={`rate-dropdown__rating_${getColorByRating(rating)}`}
@@ -36,8 +41,6 @@ export const AnimeRateDropdown = ({
           </div>
         </div>
       ))}
-
-      <p></p>
     </div>
   )
 }

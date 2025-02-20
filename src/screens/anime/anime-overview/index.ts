@@ -5,3 +5,5 @@ export const AnimeOverviewScreen = lazy(() =>
     default: AnimeOverviewScreen
   }))
 )
+
+export * from './anime-overview.const'

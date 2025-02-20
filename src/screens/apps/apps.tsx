@@ -1,11 +1,13 @@
 import { AndroidScreen } from './android-screen'
+import { AppsMetadata } from './apps.metadata'
 import { WindowsScreen } from './windows-screen'
 
 export const AppsScreen = () => {
   return (
     <div className='apps'>
-      <AndroidScreen />
+      <AppsMetadata />
 
+      <AndroidScreen />
       <WindowsScreen />
     </div>
   )

@@ -1,7 +1,0 @@
-.select__no-options {
-  @apply px-4 py-2 text-center;
-
-  p {
-    @apply text-sm font-normal;
-  }
-}

@@ -1,4 +1,4 @@
-import { Image } from '@/common/components'
+import { Image } from '@anifox/ui'
 
 import './anime-card-simple.css'
 import { AnimeCardSimpleProps } from './anime-card-simple.interface'

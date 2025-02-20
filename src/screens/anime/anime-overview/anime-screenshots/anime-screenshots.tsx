@@ -1,7 +1,7 @@
+import { Carousel, Fancybox } from '@anifox/ui'
 import { ReactNode, useMemo } from 'react'
 import { useParams } from 'react-router'
 
-import { Carousel, Fancybox } from '@/common/components'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { useAnimeScreenshotsQuery } from '@/services/queries'
 
@@ -27,7 +27,7 @@ export const AnimeScreenshots = () => {
     }
 
     return data.map((src) => ({
-      content: <AnimeScreenshot key={src} src={src} alt={''} />,
+      content: <AnimeScreenshot key={src} src={src} />,
       size: ANIME_SCREENSHOT_SIZE.WIDTH
     }))
   }, [data, isLoading])
