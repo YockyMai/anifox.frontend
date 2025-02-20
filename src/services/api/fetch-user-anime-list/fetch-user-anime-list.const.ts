@@ -1,4 +1,4 @@
-export const ANIME_LIST_STATUSES = {
+export const ANIME_TRACK_STATUSES = {
   COMPLETED: 'completed',
   WATCHING: 'watching',
   PLAN_TO_WATCH: 'plan_to_watch',
@@ -6,10 +6,10 @@ export const ANIME_LIST_STATUSES = {
   DROPPED: 'dropped'
 } as const
 
-export const MAP_ANIME_LIST_STATUS_LABEL = {
-  [ANIME_LIST_STATUSES.PLAN_TO_WATCH]: 'Запланировано',
-  [ANIME_LIST_STATUSES.WATCHING]: 'Смотрю',
-  [ANIME_LIST_STATUSES.COMPLETED]: 'Завершено',
-  [ANIME_LIST_STATUSES.DROPPED]: 'Брошено',
-  [ANIME_LIST_STATUSES.ON_HOLD]: 'Отложено'
+export const MAP_ANIME_TRACK_STATUS_LABEL = {
+  [ANIME_TRACK_STATUSES.PLAN_TO_WATCH]: 'Запланировано',
+  [ANIME_TRACK_STATUSES.WATCHING]: 'Смотрю',
+  [ANIME_TRACK_STATUSES.COMPLETED]: 'Завершено',
+  [ANIME_TRACK_STATUSES.DROPPED]: 'Брошено',
+  [ANIME_TRACK_STATUSES.ON_HOLD]: 'Отложено'
 } as const

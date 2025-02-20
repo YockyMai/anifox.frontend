@@ -2,8 +2,9 @@ import { Tooltip, UnstyledButton } from '@anifox/ui'
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react'
 import React from 'react'
 
+import { AnimeTrackStatusIcon } from '@/common/components/anime-track-status-icon/anime-track-status-icon'
 import { $animeList } from '@/entities/profile'
-import { MAP_ANIME_LIST_STATUS_LABEL } from '@/services/api'
+import { MAP_ANIME_TRACK_STATUS_LABEL } from '@/services/api'
 
 import { AnimeListTableHeaderProps } from './anime-list-table-header.interface'
 
@@ -18,9 +19,10 @@ export const AnimeListTableHeader = ({
 
   return (
     <div className='flex h-16 items-center justify-between p-3'>
-      <div className='flex'>
+      <div className='flex items-center gap-x-3'>
+        <AnimeTrackStatusIcon size={28} status={status} />
         <p className='text-xl font-bold'>
-          {MAP_ANIME_LIST_STATUS_LABEL[status]}
+          {MAP_ANIME_TRACK_STATUS_LABEL[status]}
         </p>
       </div>
 

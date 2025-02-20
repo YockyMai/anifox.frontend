@@ -1,23 +1,14 @@
-import { Input, Tabs } from '@anifox/ui'
-import React from 'react'
+import { $windowSize } from '@anifox/ui'
 
-import { $animeListFilters } from '@/entities/profile/store'
+import { BREAKPOINTS } from '@/common/const/breakpoints'
 
-import { AnimeListStatusFilter } from './anime-list-status-filter'
+import { DesktopFilter } from './desktop-filter'
+import { MobileFilter } from './mobile-filter'
 
 export const AnimeListFilters = () => {
-  const search = $animeListFilters.selectors.search()
+  const windowWidth = $windowSize.selectors.width()
 
   return (
-    <div className='flex gap-x-3'>
-      <Input
-        value={search}
-        onChange={(e) => $animeListFilters.actions.setSearch(e.target.value)}
-        label='Поиск по названию'
-        placeholder='Поиск'
-      />
-
-      <AnimeListStatusFilter />
-    </div>
+    <>{windowWidth < BREAKPOINTS.XL ? <MobileFilter /> : <DesktopFilter />}</>
   )
 }

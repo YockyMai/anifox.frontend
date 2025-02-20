@@ -1,6 +1,6 @@
 import { createStore } from '@anifox/store'
 
-import { ANIME_LIST_STATUSES, AnimeTrackStatuses } from '@/services/api'
+import { ANIME_TRACK_STATUSES, AnimeTrackStatuses } from '@/services/api'
 
 import { ANIME_LIST_STORE_KEY } from './anime-list.const'
 
@@ -9,7 +9,7 @@ type ProfileAnimeListStore = {
 }
 
 const initialState: ProfileAnimeListStore = {
-  rows: Object.values(ANIME_LIST_STATUSES)
+  rows: Object.values(ANIME_TRACK_STATUSES)
 }
 
 export const $animeList = createStore(

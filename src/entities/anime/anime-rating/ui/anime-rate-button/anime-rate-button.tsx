@@ -1,4 +1,4 @@
-import { Badge, Button, HoverCard } from '@anifox/ui'
+import { Badge, Button, HoverCard, UIColors } from '@anifox/ui'
 import { IconStarFilled } from '@tabler/icons-react'
 import { useAtomValue } from 'jotai'
 import { useMemo, useState } from 'react'
@@ -27,15 +27,13 @@ export const AnimeRateButton = ({
   const [authModalIsOpened, setAuthModalIsOpened] = useState(false)
   const [selectedRating, setSelectedRating] = useState<number | null>(null)
 
-  const color = getColorByRating(rating)
-
   const trigger = useMemo(() => {
     if (withoutText) {
       return (
         <Button
-          color={color}
+          color={UIColors.GREEN}
           style={{ height: size, width: size }}
-          className='anime-rate-button-without-text'
+          className='flex items-center justify-center p-3'
         >
           <IconStarFilled size={size - 7} />
         </Button>
@@ -43,12 +41,16 @@ export const AnimeRateButton = ({
     }
 
     return (
-      <Badge className='anime-rate-button' radius={UISizes.MD} color={color}>
-        <p>Оценить аниме</p>
+      <Badge
+        className='flex w-fit items-center gap-1'
+        radius={UISizes.MD}
+        color={UIColors.GREEN}
+      >
+        <p className='text-sm'>Оценить аниме</p>
         <IconStarFilled />
       </Badge>
     )
-  }, [color, size, withoutText])
+  }, [size, withoutText])
 
   const rateAnime = (rating: number) => {
     if (isAuth) {

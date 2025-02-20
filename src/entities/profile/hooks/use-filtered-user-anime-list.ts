@@ -1,33 +1,58 @@
+import { useStore } from '@anifox/store'
 import Fuse from 'fuse.js'
 import { useMemo } from 'react'
 
 import { useProfileStores } from '@/entities/profile/context'
-import { $animeListFilters } from '@/entities/profile/store'
+import {
+  $animeListFilters,
+  useIsAnimeListFilterActive
+} from '@/entities/profile/store'
 import { AnimeTrackStatuses } from '@/services/api'
 import { useUserAnimeListQuery } from '@/services/queries/use-user-anime-list-query'
 
-export const useFilteredUserAnimeList = (status: AnimeTrackStatuses) => {
+export const useFilteredUserAnimeList = (tableStatus: AnimeTrackStatuses) => {
   const { $profile } = useProfileStores()
 
   const user = $profile.selectors.user()
-  const search = $animeListFilters.selectors.search()
 
-  const { data = [] } = useUserAnimeListQuery({
-    status: status,
+  const { search, status, trackStatus, type } = useStore(
+    $animeListFilters.store
+  )
+
+  const isFiltersActive = useIsAnimeListFilterActive()
+
+  const { data = [], isLoading } = useUserAnimeListQuery({
+    status: trackStatus ?? tableStatus,
     login: user.preferred_username
   })
 
   const list = useMemo(() => {
-    if (!search) return data
+    if (isFiltersActive) {
+      let filteredData = data.filter((anime) => {
+        if (type && type !== anime.type) {
+          return false
+        }
 
-    const fuse = new Fuse(data, {
-      keys: ['title']
-    })
+        if (status && status !== anime.status) {
+          return false
+        }
 
-    const result = fuse.search(search)
+        return true
+      })
 
-    return result.map(({ item }) => item)
-  }, [data, search])
+      if (search) {
+        const fuse = new Fuse(filteredData, {
+          keys: ['title']
+        })
 
-  return list
+        filteredData = fuse.search(search).map(({ item }) => item)
+      }
+
+      return filteredData
+    }
+
+    return data
+  }, [data, isFiltersActive, search, tableStatus, status, type])
+
+  return { list, isLoading }
 }

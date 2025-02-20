@@ -9,13 +9,14 @@ import {
 import { useAtomValue } from 'jotai'
 import { useMemo, useState } from 'react'
 
+import { AnimeTrackStatusIcon } from '@/common/components/anime-track-status-icon/anime-track-status-icon'
 import { UIColors } from '@/common/types/ui-colors'
 import { AuthModal } from '@/entities/auth/auth-modal'
 import { $userAtoms } from '@/entities/user/atoms'
 import {
-  ANIME_LIST_STATUSES,
+  ANIME_TRACK_STATUSES,
   AnimeTrackStatuses,
-  MAP_ANIME_LIST_STATUS_LABEL
+  MAP_ANIME_TRACK_STATUS_LABEL
 } from '@/services/api'
 import { useAnimeStatusMutation } from '@/services/mutations'
 
@@ -25,7 +26,9 @@ export const AnimeListButton = ({
   animeUrl,
   withoutTitle,
   size = 28,
-  openDelay
+  openDelay,
+  currentTrackedStatus,
+  onlyContent
 }: AnimeListButtonProps) => {
   const [authModalIsOpened, setAuthModalIsOpened] = useState(false)
   const [status, setStatus] = useState<AnimeTrackStatuses | null>(null)
@@ -35,29 +38,38 @@ export const AnimeListButton = ({
   const isAuth = useAtomValue($userAtoms.isAuth)
 
   const options = useMemo(
-    () => [
-      {
-        title: MAP_ANIME_LIST_STATUS_LABEL[ANIME_LIST_STATUSES.WATCHING],
-        value: ANIME_LIST_STATUSES.WATCHING,
-        icon: <IconDeviceTvOld size={22} />
-      },
-      {
-        title: MAP_ANIME_LIST_STATUS_LABEL[ANIME_LIST_STATUSES.PLAN_TO_WATCH],
-        value: ANIME_LIST_STATUSES.PLAN_TO_WATCH,
-        icon: <IconClockPlus size={22} />
-      },
-      {
-        title: MAP_ANIME_LIST_STATUS_LABEL[ANIME_LIST_STATUSES.COMPLETED],
-        value: ANIME_LIST_STATUSES.COMPLETED,
-        icon: <IconCheck size={22} />
-      },
-      {
-        title: MAP_ANIME_LIST_STATUS_LABEL[ANIME_LIST_STATUSES.ON_HOLD],
-        value: ANIME_LIST_STATUSES.ON_HOLD,
-        icon: <IconZzz size={22} />
-      }
-    ],
-    []
+    () =>
+      [
+        {
+          value: ANIME_TRACK_STATUSES.WATCHING,
+          title: MAP_ANIME_TRACK_STATUS_LABEL[ANIME_TRACK_STATUSES.WATCHING],
+          icon: <AnimeTrackStatusIcon status={ANIME_TRACK_STATUSES.WATCHING} />
+        },
+        {
+          value: ANIME_TRACK_STATUSES.PLAN_TO_WATCH,
+          title:
+            MAP_ANIME_TRACK_STATUS_LABEL[ANIME_TRACK_STATUSES.PLAN_TO_WATCH],
+          icon: (
+            <AnimeTrackStatusIcon status={ANIME_TRACK_STATUSES.PLAN_TO_WATCH} />
+          )
+        },
+        {
+          value: ANIME_TRACK_STATUSES.COMPLETED,
+          title: MAP_ANIME_TRACK_STATUS_LABEL[ANIME_TRACK_STATUSES.COMPLETED],
+          icon: <AnimeTrackStatusIcon status={ANIME_TRACK_STATUSES.COMPLETED} />
+        },
+        {
+          value: ANIME_TRACK_STATUSES.ON_HOLD,
+          title: MAP_ANIME_TRACK_STATUS_LABEL[ANIME_TRACK_STATUSES.ON_HOLD],
+          icon: <AnimeTrackStatusIcon status={ANIME_TRACK_STATUSES.ON_HOLD} />
+        },
+        {
+          value: ANIME_TRACK_STATUSES.DROPPED,
+          title: MAP_ANIME_TRACK_STATUS_LABEL[ANIME_TRACK_STATUSES.DROPPED],
+          icon: <AnimeTrackStatusIcon status={ANIME_TRACK_STATUSES.DROPPED} />
+        }
+      ].filter(({ value }) => value !== currentTrackedStatus),
+    [currentTrackedStatus]
   )
 
   const addAnimeToList = (status: AnimeTrackStatuses) => {
@@ -92,14 +104,8 @@ export const AnimeListButton = ({
 
   return (
     <>
-      <HoverCard
-        openDelay={openDelay}
-        withoutArrow
-        unstyled
-        width={180}
-        trigger={trigger}
-      >
-        <div className='overflow-hidden rounded bg-slate-200 shadow dark:bg-slate-800'>
+      {onlyContent ? (
+        <div className='overflow-hidden rounded bg-slate-200 dark:bg-slate-800'>
           {options.map((option) => (
             <UnstyledButton
               key={option.value}
@@ -111,7 +117,28 @@ export const AnimeListButton = ({
             </UnstyledButton>
           ))}
         </div>
-      </HoverCard>
+      ) : (
+        <HoverCard
+          openDelay={openDelay}
+          withoutArrow
+          unstyled
+          width={180}
+          trigger={trigger}
+        >
+          <div className='overflow-hidden rounded bg-slate-200 shadow dark:bg-slate-800'>
+            {options.map((option) => (
+              <UnstyledButton
+                key={option.value}
+                onClick={() => addAnimeToList(option.value)}
+                className='flex w-full items-center justify-start gap-2 px-2 py-2 text-sm transition-colors hover:bg-slate-300 hover:dark:bg-slate-700 dark:hover:text-white'
+              >
+                {option.icon}
+                {option.title}
+              </UnstyledButton>
+            ))}
+          </div>
+        </HoverCard>
+      )}
 
       <AuthModal
         isOpen={authModalIsOpened}

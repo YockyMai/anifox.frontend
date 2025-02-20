@@ -7,24 +7,24 @@ import { AnimeListTableHeader } from './anime-list-table-header'
 import { AnimeListTable } from './anime-list-table/anime-list-table'
 
 export const AnimeList = () => {
-  const selectedStatus = $animeListFilters.selectors.status()
+  const selectedTrackStatus = $animeListFilters.selectors.trackStatus()
   const statuses = $animeList.selectors.rows()
 
   return (
-    <div>
+    <div className='gap-x-12 xl:grid xl:grid-cols-[250px_auto]'>
       <AnimeListFilters />
       <div className='flex flex-col gap-y-12'>
-        {selectedStatus ? (
+        {selectedTrackStatus ? (
           <div>
-            <AnimeListTableHeader status={selectedStatus} />
-            <AnimeListTable status={selectedStatus} />
+            <AnimeListTableHeader status={selectedTrackStatus} />
+            <AnimeListTable status={selectedTrackStatus} />
           </div>
         ) : (
           <>
             {statuses.map((status) => (
               <motion.div layout key={status}>
                 <AnimeListTableHeader withReorder status={status} />
-                <AnimeListTable withReorder status={status} />
+                <AnimeListTable status={status} />
               </motion.div>
             ))}
           </>

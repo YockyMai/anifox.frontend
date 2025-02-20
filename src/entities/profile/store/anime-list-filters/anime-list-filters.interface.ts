@@ -1,6 +1,12 @@
-import { AnimeTrackStatuses } from '@/services/api'
+import {
+  AnimeStatuses,
+  AnimeTrackStatuses,
+  AnimeTypeVariants
+} from '@/services/api'
 
 export type AnimeListFiltersStore = {
   search: string
-  status: AnimeTrackStatuses | null
+  trackStatus: AnimeTrackStatuses | null
+  type: AnimeTypeVariants | null
+  status: AnimeStatuses | null
 }

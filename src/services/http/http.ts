@@ -38,7 +38,7 @@ http.interceptors.response.use(
         })
 
         return http.request(error.config)
-      } catch (e) {
+      } catch {
         cookie.serialize(COOKIES.ACCESS_TOKEN_KEY, '', {
           maxAge: -1
         })
