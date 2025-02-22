@@ -1,8 +1,7 @@
-import { useAtomValue } from 'jotai'
 import Confetti from 'react-confetti'
 import { useNavigate } from 'react-router'
 
-import { $userAtoms } from '@/entities/user/atoms'
+import { $viewer } from '@/entities/viewer'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { useResetSignupForm } from '../../hooks'
@@ -12,16 +11,16 @@ export const SuccessStep = () => {
   const resetForm = useResetSignupForm()
   const navigate = useNavigate()
 
-  const user = useAtomValue($userAtoms.user)
+  const viewer = $viewer.selectors.user()
 
   return (
     <StepContainer
       nextButton={{
         label: 'Перейти в профиль',
         onClick: () => {
-          if (user) {
+          if (viewer) {
             navigate(
-              ROUTES.PROFILE.ROOT.replace(':login', user.preferred_username)
+              ROUTES.PROFILE.ROOT.replace(':login', viewer.preferred_username)
             )
             resetForm()
           }

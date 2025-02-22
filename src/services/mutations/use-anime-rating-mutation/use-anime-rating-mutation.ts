@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { AnimeResponse, api, SetAnimeRatingParams } from '@/services/api'
-import { ANIME_QUERY_KEY } from '@/services/queries'
+import { api } from '@/services/api'
 
 export const useAnimeRatingMutation = () => {
   const queryClient = useQueryClient()

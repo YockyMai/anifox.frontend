@@ -2,6 +2,7 @@ import axios from 'axios'
 import cookie from 'cookie'
 
 import { COOKIES } from '@/common/const'
+import { $viewer } from '@/entities/viewer'
 
 import { QUERIES_WITHOUT_HEADERS } from './http.const'
 
@@ -52,6 +53,8 @@ http.interceptors.response.use(
         cookie.serialize(COOKIES.REFRESH_TOKEN_KEY, '', {
           maxAge: -1
         })
+
+        $viewer.actions.resetViewer()
       }
     }
 

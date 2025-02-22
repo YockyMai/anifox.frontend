@@ -1,4 +1,4 @@
-import { User } from '@/entities/user/atoms/user.interface'
+import { User } from '@/entities/viewer/atoms/user.interface'
 
 export type LoginFormProps = {
   onSignupClick?: () => void

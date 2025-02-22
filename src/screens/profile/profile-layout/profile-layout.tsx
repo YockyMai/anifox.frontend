@@ -4,13 +4,14 @@ import React, { Suspense } from 'react'
 import { Outlet } from 'react-router'
 
 import { ProfileContextProvider } from '@/entities/profile'
-import { $userAtoms } from '@/entities/user/atoms'
+import { $viewer } from '@/entities/viewer'
+import { $userAtoms } from '@/entities/viewer/atoms'
 
 import { Banner, ProfilePageTabs } from './ui'
 
 export const ProfileLayout = () => {
   // Пока что отображаем профиль только владельца.
-  const user = useAtomValue($userAtoms.user)
+  const user = $viewer.selectors.user()
 
   if (!user) {
     return null

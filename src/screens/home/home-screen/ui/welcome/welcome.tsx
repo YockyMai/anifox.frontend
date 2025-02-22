@@ -1,16 +1,14 @@
 import { Button } from '@anifox/ui'
-import { useAtomValue } from 'jotai'
-import React from 'react'
 import { Link } from 'react-router'
 
-import { $userAtoms } from '@/entities/user/atoms'
+import { useIsAuth } from '@/entities/viewer'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { FEATURES } from './welcome.const'
 import './welcome.css'
 
 export const WelcomeBlock = () => {
-  const isAuth = useAtomValue($userAtoms.isAuth)
+  const isAuth = useIsAuth()
 
   return (
     <div className='welcome'>

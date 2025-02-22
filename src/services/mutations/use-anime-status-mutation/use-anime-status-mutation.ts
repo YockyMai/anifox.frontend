@@ -1,8 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useAtomValue } from 'jotai'
 import isEqual from 'lodash.isequal'
 
-import { $userAtoms } from '@/entities/user/atoms'
+import { $viewer } from '@/entities/viewer'
 import {
   ANIME_TRACK_STATUSES,
   api,
@@ -12,7 +11,7 @@ import {
 import { getUserAnimeListQueryKey } from '@/services/queries/use-user-anime-list-query'
 
 export const useAnimeStatusMutation = () => {
-  const user = useAtomValue($userAtoms.user)
+  const user = $viewer.selectors.user()
   const queryClient = useQueryClient()
 
   return useMutation({

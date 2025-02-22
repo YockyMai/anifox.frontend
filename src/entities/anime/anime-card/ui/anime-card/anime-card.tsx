@@ -1,4 +1,4 @@
-import { HoverCard } from '@anifox/ui'
+import { Tooltip } from '@anifox/ui'
 
 import { AnimeCardPanel } from '../anime-card-panel'
 import { AnimeCardContent } from './anime-card-content'
@@ -10,20 +10,17 @@ export const AnimeCard = ({ anime, label, withoutPanel }: AnimeCardProps) => {
       {withoutPanel ? (
         <AnimeCardContent anime={anime} label={label} />
       ) : (
-        <HoverCard
+        <Tooltip
           width={280}
           position='right'
           unstyled
-          disableHoverableContent
-          triggerClassName='!w-full'
-          trigger={
-            <div>
-              <AnimeCardContent anime={anime} label={label} />
-            </div>
-          }
+          openDelay={0}
+          label={<AnimeCardPanel anime={anime} />}
         >
-          <AnimeCardPanel anime={anime} />
-        </HoverCard>
+          <div className='w-full'>
+            <AnimeCardContent anime={anime} label={label} />
+          </div>
+        </Tooltip>
       )}
     </div>
   )

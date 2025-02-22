@@ -1,14 +1,12 @@
 import { Badge, Button, HoverCard, UIColors } from '@anifox/ui'
 import { IconStarFilled } from '@tabler/icons-react'
-import { useAtomValue } from 'jotai'
 import { useMemo, useState } from 'react'
 
 import { UISizes } from '@/common/types/ui-sizes'
 import { AuthModal } from '@/entities/auth/auth-modal'
-import { $userAtoms } from '@/entities/user/atoms'
+import { useIsAuth } from '@/entities/viewer'
 import { useAnimeRatingMutation } from '@/services/mutations'
 
-import { getColorByRating } from '../../lib/get-color-by-rating'
 import './anime-rate-button.css'
 import { AnimeRateButtonProps } from './anime-rate-button.interface'
 import { AnimeRateDropdown } from './ui'
@@ -20,7 +18,7 @@ export const AnimeRateButton = ({
   withoutText,
   openDelay
 }: AnimeRateButtonProps) => {
-  const isAuth = useAtomValue($userAtoms.isAuth)
+  const isAuth = useIsAuth()
 
   const ratingMutation = useAnimeRatingMutation()
 

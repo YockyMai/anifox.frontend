@@ -1,18 +1,11 @@
 import { Badge, Button, HoverCard, UnstyledButton } from '@anifox/ui'
-import {
-  IconCheck,
-  IconClockPlus,
-  IconDeviceTvOld,
-  IconStack2Filled,
-  IconZzz
-} from '@tabler/icons-react'
-import { useAtomValue } from 'jotai'
+import { IconStack2Filled } from '@tabler/icons-react'
 import { useMemo, useState } from 'react'
 
 import { AnimeTrackStatusIcon } from '@/common/components/anime-track-status-icon/anime-track-status-icon'
 import { UIColors } from '@/common/types/ui-colors'
 import { AuthModal } from '@/entities/auth/auth-modal'
-import { $userAtoms } from '@/entities/user/atoms'
+import { useIsAuth } from '@/entities/viewer'
 import {
   ANIME_TRACK_STATUSES,
   AnimeTrackStatuses,
@@ -35,7 +28,7 @@ export const AnimeListButton = ({
 
   const statusMutation = useAnimeStatusMutation()
 
-  const isAuth = useAtomValue($userAtoms.isAuth)
+  const isAuth = useIsAuth()
 
   const options = useMemo(
     () =>

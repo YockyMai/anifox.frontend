@@ -4,8 +4,8 @@ import { jwtDecode } from 'jwt-decode'
 import { useState } from 'react'
 
 import { COOKIES } from '@/common/const'
-import { $userAtoms } from '@/entities/user/atoms'
-import { User } from '@/entities/user/atoms/user.interface'
+import { $userAtoms } from '@/entities/viewer/atoms'
+import { User } from '@/entities/viewer/atoms/user.interface'
 import { api } from '@/services/api'
 import { LoginParams } from '@/services/api/login'
 

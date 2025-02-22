@@ -1,21 +1,19 @@
 import cookies from 'cookie'
 import dayjs from 'dayjs'
-import { useAtomValue, useSetAtom } from 'jotai'
+import { useAtomValue } from 'jotai'
 import { jwtDecode } from 'jwt-decode'
 import { useEffect } from 'react'
 
 import { COOKIES } from '@/common/const'
 import { $signupAtoms } from '@/entities/auth/signup'
-import { $userAtoms } from '@/entities/user/atoms'
-import { User } from '@/entities/user/atoms/user.interface'
+import { $viewer } from '@/entities/viewer'
+import { User } from '@/entities/viewer/atoms/user.interface'
 import { api } from '@/services/api'
 
 export const useCreateAccount = (
   onSuccess: () => void,
   onError: () => void
 ) => {
-  const setUser = useSetAtom($userAtoms.user)
-
   const birthday = useAtomValue($signupAtoms.birthday)
   const email = useAtomValue($signupAtoms.email)
   const login = useAtomValue($signupAtoms.login)
@@ -41,9 +39,9 @@ export const useCreateAccount = (
           COOKIES.ACCESS_TOKEN_KEY
         ]
 
-        const user = jwtDecode(accessToken) as User
+        const user: User = jwtDecode(accessToken)
 
-        setUser(user)
+        $viewer.actions.setViewer(user)
 
         onSuccess()
       } catch (e) {
