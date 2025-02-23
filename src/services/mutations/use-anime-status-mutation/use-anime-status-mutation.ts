@@ -4,10 +4,12 @@ import isEqual from 'lodash.isequal'
 import { $viewer } from '@/entities/viewer'
 import {
   ANIME_TRACK_STATUSES,
+  AnimeResponse,
   api,
   FetchFavoriteAnimeListResponse,
   SetAnimeStatusParams
 } from '@/services/api'
+import { getAnimeQueryKey } from '@/services/queries'
 import { getUserAnimeListQueryKey } from '@/services/queries/use-user-anime-list-query'
 
 export const useAnimeStatusMutation = () => {
@@ -20,7 +22,7 @@ export const useAnimeStatusMutation = () => {
 
       return data
     },
-    onSuccess: (_, params) => {
+    onMutate: (params) => {
       const login = user?.preferred_username ?? ''
 
       if (!login) {
@@ -76,6 +78,17 @@ export const useAnimeStatusMutation = () => {
           }
         }
       }
+
+      queryClient.setQueryData(
+        getAnimeQueryKey(params.animeUrl),
+        (prev: AnimeResponse): AnimeResponse => ({
+          ...prev,
+          user: {
+            ...prev.user,
+            list: params.status
+          }
+        })
+      )
     }
   })
 }

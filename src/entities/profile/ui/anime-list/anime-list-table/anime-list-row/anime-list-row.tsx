@@ -40,7 +40,7 @@ export const AnimeListRow = ({ anime, status }: DraggableAnimeCardProps) => {
           )}
         </div>
         <AnimeListButton
-          currentTrackedStatus={status}
+          currentTrackStatus={status}
           onlyContent
           animeUrl={anime.url}
         />

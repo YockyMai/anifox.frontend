@@ -3,9 +3,11 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { $viewer } from '@/entities/viewer'
 import {
   ANIME_TRACK_STATUSES,
+  AnimeResponse,
   api,
   FetchFavoriteAnimeListResponse
 } from '@/services/api'
+import { getAnimeQueryKey } from '@/services/queries'
 import { getUserAnimeListQueryKey } from '@/services/queries/use-user-anime-list-query'
 
 export const useDeleteTrackedAnimeMutation = () => {
@@ -13,7 +15,9 @@ export const useDeleteTrackedAnimeMutation = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: api.deleteTrackedAnime,
+    mutationFn: async (animeUrl: string) => {
+      await api.deleteTrackedAnime(animeUrl)
+    },
     onMutate: (animeUrl) => {
       const login = user?.preferred_username ?? ''
 
@@ -40,6 +44,17 @@ export const useDeleteTrackedAnimeMutation = () => {
           }
         }
       }
+
+      queryClient.setQueryData(
+        getAnimeQueryKey(animeUrl),
+        (prev: AnimeResponse): AnimeResponse => ({
+          ...prev,
+          user: {
+            ...prev.user,
+            list: undefined
+          }
+        })
+      )
     }
   })
 }

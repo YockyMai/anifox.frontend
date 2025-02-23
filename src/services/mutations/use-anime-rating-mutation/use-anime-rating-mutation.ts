@@ -1,6 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { api } from '@/services/api'
+import { AnimeResponse, api } from '@/services/api'
+import {
+  getAnimeQueryKey,
+  getAnimeStatisticsQueryKey
+} from '@/services/queries'
 
 export const useAnimeRatingMutation = () => {
   const queryClient = useQueryClient()
@@ -8,13 +12,21 @@ export const useAnimeRatingMutation = () => {
   return useMutation({
     mutationKey: [],
     mutationFn: api.setAnimeRating,
-    onSuccess: (data, variables, context) => {
-      // queryClient.setQueryData(
-      //   [ANIME_QUERY_KEY.replace('animeUrl', variables.animeUrl)],
-      //   (prev: AnimeResponse) => ({
-      //     ...prev
-      //   })
-      // )
+    onMutate: (params) => {
+      queryClient.setQueryData(
+        getAnimeQueryKey(params.animeUrl),
+        (prev: AnimeResponse): AnimeResponse => ({
+          ...prev,
+          user: {
+            ...prev.user,
+            rating: params.rating
+          }
+        })
+      )
+
+      queryClient.invalidateQueries({
+        queryKey: getAnimeStatisticsQueryKey(params.animeUrl)
+      })
     }
   })
 }

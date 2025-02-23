@@ -6,6 +6,7 @@ import { UISizes } from '@/common/types/ui-sizes'
 import { AuthModal } from '@/entities/auth/auth-modal'
 import { useIsAuth } from '@/entities/viewer'
 import { useAnimeRatingMutation } from '@/services/mutations'
+import { useAnimeStatisticsQuery } from '@/services/queries'
 
 import './anime-rate-button.css'
 import { AnimeRateButtonProps } from './anime-rate-button.interface'
@@ -20,6 +21,7 @@ export const AnimeRateButton = ({
 }: AnimeRateButtonProps) => {
   const isAuth = useIsAuth()
 
+  const { data: statistics } = useAnimeStatisticsQuery(animeUrl)
   const ratingMutation = useAnimeRatingMutation()
 
   const [authModalIsOpened, setAuthModalIsOpened] = useState(false)
@@ -44,11 +46,13 @@ export const AnimeRateButton = ({
         radius={UISizes.MD}
         color={UIColors.GREEN}
       >
-        <p className='text-sm'>Оценить аниме</p>
+        <p className='text-sm'>
+          {typeof rating !== 'undefined' ? `Ваша оценка 10` : 'Оценить аниме'}
+        </p>
         <IconStarFilled />
       </Badge>
     )
-  }, [size, withoutText])
+  }, [size, rating, withoutText])
 
   const rateAnime = (rating: number) => {
     if (isAuth) {
@@ -68,7 +72,11 @@ export const AnimeRateButton = ({
         position='bottom'
         trigger={trigger}
       >
-        <AnimeRateDropdown onRateAnime={rateAnime} ratingDistribution={[]} />
+        <AnimeRateDropdown
+          onRateAnime={rateAnime}
+          scores={statistics?.scores ?? []}
+          totalVotes={statistics?.totalVotes ?? 0}
+        />
       </HoverCard>
 
       <AuthModal
@@ -76,7 +84,7 @@ export const AnimeRateButton = ({
         onClose={() => setAuthModalIsOpened(false)}
         onAuthSuccess={() => {
           if (typeof selectedRating === 'number') {
-            ratingMutation.mutate({ animeUrl, rating })
+            ratingMutation.mutate({ animeUrl, rating: selectedRating })
             setSelectedRating(null)
           }
         }}

@@ -4,6 +4,10 @@ import { api } from '@/services/api'
 
 import { ANIME_QUERY_KEY } from './use-anime-query.const'
 
+export const getAnimeQueryKey = (animeUrl: string) => [
+  ANIME_QUERY_KEY.replace('animeUrl', animeUrl)
+]
+
 export const useAnimeQuery = (animeUrl: string) =>
   useQuery({
     queryKey: [ANIME_QUERY_KEY.replace('animeUrl', animeUrl)],

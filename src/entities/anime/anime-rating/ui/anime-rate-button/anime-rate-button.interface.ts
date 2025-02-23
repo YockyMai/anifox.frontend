@@ -1,6 +1,6 @@
 export type AnimeRateButtonProps = {
   animeUrl: string
-  rating: number
+  rating?: number
   withoutText?: boolean
   size?: number
   openDelay?: number

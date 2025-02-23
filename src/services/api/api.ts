@@ -19,6 +19,7 @@ export * from './fetch-character'
 export * from './check-email'
 export * from './check-login'
 export * from './fetch-anime-episodes-history'
+export * from './fetch-anime-statistics'
 
 export * from './set-anime-status'
 export * from './set-anime-rating'
