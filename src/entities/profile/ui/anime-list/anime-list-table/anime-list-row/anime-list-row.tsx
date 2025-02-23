@@ -12,7 +12,6 @@ import { DraggableAnimeCardProps } from './anime-list-row.interface'
 
 export const AnimeListRow = ({ anime, status }: DraggableAnimeCardProps) => {
   const deleteTrackedAnimeMutation = useDeleteTrackedAnimeMutation()
-  const statusMutation = useAnimeStatusMutation()
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
 
@@ -33,11 +32,6 @@ export const AnimeListRow = ({ anime, status }: DraggableAnimeCardProps) => {
       >
         <div className='flex items-center justify-between pb-3'>
           <p>Доступные статусы</p>
-          {statusMutation.isPending && (
-            <div>
-              <Loader size={UISizes.SM} />
-            </div>
-          )}
         </div>
         <AnimeListButton
           currentTrackStatus={status}

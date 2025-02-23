@@ -1,11 +1,9 @@
 import { ScreenLoader } from '@anifox/ui'
-import { useAtomValue } from 'jotai'
 import React, { Suspense } from 'react'
 import { Outlet } from 'react-router'
 
 import { ProfileContextProvider } from '@/entities/profile'
 import { $viewer } from '@/entities/viewer'
-import { $userAtoms } from '@/entities/viewer/atoms'
 
 import { Banner, ProfilePageTabs } from './ui'
 

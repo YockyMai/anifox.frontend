@@ -1,4 +1,4 @@
-import { User } from '@/entities/viewer/atoms/user.interface'
+import { User } from '@/entities/viewer'
 
 export type ProfileStore = {
   user: User

@@ -1,11 +1,9 @@
 import cookies from 'cookie'
-import { useSetAtom } from 'jotai'
 import { jwtDecode } from 'jwt-decode'
 import { useState } from 'react'
 
 import { COOKIES } from '@/common/const'
-import { $userAtoms } from '@/entities/viewer/atoms'
-import { User } from '@/entities/viewer/atoms/user.interface'
+import { $viewer, User } from '@/entities/viewer'
 import { api } from '@/services/api'
 import { LoginParams } from '@/services/api/login'
 
@@ -13,8 +11,6 @@ export const useLogin = (
   onSuccess?: (user: User) => void,
   onError?: (e: Error) => void
 ) => {
-  const setUser = useSetAtom($userAtoms.user)
-
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
@@ -30,7 +26,7 @@ export const useLogin = (
 
       const user = jwtDecode(accessToken) as User
 
-      setUser(user)
+      $viewer.actions.setViewer(user)
 
       onSuccess?.(user)
     } catch (e) {

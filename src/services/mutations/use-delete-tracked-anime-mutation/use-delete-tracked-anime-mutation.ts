@@ -15,9 +15,7 @@ export const useDeleteTrackedAnimeMutation = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: async (animeUrl: string) => {
-      await api.deleteTrackedAnime(animeUrl)
-    },
+    mutationFn: api.deleteTrackedAnime,
     onMutate: (animeUrl) => {
       const login = user?.preferred_username ?? ''
 

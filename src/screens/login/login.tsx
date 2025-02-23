@@ -1,9 +1,7 @@
-import { useAtomValue } from 'jotai'
 import { useNavigate } from 'react-router'
 
 import { LoginForm } from '@/entities/auth/login/ui'
-import { $userAtoms } from '@/entities/viewer/atoms'
-import { User } from '@/entities/viewer/atoms/user.interface'
+import { User } from '@/entities/viewer'
 
 import { ROUTES } from '../pages.routes'
 import './login.css'

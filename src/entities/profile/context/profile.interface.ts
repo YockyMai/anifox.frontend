@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import { User } from '@/entities/viewer/atoms/user.interface'
+import { User } from '@/entities/viewer'
 
 import { createProfileStore } from '../store'
 

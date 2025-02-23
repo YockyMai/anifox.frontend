@@ -3,8 +3,7 @@ import { jwtDecode } from 'jwt-decode'
 import { ReactNode, useEffect } from 'react'
 
 import { COOKIES } from '@/common/const'
-import { $viewer } from '@/entities/viewer'
-import { User } from '@/entities/viewer/atoms/user.interface'
+import { $viewer, User } from '@/entities/viewer'
 
 export const WithAuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {

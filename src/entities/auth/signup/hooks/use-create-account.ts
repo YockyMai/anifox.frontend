@@ -6,8 +6,7 @@ import { useEffect } from 'react'
 
 import { COOKIES } from '@/common/const'
 import { $signupAtoms } from '@/entities/auth/signup'
-import { $viewer } from '@/entities/viewer'
-import { User } from '@/entities/viewer/atoms/user.interface'
+import { $viewer, User } from '@/entities/viewer'
 import { api } from '@/services/api'
 
 export const useCreateAccount = (
