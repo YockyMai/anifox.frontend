@@ -6,18 +6,19 @@ import { AnimeRateButton } from '@/entities/anime/anime-rating'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { useAnimeQuery } from '@/services/queries'
 
-import './anime-action-bar.css'
-
 export const AnimeActionBar = () => {
   const { animeUrl } = useParams<AnimePageParams>()!
 
   const { data } = useAnimeQuery(animeUrl!)
 
   return (
-    <div className='anime-action-bar'>
+    <div className='flex gap-2 max-lg:w-full max-lg:justify-center'>
       <AnimeFavoriteButton animeUrl={animeUrl!} />
-      <AnimeRateButton animeUrl={animeUrl!} rating={data?.rating ?? 0} />
-      <AnimeListButton animeUrl={animeUrl!} />
+      <AnimeRateButton animeUrl={animeUrl!} rating={data?.user?.rating} />
+      <AnimeListButton
+        animeUrl={animeUrl!}
+        currentTrackStatus={data?.user?.list}
+      />
     </div>
   )
 }

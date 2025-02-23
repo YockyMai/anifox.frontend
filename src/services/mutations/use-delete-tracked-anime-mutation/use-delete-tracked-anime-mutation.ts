@@ -1,16 +1,17 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useAtomValue } from 'jotai'
 
-import { $userAtoms } from '@/entities/user/atoms'
+import { $viewer } from '@/entities/viewer'
 import {
   ANIME_TRACK_STATUSES,
+  AnimeResponse,
   api,
   FetchFavoriteAnimeListResponse
 } from '@/services/api'
+import { getAnimeQueryKey } from '@/services/queries'
 import { getUserAnimeListQueryKey } from '@/services/queries/use-user-anime-list-query'
 
 export const useDeleteTrackedAnimeMutation = () => {
-  const user = useAtomValue($userAtoms.user)
+  const user = $viewer.selectors.user()
   const queryClient = useQueryClient()
 
   return useMutation({
@@ -41,6 +42,17 @@ export const useDeleteTrackedAnimeMutation = () => {
           }
         }
       }
+
+      queryClient.setQueryData(
+        getAnimeQueryKey(animeUrl),
+        (prev: AnimeResponse): AnimeResponse => ({
+          ...prev,
+          user: {
+            ...prev.user,
+            list: undefined
+          }
+        })
+      )
     }
   })
 }

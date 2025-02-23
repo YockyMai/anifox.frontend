@@ -6,8 +6,6 @@ import { useEffect, useState } from 'react'
 import { useAnimeCatalogFilterContext } from '@/widgets/anime-catalog/context/anime-catalog-filter.context'
 import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model'
 
-import './search.css'
-
 export const Search = () => {
   const { changeSearchParams } = useAnimeCatalogFilterContext()
 
@@ -34,8 +32,9 @@ export const Search = () => {
   }
 
   return (
-    <div className={'anime-filters__search'}>
+    <div className='-mt-1'>
       <Input
+        className='placeholder:text-current'
         maxLength={40}
         label={'Поиск'}
         placeholder={'Название аниме'}

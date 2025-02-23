@@ -1,14 +1,13 @@
 import { Badge, Button, HoverCard, UIColors } from '@anifox/ui'
 import { IconStarFilled } from '@tabler/icons-react'
-import { useAtomValue } from 'jotai'
 import { useMemo, useState } from 'react'
 
 import { UISizes } from '@/common/types/ui-sizes'
 import { AuthModal } from '@/entities/auth/auth-modal'
-import { $userAtoms } from '@/entities/user/atoms'
+import { useIsAuth } from '@/entities/viewer'
 import { useAnimeRatingMutation } from '@/services/mutations'
+import { useAnimeStatisticsQuery } from '@/services/queries'
 
-import { getColorByRating } from '../../lib/get-color-by-rating'
 import './anime-rate-button.css'
 import { AnimeRateButtonProps } from './anime-rate-button.interface'
 import { AnimeRateDropdown } from './ui'
@@ -20,8 +19,9 @@ export const AnimeRateButton = ({
   withoutText,
   openDelay
 }: AnimeRateButtonProps) => {
-  const isAuth = useAtomValue($userAtoms.isAuth)
+  const isAuth = useIsAuth()
 
+  const { data: statistics } = useAnimeStatisticsQuery(animeUrl)
   const ratingMutation = useAnimeRatingMutation()
 
   const [authModalIsOpened, setAuthModalIsOpened] = useState(false)
@@ -46,11 +46,13 @@ export const AnimeRateButton = ({
         radius={UISizes.MD}
         color={UIColors.GREEN}
       >
-        <p className='text-sm'>Оценить аниме</p>
+        <p className='text-sm'>
+          {typeof rating !== 'undefined' ? `Ваша оценка 10` : 'Оценить аниме'}
+        </p>
         <IconStarFilled />
       </Badge>
     )
-  }, [size, withoutText])
+  }, [size, rating, withoutText])
 
   const rateAnime = (rating: number) => {
     if (isAuth) {
@@ -70,7 +72,11 @@ export const AnimeRateButton = ({
         position='bottom'
         trigger={trigger}
       >
-        <AnimeRateDropdown onRateAnime={rateAnime} ratingDistribution={[]} />
+        <AnimeRateDropdown
+          onRateAnime={rateAnime}
+          scores={statistics?.scores ?? []}
+          totalVotes={statistics?.totalVotes ?? 0}
+        />
       </HoverCard>
 
       <AuthModal
@@ -78,7 +84,7 @@ export const AnimeRateButton = ({
         onClose={() => setAuthModalIsOpened(false)}
         onAuthSuccess={() => {
           if (typeof selectedRating === 'number') {
-            ratingMutation.mutate({ animeUrl, rating })
+            ratingMutation.mutate({ animeUrl, rating: selectedRating })
             setSelectedRating(null)
           }
         }}

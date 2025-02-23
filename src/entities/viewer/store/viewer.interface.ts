@@ -3,3 +3,7 @@ export type User = {
   birthday: Date
   preferred_username: string
 }
+
+export type ViewerStore = {
+  user: User | null
+}

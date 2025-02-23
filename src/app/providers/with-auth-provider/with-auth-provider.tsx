@@ -1,21 +1,23 @@
 import cookie from 'cookie'
 import { jwtDecode } from 'jwt-decode'
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 
 import { COOKIES } from '@/common/const'
-import { User } from '@/entities/user/atoms/user.interface'
-
-import { UserAtomsHydrator } from './user-atoms-hydrator'
+import { $viewer, User } from '@/entities/viewer'
 
 export const WithAuthProvider = ({ children }: { children: ReactNode }) => {
-  const accessToken = cookie.parse(document.cookie)[COOKIES.ACCESS_TOKEN_KEY]
+  useEffect(() => {
+    const accessToken = cookie.parse(document.cookie)[COOKIES.ACCESS_TOKEN_KEY]
 
-  let user: User | null = null
+    if (accessToken) {
+      // TODO: как будет запрос /me, запрашивать пользователя по токену
+      const user: User = jwtDecode(accessToken)
 
-  if (accessToken) {
-    // TODO: как будет запрос /me, запрашивать пользователя по токену
-    user = jwtDecode(accessToken)
-  }
+      if (user) {
+        $viewer.actions.setViewer(user)
+      }
+    }
+  }, [])
 
-  return <UserAtomsHydrator user={user}>{children}</UserAtomsHydrator>
+  return children
 }

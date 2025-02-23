@@ -1,8 +1,6 @@
-import { useAtomValue } from 'jotai'
-import React from 'react'
 import { Route, Routes } from 'react-router'
 
-import { $userAtoms } from '@/entities/user/atoms'
+import { useIsAuth } from '@/entities/viewer'
 
 import {
   AnimeCatalogScreen,
@@ -25,7 +23,7 @@ import { RightHoldersScreen } from './right-holders'
 import { SignupScreen } from './signup'
 
 export const Screens = () => {
-  const isAuth = useAtomValue($userAtoms.isAuth)
+  const isAuth = useIsAuth()
 
   return (
     <Routes>

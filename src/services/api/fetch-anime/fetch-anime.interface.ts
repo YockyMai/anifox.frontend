@@ -4,6 +4,7 @@ import {
   AnimeSeasons,
   AnimeStatuses,
   AnimeStudio,
+  AnimeTrackStatuses,
   AnimeTranslation,
   AnimeTypeVariants
 } from '../api.types'
@@ -42,4 +43,9 @@ export type AnimeResponse = {
   rating_count?: number
   shikimori_rating?: number
   translations: AnimeTranslation[]
+  user?: {
+    is_fav?: boolean
+    list?: AnimeTrackStatuses | undefined
+    rating?: number
+  }
 }

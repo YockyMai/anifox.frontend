@@ -1,9 +1,6 @@
 import { AnimeTrackStatuses } from '@/services/api'
 
-export type AnimeListButtonProps = {
-  animeUrl: string
+export type TriggerProps = {
   withoutTitle?: boolean
-  openDelay?: number
-  onlyContent?: boolean
   currentTrackStatus?: AnimeTrackStatuses
 }
