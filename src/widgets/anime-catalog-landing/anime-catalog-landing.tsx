@@ -8,8 +8,6 @@ import {
   usePopularOngoingQuery
 } from '@/services/queries'
 
-import './anime-catalog-landing.css'
-
 export const AnimeCatalogLanding = () => {
   const { data: mostRatedAnimeData = [], isLoading: isLoadingMostRatedAnime } =
     useMostRatedAnimeListQuery()
@@ -23,7 +21,7 @@ export const AnimeCatalogLanding = () => {
     usePopularOngoingQuery()
 
   return (
-    <div className='anime-catalog-landing'>
+    <div className='flex flex-col gap-y-10'>
       <AnimeCategoryList
         isLoading={isLoadingPopularOngoing}
         icon={<IconChartArrows />}

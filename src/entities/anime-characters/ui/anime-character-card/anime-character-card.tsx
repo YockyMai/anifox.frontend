@@ -1,5 +1,4 @@
 import { Image } from '@anifox/ui'
-import React from 'react'
 import { Link } from 'react-router'
 
 import { ROUTES } from '@/screens/pages.routes'

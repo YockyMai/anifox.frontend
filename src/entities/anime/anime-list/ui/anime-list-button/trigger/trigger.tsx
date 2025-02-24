@@ -1,6 +1,5 @@
 import { Badge, Button, UIColors } from '@anifox/ui'
 import { IconStack2Filled } from '@tabler/icons-react'
-import React from 'react'
 
 import { AnimeTrackStatusIcon } from '@/common/components/anime-track-status-icon/anime-track-status-icon'
 import { MAP_ANIME_TRACK_STATUS_LABEL } from '@/services/api'

@@ -1,32 +1,36 @@
 import { Select } from '@anifox/ui'
-import { useAtom } from 'jotai'
+import { useMemo } from 'react'
 
 import { AnimeMinimalAge } from '@/services/api'
-import { useAnimeCatalogFilterContext } from '@/widgets/anime-catalog/context/anime-catalog-filter.context'
-import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model/anime-catalog-filter'
+import { useAnimeCatalogStores } from '@/widgets/anime-catalog'
 
 import { MINIMAL_AGE_OPTIONS } from './minimal-age.const'
 
 export const MinimalAge = () => {
-  const { changeSearchParams } = useAnimeCatalogFilterContext()
+  const { $filter, changeSearchParams } = useAnimeCatalogStores()
 
-  const [minimalAge, setMinimalAge] = useAtom(
-    $animeCatalogFilterAtoms.minimalAge
+  const minimalAge = $filter.selectors.minimalAge()
+
+  const value = useMemo(
+    () =>
+      MINIMAL_AGE_OPTIONS.find(({ value }) => value === minimalAge?.toString()),
+    [minimalAge]
   )
 
   return (
     <Select
-      value={minimalAge !== null ? minimalAge.toString() : null}
+      value={value}
       onValueChange={(option) => {
-        const newValue = option?.value
+        const minimalAge = option?.value
           ? (Number.parseInt(option.value) as AnimeMinimalAge)
           : null
-        setMinimalAge(newValue)
-        changeSearchParams({ minimalAge: newValue })
+
+        $filter.actions.setMinimalAge(minimalAge)
+        changeSearchParams({ minimalAge })
       }}
       options={MINIMAL_AGE_OPTIONS}
-      placeholder={'Любой'}
-      label={'Ограничение по возрасту'}
+      placeholder='Любой'
+      label='Ограничение по возрасту'
     />
   )
 }

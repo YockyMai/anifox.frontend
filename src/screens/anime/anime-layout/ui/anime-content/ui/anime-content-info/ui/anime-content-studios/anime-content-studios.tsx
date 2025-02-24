@@ -4,6 +4,7 @@ import { useParams } from 'react-router'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { ROUTES } from '@/screens/pages.routes'
 import { useAnimeQuery } from '@/services/queries'
+import { createAnimeCatalogSearchParams } from '@/widgets/anime-catalog'
 
 import { AnimeInfoBlock } from '../anime-info-block'
 
@@ -17,7 +18,7 @@ export const AnimeContentStudios = () => {
 
     return studios.map(({ name, id }) => ({
       element: name,
-      href: `${ROUTES.CATALOG.ROOT}?studio=${id}`,
+      href: `${ROUTES.CATALOG.ROOT}?${createAnimeCatalogSearchParams({ studio: id })}`,
       key: id
     }))
   }, [data?.studio])

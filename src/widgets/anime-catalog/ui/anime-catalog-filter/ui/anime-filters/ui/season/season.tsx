@@ -1,25 +1,26 @@
 import { Select } from '@anifox/ui'
-import { useAtom } from 'jotai'
 
 import { AnimeSeasons } from '@/services/api'
-import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model'
+import { useAnimeCatalogStores } from '@/widgets/anime-catalog'
 
 import { SEASON_OPTIONS } from './season.const'
 
 export const Season = () => {
-  const [season, setSeason] = useAtom($animeCatalogFilterAtoms.season)
+  const { $filter, changeSearchParams } = useAnimeCatalogStores()
+  const season = $filter.selectors.season()
 
   return (
-    <div>
-      <Select
-        value={season}
-        onValueChange={(option) =>
-          setSeason(option ? (option.value as AnimeSeasons) : null)
-        }
-        options={SEASON_OPTIONS}
-        placeholder={'Любой'}
-        label={'Сезон'}
-      />
-    </div>
+    <Select
+      value={season}
+      onValueChange={(option) => {
+        const season = option ? (option.value as AnimeSeasons) : null
+
+        $filter.actions.setSeason(season)
+        changeSearchParams({ season })
+      }}
+      options={SEASON_OPTIONS}
+      placeholder={'Любой'}
+      label={'Сезон'}
+    />
   )
 }

@@ -5,28 +5,26 @@ import {
   IconSortDescending
 } from '@tabler/icons-react'
 import { clsx } from 'clsx'
-import { useAtom } from 'jotai'
 
 import { ANIME_SORT_DIRECTION, AnimeOrderVariants } from '@/services/api'
-import { useAnimeCatalogFilterContext } from '@/widgets/anime-catalog/context/anime-catalog-filter.context'
-import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model/anime-catalog-filter'
+import { useAnimeCatalogStores } from '@/widgets/anime-catalog'
 
 import { ANIME_ORDER_OPTIONS } from './anime-order.const'
 import './anime-order.css'
 
 export const AnimeOrder = () => {
-  const [order, setOrder] = useAtom($animeCatalogFilterAtoms.order)
-  const [sort, setSort] = useAtom($animeCatalogFilterAtoms.sort)
+  const { $filter, changeSearchParams } = useAnimeCatalogStores()
 
-  const { changeSearchParams } = useAnimeCatalogFilterContext()
+  const sort = $filter.selectors.sort()
+  const order = $filter.selectors.order()
 
   const selectOrder = (order: AnimeOrderVariants) => {
-    setOrder(order)
+    $filter.actions.setOrder(order)
     changeSearchParams({ order })
   }
 
   const toggleSort = () => {
-    setSort(
+    $filter.actions.setSort(
       sort === ANIME_SORT_DIRECTION.ASC
         ? ANIME_SORT_DIRECTION.DESC
         : ANIME_SORT_DIRECTION.ASC

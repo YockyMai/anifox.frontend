@@ -13,7 +13,7 @@ export const usePopularOngoingQuery = () =>
         limit: 7,
         status: 'Ongoing',
         order: 'Rating',
-        years: [new Date().getFullYear().toString()]
+        years: [new Date().getFullYear()]
       })
 
       return data

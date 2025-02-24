@@ -1,7 +1,0 @@
-.anime-catalog-landing {
-  @apply flex flex-col gap-y-10;
-
-  &__title {
-    @apply flex items-center gap-x-1;
-  }
-}

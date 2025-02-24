@@ -1,13 +1,11 @@
 import { Tabs } from '@anifox/ui'
 import clsx from 'clsx'
 import { useAtomValue } from 'jotai'
-import React from 'react'
 import { Link } from 'react-router'
 
 import { useHeaderLinks } from '@/widgets/header/hooks/use-header-links'
 
 import { $headerAtoms } from '../../store'
-import './navigate-panel.css'
 
 export const NavigatePanel = () => {
   const isTransparent = useAtomValue($headerAtoms.isTransparent)
@@ -17,8 +15,8 @@ export const NavigatePanel = () => {
   return (
     <nav
       className={clsx(
-        'navigate-panel',
-        isTransparent && 'navigate-panel--transparent'
+        'rounded bg-slate-900/70 px-1.5 text-sm text-slate-300',
+        isTransparent && 'bg-slate-900/50 backdrop-blur-3xl'
       )}
     >
       <Tabs
@@ -28,8 +26,8 @@ export const NavigatePanel = () => {
           content: (
             <Link
               className={clsx(
-                'navigate-panel__link',
-                path === activeTab && 'navigate-panel__link_active'
+                'hover:text-inherit',
+                path === activeTab && 'text-orange-300 hover:text-orange-300'
               )}
               to={path}
             >

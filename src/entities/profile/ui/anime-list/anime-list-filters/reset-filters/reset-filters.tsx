@@ -1,5 +1,4 @@
 import { Button, UIColors } from '@anifox/ui'
-import React from 'react'
 
 import {
   $animeListFilters,

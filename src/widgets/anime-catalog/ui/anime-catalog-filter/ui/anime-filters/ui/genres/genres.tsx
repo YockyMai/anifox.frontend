@@ -1,16 +1,15 @@
 import { MultiSelect } from '@anifox/ui'
 import { SelectOption } from '@anifox/ui/dist/components/select/select.interface'
-import { useAtom } from 'jotai'
 
 import { useAnimeGenresQuery } from '@/services/queries'
-import { useAnimeCatalogFilterContext } from '@/widgets/anime-catalog/context/anime-catalog-filter.context'
-import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model/anime-catalog-filter'
+import { useAnimeCatalogStores } from '@/widgets/anime-catalog'
 
 export const Genres = () => {
-  const { changeSearchParams } = useAnimeCatalogFilterContext()
+  const { $filter, changeSearchParams } = useAnimeCatalogStores()
+  const genres = $filter.selectors.genres()
 
   const { data, isLoading } = useAnimeGenresQuery()
-  const [genres, setGenres] = useAtom($animeCatalogFilterAtoms.genres)
+
   const values = genres.map((id) => ({
     label: data?.find((genre) => genre.id === id)?.name ?? '',
     value: id
@@ -30,7 +29,7 @@ export const Genres = () => {
       .filter((genre) => options.some((option) => option.value === genre.value))
       .map((genre) => genre.value)
 
-    setGenres(genres)
+    $filter.actions.setGenres(genres)
     changeSearchParams({ genres })
   }
 

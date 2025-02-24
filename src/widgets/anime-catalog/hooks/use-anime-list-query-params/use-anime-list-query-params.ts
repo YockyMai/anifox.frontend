@@ -1,20 +1,24 @@
-import { useAtomValue } from 'jotai'
+import { useStore } from '@anifox/store'
 
-import { $animeCatalogFilterAtoms } from '../../model'
+import { useAnimeCatalogStores } from '../..'
 
 export const useAnimeListQueryParams = () => {
-  const genres = useAtomValue($animeCatalogFilterAtoms.genres)
-  const minimalAge = useAtomValue($animeCatalogFilterAtoms.minimalAge)
-  const order = useAtomValue($animeCatalogFilterAtoms.order)
-  const ratingMpa = useAtomValue($animeCatalogFilterAtoms.ratingMpa)
-  const search = useAtomValue($animeCatalogFilterAtoms.search)
-  const season = useAtomValue($animeCatalogFilterAtoms.season)
-  const status = useAtomValue($animeCatalogFilterAtoms.status)
-  const type = useAtomValue($animeCatalogFilterAtoms.type)
-  const years = useAtomValue($animeCatalogFilterAtoms.years)
-  const translations = useAtomValue($animeCatalogFilterAtoms.translations)
-  const studio = useAtomValue($animeCatalogFilterAtoms.studio)
-  const sort = useAtomValue($animeCatalogFilterAtoms.sort)
+  const { $filter } = useAnimeCatalogStores()
+
+  const {
+    genres,
+    minimalAge,
+    order,
+    ratingMpa,
+    search,
+    season,
+    status,
+    type,
+    years,
+    translations,
+    studio,
+    sort
+  } = useStore($filter.store)
 
   return {
     genres,

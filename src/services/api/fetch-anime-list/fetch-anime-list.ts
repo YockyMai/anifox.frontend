@@ -36,7 +36,10 @@ export const fetchAnimeList = async ({
   const response = await http.get<Anime[]>(
     `anime${createArrayQueryParams([
       { paramName: 'genres', array: genres },
-      { paramName: 'year', array: years },
+      {
+        paramName: 'year',
+        array: years ? years.map((year) => year.toString()) : []
+      },
       { paramName: 'translation', array: translations }
     ])}`,
     {

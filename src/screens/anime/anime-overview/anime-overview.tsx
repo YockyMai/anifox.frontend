@@ -13,7 +13,6 @@ import { AnimePageParams } from '../anime.interface'
 import { AnimeEpisodesHistory } from './anime-episodes-history/anime-episodes-history'
 import { AnimeFranchise } from './anime-franchise'
 import { PLAYER_ELEMENT_ID } from './anime-overview.const'
-import './anime-overview.css'
 import { AnimeScreenshots } from './anime-screenshots'
 import { AnimeVideos } from './anime-videos'
 
@@ -33,7 +32,7 @@ export const AnimeOverviewScreen = () => {
     animeUrl!
   )
   return (
-    <div className='anime-overview'>
+    <div>
       <div className='container'>
         {!isLoadingScreenshots && screenshots && screenshots.length > 0 && (
           <ScreenSection title='Кадры из аниме'>
@@ -56,9 +55,12 @@ export const AnimeOverviewScreen = () => {
         </div>
       )}
 
-      <div id={PLAYER_ELEMENT_ID} className='anime-overview__player'>
+      <div
+        id={PLAYER_ELEMENT_ID}
+        className='mx-auto my-14 bg-slate-200 px-2 py-14 dark:bg-slate-800 md:px-11'
+      >
         <MarqueeText>
-          <p className='anime-overview__player__title'>
+          <p className='text-lg font-bold dark:text-slate-300 xl:text-2xl'>
             Смотреть аниме &quot;{data?.title}&quot;
           </p>
         </MarqueeText>

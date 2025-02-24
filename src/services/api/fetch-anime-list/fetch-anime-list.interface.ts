@@ -51,7 +51,7 @@ export type FetchAnimeListParams = {
   order?: AnimeOrderVariants | null
   sort?: AnimeSortDirection | null
   type?: AnimeTypeVariants | null
-  years?: string[] | null
+  years?: number[] | null
   translations?: string[] | null
   studio?: string | null
   page?: number

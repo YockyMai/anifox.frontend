@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { AnimeListColumnsProps } from './anime-list-columns.interface'
 
 export const AnimeListColumns = ({ status }: AnimeListColumnsProps) => {

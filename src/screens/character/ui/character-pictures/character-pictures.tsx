@@ -1,5 +1,4 @@
 import { Carousel, Fancybox } from '@anifox/ui'
-import React from 'react'
 import { useParams } from 'react-router'
 
 import { useCharacterQuery } from '@/services/queries'

@@ -1,6 +1,5 @@
 import { IconHash } from '@tabler/icons-react'
 import clsx from 'clsx'
-import React from 'react'
 
 import { getWeekDayLabel } from '../../helpers'
 import './anime-calendar-trigger.css'

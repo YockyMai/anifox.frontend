@@ -1,33 +1,40 @@
 import { Select } from '@anifox/ui'
-import { useAtom } from 'jotai'
+import { useMemo } from 'react'
 
 import { useAnimeStudiosQuery } from '@/services/queries'
-import { useAnimeCatalogFilterContext } from '@/widgets/anime-catalog/context/anime-catalog-filter.context'
-import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model'
+import { useAnimeCatalogStores } from '@/widgets/anime-catalog'
 
 export const Studios = () => {
-  const { changeSearchParams } = useAnimeCatalogFilterContext()
-
   const { data, isLoading } = useAnimeStudiosQuery()
+  const { $filter, changeSearchParams } = useAnimeCatalogStores()
 
-  const [studio, setStudio] = useAtom($animeCatalogFilterAtoms.studio)
+  const studio = $filter.selectors.studio()
+
+  const options = useMemo(
+    () =>
+      data ? data.map(({ id, name }) => ({ value: id, label: name })) : [],
+    [data]
+  )
+
+  const value = useMemo(
+    () => options.find(({ value }) => value === studio),
+    [studio, options]
+  )
 
   return (
     <Select
-      value={studio}
+      value={value}
       onValueChange={(option) => {
-        const newValue = option ? option.value : null
+        const studio = option ? option.value : null
 
-        setStudio(newValue)
-        changeSearchParams({ studio: newValue })
+        $filter.actions.setStudio(studio)
+        changeSearchParams({ studio })
       }}
       isSearchable
       isLoading={isLoading}
-      options={
-        data ? data?.map(({ name }) => ({ value: name, label: name })) : []
-      }
-      placeholder={'Любой'}
-      label={'Студия'}
+      options={options}
+      placeholder='Любой'
+      label='Студия'
     />
   )
 }

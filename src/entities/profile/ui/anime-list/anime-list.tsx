@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import React from 'react'
 
 import { $animeList, $animeListFilters } from '../../store'
 import { AnimeListFilters } from './anime-list-filters'
