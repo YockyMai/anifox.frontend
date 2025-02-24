@@ -4,6 +4,7 @@ import { useParams } from 'react-router'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { ROUTES } from '@/screens/pages.routes'
 import { useAnimeQuery } from '@/services/queries'
+import { createAnimeCatalogSearchParams } from '@/widgets/anime-catalog'
 
 import { AnimeInfoBlock } from '../anime-info-block'
 
@@ -16,7 +17,7 @@ export const AnimeContentGenres = () => {
 
     return genres.map(({ name, id }) => ({
       element: name,
-      href: `${ROUTES.CATALOG.ROOT}?genre=${id}`,
+      href: `${ROUTES.CATALOG.ROOT}?${createAnimeCatalogSearchParams({ genres: [id] })}`,
       key: id
     }))
   }, [data?.genres])
