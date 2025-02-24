@@ -23,7 +23,7 @@ export const AnimeCatalogLanding = () => {
     usePopularOngoingQuery()
 
   return (
-    <div className='anime-catalog-landing'>
+    <div className='flex flex-col gap-y-10'>
       <AnimeCategoryList
         isLoading={isLoadingPopularOngoing}
         icon={<IconChartArrows />}

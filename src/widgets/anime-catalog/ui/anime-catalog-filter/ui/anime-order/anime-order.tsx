@@ -7,19 +7,20 @@ import {
 import { clsx } from 'clsx'
 
 import { ANIME_SORT_DIRECTION, AnimeOrderVariants } from '@/services/api'
-import { useAnimeCatalogStores } from '@/widgets/anime-catalog/context/anime-catalog.context'
+import { useAnimeCatalogStores } from '@/widgets/anime-catalog'
 
 import { ANIME_ORDER_OPTIONS } from './anime-order.const'
 import './anime-order.css'
 
 export const AnimeOrder = () => {
-  const { $filter } = useAnimeCatalogStores()
+  const { $filter, changeSearchParams } = useAnimeCatalogStores()
 
   const sort = $filter.selectors.sort()
   const order = $filter.selectors.order()
 
   const selectOrder = (order: AnimeOrderVariants) => {
     $filter.actions.setOrder(order)
+    changeSearchParams({ order })
   }
 
   const toggleSort = () => {

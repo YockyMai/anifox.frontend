@@ -1,10 +1,10 @@
 import { useIsFilterActive } from '@/widgets/anime-catalog'
 import { AnimeCatalogFilter, AnimeCatalogList } from '@/widgets/anime-catalog'
+import { AnimeCatalogContextProvider } from '@/widgets/anime-catalog'
 import { AnimeCatalogLanding } from '@/widgets/anime-catalog-landing'
-import { AnimeCatalogContextProvider } from '@/widgets/anime-catalog/context/anime-catalog.context'
 
+import { useInitialFilterFromSearchParams } from '../../hooks'
 import { AnimeCatalogMetadata } from './anime-catalog.metadata'
-import { useInitialFilterFromSearchParams } from './hooks'
 
 const AnimeCatalog = () => {
   const isFilterActive = useIsFilterActive()
@@ -25,7 +25,7 @@ const AnimeCatalog = () => {
   )
 }
 
-export const AnimeCatalogScreen = () => {
+export const Root = () => {
   const initialFilter = useInitialFilterFromSearchParams()
 
   return (

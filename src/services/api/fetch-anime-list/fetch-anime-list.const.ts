@@ -47,3 +47,17 @@ export const ANIME_TYPE_VARIANTS = {
   SPECIAL: 'Special',
   TV: 'Tv'
 } as const
+
+export const MAP_ANIME_STATUSES_LABEL = {
+  [ANIME_STATUSES.ONGOING]: 'Онгоинг',
+  [ANIME_STATUSES.RELEASED]: 'Выпущен'
+} as const
+
+export const MAP_ANIME_TYPE_VARIANTS = {
+  [ANIME_TYPE_VARIANTS.MOVIE]: 'Фильм',
+  [ANIME_TYPE_VARIANTS.ONA]: 'Ona',
+  [ANIME_TYPE_VARIANTS.OVA]: 'Ova',
+  [ANIME_TYPE_VARIANTS.MUSIC]: 'Музыкальный',
+  [ANIME_TYPE_VARIANTS.SPECIAL]: 'Специальный выпуск',
+  [ANIME_TYPE_VARIANTS.TV]: 'Телесериал'
+} as const

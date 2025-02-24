@@ -5,6 +5,7 @@ import { AnimeCatalogFilterStore } from '../store/anime-catalog-filter/anime-cat
 
 export type AnimeCatalogContext = {
   $filter: ReturnType<typeof createAnimeCatalogFilterStore>
+  changeSearchParams: (params: Partial<AnimeCatalogFilterStore>) => void
 }
 
 export type AnimeCatalogContextProviderProps = {

@@ -37,7 +37,7 @@ export const createAnimeCatalogFilterStore = (
     setType: (state, type: AnimeTypeVariants | null) => {
       state.type = type
     },
-    setYears: (state, years: string[]) => {
+    setYears: (state, years: number[]) => {
       state.years = years
     },
     setTranslations: (state, translations: string[]) => {

@@ -1,16 +1,16 @@
 import { ANIME_ORDER_VARIANTS } from '@/services/api'
-import { AnimeCatalogContextProvider } from '@/widgets/anime-catalog/context/anime-catalog.context'
+import { AnimeCatalogContextProvider } from '@/widgets/anime-catalog'
 import {
   AnimeCatalogFilter,
   AnimeCatalogList
 } from '@/widgets/anime-catalog/ui'
 
-import { AnimePopularMetadata } from './anime-popular.metadata'
+import { AnimeMostRatedMetadata } from './anime-most-rated.metadata'
 
-export const AnimePopularScreen = () => {
+export const AnimeMostRatedScreen = () => {
   return (
     <div className='mt-[100]'>
-      <AnimePopularMetadata />
+      <AnimeMostRatedMetadata />
 
       <AnimeCatalogContextProvider
         initialFilterState={{ order: ANIME_ORDER_VARIANTS.RATING }}

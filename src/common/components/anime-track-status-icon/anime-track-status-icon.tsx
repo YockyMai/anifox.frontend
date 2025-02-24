@@ -5,7 +5,6 @@ import {
   IconTrash,
   IconZzz
 } from '@tabler/icons-react'
-import React from 'react'
 
 import { ANIME_TRACK_STATUSES } from '@/services/api'
 

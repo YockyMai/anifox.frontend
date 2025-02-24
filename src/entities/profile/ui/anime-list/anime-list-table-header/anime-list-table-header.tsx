@@ -1,6 +1,5 @@
 import { Tooltip, UnstyledButton } from '@anifox/ui'
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react'
-import React from 'react'
 
 import { AnimeTrackStatusIcon } from '@/common/components/anime-track-status-icon/anime-track-status-icon'
 import { $animeList } from '@/entities/profile'

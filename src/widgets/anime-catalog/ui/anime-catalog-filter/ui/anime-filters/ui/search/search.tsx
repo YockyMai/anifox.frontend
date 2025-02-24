@@ -2,10 +2,10 @@ import { Input, useDebounce } from '@anifox/ui'
 import { IconSearch, IconX } from '@tabler/icons-react'
 import { useEffect, useState } from 'react'
 
-import { useAnimeCatalogStores } from '@/widgets/anime-catalog/context/anime-catalog.context'
+import { useAnimeCatalogStores } from '@/widgets/anime-catalog'
 
 export const Search = () => {
-  const { $filter } = useAnimeCatalogStores()
+  const { $filter, changeSearchParams } = useAnimeCatalogStores()
 
   const search = $filter.selectors.search()
 
@@ -19,10 +19,15 @@ export const Search = () => {
 
   useEffect(() => {
     $filter.actions.setSearch(debouncedValue)
+
+    if (debouncedValue !== '') {
+      changeSearchParams({ search: debouncedValue })
+    }
   }, [debouncedValue])
 
   const clearSearch = () => {
     $filter.actions.setSearch('')
+    changeSearchParams({ search: '' })
   }
 
   return (

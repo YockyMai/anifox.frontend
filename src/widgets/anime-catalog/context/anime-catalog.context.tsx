@@ -1,6 +1,12 @@
-import { createContext, useContext, useRef } from 'react'
+import { createContext, useCallback, useContext, useRef } from 'react'
+import { createSearchParams, useNavigate } from 'react-router'
 
-import { createAnimeCatalogFilterStore } from '../store/anime-catalog-filter'
+import { ROUTES } from '@/screens/pages.routes'
+
+import {
+  AnimeCatalogFilterStore,
+  createAnimeCatalogFilterStore
+} from '../store/anime-catalog-filter'
 import { DEFAULT_ANIME_CATALOG_FILTER_STORE } from '../store/anime-catalog-filter/anime-catalog-filter.const'
 import {
   AnimeCatalogContext,
@@ -15,6 +21,37 @@ export const AnimeCatalogContextProvider = ({
 }: AnimeCatalogContextProviderProps) => {
   const storeRef = useRef<AnimeCatalogContext>(null)
 
+  const navigate = useNavigate()
+
+  const changeSearchParams = useCallback(
+    (params: Partial<AnimeCatalogFilterStore>) => {
+      const $filter = storeRef.current?.$filter
+
+      if ($filter) {
+        const filters = $filter.store.getState()
+
+        const filteredSearchParams = Object.entries({
+          ...filters,
+          ...params
+        })
+          .filter(
+            ([, value]) => value !== undefined && value !== null && value !== ''
+          )
+          .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {})
+
+        if (Object.values(filteredSearchParams).length) {
+          navigate({
+            pathname: ROUTES.CATALOG.ROOT,
+            search: createSearchParams(filteredSearchParams).toString()
+          })
+        } else {
+          navigate(ROUTES.CATALOG.ROOT)
+        }
+      }
+    },
+    [storeRef.current, navigate]
+  )
+
   if (!storeRef.current) {
     const $filter = createAnimeCatalogFilterStore({
       ...DEFAULT_ANIME_CATALOG_FILTER_STORE,
@@ -22,7 +59,8 @@ export const AnimeCatalogContextProvider = ({
     })
 
     storeRef.current = {
-      $filter
+      $filter,
+      changeSearchParams
     }
   }
 
@@ -37,7 +75,7 @@ export const useAnimeCatalogStores = () => {
   const store = useContext(StoreContext)
 
   if (!store) {
-    throw new Error('Missing ProfileContextProvider')
+    throw new Error('Missing AnimeCatalogContextProvider')
   }
 
   return store

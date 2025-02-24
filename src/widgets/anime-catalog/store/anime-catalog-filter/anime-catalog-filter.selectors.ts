@@ -1,6 +1,6 @@
 import { useStore } from '@anifox/store'
 
-import { useAnimeCatalogStores } from '../../context/anime-catalog.context'
+import { useAnimeCatalogStores } from '../..'
 
 export const useIsFilterActive = () => {
   const { $filter } = useAnimeCatalogStores()

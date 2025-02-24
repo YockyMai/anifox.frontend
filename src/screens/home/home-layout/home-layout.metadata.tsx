@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { Helmet } from '@/common/lib/helmet'
 
 export const HomeLayoutMetadata = () => {

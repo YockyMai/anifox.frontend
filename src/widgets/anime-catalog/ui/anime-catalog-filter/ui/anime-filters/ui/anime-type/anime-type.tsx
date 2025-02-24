@@ -1,12 +1,12 @@
 import { Select } from '@anifox/ui'
 
 import { AnimeTypeVariants } from '@/services/api'
-import { useAnimeCatalogStores } from '@/widgets/anime-catalog/context/anime-catalog.context'
+import { useAnimeCatalogStores } from '@/widgets/anime-catalog'
 
 import { TYPE_OPTIONS } from './anime-type.const'
 
 export const AnimeType = () => {
-  const { $filter } = useAnimeCatalogStores()
+  const { $filter, changeSearchParams } = useAnimeCatalogStores()
   const type = $filter.selectors.type()
 
   const value = TYPE_OPTIONS.find((option) => option.value === type)
@@ -15,9 +15,10 @@ export const AnimeType = () => {
     <Select
       value={value}
       onValueChange={(option) => {
-        const newValue = option ? (option.value as AnimeTypeVariants) : null
+        const type = option ? (option.value as AnimeTypeVariants) : null
 
-        $filter.actions.setType(newValue)
+        $filter.actions.setType(type)
+        changeSearchParams({ type })
       }}
       options={TYPE_OPTIONS}
       placeholder={'Любой'}

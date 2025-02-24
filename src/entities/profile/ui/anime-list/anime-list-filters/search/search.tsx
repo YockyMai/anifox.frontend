@@ -1,6 +1,5 @@
 import { Input } from '@anifox/ui'
 import { IconSearch, IconX } from '@tabler/icons-react'
-import React from 'react'
 
 import { $animeListFilters } from '@/entities/profile/store'
 

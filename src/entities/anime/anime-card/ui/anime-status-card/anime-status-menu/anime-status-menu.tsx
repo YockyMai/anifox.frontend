@@ -1,7 +1,6 @@
 import { UnstyledButton } from '@anifox/ui'
 import { IconPencil, IconTrash } from '@tabler/icons-react'
 import { motion } from 'framer-motion'
-import React from 'react'
 
 import { AnimeStatusMenuProps } from './anime-status-menu.interface'
 

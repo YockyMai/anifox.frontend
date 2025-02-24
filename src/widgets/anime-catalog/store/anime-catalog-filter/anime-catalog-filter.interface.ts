@@ -16,7 +16,7 @@ export type AnimeCatalogFilterStore = {
   ratingMpa: AnimeRatingMpa | null
   season: AnimeSeasons | null
   type: AnimeTypeVariants | null
-  years: string[]
+  years: number[]
   translations: string[]
   studio: string | null
   sort: AnimeSortDirection | null

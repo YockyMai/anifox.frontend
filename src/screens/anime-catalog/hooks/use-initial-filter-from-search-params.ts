@@ -10,7 +10,7 @@ import {
   AnimeStatuses,
   AnimeTypeVariants
 } from '@/services/api'
-import { AnimeCatalogFilterStore } from '@/widgets/anime-catalog/store/anime-catalog-filter/anime-catalog-filter.interface'
+import { AnimeCatalogFilterStore } from '@/widgets/anime-catalog'
 
 export const useInitialFilterFromSearchParams = () => {
   const [searchParams] = useSearchParams()
@@ -32,7 +32,7 @@ export const useInitialFilterFromSearchParams = () => {
       studio: searchParams.get('studio'),
       translations: searchParams.getAll('translations'),
       type: searchParams.get('type') as AnimeTypeVariants | null,
-      years: searchParams.getAll('years')
+      years: searchParams.getAll('years').map(Number.parseInt)
     }
   }, [searchParams])
 

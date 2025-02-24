@@ -1,6 +1,5 @@
 import { Badge, Image, MarqueeText } from '@anifox/ui'
 import { IconArrowRight } from '@tabler/icons-react'
-import React from 'react'
 import { Link } from 'react-router'
 
 import { AnimeFavoriteButton } from '@/entities/anime/anime-favorite'

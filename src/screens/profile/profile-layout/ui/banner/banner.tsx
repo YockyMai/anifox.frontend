@@ -1,5 +1,4 @@
 import { Image } from '@anifox/ui'
-import React from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import { useProfileStores } from '@/entities/profile'

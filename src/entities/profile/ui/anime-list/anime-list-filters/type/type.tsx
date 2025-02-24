@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { AnimeTypeSelector } from '@/common/components'
 import { $animeListFilters } from '@/entities/profile/store'
 

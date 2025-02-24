@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { AnimeContentInfoLoaderProps } from './anime-content-info-loader.interface'
 
 export const AnimeContentInfoLoader = ({

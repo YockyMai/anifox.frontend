@@ -7,7 +7,6 @@ import {
   IconSquareNumber6Filled,
   IconSquareNumber7Filled
 } from '@tabler/icons-react'
-import React from 'react'
 
 import { ANIME_SCHEDULE_DAY, AnimeScheduleDay } from '@/services/api'
 

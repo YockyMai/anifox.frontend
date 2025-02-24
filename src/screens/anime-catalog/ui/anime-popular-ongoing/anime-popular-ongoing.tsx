@@ -1,5 +1,5 @@
 import { ANIME_STATUSES } from '@/services/api'
-import { AnimeCatalogContextProvider } from '@/widgets/anime-catalog/context/anime-catalog.context'
+import { AnimeCatalogContextProvider } from '@/widgets/anime-catalog'
 import {
   AnimeCatalogFilter,
   AnimeCatalogList

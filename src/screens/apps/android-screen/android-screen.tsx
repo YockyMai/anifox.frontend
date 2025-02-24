@@ -1,6 +1,5 @@
 import { Image, UnstyledButton } from '@anifox/ui'
 import { IconBrandGithubFilled } from '@tabler/icons-react'
-import React from 'react'
 import { Link } from 'react-router'
 
 import { FEATURES } from './android-screen.const'

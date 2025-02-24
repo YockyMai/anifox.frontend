@@ -1,7 +1,7 @@
-import { AnimeCatalogPageSearchParams } from '../anime-catalog.interface'
+import { AnimeCatalogFilterStore } from '../store'
 
 export const createAnimeCatalogSearchParams = (
-  params: AnimeCatalogPageSearchParams
+  params: Partial<AnimeCatalogFilterStore>
 ) => {
   const urlSearchParams = new URLSearchParams()
 

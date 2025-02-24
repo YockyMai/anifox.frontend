@@ -2,7 +2,6 @@ import { SwitchAnimation, useHover } from '@anifox/ui'
 import { IconGripVertical, IconX } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { motion, Reorder, useDragControls } from 'framer-motion'
-import React from 'react'
 
 import { AnimeTrackStatusIcon } from '@/common/components/anime-track-status-icon/anime-track-status-icon'
 import { $animeList, $animeListFilters } from '@/entities/profile'
