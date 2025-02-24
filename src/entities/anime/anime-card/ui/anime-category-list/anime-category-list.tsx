@@ -3,7 +3,6 @@ import { Link } from 'react-router'
 
 import { AnimeCard } from '../anime-card'
 import { AnimeCardSkeleton } from '../anime-card-skeleton'
-import './anime-category-list.css'
 import { AnimeCategoryListProps } from './anime-category-list.interface'
 
 export const AnimeCategoryList = ({
@@ -21,16 +20,20 @@ export const AnimeCategoryList = ({
     []
   )
   return (
-    <div className='anime-category-list'>
-      <div className='anime-category-list__header'>
-        <div className='anime-category-list__category'>
+    <div className='container mx-auto'>
+      <div className='flex items-center justify-between pb-3'>
+        <div className='flex items-center gap-x-2'>
           {icon}
           <p>{category}</p>
         </div>
 
-        {categoryLink && <Link to={categoryLink}>Показать все</Link>}
+        {categoryLink && (
+          <Link className='text-sm sm:text-base' to={categoryLink}>
+            Показать все
+          </Link>
+        )}
       </div>
-      <div className='anime-category-list__content'>
+      <div className='anifox-grid'>
         {isLoading ? (
           loaders
         ) : (

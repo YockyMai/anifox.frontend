@@ -8,8 +8,6 @@ import {
   usePopularOngoingQuery
 } from '@/services/queries'
 
-import './anime-catalog-landing.css'
-
 export const AnimeCatalogLanding = () => {
   const { data: mostRatedAnimeData = [], isLoading: isLoadingMostRatedAnime } =
     useMostRatedAnimeListQuery()

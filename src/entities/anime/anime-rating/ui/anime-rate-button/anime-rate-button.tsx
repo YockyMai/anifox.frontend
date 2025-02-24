@@ -8,7 +8,6 @@ import { useIsAuth } from '@/entities/viewer'
 import { useAnimeRatingMutation } from '@/services/mutations'
 import { useAnimeStatisticsQuery } from '@/services/queries'
 
-import './anime-rate-button.css'
 import { AnimeRateButtonProps } from './anime-rate-button.interface'
 import { AnimeRateDropdown } from './ui'
 

@@ -5,7 +5,6 @@ import { useMemo } from 'react'
 import { UIColors } from '@/common/types/ui-colors'
 
 import { getColorByRating, getRatingDistribution } from '../../../../lib'
-import './anime-rate-dropdown.css'
 import { AnimeRateDropdownProps } from './anime-rate-dropdown.interface'
 
 export const AnimeRateDropdown = ({
@@ -15,7 +14,7 @@ export const AnimeRateDropdown = ({
   const { ratings } = useMemo(() => getRatingDistribution(scores), [scores])
 
   return (
-    <div className='rate-dropdown'>
+    <div className='w-full max-w-xs rounded-xl bg-slate-800 py-2 pl-3 pr-5'>
       <p>Нажмите на звездочку чтобы оценить аниме</p>
 
       {ratings.map(({ score, votes, percentage }) => {
@@ -25,23 +24,31 @@ export const AnimeRateDropdown = ({
           <div
             onClick={() => onRateAnime(score)}
             key={score}
-            className={clsx('rate-dropdown__row')}
+            className='grid cursor-pointer select-none grid-cols-[45px_auto] items-center gap-x-2 transition-transform hover:scale-[120%]'
           >
-            <div className='rate-dropdown__rating'>
+            <div className='relative'>
               <IconStarFilled
-                className={`rate-dropdown__rating_${color}`}
+                className={clsx(
+                  color === UIColors.RED
+                    ? 'fill-red-300'
+                    : UIColors.GREEN
+                      ? 'fill-green-400'
+                      : 'fill-orange-300'
+                )}
                 size={45}
               />
-              <p>{score}</p>
+              <p className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xs text-white'>
+                {score}
+              </p>
             </div>
-            <div className={'rate-dropdown__slide'}>
+            <div className='relative h-4 w-full min-w-[10px] overflow-hidden rounded bg-slate-600'>
               <span
                 style={{
                   width: `${percentage}%`,
                   transition: '0.3s'
                 }}
                 className={clsx(
-                  'rate-dropdown__fill-line',
+                  'absolute left-0 top-0 h-full w-0',
                   color === UIColors.GREEN
                     ? 'bg-green-500'
                     : color === UIColors.ORANGE
@@ -49,7 +56,9 @@ export const AnimeRateDropdown = ({
                       : 'bg-red-300'
                 )}
               />
-              <p className={clsx('rate-dropdown__count')}>{votes} голосов</p>
+              <p className='absolute left-1 top-1/2 -translate-y-1/2 text-xs text-white'>
+                {votes} голосов
+              </p>
             </div>
           </div>
         )
