@@ -1,16 +1,14 @@
 import { Select } from '@anifox/ui'
-import { useAtom } from 'jotai'
 
 import { useAnimeStudiosQuery } from '@/services/queries'
-import { useAnimeCatalogFilterContext } from '@/widgets/anime-catalog/context/anime-catalog-filter.context'
-import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model'
+import { useAnimeCatalogStores } from '@/widgets/anime-catalog/context/anime-catalog.context'
 
 export const Studios = () => {
-  const { changeSearchParams } = useAnimeCatalogFilterContext()
-
   const { data, isLoading } = useAnimeStudiosQuery()
 
-  const [studio, setStudio] = useAtom($animeCatalogFilterAtoms.studio)
+  const { $filter } = useAnimeCatalogStores()
+
+  const studio = $filter.selectors.studio()
 
   return (
     <Select
@@ -18,8 +16,7 @@ export const Studios = () => {
       onValueChange={(option) => {
         const newValue = option ? option.value : null
 
-        setStudio(newValue)
-        changeSearchParams({ studio: newValue })
+        $filter.actions.setStudio(newValue)
       }}
       isSearchable
       isLoading={isLoading}

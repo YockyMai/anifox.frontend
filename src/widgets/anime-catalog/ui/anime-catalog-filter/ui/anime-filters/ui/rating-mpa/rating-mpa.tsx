@@ -1,20 +1,23 @@
 import { Select } from '@anifox/ui'
-import { useAtom } from 'jotai'
 
 import { AnimeRatingMpa } from '@/services/api'
-import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model/anime-catalog-filter'
+import { useAnimeCatalogStores } from '@/widgets/anime-catalog/context/anime-catalog.context'
 
 import { RATING_MPA_OPTIONS } from './rating-mpa.const'
 
 export const RatingMpa = () => {
-  const [ratingMpa, setRatingMpa] = useAtom($animeCatalogFilterAtoms.ratingMpa)
+  const { $filter } = useAnimeCatalogStores()
+
+  const ratingMpa = $filter.selectors.ratingMpa()
 
   return (
     <div>
       <Select
         value={ratingMpa}
         onValueChange={(option) =>
-          setRatingMpa(option ? (option.value as AnimeRatingMpa) : null)
+          $filter.actions.setRatingMpa(
+            option ? (option.value as AnimeRatingMpa) : null
+          )
         }
         options={RATING_MPA_OPTIONS}
         placeholder={'Любой'}

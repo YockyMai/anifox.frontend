@@ -1,16 +1,13 @@
 import { Select } from '@anifox/ui'
-import { useAtom } from 'jotai'
 
 import { AnimeTypeVariants } from '@/services/api'
-import { useAnimeCatalogFilterContext } from '@/widgets/anime-catalog/context/anime-catalog-filter.context'
-import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model'
+import { useAnimeCatalogStores } from '@/widgets/anime-catalog/context/anime-catalog.context'
 
 import { TYPE_OPTIONS } from './anime-type.const'
 
 export const AnimeType = () => {
-  const [type, setType] = useAtom($animeCatalogFilterAtoms.type)
-
-  const { changeSearchParams } = useAnimeCatalogFilterContext()
+  const { $filter } = useAnimeCatalogStores()
+  const type = $filter.selectors.type()
 
   const value = TYPE_OPTIONS.find((option) => option.value === type)
 
@@ -20,8 +17,7 @@ export const AnimeType = () => {
       onValueChange={(option) => {
         const newValue = option ? (option.value as AnimeTypeVariants) : null
 
-        setType(newValue)
-        changeSearchParams({ type: newValue })
+        $filter.actions.setType(newValue)
       }}
       options={TYPE_OPTIONS}
       placeholder={'Любой'}

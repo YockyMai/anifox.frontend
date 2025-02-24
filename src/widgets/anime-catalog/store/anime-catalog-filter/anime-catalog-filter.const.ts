@@ -1,4 +1,6 @@
-export const DEFAULT_ATOMS = {
+import { AnimeCatalogFilterStore } from './anime-catalog-filter.interface'
+
+export const DEFAULT_ANIME_CATALOG_FILTER_STORE: AnimeCatalogFilterStore = {
   status: null,
   search: '',
   genres: [],

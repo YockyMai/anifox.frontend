@@ -1,19 +1,13 @@
-import { useAtomValue } from 'jotai'
-
-import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog'
+import { useIsFilterActive } from '@/widgets/anime-catalog'
+import { AnimeCatalogFilter, AnimeCatalogList } from '@/widgets/anime-catalog'
 import { AnimeCatalogLanding } from '@/widgets/anime-catalog-landing'
-import {
-  AnimeCatalogFilter,
-  AnimeCatalogList
-} from '@/widgets/anime-catalog/ui'
+import { AnimeCatalogContextProvider } from '@/widgets/anime-catalog/context/anime-catalog.context'
 
 import { AnimeCatalogMetadata } from './anime-catalog.metadata'
-import { useSyncAnimeCatalogSearchParams } from './hooks'
+import { useInitialFilterFromSearchParams } from './hooks'
 
-export const AnimeCatalogScreen = () => {
-  useSyncAnimeCatalogSearchParams()
-
-  const isFilterActive = useAtomValue($animeCatalogFilterAtoms.isFilterActive)
+const AnimeCatalog = () => {
+  const isFilterActive = useIsFilterActive()
 
   return (
     <div className='mt-[100]'>
@@ -28,5 +22,15 @@ export const AnimeCatalogScreen = () => {
         </div>
       )}
     </div>
+  )
+}
+
+export const AnimeCatalogScreen = () => {
+  const initialFilter = useInitialFilterFromSearchParams()
+
+  return (
+    <AnimeCatalogContextProvider initialFilterState={initialFilter}>
+      <AnimeCatalog />
+    </AnimeCatalogContextProvider>
   )
 }

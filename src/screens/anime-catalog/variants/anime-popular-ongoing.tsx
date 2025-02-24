@@ -1,21 +1,27 @@
+import { ANIME_STATUSES } from '@/services/api'
+import { AnimeCatalogContextProvider } from '@/widgets/anime-catalog/context/anime-catalog.context'
 import {
   AnimeCatalogFilter,
   AnimeCatalogList
 } from '@/widgets/anime-catalog/ui'
+import { ANIME_ORDER_OPTIONS } from '@/widgets/anime-catalog/ui/anime-catalog-filter/ui/anime-order/anime-order.const'
 
-import { useInitFilterPreset } from '../hooks'
-import { FILTER_PRESET } from '../hooks/use-init-filter-preset/use-init-filter-preset.const'
 import { AnimePopularOngoingMetadata } from './anime-popular-ongoing.metadata'
 
 export const AnimePopularOngoingScreen = () => {
-  useInitFilterPreset(FILTER_PRESET.POPULAR_ONGOING)
-
   return (
     <div className='mt-[100]'>
       <AnimePopularOngoingMetadata />
 
-      <AnimeCatalogFilter />
-      <AnimeCatalogList />
+      <AnimeCatalogContextProvider
+        initialFilterState={{
+          order: ANIME_ORDER_OPTIONS.RATING,
+          status: ANIME_STATUSES.ONGOING
+        }}
+      >
+        <AnimeCatalogFilter />
+        <AnimeCatalogList />
+      </AnimeCatalogContextProvider>
     </div>
   )
 }

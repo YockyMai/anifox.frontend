@@ -1,20 +1,16 @@
-import { useAtom } from 'jotai'
-
 import { AnimeStatusSelector } from '@/common/components'
-import { useAnimeCatalogFilterContext } from '@/widgets/anime-catalog/context/anime-catalog-filter.context'
-import { $animeCatalogFilterAtoms } from '@/widgets/anime-catalog/model'
+import { useAnimeCatalogStores } from '@/widgets/anime-catalog/context/anime-catalog.context'
 
 export const Status = () => {
-  const { changeSearchParams } = useAnimeCatalogFilterContext()
+  const { $filter } = useAnimeCatalogStores()
 
-  const [status, setStatus] = useAtom($animeCatalogFilterAtoms.status)
+  const status = $filter.selectors.status()
 
   return (
     <AnimeStatusSelector
       status={status}
       onChangeStatus={(status) => {
-        setStatus(status)
-        changeSearchParams({ status: status })
+        $filter.actions.setStatus(status)
       }}
     />
   )

@@ -1,2 +1,1 @@
-export * from './use-sync-anime-catalog-search-params'
-export * from './use-init-filter-preset'
+export * from './use-initial-filter-from-search-params'
