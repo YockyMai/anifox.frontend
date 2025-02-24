@@ -1,9 +1,9 @@
 import { ANIME_ORDER_VARIANTS } from '@/services/api'
-import { AnimeCatalogContextProvider } from '@/widgets/anime-catalog'
 import {
+  AnimeCatalogContextProvider,
   AnimeCatalogFilter,
   AnimeCatalogList
-} from '@/widgets/anime-catalog/ui'
+} from '@/widgets/anime-catalog'
 
 import { AnimePopularMetadata } from './anime-popular.metadata'
 

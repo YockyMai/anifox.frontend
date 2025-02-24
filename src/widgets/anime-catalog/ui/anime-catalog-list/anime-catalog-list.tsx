@@ -6,6 +6,7 @@ import { AnimeCard } from '@/entities/anime/anime-card'
 import { useAnimeListQuery } from '@/services/queries'
 
 import { useAnimeListQueryParams } from '../../hooks'
+import { AnimeCatalogFilterTags } from '../anime-catalog-filter-tags'
 import { ANIME_CARD_LOADERS } from './anime-catalog-list.const'
 import './anime-catalog-list.css'
 
@@ -68,10 +69,14 @@ export const AnimeCatalogList = () => {
     )
 
   return (
-    <div className='catalog-list'>
-      {cards}
-      {((isFetchingNextPage && hasNextPage) || isLoading) && ANIME_CARD_LOADERS}
-      <span className='catalog-list__load-more' ref={loadMoreTriggerRef} />
+    <div className='container mt-52'>
+      <AnimeCatalogFilterTags />
+      <div className='catalog-list'>
+        {cards}
+        {((isFetchingNextPage && hasNextPage) || isLoading) &&
+          ANIME_CARD_LOADERS}
+        <span className='catalog-list__load-more' ref={loadMoreTriggerRef} />
+      </div>
     </div>
   )
 }
