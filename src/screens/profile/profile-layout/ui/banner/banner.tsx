@@ -26,9 +26,7 @@ export const Banner = () => {
       <div className='container z-10 flex h-fit items-end'>
         <div className='flex h-40 w-40'>
           <Image
-            src={
-              'https://s4.anilist.co/file/anilistcdn/user/avatar/large/b6207770-GboHiOye7nVj.jpg'
-            }
+            src={'https://avatars.githubusercontent.com/u/75245399?v=4'}
             alt='user avatar'
             className='rounded-b-none'
           />
