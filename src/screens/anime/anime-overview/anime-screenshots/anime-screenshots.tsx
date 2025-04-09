@@ -2,8 +2,8 @@ import { Carousel, Fancybox } from '@anifox/ui'
 import { ReactNode, useMemo } from 'react'
 import { useParams } from 'react-router'
 
+import { useAnimeScreenshotsQuery } from '@/graphql/queries'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
-import { useAnimeScreenshotsQuery } from '@/services/queries'
 
 import { AnimeScreenshot } from './anime-screenshot'
 import { ANIME_SCREENSHOT_SIZE } from './anime-screenshots.const'

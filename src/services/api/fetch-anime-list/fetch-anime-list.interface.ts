@@ -11,7 +11,20 @@ export type AnimeOrderVariants =
   | 'Random'
   | 'Rating'
 
+export const AnimeOrderVariants = {
+  UPDATE: 'Update',
+  AIRED: 'Aired',
+  RELEASED: 'Released',
+  RANDOM: 'Random',
+  RATING: 'Rating'
+} as const
+
 export type AnimeSortDirection = 'Asc' | 'Desc'
+
+export const AnimeSortDirection = {
+  ASC: 'Asc',
+  DESC: 'Desc'
+} as const
 
 export type AnimeTypeVariants =
   | 'Movie'

@@ -3,11 +3,11 @@ import { useState } from 'react'
 
 import { AuthModal } from '@/entities/auth/auth-modal'
 import { useIsAuth } from '@/entities/viewer'
-import { AnimeTrackStatuses } from '@/services/api'
 import {
   useAnimeStatusMutation,
   useDeleteTrackedAnimeMutation
-} from '@/services/mutations'
+} from '@/graphql/mutations'
+import { AnimeTrackStatuses } from '@/services/api'
 
 import { AnimeListButtonProps } from './anime-list-button.interface'
 import { TrackStatusOptions } from './track-status-options/track-status-options'

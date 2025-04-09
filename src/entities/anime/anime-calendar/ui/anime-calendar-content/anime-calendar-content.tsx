@@ -1,7 +1,7 @@
 import { memo } from 'react'
 
 import { AnimeCardUpcoming } from '@/entities/anime/anime-card/ui'
-import { useAnimeSchedulesQuery } from '@/services/queries'
+import { useAnimeSchedulesQuery } from '@/graphql/queries'
 
 import './anime-calendar-content.css'
 import { AnimeCalendarSliderProps } from './anime-calendar-content.interface'

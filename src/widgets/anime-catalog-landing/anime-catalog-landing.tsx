@@ -1,12 +1,12 @@
 import { IconChartArrows, IconStars, IconTrendingUp } from '@tabler/icons-react'
 
 import { AnimeCategoryList } from '@/entities/anime/anime-card'
-import { ROUTES } from '@/screens/pages.routes'
 import {
   useAllTimePopularAnimeListQuery,
   useMostRatedAnimeListQuery,
   usePopularOngoingQuery
-} from '@/services/queries'
+} from '@/graphql/queries'
+import { ROUTES } from '@/screens/pages.routes'
 
 export const AnimeCatalogLanding = () => {
   const { data: mostRatedAnimeData = [], isLoading: isLoadingMostRatedAnime } =

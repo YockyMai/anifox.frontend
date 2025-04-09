@@ -6,7 +6,7 @@ import { AnimeListButton } from '@/entities/anime/anime-list'
 import {
   useAnimeStatusMutation,
   useDeleteTrackedAnimeMutation
-} from '@/services/mutations'
+} from '@/graphql/mutations'
 
 import { DraggableAnimeCardProps } from './anime-list-row.interface'
 

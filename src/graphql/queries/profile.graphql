@@ -1,0 +1,13 @@
+query Profile($login: String!) {
+  profile(login: $login) {
+    id
+    login
+    googleId
+    vkId
+    name
+    role
+    avatar
+    birthday
+    email
+  }
+}

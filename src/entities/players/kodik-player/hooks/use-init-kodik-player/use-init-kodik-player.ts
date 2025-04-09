@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react'
 
 import { $preferredEpisodeTranslations } from '@/entities/translation/store'
-import { useAnimeEpisodesQuery } from '@/services/queries'
+import { useAnimeEpisodesQuery } from '@/graphql/queries'
 
 import { useKodikPlayerStores } from '../../context'
 import { UseInitKodikPlayerOptions } from './use-init-kodik-player.interface'

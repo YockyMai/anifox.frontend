@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-import { useAnimeEpisodesQuery } from '@/services/queries'
+import { useAnimeEpisodesQuery } from '@/graphql/queries'
 
 export const useTotalTranslatedEpisodes = (
   animeUrl: string,

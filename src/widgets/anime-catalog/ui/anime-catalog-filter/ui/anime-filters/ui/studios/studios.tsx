@@ -1,7 +1,7 @@
 import { Select } from '@anifox/ui'
 import { useMemo } from 'react'
 
-import { useAnimeStudiosQuery } from '@/services/queries'
+import { useAnimeStudiosQuery } from '@/graphql/queries'
 import { useAnimeCatalogStores } from '@/widgets/anime-catalog'
 
 export const Studios = () => {

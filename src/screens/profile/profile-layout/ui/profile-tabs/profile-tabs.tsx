@@ -1,13 +1,14 @@
 import { Tabs } from '@anifox/ui'
 import { IconBook, IconHeart } from '@tabler/icons-react'
 import { useEffect, useMemo, useState } from 'react'
-import { Link, useLocation, useParams } from 'react-router'
+import { Link, useLocation } from 'react-router'
 
+import { useProfile } from '@/entities/profile'
 import { ROUTES } from '@/screens/pages.routes'
-import { ProfilePageParams } from '@/screens/profile/profile.interface'
 
 export const ProfilePageTabs = () => {
-  const { login } = useParams<ProfilePageParams>()
+  const { profile } = useProfile()
+
   const { pathname } = useLocation()
 
   const [activeTab, setActiveTab] = useState(pathname)
@@ -17,8 +18,8 @@ export const ProfilePageTabs = () => {
   }, [pathname])
 
   const tabs = useMemo(() => {
-    const profileUrl = `${ROUTES.PROFILE.ROOT.replace(':login', login!)}`
-    const favoritesUrl = `${ROUTES.PROFILE.FAVORITES.replace(':login', login!)}`
+    const profileUrl = `${ROUTES.PROFILE.ROOT.replace(':login', profile!.login)}`
+    const favoritesUrl = `${ROUTES.PROFILE.FAVORITES.replace(':login', profile!.login)}`
 
     return [
       {
@@ -46,7 +47,7 @@ export const ProfilePageTabs = () => {
         key: favoritesUrl
       }
     ]
-  }, [login])
+  }, [profile!.login])
 
   return (
     <div className='flex w-full justify-center bg-slate-400/30 dark:bg-slate-800/50'>

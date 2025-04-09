@@ -1,0 +1,9 @@
+query FavoriteAnimes($page: Int!, $userId: String!) {
+  favoriteAnimes(page: $page, userId: $userId) {
+    data {
+      anime {
+        id
+      }
+    }
+  }
+}

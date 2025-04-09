@@ -3,8 +3,8 @@ import { useParams } from 'react-router'
 import { AnimeFavoriteButton } from '@/entities/anime/anime-favorite'
 import { AnimeListButton } from '@/entities/anime/anime-list'
 import { AnimeRateButton } from '@/entities/anime/anime-rating'
+import { useAnimeQuery } from '@/graphql/queries'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
-import { useAnimeQuery } from '@/services/queries'
 
 export const AnimeActionBar = () => {
   const { animeUrl } = useParams<AnimePageParams>()!

@@ -1,20 +1,22 @@
 import { Image, Badge, MarqueeText } from '@anifox/ui'
 import { useMemo } from 'react'
 
+import { AnimeStatus } from '@/graphql/generated/output'
+
 import { getAnimeAccentColorStyles } from '../../helpers'
 import { AnimeCardPanelProps } from './anime-card-panel.interface'
 
 export const AnimeCardPanel = ({ anime }: AnimeCardPanelProps) => {
   const cardAccentColorsStyles = getAnimeAccentColorStyles(
-    anime.accent_color,
+    anime.accentColor,
     'light'
   )
 
   const minimalAgeContent = useMemo(() => {
-    if (typeof anime.minimal_age === 'number') {
-      return `${anime.minimal_age}+`
-    } else if (anime.rating_mpa) {
-      return anime.rating_mpa
+    if (typeof anime.minimalAge === 'number') {
+      return `${anime.minimalAge}+`
+    } else if (anime.minimalAge) {
+      return anime.minimalAge
     }
 
     return null
@@ -54,15 +56,17 @@ export const AnimeCardPanel = ({ anime }: AnimeCardPanelProps) => {
           </p>
 
           <div className='my-1'>
-            {anime.studio && anime.studio.length > 0 && (
+            {anime.studios && anime.studios.length > 0 && (
               <p className='w-fit text-sm text-[var(--card-overlay-text-color)]'>
-                Студия {anime.studio[0].name}
+                Студия {anime.studios[0].name}
               </p>
             )}
             <div className='my-0.5 flex items-center justify-between'>
-              <p>{anime.episodes_aired} серий</p>
+              <p>{anime.episodesAired} серий</p>
               <p>—</p>
-              <p>{anime.status === 'Released' ? 'Выпущен' : 'Онгоинг'}</p>
+              <p>
+                {anime.status === AnimeStatus.ONGOING ? 'Выпущен' : 'Онгоинг'}
+              </p>
             </div>
           </div>
 

@@ -1,8 +1,10 @@
 {
   "cSpell.words": [
     "ANIFOX",
+    "animes",
     "clonedeep",
     "clsx",
+    "codegen",
     "colord",
     "Embla",
     "fancyapps",
@@ -27,5 +29,7 @@
   ],
   "files.associations": {
     "*.css": "tailwindcss"
-  }
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "notebook.defaultFormatter": "esbenp.prettier-vscode"
 }

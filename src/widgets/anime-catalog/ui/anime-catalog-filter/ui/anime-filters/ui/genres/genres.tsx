@@ -1,7 +1,7 @@
 import { MultiSelect } from '@anifox/ui'
 import { SelectOption } from '@anifox/ui/dist/components/select/select.interface'
 
-import { useAnimeGenresQuery } from '@/services/queries'
+import { useAnimeGenresQuery } from '@/graphql/queries'
 import { useAnimeCatalogStores } from '@/widgets/anime-catalog'
 
 export const Genres = () => {

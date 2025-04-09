@@ -11,7 +11,7 @@
   }
 
   &__image {
-    @apply absolute left-0 aspect-[3/4] w-full;
+    @apply absolute left-0 w-full;
     @apply max-sm:bottom-0 md:top-0;
   }
 

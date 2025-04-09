@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router'
 
-import { useIsAuth } from '@/entities/viewer'
+import { useViewer } from '@/entities/viewer'
 
 import {
   AnimeCatalogScreen,
@@ -12,6 +12,7 @@ import { AnimeCharactersScreen } from './anime/anime-characters'
 import { AnimeScreenLayout } from './anime/anime-layout'
 import { AnimeOverviewScreen } from './anime/anime-overview'
 import { AppsScreen } from './apps/apps'
+import { AuthExternalScreen } from './auth/external/auth-external'
 import { CharacterScreen } from './character'
 import { HomeLayout, HomeScreen } from './home'
 import { KodikScreen } from './kodik'
@@ -23,7 +24,7 @@ import { RightHoldersScreen } from './right-holders'
 import { SignupScreen } from './signup'
 
 export const Screens = () => {
-  const isAuth = useIsAuth()
+  const { isAuth } = useViewer()
 
   return (
     <Routes>
@@ -59,18 +60,20 @@ export const Screens = () => {
         <Route path={ROUTES.CHARACTER.ROOT} element={<CharacterScreen />} />
 
         <Route path={ROUTES.RIGHT_HOLDERS} element={<RightHoldersScreen />} />
-
+        <Route path={ROUTES.PROFILE.ROOT} element={<ProfileLayout />}>
+          <Route index element={<ProfileAnimeListScreen />} />
+          <Route path={ROUTES.PROFILE.FAVORITES} element={<></>} />
+        </Route>
         {isAuth ? (
-          <>
-            <Route path={ROUTES.PROFILE.ROOT} element={<ProfileLayout />}>
-              <Route index element={<ProfileAnimeListScreen />} />
-              <Route path={ROUTES.PROFILE.FAVORITES} element={<></>} />
-            </Route>
-          </>
+          <></>
         ) : (
           <>
             <Route path={ROUTES.LOGIN} element={<LoginScreen />} />
             <Route path={ROUTES.SIGN_UP} element={<SignupScreen />} />
+            <Route
+              path={ROUTES.AUTH.EXTERNAL}
+              element={<AuthExternalScreen />}
+            />
           </>
         )}
         <Route path={ROUTES.APPS.ROOT} element={<AppsScreen />} />

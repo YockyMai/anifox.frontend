@@ -1,17 +1,21 @@
 import { Spoiler } from '@anifox/ui'
 import { useParams } from 'react-router'
 
+import { useAnimeQuery } from '@/graphql/generated/output'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
-import { useAnimeQuery } from '@/services/queries'
 
 import './anime-description.css'
 
 export const AnimeDescription = () => {
   const { animeUrl } = useParams<AnimePageParams>()!
 
-  const { data } = useAnimeQuery(animeUrl!)
+  const { data } = useAnimeQuery({
+    variables: {
+      url: animeUrl!
+    }
+  })
 
-  if (!data?.description) {
+  if (!data?.anime.description) {
     return null
   }
 
@@ -20,7 +24,7 @@ export const AnimeDescription = () => {
       {/* only for PC */}
       <div className='anime-description'>
         <Spoiler maxHeight={125}>
-          <p className='anime-description__text'>{data?.description}</p>
+          <p className='anime-description__text'>{data?.anime.description}</p>
         </Spoiler>
       </div>
 
@@ -28,7 +32,7 @@ export const AnimeDescription = () => {
       <div className='anime-description-mobile'>
         <p className='anime-description-mobile__title'>Описание</p>
         <Spoiler buttonWidthFull maxHeight={220}>
-          <p className='anime-description__text'>{data?.description}</p>
+          <p className='anime-description__text'>{data?.anime.description}</p>
         </Spoiler>
       </div>
     </>

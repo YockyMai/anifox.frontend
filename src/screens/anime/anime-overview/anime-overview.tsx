@@ -2,12 +2,8 @@ import { MarqueeText, ScreenSection } from '@anifox/ui'
 import { useParams } from 'react-router'
 
 import { KodikPlayer } from '@/entities/players/kodik-player'
-import {
-  useAnimeQuery,
-  useAnimeRelatedQuery,
-  useAnimeScreenshotsQuery,
-  useAnimeVideosQuery
-} from '@/services/queries'
+import { useAnimeQuery } from '@/graphql/generated/output'
+import { useAnimeRelatedQuery, useAnimeVideosQuery } from '@/graphql/queries'
 
 import { AnimePageParams } from '../anime.interface'
 import { AnimeEpisodesHistory } from './anime-episodes-history/anime-episodes-history'
@@ -19,14 +15,15 @@ import { AnimeVideos } from './anime-videos'
 export const AnimeOverviewScreen = () => {
   const { animeUrl } = useParams<AnimePageParams>()
 
-  const { data } = useAnimeQuery(animeUrl!)
+  const { data, loading } = useAnimeQuery({
+    variables: {
+      url: animeUrl!
+    }
+  })
 
-  const { data: screenshots, isLoading: isLoadingScreenshots } =
-    useAnimeScreenshotsQuery(animeUrl!)
+  const screenshots = data?.anime.screenshots
 
-  const { data: videos, isLoading: isLoadingVideos } = useAnimeVideosQuery(
-    animeUrl!
-  )
+  const videos = data?.anime.videos
 
   const { data: related, isLoading: isLoadingRelated } = useAnimeRelatedQuery(
     animeUrl!
@@ -34,13 +31,13 @@ export const AnimeOverviewScreen = () => {
   return (
     <div>
       <div className='container'>
-        {!isLoadingScreenshots && screenshots && screenshots.length > 0 && (
+        {!loading && screenshots && screenshots.length > 0 && (
           <ScreenSection title='Кадры из аниме'>
             <AnimeScreenshots />
           </ScreenSection>
         )}
 
-        {!isLoadingVideos && videos && videos.length > 0 && (
+        {!loading && videos && videos.length > 0 && (
           <ScreenSection title='Трейлеры и видео'>
             <AnimeVideos />
           </ScreenSection>
@@ -61,7 +58,7 @@ export const AnimeOverviewScreen = () => {
       >
         <MarqueeText>
           <p className='text-lg font-bold dark:text-slate-300 xl:text-2xl'>
-            Смотреть аниме &quot;{data?.title}&quot;
+            Смотреть аниме &quot;{data?.anime.title}&quot;
           </p>
         </MarqueeText>
         <KodikPlayer animeUrl={animeUrl!} />

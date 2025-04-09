@@ -1,12 +1,11 @@
 import { Image } from '@anifox/ui'
 import { useInView } from 'react-intersection-observer'
 
-import { useProfileStores } from '@/entities/profile'
+import { useProfile } from '@/entities/profile'
 import { useToggleHeaderOpacity } from '@/widgets/header'
 
 export const Banner = () => {
-  const { $profile } = useProfileStores()
-  const user = $profile.selectors.user()
+  const { profile } = useProfile()
 
   const [inViewRef, isView] = useInView()
 
@@ -26,7 +25,10 @@ export const Banner = () => {
       <div className='container z-10 flex h-fit items-end'>
         <div className='flex h-40 w-40'>
           <Image
-            src={'https://avatars.githubusercontent.com/u/75245399?v=4'}
+            src={
+              profile?.avatar ??
+              'https://avatars.githubusercontent.com/u/75245399?v=4'
+            }
             alt='user avatar'
             className='rounded-b-none'
           />
@@ -34,7 +36,7 @@ export const Banner = () => {
 
         <div className='flex items-end gap-x-3 px-5 pb-3'>
           <p className='text-3xl font-extrabold text-white'>
-            {user?.preferred_username}
+            {profile?.name ?? profile?.login}
           </p>
 
           <div className='flex items-center gap-x-1.5'>

@@ -1,4 +1,4 @@
-import { ANIME_ORDER_VARIANTS } from '@/services/api'
+import { AnimeOrderVariants } from '@/services/api'
 import { AnimeCatalogContextProvider } from '@/widgets/anime-catalog'
 import {
   AnimeCatalogFilter,
@@ -13,7 +13,7 @@ export const AnimePopularScreen = () => {
       <AnimePopularMetadata />
 
       <AnimeCatalogContextProvider
-        initialFilterState={{ order: ANIME_ORDER_VARIANTS.RATING }}
+        initialFilterState={{ order: AnimeOrderVariants.RATING }}
       >
         <AnimeCatalogFilter />
         <AnimeCatalogList />

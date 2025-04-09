@@ -7,8 +7,8 @@ import {
   $animeListFilters,
   useIsAnimeListFilterActive
 } from '@/entities/profile/store'
+import { useUserAnimeListQuery } from '@/graphql/queries/use-user-anime-list-query'
 import { AnimeTrackStatuses } from '@/services/api'
-import { useUserAnimeListQuery } from '@/services/queries/use-user-anime-list-query'
 
 export const useFilteredUserAnimeList = (tableStatus: AnimeTrackStatuses) => {
   const { $profile } = useProfileStores()

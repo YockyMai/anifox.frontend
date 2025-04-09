@@ -1,9 +1,9 @@
 import { IconExclamationCircle, IconMoodSad } from '@tabler/icons-react'
 import { useInView } from 'framer-motion'
-import { Fragment, useEffect, useMemo, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 import { AnimeCard } from '@/entities/anime/anime-card'
-import { useAnimeListQuery } from '@/services/queries'
+import { useAnimesQuery } from '@/graphql/generated/output'
 
 import { useAnimeListQueryParams } from '../../hooks'
 import { ANIME_CARD_LOADERS } from './anime-catalog-list.const'
@@ -15,31 +15,20 @@ export const AnimeCatalogList = () => {
 
   const animeListQueryParams = useAnimeListQueryParams()
 
-  const {
-    data,
-    isLoading,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage
-  } = useAnimeListQuery(animeListQueryParams)
+  const { data, fetchMore, error, loading } = useAnimesQuery({
+    variables: { page: 0, ...animeListQueryParams },
+    notifyOnNetworkStatusChange: true
+  })
 
   useEffect(() => {
-    if (loadMoreTriggerInView && !isFetchingNextPage && hasNextPage)
-      fetchNextPage()
-  }, [fetchNextPage, hasNextPage, isFetchingNextPage, loadMoreTriggerInView])
-
-  const cards = useMemo(
-    () =>
-      data?.pages.map((group, index) => (
-        <Fragment key={index}>
-          {group.map((anime) => (
-            <AnimeCard anime={anime} key={anime.url} />
-          ))}
-        </Fragment>
-      )),
-    [data]
-  )
+    if (loadMoreTriggerInView && data?.animes.pageInfo.hasNextPage)
+      fetchMore({
+        variables: {
+          page: data.animes.pageInfo.page + 1,
+          ...animeListQueryParams
+        }
+      })
+  }, [loadMoreTriggerInView, data, animeListQueryParams])
 
   if (error)
     return (
@@ -54,7 +43,7 @@ export const AnimeCatalogList = () => {
       </div>
     )
 
-  if (data?.pages[0].length === 0)
+  if (data?.animes.data.length === 0)
     return (
       <div className='catalog-list-empty'>
         <IconMoodSad />
@@ -69,8 +58,10 @@ export const AnimeCatalogList = () => {
 
   return (
     <div className='catalog-list'>
-      {cards}
-      {((isFetchingNextPage && hasNextPage) || isLoading) && ANIME_CARD_LOADERS}
+      {data?.animes.data.map((anime) => (
+        <AnimeCard anime={anime} key={anime.id} />
+      ))}
+      {loading && ANIME_CARD_LOADERS}
       <span className='catalog-list__load-more' ref={loadMoreTriggerRef} />
     </div>
   )

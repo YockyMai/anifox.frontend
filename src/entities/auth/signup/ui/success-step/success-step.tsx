@@ -1,7 +1,7 @@
 import Confetti from 'react-confetti'
 import { useNavigate } from 'react-router'
 
-import { $viewer } from '@/entities/viewer'
+import { $viewer, useViewer } from '@/entities/viewer'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { useResetSignupForm } from '../../hooks'
@@ -11,7 +11,7 @@ export const SuccessStep = () => {
   const resetForm = useResetSignupForm()
   const navigate = useNavigate()
 
-  const viewer = $viewer.selectors.user()
+  const { viewer } = useViewer()
 
   return (
     <StepContainer
@@ -19,9 +19,7 @@ export const SuccessStep = () => {
         label: 'Перейти в профиль',
         onClick: () => {
           if (viewer) {
-            navigate(
-              ROUTES.PROFILE.ROOT.replace(':login', viewer.preferred_username)
-            )
+            navigate(ROUTES.PROFILE.ROOT.replace(':login', viewer.login))
             resetForm()
           }
         }

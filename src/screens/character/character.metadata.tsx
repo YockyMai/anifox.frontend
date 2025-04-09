@@ -1,7 +1,7 @@
 import { useParams } from 'react-router'
 
 import { Helmet } from '@/common/lib/helmet'
-import { useCharacterQuery } from '@/services/queries'
+import { useCharacterQuery } from '@/graphql/queries'
 
 import { CharacterPageParams } from './character.interface'
 

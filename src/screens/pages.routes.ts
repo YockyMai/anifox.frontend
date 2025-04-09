@@ -17,6 +17,9 @@ export const ROUTES = {
   SETTINGS: '/settings',
   LOGIN: '/login',
   SIGN_UP: '/signup',
+  AUTH: {
+    EXTERNAL: 'auth/external'
+  },
   RIGHT_HOLDERS: '/right-holders',
   PROFILE: {
     ROOT: '/profile/:login',

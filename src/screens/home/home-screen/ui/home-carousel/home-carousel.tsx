@@ -2,7 +2,7 @@ import { Carousel } from '@anifox/ui'
 import { useMemo } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-import { useComingOutAnimeQuery } from '@/services/queries'
+import { useComingOutAnimeQuery } from '@/graphql/queries'
 import { useToggleHeaderOpacity } from '@/widgets/header'
 
 import { HomeCarouselSlide } from './home-carousel-slide'

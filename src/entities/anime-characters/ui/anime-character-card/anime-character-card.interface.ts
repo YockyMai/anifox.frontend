@@ -1,6 +1,6 @@
-import { Anime, AnimeCharacter, AnimeResponse } from '@/services/api'
+import { CharacterLightFragment } from '@/graphql/generated/output'
 
 export type AnimeCharacterCardProps = {
-  character: AnimeCharacter
+  character: CharacterLightFragment
   accentColor?: string
 }

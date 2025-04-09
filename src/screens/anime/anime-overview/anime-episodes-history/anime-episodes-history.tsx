@@ -5,7 +5,7 @@ import 'dayjs/locale/ru'
 import React, { useMemo } from 'react'
 import { useParams } from 'react-router'
 
-import { useAnimeEpisodesHistoryQuery } from '@/services/queries'
+import { useAnimeEpisodesHistoryQuery } from '@/graphql/queries'
 
 import { AnimePageParams } from '../../anime.interface'
 import { TABLE_MAX_HEIGHT } from './anime-episodes-history.const'

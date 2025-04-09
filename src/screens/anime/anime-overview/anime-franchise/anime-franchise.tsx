@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { useParams } from 'react-router'
 
 import { AnimeCard } from '@/entities/anime/anime-card'
-import { useAnimeRelatedQuery } from '@/services/queries'
+import { useAnimeRelatedQuery } from '@/graphql/queries'
 
 import { AnimePageParams } from '../../anime.interface'
 

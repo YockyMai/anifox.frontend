@@ -4,8 +4,8 @@ import dayjs from 'dayjs'
 import React, { memo } from 'react'
 
 import { UIColors } from '@/common/types/ui-colors'
+import { useAnimeSchedulesQuery } from '@/graphql/queries'
 import { ANIME_SCHEDULE_DAY } from '@/services/api'
-import { useAnimeSchedulesQuery } from '@/services/queries'
 
 import { checkIsWeekday } from '../helpers'
 import { AnimeCalendarContent } from './anime-calendar-content'

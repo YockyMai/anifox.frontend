@@ -1,7 +1,7 @@
 import { useParams } from 'react-router'
 
+import { useAnimeEpisodesQuery } from '@/graphql/queries'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
-import { useAnimeEpisodesQuery } from '@/services/queries'
 
 import { EpisodesList } from './episodes-list'
 import { EpisodesSearch } from './episodes-search'

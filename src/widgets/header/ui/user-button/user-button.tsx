@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router'
 
 import { UIColors } from '@/common/types/ui-colors'
 import { UISizes } from '@/common/types/ui-sizes'
-import { $viewer } from '@/entities/viewer'
+import { $viewer, useViewer } from '@/entities/viewer'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { $headerAtoms } from '../../store'
@@ -14,13 +14,14 @@ export const UserButton = () => {
   const navigate = useNavigate()
 
   const setIsMobileMenuOpen = useSetAtom($headerAtoms.isMobileMenuOpen)
-  const user = $viewer.selectors.user()
+
+  const { viewer } = useViewer()
 
   const handleClick = () => {
     setIsMobileMenuOpen(false)
 
-    if (user) {
-      navigate(ROUTES.PROFILE.ROOT.replace(':login', user.preferred_username))
+    if (viewer) {
+      navigate(ROUTES.PROFILE.ROOT.replace(':login', viewer.login))
     } else {
       navigate(ROUTES.LOGIN)
     }
@@ -35,7 +36,7 @@ export const UserButton = () => {
       color={UIColors.PURPLE}
       variant='gradient'
     >
-      {user ? user.preferred_username : 'Войти в аккаунт'}
+      {viewer ? viewer.name ?? viewer.login : 'Войти в аккаунт'}
     </Button>
   )
 }

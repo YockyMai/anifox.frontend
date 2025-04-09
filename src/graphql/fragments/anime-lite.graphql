@@ -1,0 +1,27 @@
+fragment AnimeLite on Anime {
+  url
+  title
+  image {
+    cover
+    medium
+  }
+  episodesAired
+  studios {
+    id
+    name
+  }
+  season
+  episodesCount
+  genres {
+    image
+    name
+    id
+  }
+  status
+  ratingMpa
+  totalRating
+  accentColor
+  year
+  type
+  minimalAge
+}

@@ -2,8 +2,8 @@ import { DEFAULT_DELEGATE_VALUE, Fancybox, Image } from '@anifox/ui'
 import { Badge } from '@anifox/ui'
 import { useParams } from 'react-router'
 
+import { useAnimeQuery } from '@/graphql/generated/output'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
-import { useAnimeQuery } from '@/services/queries'
 
 import './anime-content.css'
 import {
@@ -17,7 +17,11 @@ import {
 export const AnimeContent = () => {
   const { animeUrl } = useParams<AnimePageParams>()!
 
-  const { data, isSuccess } = useAnimeQuery(animeUrl!)
+  const { data } = useAnimeQuery({
+    variables: { url: animeUrl! }
+  })
+
+  const anime = data?.anime
 
   return (
     <div className='anime-content'>
@@ -26,15 +30,15 @@ export const AnimeContent = () => {
       <div className='anime-content__body'>
         <div className='anime-content__poster'>
           <div className='transition-transform hover:-translate-y-3 hover:scale-105'>
-            {isSuccess ? (
+            {anime?.image.large ? (
               <Fancybox>
                 <a
                   data-fancybox={DEFAULT_DELEGATE_VALUE}
-                  href={data.image.large}
+                  href={anime.image.large}
                 >
                   <Image
                     className='anime-content__poster__image'
-                    src={data.image.large}
+                    src={anime.image.large}
                     alt='Постер аниме'
                     width={220}
                     height={320}
@@ -45,9 +49,9 @@ export const AnimeContent = () => {
               <div className='anime-content__poster__image-loader' />
             )}
 
-            {isSuccess && (
+            {anime && (
               <Badge className={'anime-content__poster__badge'}>
-                {data?.minimal_age ? `${data.minimal_age}+` : data?.rating_mpa}
+                {anime.minimalAge ? `${anime.minimalAge}+` : anime.ratingMpa}
               </Badge>
             )}
           </div>
@@ -59,8 +63,8 @@ export const AnimeContent = () => {
           <div className='anime-content__info__top-section'>
             <AnimeActionBar />
 
-            {isSuccess ? (
-              <h1 className='anime-content__info__title'>{data.title}</h1>
+            {anime ? (
+              <h1 className='anime-content__info__title'>{anime.title}</h1>
             ) : (
               <div className='anime-content__info__title-loader' />
             )}

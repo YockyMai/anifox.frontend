@@ -1,0 +1,13 @@
+query Character($id: String!) {
+  character(id: $id) {
+    about
+    aboutEn
+    id
+    image
+    malId
+    name
+    nameEn
+    nameKanji
+    pictures
+  }
+}
