@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { $viewer } from '@/entities/viewer'
 import {
   useSaveEpisodeProgressMutation,
-  useSaveLastWatchedAnimeEpisodeMutation,
+  useSaveLastWatchedEpisodeMutation,
   useSetEpisodeDurationMutation
 } from '@/graphql/generated/output'
 
@@ -21,7 +21,7 @@ export const KodikMessageListener = () => {
   const selectedTranslation = $kodikPlayer.selectors.selectedTranslation()
 
   const [setEpisodeDuration] = useSetEpisodeDurationMutation()
-  const [saveLastWatchedEpisode] = useSaveLastWatchedAnimeEpisodeMutation()
+  const [saveLastWatchedEpisode] = useSaveLastWatchedEpisodeMutation()
   const [saveEpisodeProgress] = useSaveEpisodeProgressMutation()
 
   useEffect(() => {

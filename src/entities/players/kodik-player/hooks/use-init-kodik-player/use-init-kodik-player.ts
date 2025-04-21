@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react'
 import { $viewer } from '@/entities/viewer'
 import { client } from '@/graphql/client'
 import {
-  LastWatchedAnimeEpisodeDocument,
-  LastWatchedAnimeEpisodeQuery,
-  LastWatchedAnimeEpisodeQueryVariables,
+  LastWatchedEpisodeDocument,
+  LastWatchedEpisodeQuery,
+  LastWatchedEpisodeQueryVariables,
   useEpisodesQuery
 } from '@/graphql/generated/output'
 
@@ -24,7 +24,8 @@ export const useInitKodikPlayer = ({
     variables: {
       page: 0,
       animeUrl: animeUrl!,
-      limit: 1000
+      limit: 1000,
+      userId: viewer?.id
     }
   })
 
@@ -42,10 +43,10 @@ export const useInitKodikPlayer = ({
       // если авторизован
       if (viewer) {
         const { data: lastWatchedEpisodeData } = await client.query<
-          LastWatchedAnimeEpisodeQuery,
-          LastWatchedAnimeEpisodeQueryVariables
+          LastWatchedEpisodeQuery,
+          LastWatchedEpisodeQueryVariables
         >({
-          query: LastWatchedAnimeEpisodeDocument,
+          query: LastWatchedEpisodeDocument,
           variables: {
             animeId,
             userId: viewer.id
@@ -53,7 +54,7 @@ export const useInitKodikPlayer = ({
           fetchPolicy: 'no-cache'
         })
 
-        if (!lastWatchedEpisodeData?.lastWatchedAnimeEpisode) {
+        if (!lastWatchedEpisodeData?.lastWatchedEpisode) {
           return setInitialData({
             animeUrl,
             animeId,
@@ -64,7 +65,7 @@ export const useInitKodikPlayer = ({
 
         const lastWatchedEpisode = episodes.find(
           ({ id }) =>
-            id === lastWatchedEpisodeData.lastWatchedAnimeEpisode!.episodeId
+            id === lastWatchedEpisodeData.lastWatchedEpisode!.episodeId
         )
 
         if (lastWatchedEpisode) {
@@ -73,7 +74,7 @@ export const useInitKodikPlayer = ({
           const lastSelectedTranslation = lastWatchedEpisode.translations.find(
             ({ translationId }) =>
               translationId ===
-              lastWatchedEpisodeData?.lastWatchedAnimeEpisode!.translationId
+              lastWatchedEpisodeData?.lastWatchedEpisode!.translationId
           )
 
           if (lastSelectedTranslation) {

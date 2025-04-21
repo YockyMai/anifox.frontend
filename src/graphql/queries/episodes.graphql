@@ -21,7 +21,7 @@ fragment Episode on Episode {
   recap
   number
   image
-  progress {
+  progress(userId: $userId) {
     ...EpisodeProgress
   }
   translations {
@@ -29,7 +29,7 @@ fragment Episode on Episode {
   }
 }
 
-query Episodes($animeUrl: String!, $page: Int!, $limit: Int) {
+query Episodes($animeUrl: String!, $page: Int!, $limit: Int, $userId: String) {
   episodes(animeUrl: $animeUrl, page: $page, limit: $limit) {
     data {
       ...Episode

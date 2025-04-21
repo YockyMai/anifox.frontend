@@ -1,4 +1,4 @@
-import { Modal, Image } from '@anifox/ui'
+import { Modal, Image, Badge } from '@anifox/ui'
 import React from 'react'
 
 import { EpisodeFullInfoModalProps } from './episode-full-info-modal.interface'
@@ -12,13 +12,18 @@ export const EpisodeFullInfoModal = ({
     <Modal withoutPadding open={open} onOpenChange={onClose}>
       <Image
         src={episode.image}
-        className='h-[100px] w-full rounded-b-none rounded-t-xl'
+        className='h-[200px] w-full rounded-b-none rounded-t-xl'
       />
 
-      <div className='flex flex-col gap-y-4 p-3'>
-        <p className='text-xl font-bold dark:text-white'>{episode.title}</p>
+      <div className='flex flex-col gap-y-4 p-7'>
+        <div className='flex flex-col gap-y-1'>
+          <Badge className='w-fit' color='red'>
+            Эпизод #{episode.number}
+          </Badge>
+          <p className='text-xl font-bold dark:text-white'>{episode.title}</p>
+        </div>
 
-        <p className='text-sm dark:text-slate-500'>{episode.description}</p>
+        <p className='text-sm'>{episode.description}</p>
 
         <span className='h-[1px] w-full bg-slate-300 dark:bg-slate-400' />
 

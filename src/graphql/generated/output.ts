@@ -388,6 +388,11 @@ export type Episode = {
   translations: Array<EpisodeTranslation>;
 };
 
+
+export type EpisodeProgressArgs = {
+  userId?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type EpisodeConnection = {
   __typename?: 'EpisodeConnection';
   data: Array<Episode>;
@@ -447,8 +452,8 @@ export type FavoriteCharacterConnection = {
   pageInfo: PageInfo;
 };
 
-export type LastWatchedAnimeEpisode = {
-  __typename?: 'LastWatchedAnimeEpisode';
+export type LastWatchedEpisode = {
+  __typename?: 'LastWatchedEpisode';
   animeId: Scalars['String']['output'];
   /** ID последней просмотренной серии */
   episodeId: Scalars['String']['output'];
@@ -456,6 +461,12 @@ export type LastWatchedAnimeEpisode = {
   /** ID выбранной озвучки */
   translationId: Scalars['Int']['output'];
   userId: Scalars['String']['output'];
+};
+
+export type LastWatchedEpisodeConnection = {
+  __typename?: 'LastWatchedEpisodeConnection';
+  data: Array<LastWatchedEpisode>;
+  pageInfo: PageInfo;
 };
 
 export type Login = {
@@ -477,7 +488,7 @@ export type Mutation = {
   saveAnimeListEntry: AnimeListEntry;
   saveAnimeRating: AnimeRating;
   saveEpisodeProgress: EpisodeProgress;
-  saveLastWatchedAnimeEpisode: LastWatchedAnimeEpisode;
+  saveLastWatchedEpisode: LastWatchedEpisode;
   /** Запрос для установки длительности серии через kodik */
   setEpisodeDuration: Episode;
   signup: Signup;
@@ -551,7 +562,7 @@ export type MutationSaveEpisodeProgressArgs = {
 };
 
 
-export type MutationSaveLastWatchedAnimeEpisodeArgs = {
+export type MutationSaveLastWatchedEpisodeArgs = {
   animeId: Scalars['String']['input'];
   episodeId: Scalars['String']['input'];
   translationId: Scalars['Int']['input'];
@@ -625,7 +636,8 @@ export type Query = {
   favoriteCharacters: FavoriteCharacterConnection;
   genre: AnimeGenre;
   genres: Array<AnimeGenre>;
-  lastWatchedAnimeEpisode?: Maybe<LastWatchedAnimeEpisode>;
+  lastWatchedEpisode?: Maybe<LastWatchedEpisode>;
+  lastWatchedEpisodes?: Maybe<LastWatchedEpisodeConnection>;
   profile: User;
   randomAnimes: Array<Anime>;
   relatedAnimes: RelatedAnimeConnection;
@@ -765,8 +777,16 @@ export type QueryFavoriteCharactersArgs = {
 };
 
 
-export type QueryLastWatchedAnimeEpisodeArgs = {
+export type QueryLastWatchedEpisodeArgs = {
   animeId: Scalars['String']['input'];
+  userId: Scalars['String']['input'];
+};
+
+
+export type QueryLastWatchedEpisodesArgs = {
+  animeId: Scalars['String']['input'];
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
   userId: Scalars['String']['input'];
 };
 
@@ -996,14 +1016,14 @@ export type SaveEpisodeProgressMutationVariables = Exact<{
 
 export type SaveEpisodeProgressMutation = { __typename?: 'Mutation', saveEpisodeProgress: { __typename?: 'EpisodeProgress', animeId: string, episodeId: string, id: string, userId: string, timing: number } };
 
-export type SaveLastWatchedAnimeEpisodeMutationVariables = Exact<{
+export type SaveLastWatchedEpisodeMutationVariables = Exact<{
   animeId: Scalars['String']['input'];
   episodeId: Scalars['String']['input'];
   translationId: Scalars['Int']['input'];
 }>;
 
 
-export type SaveLastWatchedAnimeEpisodeMutation = { __typename?: 'Mutation', saveLastWatchedAnimeEpisode: { __typename?: 'LastWatchedAnimeEpisode', id: string, animeId: string, episodeId: string, translationId: number, userId: string } };
+export type SaveLastWatchedEpisodeMutation = { __typename?: 'Mutation', saveLastWatchedEpisode: { __typename?: 'LastWatchedEpisode', id: string, animeId: string, episodeId: string, translationId: number, userId: string } };
 
 export type SetEpisodeDurationMutationVariables = Exact<{
   episodeId: Scalars['String']['input'];
@@ -1011,7 +1031,7 @@ export type SetEpisodeDurationMutationVariables = Exact<{
 }>;
 
 
-export type SetEpisodeDurationMutation = { __typename?: 'Mutation', setEpisodeDuration: { __typename?: 'Episode', id: string, aired?: any | null, title: string, description?: string | null, duration?: number | null, filler: boolean, recap: boolean, number: number, image: string, progress?: { __typename?: 'EpisodeProgress', id: string, timing: number } | null, translations: Array<{ __typename?: 'EpisodeTranslation', id: string, kodikPlayerLink: string, title: string, type: TranslationType, translationId: number }> } };
+export type SetEpisodeDurationMutation = { __typename?: 'Mutation', setEpisodeDuration: { __typename?: 'Episode', id: string, duration?: number | null } };
 
 export type SignupMutationVariables = Exact<{
   email: Scalars['String']['input'];
@@ -1105,6 +1125,7 @@ export type EpisodesQueryVariables = Exact<{
   animeUrl: Scalars['String']['input'];
   page: Scalars['Int']['input'];
   limit?: InputMaybe<Scalars['Int']['input']>;
+  userId?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
@@ -1131,15 +1152,15 @@ export type FavoriteCharactersQueryVariables = Exact<{
 
 export type FavoriteCharactersQuery = { __typename?: 'Query', favoriteCharacters: { __typename?: 'FavoriteCharacterConnection', data: Array<{ __typename?: 'FavoriteCharacter', count: number, characterId: string, character: { __typename?: 'Character', id: string, image: string, name: string, isFavorite?: boolean | null } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
 
-export type LastWatchedAnimeEpisodeFragment = { __typename?: 'LastWatchedAnimeEpisode', id: string, animeId: string, episodeId: string, translationId: number, userId: string };
+export type LastWatchedEpisodeFragment = { __typename?: 'LastWatchedEpisode', id: string, animeId: string, episodeId: string, translationId: number, userId: string };
 
-export type LastWatchedAnimeEpisodeQueryVariables = Exact<{
+export type LastWatchedEpisodeQueryVariables = Exact<{
   animeId: Scalars['String']['input'];
   userId: Scalars['String']['input'];
 }>;
 
 
-export type LastWatchedAnimeEpisodeQuery = { __typename?: 'Query', lastWatchedAnimeEpisode?: { __typename?: 'LastWatchedAnimeEpisode', id: string, animeId: string, episodeId: string, translationId: number, userId: string } | null };
+export type LastWatchedEpisodeQuery = { __typename?: 'Query', lastWatchedEpisode?: { __typename?: 'LastWatchedEpisode', id: string, animeId: string, episodeId: string, translationId: number, userId: string } | null };
 
 export type ProfileQueryVariables = Exact<{
   login: Scalars['String']['input'];
@@ -1281,7 +1302,7 @@ export const EpisodeFragmentDoc = gql`
   recap
   number
   image
-  progress {
+  progress(userId: $userId) {
     ...EpisodeProgress
   }
   translations {
@@ -1308,8 +1329,8 @@ export const FavoriteCharacterFragmentDoc = gql`
   isFavorite
 }
     `;
-export const LastWatchedAnimeEpisodeFragmentDoc = gql`
-    fragment LastWatchedAnimeEpisode on LastWatchedAnimeEpisode {
+export const LastWatchedEpisodeFragmentDoc = gql`
+    fragment LastWatchedEpisode on LastWatchedEpisode {
   id
   animeId
   episodeId
@@ -1540,31 +1561,31 @@ export function useSaveEpisodeProgressMutation(baseOptions?: Apollo.MutationHook
 export type SaveEpisodeProgressMutationHookResult = ReturnType<typeof useSaveEpisodeProgressMutation>;
 export type SaveEpisodeProgressMutationResult = Apollo.MutationResult<SaveEpisodeProgressMutation>;
 export type SaveEpisodeProgressMutationOptions = Apollo.BaseMutationOptions<SaveEpisodeProgressMutation, SaveEpisodeProgressMutationVariables>;
-export const SaveLastWatchedAnimeEpisodeDocument = gql`
-    mutation SaveLastWatchedAnimeEpisode($animeId: String!, $episodeId: String!, $translationId: Int!) {
-  saveLastWatchedAnimeEpisode(
+export const SaveLastWatchedEpisodeDocument = gql`
+    mutation SaveLastWatchedEpisode($animeId: String!, $episodeId: String!, $translationId: Int!) {
+  saveLastWatchedEpisode(
     animeId: $animeId
     episodeId: $episodeId
     translationId: $translationId
   ) {
-    ...LastWatchedAnimeEpisode
+    ...LastWatchedEpisode
   }
 }
-    ${LastWatchedAnimeEpisodeFragmentDoc}`;
-export type SaveLastWatchedAnimeEpisodeMutationFn = Apollo.MutationFunction<SaveLastWatchedAnimeEpisodeMutation, SaveLastWatchedAnimeEpisodeMutationVariables>;
+    ${LastWatchedEpisodeFragmentDoc}`;
+export type SaveLastWatchedEpisodeMutationFn = Apollo.MutationFunction<SaveLastWatchedEpisodeMutation, SaveLastWatchedEpisodeMutationVariables>;
 
 /**
- * __useSaveLastWatchedAnimeEpisodeMutation__
+ * __useSaveLastWatchedEpisodeMutation__
  *
- * To run a mutation, you first call `useSaveLastWatchedAnimeEpisodeMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useSaveLastWatchedAnimeEpisodeMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useSaveLastWatchedEpisodeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSaveLastWatchedEpisodeMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [saveLastWatchedAnimeEpisodeMutation, { data, loading, error }] = useSaveLastWatchedAnimeEpisodeMutation({
+ * const [saveLastWatchedEpisodeMutation, { data, loading, error }] = useSaveLastWatchedEpisodeMutation({
  *   variables: {
  *      animeId: // value for 'animeId'
  *      episodeId: // value for 'episodeId'
@@ -1572,20 +1593,21 @@ export type SaveLastWatchedAnimeEpisodeMutationFn = Apollo.MutationFunction<Save
  *   },
  * });
  */
-export function useSaveLastWatchedAnimeEpisodeMutation(baseOptions?: Apollo.MutationHookOptions<SaveLastWatchedAnimeEpisodeMutation, SaveLastWatchedAnimeEpisodeMutationVariables>) {
+export function useSaveLastWatchedEpisodeMutation(baseOptions?: Apollo.MutationHookOptions<SaveLastWatchedEpisodeMutation, SaveLastWatchedEpisodeMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<SaveLastWatchedAnimeEpisodeMutation, SaveLastWatchedAnimeEpisodeMutationVariables>(SaveLastWatchedAnimeEpisodeDocument, options);
+        return Apollo.useMutation<SaveLastWatchedEpisodeMutation, SaveLastWatchedEpisodeMutationVariables>(SaveLastWatchedEpisodeDocument, options);
       }
-export type SaveLastWatchedAnimeEpisodeMutationHookResult = ReturnType<typeof useSaveLastWatchedAnimeEpisodeMutation>;
-export type SaveLastWatchedAnimeEpisodeMutationResult = Apollo.MutationResult<SaveLastWatchedAnimeEpisodeMutation>;
-export type SaveLastWatchedAnimeEpisodeMutationOptions = Apollo.BaseMutationOptions<SaveLastWatchedAnimeEpisodeMutation, SaveLastWatchedAnimeEpisodeMutationVariables>;
+export type SaveLastWatchedEpisodeMutationHookResult = ReturnType<typeof useSaveLastWatchedEpisodeMutation>;
+export type SaveLastWatchedEpisodeMutationResult = Apollo.MutationResult<SaveLastWatchedEpisodeMutation>;
+export type SaveLastWatchedEpisodeMutationOptions = Apollo.BaseMutationOptions<SaveLastWatchedEpisodeMutation, SaveLastWatchedEpisodeMutationVariables>;
 export const SetEpisodeDurationDocument = gql`
     mutation SetEpisodeDuration($episodeId: String!, $duration: Int!) {
   setEpisodeDuration(episodeId: $episodeId, duration: $duration) {
-    ...Episode
+    id
+    duration
   }
 }
-    ${EpisodeFragmentDoc}`;
+    `;
 export type SetEpisodeDurationMutationFn = Apollo.MutationFunction<SetEpisodeDurationMutation, SetEpisodeDurationMutationVariables>;
 
 /**
@@ -2050,7 +2072,7 @@ export type CharactersLazyQueryHookResult = ReturnType<typeof useCharactersLazyQ
 export type CharactersSuspenseQueryHookResult = ReturnType<typeof useCharactersSuspenseQuery>;
 export type CharactersQueryResult = Apollo.QueryResult<CharactersQuery, CharactersQueryVariables>;
 export const EpisodesDocument = gql`
-    query Episodes($animeUrl: String!, $page: Int!, $limit: Int) {
+    query Episodes($animeUrl: String!, $page: Int!, $limit: Int, $userId: String) {
   episodes(animeUrl: $animeUrl, page: $page, limit: $limit) {
     data {
       ...Episode
@@ -2074,6 +2096,7 @@ export const EpisodesDocument = gql`
  *      animeUrl: // value for 'animeUrl'
  *      page: // value for 'page'
  *      limit: // value for 'limit'
+ *      userId: // value for 'userId'
  *   },
  * });
  */
@@ -2196,47 +2219,47 @@ export type FavoriteCharactersQueryHookResult = ReturnType<typeof useFavoriteCha
 export type FavoriteCharactersLazyQueryHookResult = ReturnType<typeof useFavoriteCharactersLazyQuery>;
 export type FavoriteCharactersSuspenseQueryHookResult = ReturnType<typeof useFavoriteCharactersSuspenseQuery>;
 export type FavoriteCharactersQueryResult = Apollo.QueryResult<FavoriteCharactersQuery, FavoriteCharactersQueryVariables>;
-export const LastWatchedAnimeEpisodeDocument = gql`
-    query LastWatchedAnimeEpisode($animeId: String!, $userId: String!) {
-  lastWatchedAnimeEpisode(animeId: $animeId, userId: $userId) {
-    ...LastWatchedAnimeEpisode
+export const LastWatchedEpisodeDocument = gql`
+    query LastWatchedEpisode($animeId: String!, $userId: String!) {
+  lastWatchedEpisode(animeId: $animeId, userId: $userId) {
+    ...LastWatchedEpisode
   }
 }
-    ${LastWatchedAnimeEpisodeFragmentDoc}`;
+    ${LastWatchedEpisodeFragmentDoc}`;
 
 /**
- * __useLastWatchedAnimeEpisodeQuery__
+ * __useLastWatchedEpisodeQuery__
  *
- * To run a query within a React component, call `useLastWatchedAnimeEpisodeQuery` and pass it any options that fit your needs.
- * When your component renders, `useLastWatchedAnimeEpisodeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useLastWatchedEpisodeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLastWatchedEpisodeQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useLastWatchedAnimeEpisodeQuery({
+ * const { data, loading, error } = useLastWatchedEpisodeQuery({
  *   variables: {
  *      animeId: // value for 'animeId'
  *      userId: // value for 'userId'
  *   },
  * });
  */
-export function useLastWatchedAnimeEpisodeQuery(baseOptions: Apollo.QueryHookOptions<LastWatchedAnimeEpisodeQuery, LastWatchedAnimeEpisodeQueryVariables> & ({ variables: LastWatchedAnimeEpisodeQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+export function useLastWatchedEpisodeQuery(baseOptions: Apollo.QueryHookOptions<LastWatchedEpisodeQuery, LastWatchedEpisodeQueryVariables> & ({ variables: LastWatchedEpisodeQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<LastWatchedAnimeEpisodeQuery, LastWatchedAnimeEpisodeQueryVariables>(LastWatchedAnimeEpisodeDocument, options);
+        return Apollo.useQuery<LastWatchedEpisodeQuery, LastWatchedEpisodeQueryVariables>(LastWatchedEpisodeDocument, options);
       }
-export function useLastWatchedAnimeEpisodeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LastWatchedAnimeEpisodeQuery, LastWatchedAnimeEpisodeQueryVariables>) {
+export function useLastWatchedEpisodeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LastWatchedEpisodeQuery, LastWatchedEpisodeQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<LastWatchedAnimeEpisodeQuery, LastWatchedAnimeEpisodeQueryVariables>(LastWatchedAnimeEpisodeDocument, options);
+          return Apollo.useLazyQuery<LastWatchedEpisodeQuery, LastWatchedEpisodeQueryVariables>(LastWatchedEpisodeDocument, options);
         }
-export function useLastWatchedAnimeEpisodeSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<LastWatchedAnimeEpisodeQuery, LastWatchedAnimeEpisodeQueryVariables>) {
+export function useLastWatchedEpisodeSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<LastWatchedEpisodeQuery, LastWatchedEpisodeQueryVariables>) {
           const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<LastWatchedAnimeEpisodeQuery, LastWatchedAnimeEpisodeQueryVariables>(LastWatchedAnimeEpisodeDocument, options);
+          return Apollo.useSuspenseQuery<LastWatchedEpisodeQuery, LastWatchedEpisodeQueryVariables>(LastWatchedEpisodeDocument, options);
         }
-export type LastWatchedAnimeEpisodeQueryHookResult = ReturnType<typeof useLastWatchedAnimeEpisodeQuery>;
-export type LastWatchedAnimeEpisodeLazyQueryHookResult = ReturnType<typeof useLastWatchedAnimeEpisodeLazyQuery>;
-export type LastWatchedAnimeEpisodeSuspenseQueryHookResult = ReturnType<typeof useLastWatchedAnimeEpisodeSuspenseQuery>;
-export type LastWatchedAnimeEpisodeQueryResult = Apollo.QueryResult<LastWatchedAnimeEpisodeQuery, LastWatchedAnimeEpisodeQueryVariables>;
+export type LastWatchedEpisodeQueryHookResult = ReturnType<typeof useLastWatchedEpisodeQuery>;
+export type LastWatchedEpisodeLazyQueryHookResult = ReturnType<typeof useLastWatchedEpisodeLazyQuery>;
+export type LastWatchedEpisodeSuspenseQueryHookResult = ReturnType<typeof useLastWatchedEpisodeSuspenseQuery>;
+export type LastWatchedEpisodeQueryResult = Apollo.QueryResult<LastWatchedEpisodeQuery, LastWatchedEpisodeQueryVariables>;
 export const ProfileDocument = gql`
     query Profile($login: String!) {
   profile(login: $login) {

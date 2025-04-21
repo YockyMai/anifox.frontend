@@ -42,7 +42,10 @@ export const EpisodeSelectionCard = ({
           duration='sm'
         >
           <UnstyledButton
-            onClick={onOpenFullInfo}
+            onClick={(e) => {
+              e.stopPropagation()
+              onOpenFullInfo?.()
+            }}
             className='absolute bottom-0.5 left-1/2 -translate-x-1/2 rounded bg-slate-900/70 px-1.5 py-0.5 backdrop-blur-xl'
           >
             <p className='text-nowrap text-xs text-white'>Показать описание</p>
@@ -54,7 +57,7 @@ export const EpisodeSelectionCard = ({
             <HoverCard
               openDelay={500}
               trigger={
-                <Badge className='' size={UISizes.SM} color={UIColors.RED}>
+                <Badge size={UISizes.SM} color={UIColors.RED}>
                   Филлер
                 </Badge>
               }
