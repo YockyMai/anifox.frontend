@@ -22,7 +22,7 @@ export const AnimeCardUpcoming = ({ anime }: AnimeCardUpcomingProps) => {
       <Link
         style={accentColorsStyles}
         className='hover:text-inherit'
-        to={ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', anime.url)}
+        to={ROUTES.CATALOG.ANIME.ROOT(anime.id, anime.url)}
       >
         <div className='anime-card-upcoming__image'>
           <Image src={anime.image.medium} alt={anime.title} />
@@ -33,7 +33,7 @@ export const AnimeCardUpcoming = ({ anime }: AnimeCardUpcomingProps) => {
           <Link
             style={accentColorsStyles}
             className='hover:text-inherit'
-            to={ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', anime.url)}
+            to={ROUTES.CATALOG.ANIME.ROOT(anime.id, anime.url)}
           >
             <MarqueeText>
               <p className='anime-card-upcoming__title'>{anime.title}</p>

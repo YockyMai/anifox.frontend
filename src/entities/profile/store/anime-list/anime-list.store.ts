@@ -1,21 +1,21 @@
 import { createStore } from '@anifox/store'
 
-import { ANIME_TRACK_STATUSES, AnimeTrackStatuses } from '@/services/api'
+import { AnimeListStatus } from '@/graphql/generated/output'
 
 import { ANIME_LIST_STORE_KEY } from './anime-list.const'
 
 type ProfileAnimeListStore = {
-  rows: AnimeTrackStatuses[]
+  rows: AnimeListStatus[]
 }
 
 const initialState: ProfileAnimeListStore = {
-  rows: Object.values(ANIME_TRACK_STATUSES)
+  rows: Object.values(AnimeListStatus)
 }
 
 export const $animeList = createStore(
   initialState,
   {
-    moveRowTop: (state, row: AnimeTrackStatuses) => {
+    moveRowTop: (state, row: AnimeListStatus) => {
       const from = state.rows.indexOf(row)
       const to = from - 1
 
@@ -24,7 +24,7 @@ export const $animeList = createStore(
       state.rows.splice(from, 1, state.rows[to])
       state.rows.splice(to, 1, temp)
     },
-    moveRowBottom: (state, row: AnimeTrackStatuses) => {
+    moveRowBottom: (state, row: AnimeListStatus) => {
       const from = state.rows.indexOf(row)
       const to = from + 1
 
@@ -33,7 +33,7 @@ export const $animeList = createStore(
       state.rows.splice(from, 1, state.rows[to])
       state.rows.splice(to, 1, temp)
     },
-    reorder: (state, reordered: AnimeTrackStatuses[]) => {
+    reorder: (state, reordered: AnimeListStatus[]) => {
       state.rows = reordered
     }
   },

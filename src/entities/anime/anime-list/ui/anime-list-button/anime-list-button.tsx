@@ -1,13 +1,13 @@
-import { Badge, HoverCard, UnstyledButton } from '@anifox/ui'
+import { HoverCard } from '@anifox/ui'
 import { useState } from 'react'
 
 import { AuthModal } from '@/entities/auth/auth-modal'
 import { useIsAuth } from '@/entities/viewer'
 import {
-  useAnimeStatusMutation,
-  useDeleteTrackedAnimeMutation
-} from '@/graphql/mutations'
-import { AnimeTrackStatuses } from '@/services/api'
+  AnimeListStatus,
+  useRemoveAnimeListEntryMutation,
+  useSaveAnimeListEntryMutation
+} from '@/graphql/generated/output'
 
 import { AnimeListButtonProps } from './anime-list-button.interface'
 import { TrackStatusOptions } from './track-status-options/track-status-options'
@@ -24,22 +24,25 @@ export const AnimeListButton = ({
 
   const [authModalIsOpened, setAuthModalIsOpened] = useState(false)
   const [trackStatusInProgress, setTrackStatusInProgress] =
-    useState<AnimeTrackStatuses | null>(null)
+    useState<AnimeListStatus | null>(null)
 
-  const trackedAnimeMutation = useAnimeStatusMutation()
-  const deleteTrackedAnimeMutation = useDeleteTrackedAnimeMutation()
+  const [saveAnimeListEntry] = useSaveAnimeListEntryMutation()
+  const [removeAnimeListEntry] = useRemoveAnimeListEntryMutation({
+    variables: { animeUrl }
+  })
 
-  const addAnimeTrackedList = async (status: AnimeTrackStatuses) => {
+  const addAnimeTrackedList = async (status: AnimeListStatus) => {
     if (isAuth) {
-      trackedAnimeMutation.mutate({ animeUrl, status })
+      saveAnimeListEntry({
+        variables: {
+          status,
+          animeUrl
+        }
+      })
     } else {
       setTrackStatusInProgress(status)
       setAuthModalIsOpened(true)
     }
-  }
-
-  const deleteAnimeFromTrackedList = () => {
-    deleteTrackedAnimeMutation.mutate(animeUrl)
   }
 
   return (
@@ -47,7 +50,7 @@ export const AnimeListButton = ({
       {onlyContent ? (
         <TrackStatusOptions
           addAnimeToTrackedList={addAnimeTrackedList}
-          deleteAnimeFromTrackedList={deleteAnimeFromTrackedList}
+          deleteAnimeFromTrackedList={removeAnimeListEntry}
           currentTrackStatus={currentTrackStatus}
         />
       ) : (
@@ -67,7 +70,7 @@ export const AnimeListButton = ({
         >
           <TrackStatusOptions
             addAnimeToTrackedList={addAnimeTrackedList}
-            deleteAnimeFromTrackedList={deleteAnimeFromTrackedList}
+            deleteAnimeFromTrackedList={removeAnimeListEntry}
             currentTrackStatus={currentTrackStatus}
           />
         </HoverCard>
@@ -78,9 +81,11 @@ export const AnimeListButton = ({
         onClose={() => setAuthModalIsOpened(false)}
         onAuthSuccess={() => {
           if (trackStatusInProgress) {
-            trackedAnimeMutation.mutate({
-              animeUrl,
-              status: trackStatusInProgress
+            saveAnimeListEntry({
+              variables: {
+                status: trackStatusInProgress,
+                animeUrl
+              }
             })
             setTrackStatusInProgress(null)
           }

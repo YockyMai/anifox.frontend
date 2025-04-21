@@ -2,18 +2,16 @@ import { useStore } from '@anifox/store'
 import Fuse from 'fuse.js'
 import { useMemo } from 'react'
 
-import { useProfileStores } from '@/entities/profile/context'
 import {
   $animeListFilters,
   useIsAnimeListFilterActive
 } from '@/entities/profile/store'
-import { useUserAnimeListQuery } from '@/graphql/queries/use-user-anime-list-query'
-import { AnimeTrackStatuses } from '@/services/api'
+import { AnimeListStatus, useAnimeListQuery } from '@/graphql/generated/output'
 
-export const useFilteredUserAnimeList = (tableStatus: AnimeTrackStatuses) => {
-  const { $profile } = useProfileStores()
+import { useProfile } from './use-profile'
 
-  const user = $profile.selectors.user()
+export const useFilteredUserAnimeList = (tableStatus: AnimeListStatus) => {
+  const { profile } = useProfile()
 
   const { search, status, trackStatus, type } = useStore(
     $animeListFilters.store
@@ -21,14 +19,16 @@ export const useFilteredUserAnimeList = (tableStatus: AnimeTrackStatuses) => {
 
   const isFiltersActive = useIsAnimeListFilterActive()
 
-  const { data = [], isLoading } = useUserAnimeListQuery({
-    status: trackStatus ?? tableStatus,
-    login: user.preferred_username
+  const { data, loading } = useAnimeListQuery({
+    variables: {
+      userId: profile.id,
+      status: trackStatus ?? tableStatus
+    }
   })
 
   const list = useMemo(() => {
     if (isFiltersActive) {
-      let filteredData = data.filter((anime) => {
+      let filteredData = (data?.animeList.list ?? []).filter(({ anime }) => {
         if (type && type !== anime.type) {
           return false
         }
@@ -51,8 +51,8 @@ export const useFilteredUserAnimeList = (tableStatus: AnimeTrackStatuses) => {
       return filteredData
     }
 
-    return data
+    return data?.animeList.list ?? []
   }, [data, isFiltersActive, search, tableStatus, status, type])
 
-  return { list, isLoading }
+  return { list, loading }
 }

@@ -1,16 +1,27 @@
 import { createStore } from '@anifox/store'
 
-import { User, ViewerStore } from './viewer.interface'
+import { ViewerFragment } from '@/graphql/generated/output'
+
+import { VIEWER_PERSIST_NAME } from './viewer.const'
+import { ViewerStore } from './viewer.interface'
 
 const initialState: ViewerStore = {
-  user: null
+  viewer: null
 }
 
-export const $viewer = createStore(initialState, {
-  setViewer: (state, user: User) => {
-    state.user = user
+export const $viewer = createStore(
+  initialState,
+  {
+    setViewer: (state, user: ViewerFragment) => {
+      state.viewer = user
+    },
+    resetViewer: (state) => {
+      state.viewer = null
+    }
   },
-  resetViewer: (state) => {
-    state.user = null
+  {
+    persist: {
+      name: VIEWER_PERSIST_NAME
+    }
   }
-})
+)

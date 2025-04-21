@@ -1,5 +1,5 @@
-import { AnimeEpisode } from '@/services/api'
+import { EpisodesQuery } from '@/graphql/generated/output'
 
 export type EpisodesListProps = {
-  episodes: AnimeEpisode[]
+  episodes: EpisodesQuery['episodes']['data']
 }

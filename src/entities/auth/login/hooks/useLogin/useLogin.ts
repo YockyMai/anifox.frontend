@@ -1,14 +1,17 @@
-import cookies from 'cookie'
-import { jwtDecode } from 'jwt-decode'
 import { useState } from 'react'
 
 import { COOKIES } from '@/common/const'
-import { $viewer, User } from '@/entities/viewer'
-import { api } from '@/services/api'
+import { $viewer } from '@/entities/viewer'
+import { client } from '@/graphql/client'
+import {
+  LoginDocument,
+  LoginMutation,
+  ViewerFragment
+} from '@/graphql/generated/output'
 import { LoginParams } from '@/services/api/login'
 
 export const useLogin = (
-  onSuccess?: (user: User) => void,
+  onSuccess?: (user: ViewerFragment) => void,
   onError?: (e: Error) => void
 ) => {
   const [error, setError] = useState('')
@@ -18,13 +21,14 @@ export const useLogin = (
     setIsLoading(true)
 
     try {
-      await api.login(params)
+      const { data } = await client.mutate<LoginMutation>({
+        mutation: LoginDocument
+      })
 
-      const accessToken = cookies.parse(document.cookie)[
-        COOKIES.ACCESS_TOKEN_KEY
-      ]
+      const { user, tokens } = data!.login
 
-      const user = jwtDecode(accessToken) as User
+      localStorage.setItem(COOKIES.ACCESS_TOKEN_KEY, tokens.accessToken)
+      localStorage.setItem(COOKIES.REFRESH_TOKEN_KEY, tokens.refreshToken)
 
       $viewer.actions.setViewer(user)
 

@@ -1,5 +1,5 @@
-query Character($id: String!) {
-  character(id: $id) {
+query Character($characterId: String!, $userId: String) {
+  character(id: $characterId) {
     about
     aboutEn
     id
@@ -9,5 +9,6 @@ query Character($id: String!) {
     nameEn
     nameKanji
     pictures
+    isFavorite(userId: $userId)
   }
 }

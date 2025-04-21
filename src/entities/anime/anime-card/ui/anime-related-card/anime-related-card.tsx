@@ -16,7 +16,7 @@ export const AnimeRelatedCard = ({
 }: AnimeSimilarCardProps) => {
   return (
     <div className='anime-related-card'>
-      <Link to={ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', anime.url)}>
+      <Link to={ROUTES.CATALOG.ANIME.ROOT(anime.id, anime.url)}>
         <Image
           width={60}
           height={130}

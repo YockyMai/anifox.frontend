@@ -1,7 +1,7 @@
 import Confetti from 'react-confetti'
 import { useNavigate } from 'react-router'
 
-import { $viewer, useViewer } from '@/entities/viewer'
+import { $viewer } from '@/entities/viewer'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { useResetSignupForm } from '../../hooks'
@@ -11,7 +11,7 @@ export const SuccessStep = () => {
   const resetForm = useResetSignupForm()
   const navigate = useNavigate()
 
-  const { viewer } = useViewer()
+  const viewer = $viewer.selectors.viewer()
 
   return (
     <StepContainer

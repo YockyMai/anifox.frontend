@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import { useMemo } from 'react'
 
 import { AnimeTrackStatusIcon } from '@/common/components/anime-track-status-icon/anime-track-status-icon'
+import { AnimeListStatus } from '@/graphql/generated/output'
 import {
   ANIME_TRACK_STATUSES,
   MAP_ANIME_TRACK_STATUS_LABEL
@@ -19,31 +20,29 @@ export const TrackStatusOptions = ({
   const options = useMemo(
     () => [
       {
-        value: ANIME_TRACK_STATUSES.WATCHING,
+        value: AnimeListStatus.WATCHING,
         title: MAP_ANIME_TRACK_STATUS_LABEL[ANIME_TRACK_STATUSES.WATCHING],
-        icon: <AnimeTrackStatusIcon status={ANIME_TRACK_STATUSES.WATCHING} />
+        icon: <AnimeTrackStatusIcon status={AnimeListStatus.WATCHING} />
       },
       {
-        value: ANIME_TRACK_STATUSES.PLAN_TO_WATCH,
+        value: AnimeListStatus.PLAN_TO_WATCH,
         title: MAP_ANIME_TRACK_STATUS_LABEL[ANIME_TRACK_STATUSES.PLAN_TO_WATCH],
-        icon: (
-          <AnimeTrackStatusIcon status={ANIME_TRACK_STATUSES.PLAN_TO_WATCH} />
-        )
+        icon: <AnimeTrackStatusIcon status={AnimeListStatus.PLAN_TO_WATCH} />
       },
       {
-        value: ANIME_TRACK_STATUSES.COMPLETED,
+        value: AnimeListStatus.COMPLETED,
         title: MAP_ANIME_TRACK_STATUS_LABEL[ANIME_TRACK_STATUSES.COMPLETED],
-        icon: <AnimeTrackStatusIcon status={ANIME_TRACK_STATUSES.COMPLETED} />
+        icon: <AnimeTrackStatusIcon status={AnimeListStatus.COMPLETED} />
       },
       {
-        value: ANIME_TRACK_STATUSES.ON_HOLD,
+        value: AnimeListStatus.ON_HOLD,
         title: MAP_ANIME_TRACK_STATUS_LABEL[ANIME_TRACK_STATUSES.ON_HOLD],
-        icon: <AnimeTrackStatusIcon status={ANIME_TRACK_STATUSES.ON_HOLD} />
+        icon: <AnimeTrackStatusIcon status={AnimeListStatus.ON_HOLD} />
       },
       {
-        value: ANIME_TRACK_STATUSES.DROPPED,
+        value: AnimeListStatus.DROPPED,
         title: MAP_ANIME_TRACK_STATUS_LABEL[ANIME_TRACK_STATUSES.DROPPED],
-        icon: <AnimeTrackStatusIcon status={ANIME_TRACK_STATUSES.DROPPED} />
+        icon: <AnimeTrackStatusIcon status={AnimeListStatus.DROPPED} />
       }
     ],
     []

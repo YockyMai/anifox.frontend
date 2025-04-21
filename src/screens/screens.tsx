@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router'
 
-import { useViewer } from '@/entities/viewer'
+import { $viewer } from '@/entities/viewer'
 
 import {
   AnimeCatalogScreen,
@@ -19,12 +19,14 @@ import { KodikScreen } from './kodik'
 import { LoginScreen } from './login'
 import { ROUTES } from './pages.routes'
 import { ProfileAnimeListScreen } from './profile/profile-anime-list'
+import { ProfileFavorites } from './profile/profile-favorites/profile-favorites'
 import { ProfileLayout } from './profile/profile-layout'
+import { ProfileStatistics } from './profile/profile-statistics'
 import { RightHoldersScreen } from './right-holders'
 import { SignupScreen } from './signup'
 
 export const Screens = () => {
-  const { isAuth } = useViewer()
+  const viewer = $viewer.selectors.viewer()
 
   return (
     <Routes>
@@ -47,12 +49,12 @@ export const Screens = () => {
             element={<AnimeMostRatedScreen />}
           />
           <Route
-            path={ROUTES.CATALOG.ANIME.ROOT}
+            path={ROUTES.CATALOG.ANIME.ROOT(':animeId', ':animeUrl')}
             element={<AnimeScreenLayout />}
           >
             <Route index element={<AnimeOverviewScreen />} />
             <Route
-              path={ROUTES.CATALOG.ANIME.CHARACTERS}
+              path={ROUTES.CATALOG.ANIME.CHARACTERS(':animeId', ':animeUrl')}
               element={<AnimeCharactersScreen />}
             />
           </Route>
@@ -61,10 +63,17 @@ export const Screens = () => {
 
         <Route path={ROUTES.RIGHT_HOLDERS} element={<RightHoldersScreen />} />
         <Route path={ROUTES.PROFILE.ROOT} element={<ProfileLayout />}>
-          <Route index element={<ProfileAnimeListScreen />} />
-          <Route path={ROUTES.PROFILE.FAVORITES} element={<></>} />
+          <Route index element={<ProfileStatistics />} />
+          <Route
+            path={ROUTES.PROFILE.ANIME_LIST}
+            element={<ProfileAnimeListScreen />}
+          />
+          <Route
+            path={ROUTES.PROFILE.FAVORITES}
+            element={<ProfileFavorites />}
+          />
         </Route>
-        {isAuth ? (
+        {viewer ? (
           <></>
         ) : (
           <>

@@ -1,12 +1,12 @@
-import { AnimeStatuses } from '@/services/api'
+import { AnimeStatus } from '@/graphql/generated/output'
 
-export const STATUS_OPTIONS: { value: AnimeStatuses; label: string }[] = [
+export const STATUS_OPTIONS: { value: AnimeStatus; label: string }[] = [
   {
-    value: 'Released',
+    value: 'COMPLETED',
     label: 'Выпущен'
   },
   {
-    value: 'Ongoing',
+    value: 'ONGOING',
     label: 'Онгоинг'
   }
 ]

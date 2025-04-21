@@ -1,14 +1,11 @@
-import { SwitchAnimation, useHover } from '@anifox/ui'
+import { useHover } from '@anifox/ui'
 import { IconGripVertical, IconX } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { motion, Reorder, useDragControls } from 'framer-motion'
 
 import { AnimeTrackStatusIcon } from '@/common/components/anime-track-status-icon/anime-track-status-icon'
 import { $animeList, $animeListFilters } from '@/entities/profile'
-import {
-  AnimeTrackStatuses,
-  MAP_ANIME_TRACK_STATUS_LABEL
-} from '@/services/api'
+import { AnimeListStatus } from '@/graphql/generated/output'
 
 export const TrackStatus = () => {
   const rows = $animeList.selectors.rows()
@@ -42,7 +39,7 @@ const StatusItem = ({
   status,
   isSelected
 }: {
-  status: AnimeTrackStatuses
+  status: AnimeListStatus
   isSelected: boolean
 }) => {
   const { isHovered, hoverProps } = useHover()
@@ -88,9 +85,7 @@ const StatusItem = ({
             <IconGripVertical />
           </motion.div>
 
-          <p className='font-semibold'>
-            {MAP_ANIME_TRACK_STATUS_LABEL[status]}
-          </p>
+          <p className='font-semibold'>{status}</p>
         </div>
 
         {isSelected ? <IconX /> : <AnimeTrackStatusIcon status={status} />}

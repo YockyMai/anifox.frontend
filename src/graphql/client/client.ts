@@ -112,6 +112,14 @@ export const client = new ApolloClient({
               'years'
             ],
             ...pageBasedPaginationPolicy
+          },
+          favoriteCharacters: {
+            keyArgs: ['userId'],
+            ...pageBasedPaginationPolicy
+          },
+          episodes: {
+            keyArgs: ['animeUrl'],
+            ...pageBasedPaginationPolicy
           }
         }
       }

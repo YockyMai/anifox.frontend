@@ -1,15 +1,7 @@
-import {
-  DEFAULT_DELEGATE_VALUE,
-  Fancybox,
-  HoverIcon,
-  Image,
-  Spoiler
-} from '@anifox/ui'
-import { IconSearch } from '@tabler/icons-react'
+import { DEFAULT_DELEGATE_VALUE, Fancybox, Image, Spoiler } from '@anifox/ui'
 import clsx from 'clsx'
 import { useParams } from 'react-router'
 
-import { useViewer } from '@/entities/viewer'
 import { useCharacterQuery } from '@/graphql/generated/output'
 
 import { CharacterPageParams } from '../../character.interface'
@@ -19,7 +11,7 @@ import './character-info.css'
 export const CharacterInfo = () => {
   const { id } = useParams<CharacterPageParams>()
 
-  const { data } = useCharacterQuery({ variables: { id: id! } })
+  const { data } = useCharacterQuery({ variables: { characterId: id! } })
 
   const character = data?.character
 
@@ -27,7 +19,6 @@ export const CharacterInfo = () => {
     .filter(Boolean)
     .join(', ')
 
-  const { isAuth } = useViewer()
   return (
     <div className='character-info'>
       <div className='character-info__header'>
@@ -48,9 +39,9 @@ export const CharacterInfo = () => {
           </div>
 
           <div className='character-info__name'>
-            <div className='flex items-center'>
+            <div className='flex items-center gap-x-3'>
               <p className='character-info__name__main'>{character?.name}</p>
-              {isAuth && <CharacterActions />}
+              <CharacterActions />
             </div>
             {(character?.nameEn || character?.nameKanji) && (
               <div>

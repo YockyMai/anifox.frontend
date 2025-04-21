@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router'
 
 import { LoginForm } from '@/entities/auth/login/ui'
-import { User } from '@/entities/viewer'
+import { ViewerFragment } from '@/graphql/generated/output'
 
 import { ROUTES } from '../pages.routes'
 import { LoginMetadata } from './login.metadata'
@@ -9,8 +9,8 @@ import { LoginMetadata } from './login.metadata'
 export const LoginScreen = () => {
   const navigate = useNavigate()
 
-  const onLoginSuccess = (user: User) => {
-    navigate(ROUTES.PROFILE.ROOT.replace(':login', user.preferred_username))
+  const onLoginSuccess = (user: ViewerFragment) => {
+    navigate(ROUTES.PROFILE.ROOT.replace(':login', user.login))
   }
 
   return (

@@ -1,0 +1,24 @@
+fragment AnimeListEntry on AnimeListEntry {
+  id
+  userId
+  animeId
+  anime {
+    ...AnimeLite
+  }
+  endedAt
+  episodesWatched
+  startedAt
+  updatedAt
+  status
+  rating {
+    rating
+  }
+}
+
+query AnimeList($userId: String!, $status: AnimeListStatus) {
+  animeList(userId: $userId, status: $status) {
+    list {
+      ...AnimeListEntry
+    }
+  }
+}

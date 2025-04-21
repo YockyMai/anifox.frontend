@@ -1,6 +1,8 @@
-import { UnstyledButton } from '@anifox/ui'
+import { Popover, Tooltip, UnstyledButton } from '@anifox/ui'
 import { IconPencil, IconTrash } from '@tabler/icons-react'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
+
+import { AnimeListButton } from '@/entities/anime/anime-list'
 
 import { AnimeStatusMenuProps } from './anime-status-menu.interface'
 
@@ -8,40 +10,48 @@ export const AnimeStatusMenu = ({
   isCardHovered,
   onDeleteButtonClick,
   onEditButtonClick,
-  anime
+  anime,
+  status
 }: AnimeStatusMenuProps) => {
-  const animate = isCardHovered ? 'visible' : 'hidden'
-
   return (
-    <motion.div
-      initial={false}
-      animate={animate}
-      variants={{
-        visible: {
-          translateX: 0
-        },
-        hidden: {
-          translateX: '101%'
-        }
-      }}
-      className='absolute right-0 top-0 z-10 flex h-full'
-    >
-      <UnstyledButton
-        onClick={() => onDeleteButtonClick?.(anime.url)}
-        className='flex h-full w-[80px] cursor-pointer flex-col items-center justify-center bg-red-400 text-white'
-      >
-        <IconTrash className='stroke-white' />
-        <p className='text-center text-sm'>Удалить</p>
-      </UnstyledButton>
+    <AnimatePresence initial={false}>
+      {isCardHovered && (
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: 'fit-content' }}
+          exit={{ width: 0 }}
+          className='flex h-full gap-x-1 overflow-hidden'
+        >
+          <UnstyledButton
+            onClick={() => onDeleteButtonClick?.(anime.url)}
+            className='flex h-full cursor-pointer flex-col items-center justify-center rounded bg-red-400 px-3 py-0.5 text-white'
+          >
+            <IconTrash className='stroke-white' />
+            <p className='text-center text-sm'>Удалить</p>
+          </UnstyledButton>
 
-      <UnstyledButton
-        onClick={() => onEditButtonClick?.(anime.url)}
-        className='flex h-full w-[80px] cursor-pointer flex-col items-center justify-center bg-green-400 text-white dark:bg-green-500'
-      >
-        <IconPencil className='stroke-white' />
+          <Popover
+            withoutArrow
+            unstyled
+            trigger={
+              <UnstyledButton
+                onClick={() => onEditButtonClick?.(anime.url)}
+                className='flex h-full cursor-pointer flex-col items-center justify-center rounded bg-green-400 px-3 py-0.5 text-white dark:bg-green-500'
+              >
+                <IconPencil className='stroke-white' />
 
-        <p className='text-center text-sm'>Изменить</p>
-      </UnstyledButton>
-    </motion.div>
+                <p className='text-center text-sm'>Изменить</p>
+              </UnstyledButton>
+            }
+          >
+            <AnimeListButton
+              animeUrl={anime.url}
+              onlyContent
+              currentTrackStatus={status}
+            />
+          </Popover>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }

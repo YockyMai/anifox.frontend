@@ -35,6 +35,7 @@ export type AnimeTypeVariants =
   | 'Tv'
 
 export type Anime = {
+  id: string
   url: string
   title: string
   image: AnimeImageVariants

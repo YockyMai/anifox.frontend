@@ -21,6 +21,5 @@ export * from './check-login'
 export * from './fetch-anime-episodes-history'
 export * from './fetch-anime-statistics'
 
-export * from './set-anime-status'
 export * from './set-anime-rating'
 export * from './delete-tracked-anime'

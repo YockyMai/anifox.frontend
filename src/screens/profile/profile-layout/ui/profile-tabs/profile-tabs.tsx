@@ -19,6 +19,7 @@ export const ProfilePageTabs = () => {
 
   const tabs = useMemo(() => {
     const profileUrl = `${ROUTES.PROFILE.ROOT.replace(':login', profile!.login)}`
+    const animeListUrl = `${ROUTES.PROFILE.ANIME_LIST.replace(':login', profile!.login)}`
     const favoritesUrl = `${ROUTES.PROFILE.FAVORITES.replace(':login', profile!.login)}`
 
     return [
@@ -29,10 +30,22 @@ export const ProfilePageTabs = () => {
             to={profileUrl}
           >
             <IconBook />
-            Список аниме
+            Обзор
           </Link>
         ),
         key: profileUrl
+      },
+      {
+        content: (
+          <Link
+            className='flex items-center gap-x-1 text-nowrap'
+            to={animeListUrl}
+          >
+            <IconBook />
+            Список аниме
+          </Link>
+        ),
+        key: animeListUrl
       },
       {
         content: (
@@ -50,7 +63,7 @@ export const ProfilePageTabs = () => {
   }, [profile!.login])
 
   return (
-    <div className='flex w-full justify-center bg-slate-400/30 dark:bg-slate-800/50'>
+    <div className='flex w-full justify-center bg-white dark:bg-slate-800/50'>
       <Tabs
         tabs={tabs}
         activeTab={activeTab}

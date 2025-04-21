@@ -4,7 +4,7 @@ import { useAtomValue } from 'jotai'
 import React from 'react'
 import { useParams } from 'react-router'
 
-import { AnimeCharacterCard } from '@/entities/anime-characters'
+import { AnimeCharacterCard } from '@/entities/characters'
 import { useCharactersQuery } from '@/graphql/generated/output'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 

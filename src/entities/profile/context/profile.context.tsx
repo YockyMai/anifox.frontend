@@ -1,6 +1,9 @@
 import { createContext, useContext, useRef } from 'react'
 
-import { createProfileStore } from '../store'
+import {
+  createFavoritesFilterStore,
+  FavoritesFilterView
+} from '../store/favorites-filter'
 import {
   ProfileContext,
   ProfileContextProviderProps
@@ -9,17 +12,18 @@ import {
 const StoreContext = createContext<ProfileContext>(null)
 
 export const ProfileContextProvider = ({
-  children,
-  user,
-  isOwner
+  children
 }: ProfileContextProviderProps) => {
   const storeRef = useRef<ProfileContext>(null)
 
   if (!storeRef.current) {
-    const $profile = createProfileStore({ user, isOwner })
+    const $favoritesFilter = createFavoritesFilterStore({
+      search: '',
+      view: FavoritesFilterView.CHARACTERS
+    })
 
     storeRef.current = {
-      $profile
+      $favoritesFilter
     }
   }
 

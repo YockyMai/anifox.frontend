@@ -15,7 +15,7 @@ export const useProfile = () => {
   const profile = data?.profile
 
   return {
-    profile,
+    profile: profile!,
     loading,
     error
   }

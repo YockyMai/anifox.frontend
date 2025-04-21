@@ -1,30 +1,27 @@
 import { createStore } from '@anifox/store'
-import { RefObject } from 'react'
 
-import { AnimeEpisode, AnimeEpisodeTranslation } from '@/services/api'
+import {
+  EpisodeFragment,
+  EpisodeTranslationFragment
+} from '@/graphql/generated/output'
 
 import {
   InitKodikPlayerPayload,
   KodikPlayerStore
 } from './kodik-player.interface'
 
-const initialState: KodikPlayerStore = {
-  animeUrl: '',
-  selectedEpisode: null,
-  selectedTranslation: null
-}
-
-export const createKodikPlayerStore = () =>
+export const createKodikPlayerStore = (initialState: KodikPlayerStore) =>
   createStore(initialState, {
     initKodikPlayer: (state, payload: InitKodikPlayerPayload) => {
       state.animeUrl = payload.animeUrl
+      state.animeId = payload.animeId
       state.selectedEpisode = payload.selectedEpisode
       state.selectedTranslation = payload.selectedTranslation
     },
-    setSelectedEpisode: (state, payload: AnimeEpisode) => {
+    setSelectedEpisode: (state, payload: EpisodeFragment) => {
       state.selectedEpisode = payload
     },
-    setSelectedTranslation: (state, payload: AnimeEpisodeTranslation) => {
+    setSelectedTranslation: (state, payload: EpisodeTranslationFragment) => {
       state.selectedTranslation = payload
     }
   })

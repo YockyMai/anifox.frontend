@@ -6,7 +6,7 @@ import {
   IconZzz
 } from '@tabler/icons-react'
 
-import { ANIME_TRACK_STATUSES } from '@/services/api'
+import { AnimeListStatus } from '@/graphql/generated/output'
 
 import { AnimeTrackStatusIconProps } from './anime-track-status-icon.interface'
 
@@ -15,23 +15,23 @@ export const AnimeTrackStatusIcon = ({
   size = 22
 }: AnimeTrackStatusIconProps) => {
   switch (status) {
-    case ANIME_TRACK_STATUSES.WATCHING: {
+    case AnimeListStatus.WATCHING: {
       return <IconDeviceTvOld size={size} />
     }
 
-    case ANIME_TRACK_STATUSES.PLAN_TO_WATCH: {
+    case AnimeListStatus.PLAN_TO_WATCH: {
       return <IconClockPlus size={size} />
     }
 
-    case ANIME_TRACK_STATUSES.COMPLETED: {
+    case AnimeListStatus.COMPLETED: {
       return <IconCheck size={size} />
     }
 
-    case ANIME_TRACK_STATUSES.ON_HOLD: {
+    case AnimeListStatus.ON_HOLD: {
       return <IconZzz size={size} />
     }
 
-    case ANIME_TRACK_STATUSES.DROPPED: {
+    case AnimeListStatus.DROPPED: {
       return <IconTrash size={size} />
     }
   }

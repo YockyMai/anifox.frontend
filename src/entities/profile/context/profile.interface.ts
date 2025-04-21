@@ -1,15 +1,11 @@
 import { ReactNode } from 'react'
 
-import { User } from '@/entities/viewer'
-
-import { createProfileStore } from '../store'
+import { createFavoritesFilterStore } from '../store/favorites-filter'
 
 export type ProfileContext = {
-  $profile: ReturnType<typeof createProfileStore>
+  $favoritesFilter: ReturnType<typeof createFavoritesFilterStore>
 } | null
 
 export type ProfileContextProviderProps = {
   children: ReactNode
-  user: User
-  isOwner: boolean
 }

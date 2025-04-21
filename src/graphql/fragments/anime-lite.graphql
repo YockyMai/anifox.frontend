@@ -1,4 +1,5 @@
 fragment AnimeLite on Anime {
+  id
   url
   title
   image {

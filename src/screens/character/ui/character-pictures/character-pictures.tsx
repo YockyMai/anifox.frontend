@@ -10,7 +10,7 @@ import './character-pictures.css'
 export const CharacterPictures = () => {
   const { id } = useParams<CharacterPageParams>()
 
-  const { data } = useCharacterQuery({ variables: { id: id! } })
+  const { data } = useCharacterQuery({ variables: { characterId: id! } })
 
   const pictures = data?.character.pictures
 

@@ -6,9 +6,12 @@ export const ROUTES = {
     MOST_RATED: '/anime/most-rated',
     POPULAR_ONGOING: '/anime/popular-ongoing',
     ANIME: {
-      ROOT: '/anime/:animeUrl',
-      CHARACTERS: '/anime/:animeUrl/characters',
-      REVIEWS: '/anime/:animeUrl/reviews'
+      ROOT: (animeId: string, animeUrl: string) =>
+        `/anime/${animeId}/${animeUrl}`,
+      CHARACTERS: (animeId: string, animeUrl: string) =>
+        `/anime/${animeId}/${animeUrl}/characters`,
+      REVIEWS: (animeId: string, animeUrl: string) =>
+        `/anime/${animeId}/${animeUrl}/reviews`
     }
   },
   CHARACTER: {
@@ -23,6 +26,7 @@ export const ROUTES = {
   RIGHT_HOLDERS: '/right-holders',
   PROFILE: {
     ROOT: '/profile/:login',
+    ANIME_LIST: '/profile/:login/anime-list',
     FAVORITES: '/profile/:login/favorites'
   },
   APPS: {

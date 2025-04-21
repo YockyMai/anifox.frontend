@@ -20,12 +20,12 @@ export const AnimeList = () => {
           </div>
         ) : (
           <>
-            {/* {statuses.map((status) => (
+            {statuses.map((status) => (
               <motion.div layout key={status}>
                 <AnimeListTableHeader withReorder status={status} />
                 <AnimeListTable status={status} />
               </motion.div>
-            ))} */}
+            ))}
           </>
         )}
       </div>

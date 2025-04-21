@@ -1,28 +1,18 @@
-import { useParams } from 'react-router'
-
-import { useAnimeEpisodesQuery } from '@/graphql/queries'
-import { AnimePageParams } from '@/screens/anime/anime.interface'
-
+import { useEpisodes } from '../../hooks'
 import { EpisodesList } from './episodes-list'
 import { EpisodesSearch } from './episodes-search'
 import { useFilteredEpisodes } from './episodes-search/hooks'
 import './episodes.css'
 
 export const Episodes = () => {
-  const { animeUrl } = useParams<AnimePageParams>()
+  const episodes = useEpisodes()
 
-  const { data } = useAnimeEpisodesQuery({
-    animeUrl: animeUrl!,
-    page: 0,
-    limit: 10000
-  })
-
-  const episodes = useFilteredEpisodes(data)
+  const filteredEpisodes = useFilteredEpisodes(episodes)
 
   return (
     <div className='episodes'>
       <EpisodesSearch />
-      <EpisodesList episodes={episodes} />
+      <EpisodesList episodes={filteredEpisodes} />
     </div>
   )
 }

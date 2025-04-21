@@ -3,7 +3,6 @@ import { IconChevronDown, IconChevronUp } from '@tabler/icons-react'
 
 import { AnimeTrackStatusIcon } from '@/common/components/anime-track-status-icon/anime-track-status-icon'
 import { $animeList } from '@/entities/profile'
-import { MAP_ANIME_TRACK_STATUS_LABEL } from '@/services/api'
 
 import { AnimeListTableHeaderProps } from './anime-list-table-header.interface'
 
@@ -20,9 +19,7 @@ export const AnimeListTableHeader = ({
     <div className='flex h-16 items-center justify-between p-3'>
       <div className='flex items-center gap-x-3'>
         <AnimeTrackStatusIcon size={28} status={status} />
-        <p className='text-xl font-bold'>
-          {MAP_ANIME_TRACK_STATUS_LABEL[status]}
-        </p>
+        <p className='text-xl font-bold'>{status}</p>
       </div>
 
       {withReorder && (

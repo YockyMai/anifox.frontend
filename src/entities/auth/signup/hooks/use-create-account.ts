@@ -1,13 +1,15 @@
-import cookies from 'cookie'
-import dayjs from 'dayjs'
 import { useAtomValue } from 'jotai'
-import { jwtDecode } from 'jwt-decode'
 import { useEffect } from 'react'
 
 import { COOKIES } from '@/common/const'
 import { $signupAtoms } from '@/entities/auth/signup'
-import { $viewer, User } from '@/entities/viewer'
-import { api } from '@/services/api'
+import { $viewer } from '@/entities/viewer'
+import { client } from '@/graphql/client'
+import {
+  SignupDocument,
+  SignupMutation,
+  ViewerFragment
+} from '@/graphql/generated/output'
 
 export const useCreateAccount = (
   onSuccess: () => void,
@@ -21,26 +23,25 @@ export const useCreateAccount = (
   useEffect(() => {
     const signup = async () => {
       try {
-        await api.signup({
-          email,
-          login,
-          password,
-          birthday: dayjs(birthday ?? new Date()).format('YYYY-MM-DD')
+        const { data } = await client.mutate<SignupMutation>({
+          mutation: SignupDocument,
+          variables: {
+            email,
+            login,
+            name: login,
+            password,
+            birthday
+          }
         })
 
-        await api.login({
-          user_identifier: email,
-          password
-        })
+        const { user, tokens } = data!.signup
 
-        // TODO: как будет запрос /me сделать нормально
-        const accessToken = cookies.parse(document.cookie)[
-          COOKIES.ACCESS_TOKEN_KEY
-        ]
+        localStorage.setItem(COOKIES.ACCESS_TOKEN_KEY, tokens.accessToken)
+        localStorage.setItem(COOKIES.REFRESH_TOKEN_KEY, tokens.refreshToken)
 
-        const user: User = jwtDecode(accessToken)
+        const viewer: ViewerFragment = user
 
-        $viewer.actions.setViewer(user)
+        $viewer.actions.setViewer(viewer)
 
         onSuccess()
       } catch (e) {

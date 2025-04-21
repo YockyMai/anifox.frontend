@@ -10,7 +10,7 @@ import './character-participation.css'
 export const CharacterParticipation = () => {
   const { id } = useParams<CharacterPageParams>()
 
-  const { data } = useCharacterQuery({ variables: { id: id! } })
+  const { data } = useCharacterQuery({ variables: { characterId: id! } })
 
   const character = data?.character
 

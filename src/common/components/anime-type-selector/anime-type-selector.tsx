@@ -1,6 +1,6 @@
 import { Select } from '@anifox/ui'
 
-import { AnimeTypeVariants } from '@/services/api'
+import { AnimeType } from '@/graphql/generated/output'
 
 import { TYPE_OPTIONS } from './anime-type-selector.const'
 import { AnimeTypeSelectorProps } from './anime-type-selector.interface'
@@ -15,7 +15,7 @@ export const AnimeTypeSelector = ({
     <Select
       value={value}
       onValueChange={(option) => {
-        const newValue = option ? (option.value as AnimeTypeVariants) : null
+        const newValue = option ? (option.value as AnimeType) : null
 
         onChangeType(newValue)
       }}

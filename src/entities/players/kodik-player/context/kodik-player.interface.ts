@@ -1,5 +1,12 @@
-import { createKodikPlayerStore } from '../store'
+import { ReactNode } from 'react'
+
+import { createKodikPlayerStore, KodikPlayerStore } from '../store'
 import { createEpisodeSelectorStore } from '../store/episode-selector'
+
+export type KodikPlayerStoresProviderProps = {
+  children: ReactNode
+  initialKodikPlayerStore: KodikPlayerStore
+}
 
 export type KodikPlayerStoreType = ReturnType<typeof createKodikPlayerStore>
 

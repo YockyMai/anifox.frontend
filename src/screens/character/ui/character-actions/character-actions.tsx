@@ -2,32 +2,33 @@ import { Button, UIColors, UISizes } from '@anifox/ui'
 import { IconCheck, IconHeart, IconHeartFilled } from '@tabler/icons-react'
 import { useParams } from 'react-router'
 
-import { useViewer } from '@/entities/viewer'
+import { $viewer } from '@/entities/viewer'
 import {
-  useFavoriteCharactersQuery,
+  useCharacterQuery,
   useToggleFavoriteCharacterMutation
 } from '@/graphql/generated/output'
 
 import { CharacterPageParams } from '../../character.interface'
 
 export const CharacterActions = () => {
-  const { viewer } = useViewer()
+  const viewer = $viewer.selectors.viewer()
 
   const { id } = useParams<CharacterPageParams>()
 
-  const { data } = useFavoriteCharactersQuery({
-    variables: { userId: viewer!.id }
+  const { data } = useCharacterQuery({
+    variables: {
+      characterId: id!,
+      userId: viewer?.id
+    }
   })
+
+  const isFavorite = data?.character.isFavorite
 
   const [toggleFavoriteCharacter] = useToggleFavoriteCharacterMutation({
     variables: {
       characterId: id!
     }
   })
-
-  const isFavorite = data?.favoriteCharacters.data.some(
-    (data) => data.characterId === id
-  )
 
   return (
     <Button

@@ -2,8 +2,10 @@ import { MarqueeText, ScreenSection } from '@anifox/ui'
 import { useParams } from 'react-router'
 
 import { KodikPlayer } from '@/entities/players/kodik-player'
-import { useAnimeQuery } from '@/graphql/generated/output'
-import { useAnimeRelatedQuery, useAnimeVideosQuery } from '@/graphql/queries'
+import {
+  useAnimeQuery,
+  useRelatedAnimesQuery
+} from '@/graphql/generated/output'
 
 import { AnimePageParams } from '../anime.interface'
 import { AnimeEpisodesHistory } from './anime-episodes-history/anime-episodes-history'
@@ -13,7 +15,7 @@ import { AnimeScreenshots } from './anime-screenshots'
 import { AnimeVideos } from './anime-videos'
 
 export const AnimeOverviewScreen = () => {
-  const { animeUrl } = useParams<AnimePageParams>()
+  const { animeUrl, animeId } = useParams<AnimePageParams>()
 
   const { data, loading } = useAnimeQuery({
     variables: {
@@ -25,9 +27,14 @@ export const AnimeOverviewScreen = () => {
 
   const videos = data?.anime.videos
 
-  const { data: related, isLoading: isLoadingRelated } = useAnimeRelatedQuery(
-    animeUrl!
-  )
+  const { data: related, loading: loadingRelated } = useRelatedAnimesQuery({
+    variables: {
+      animeId: animeId!,
+      limit: 1000,
+      page: 0
+    }
+  })
+
   return (
     <div>
       <div className='container'>
@@ -44,13 +51,15 @@ export const AnimeOverviewScreen = () => {
         )}
       </div>
 
-      {!isLoadingRelated && related && related.length > 0 && (
-        <div className='container'>
-          <ScreenSection title='Хронология'>
-            <AnimeFranchise />
-          </ScreenSection>
-        </div>
-      )}
+      {!loadingRelated &&
+        related?.relatedAnimes &&
+        related.relatedAnimes.data.length > 0 && (
+          <div className='container'>
+            <ScreenSection title='Хронология'>
+              <AnimeFranchise />
+            </ScreenSection>
+          </div>
+        )}
 
       <div
         id={PLAYER_ELEMENT_ID}
@@ -61,7 +70,7 @@ export const AnimeOverviewScreen = () => {
             Смотреть аниме &quot;{data?.anime.title}&quot;
           </p>
         </MarqueeText>
-        <KodikPlayer animeUrl={animeUrl!} />
+        <KodikPlayer animeUrl={animeUrl!} animeId={animeId!} />
       </div>
 
       <AnimeEpisodesHistory />

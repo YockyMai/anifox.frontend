@@ -1,0 +1,11 @@
+fragment Viewer on User {
+  name
+  role
+  vkId
+  avatar
+  birthday
+  email
+  id
+  googleId
+  login
+}

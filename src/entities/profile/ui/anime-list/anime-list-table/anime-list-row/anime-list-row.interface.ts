@@ -1,6 +1,5 @@
-import { Anime, AnimeTrackStatuses } from '@/services/api'
+import { AnimeListEntryFragment } from '@/graphql/generated/output'
 
 export type DraggableAnimeCardProps = {
-  anime: Anime
-  status: AnimeTrackStatuses
+  animeListEntry: AnimeListEntryFragment
 }

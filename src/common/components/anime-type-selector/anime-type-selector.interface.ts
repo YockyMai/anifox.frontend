@@ -1,6 +1,6 @@
-import { AnimeTypeVariants } from '@/services/api'
+import { AnimeType } from '@/graphql/generated/output'
 
 export type AnimeTypeSelectorProps = {
-  type: AnimeTypeVariants | null
-  onChangeType: (value: AnimeTypeVariants | null) => void
+  type: AnimeType | null
+  onChangeType: (value: AnimeType | null) => void
 }

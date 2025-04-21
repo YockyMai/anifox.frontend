@@ -1,10 +1,5 @@
-export type User = {
-  email: string
-  birthday: Date
-  preferred_username: string
-  id: string
-}
+import { ViewerFragment } from '@/graphql/generated/output'
 
 export type ViewerStore = {
-  user: User | null
+  viewer: ViewerFragment | null
 }

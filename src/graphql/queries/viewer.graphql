@@ -1,13 +1,5 @@
 query Viewer {
   viewer {
-    name
-    role
-    vkId
-    avatar
-    birthday
-    email
-    id
-    googleId
-    login
+    ...Viewer
   }
 }

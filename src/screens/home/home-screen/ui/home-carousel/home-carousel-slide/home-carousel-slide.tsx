@@ -62,9 +62,7 @@ export const HomeCarouselSlide = ({ anime }: HomeCarouselSlideProps) => {
               initial={animations.initial}
               whileInView={animations.whileInView}
             >
-              <Link
-                to={ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', anime.url)}
-              >
+              <Link to={ROUTES.CATALOG.ANIME.ROOT(anime.id, anime.url)}>
                 <Button
                   icon={<IconPlayerPlayFilled />}
                   size={UISizes.SM}

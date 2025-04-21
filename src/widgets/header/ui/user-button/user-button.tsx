@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router'
 
 import { UIColors } from '@/common/types/ui-colors'
 import { UISizes } from '@/common/types/ui-sizes'
-import { $viewer, useViewer } from '@/entities/viewer'
+import { $viewer } from '@/entities/viewer'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { $headerAtoms } from '../../store'
@@ -15,7 +15,7 @@ export const UserButton = () => {
 
   const setIsMobileMenuOpen = useSetAtom($headerAtoms.isMobileMenuOpen)
 
-  const { viewer } = useViewer()
+  const viewer = $viewer.selectors.viewer()
 
   const handleClick = () => {
     setIsMobileMenuOpen(false)

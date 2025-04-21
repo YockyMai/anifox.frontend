@@ -1,7 +1,7 @@
-import { AnimeStatuses } from '@/services/api'
+import { AnimeStatus } from '@/graphql/generated/output'
 
 export type AnimeStatusSelectorProps = {
-  status: AnimeStatuses | null
-  onChangeStatus: (value: AnimeStatuses | null) => void
+  status: AnimeStatus | null
+  onChangeStatus: (value: AnimeStatus | null) => void
   customLabel?: string
 }
