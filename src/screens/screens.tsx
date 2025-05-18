@@ -20,6 +20,10 @@ import { LoginScreen } from './login'
 import { ROUTES } from './pages.routes'
 import { ProfileAnimeListScreen } from './profile/profile-anime-list'
 import { ProfileFavorites } from './profile/profile-favorites/profile-favorites'
+import { ProfileFriendsLayout } from './profile/profile-friends'
+import { AddFriendsScreen } from './profile/profile-friends/add-friends/add-friends'
+import { FriendRequestsScreen } from './profile/profile-friends/friend-requests/friend-requests'
+import { UserFriendsScreen } from './profile/profile-friends/user-friends/user-friends'
 import { ProfileLayout } from './profile/profile-layout'
 import { ProfileStatistics } from './profile/profile-statistics'
 import { RightHoldersScreen } from './right-holders'
@@ -72,6 +76,20 @@ export const Screens = () => {
             path={ROUTES.PROFILE.FAVORITES}
             element={<ProfileFavorites />}
           />
+          <Route
+            path={ROUTES.PROFILE.FRIENDS.ROOT(':login')}
+            element={<ProfileFriendsLayout />}
+          >
+            <Route index element={<UserFriendsScreen />} />
+            <Route
+              path={ROUTES.PROFILE.FRIENDS.ADD(':login')}
+              element={<AddFriendsScreen />}
+            />
+            <Route
+              path={ROUTES.PROFILE.FRIENDS.REQUESTS(':login')}
+              element={<FriendRequestsScreen />}
+            />
+          </Route>
         </Route>
         {viewer ? (
           <></>

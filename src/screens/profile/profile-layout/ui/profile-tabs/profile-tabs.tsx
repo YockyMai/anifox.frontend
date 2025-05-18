@@ -1,5 +1,5 @@
 import { Tabs } from '@anifox/ui'
-import { IconBook, IconHeart } from '@tabler/icons-react'
+import { IconBook, IconHeart, IconUsers } from '@tabler/icons-react'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useLocation } from 'react-router'
 
@@ -21,6 +21,7 @@ export const ProfilePageTabs = () => {
     const profileUrl = `${ROUTES.PROFILE.ROOT.replace(':login', profile!.login)}`
     const animeListUrl = `${ROUTES.PROFILE.ANIME_LIST.replace(':login', profile!.login)}`
     const favoritesUrl = `${ROUTES.PROFILE.FAVORITES.replace(':login', profile!.login)}`
+    const friendsUrl = ROUTES.PROFILE.FRIENDS.ROOT(profile!.login)
 
     return [
       {
@@ -58,6 +59,18 @@ export const ProfilePageTabs = () => {
           </Link>
         ),
         key: favoritesUrl
+      },
+      {
+        content: (
+          <Link
+            className='flex items-center gap-x-1 text-nowrap'
+            to={friendsUrl}
+          >
+            <IconUsers />
+            Друзья
+          </Link>
+        ),
+        key: friendsUrl
       }
     ]
   }, [profile!.login])

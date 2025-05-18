@@ -1,7 +1,6 @@
-import { UIColor } from '@anifox/ui'
+import { TotalStatisticsVariant } from '@/entities/user'
 
 export type TotalStatisticsItemProps = {
-  title: string
   value: number
-  color: UIColor
+  variant: TotalStatisticsVariant
 }

@@ -120,6 +120,10 @@ export const client = new ApolloClient({
           episodes: {
             keyArgs: ['animeUrl'],
             ...pageBasedPaginationPolicy
+          },
+          friendships: {
+            keyArgs: ['userId', 'status', 'search'],
+            ...pageBasedPaginationPolicy
           }
         }
       }

@@ -2,6 +2,7 @@ import { UIColors } from '@anifox/ui'
 import React from 'react'
 
 import { useProfile } from '@/entities/profile'
+import { TotalStatisticsVariant } from '@/entities/user'
 import { useUserStatisticsQuery } from '@/graphql/generated/output'
 
 import { TotalStatisticsItem } from './total-statistics-item/total-statistics-item'
@@ -27,27 +28,23 @@ export const TotalStatistics = () => {
       <p className='mb-2 text-xl font-bold'>Общая статистика</p>
       <div className='flex h-[160px] items-center justify-between rounded bg-white p-6 drop-shadow-sm dark:bg-slate-800'>
         <TotalStatisticsItem
-          title='Активностей'
+          variant={TotalStatisticsVariant.TOTAL_ACTIVITY}
           value={totalStatistics.totalActivity}
-          color={UIColors.GREEN}
         />
 
         <TotalStatisticsItem
-          title='Просотренных аниме'
+          variant={TotalStatisticsVariant.TOTAL_WATCHED_ANIMES}
           value={totalStatistics.totalWatchedAnimes}
-          color={UIColors.ORANGE}
         />
 
         <TotalStatisticsItem
-          title='Просотренных серий'
+          variant={TotalStatisticsVariant.TOTAL_WATCHED_EPISODES}
           value={totalStatistics.totalWatchedEpisodes}
-          color={UIColors.PURPLE}
         />
 
         <TotalStatisticsItem
-          title='Просмотренных минут'
+          variant={TotalStatisticsVariant.TOTAL_WATCHED_SECONDS}
           value={Math.floor(totalStatistics.totalWatchedSeconds / 60)}
-          color={UIColors.RED}
         />
       </div>
     </div>

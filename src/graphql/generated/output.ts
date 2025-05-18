@@ -452,14 +452,45 @@ export type FavoriteCharacterConnection = {
   pageInfo: PageInfo;
 };
 
+export type Friendship = {
+  __typename?: 'Friendship';
+  createdAt: Scalars['DateTime']['output'];
+  friend: User;
+  /** ID друга */
+  friendId: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  /** Статус заявки в друзья */
+  status: FriendshipStatus;
+  updatedAt: Scalars['DateTime']['output'];
+  user: User;
+  /** ID пользователя, который отправил запрос на дружбу */
+  userId: Scalars['String']['output'];
+};
+
+export const FriendshipStatus = {
+  ACCEPTED: 'ACCEPTED',
+  PENDING: 'PENDING',
+  REJECTED: 'REJECTED'
+} as const;
+
+export type FriendshipStatus = typeof FriendshipStatus[keyof typeof FriendshipStatus];
+export type FriendshipsConnection = {
+  __typename?: 'FriendshipsConnection';
+  data: Array<Friendship>;
+  pageInfo: PageInfo;
+};
+
 export type LastWatchedEpisode = {
   __typename?: 'LastWatchedEpisode';
+  anime: Anime;
   animeId: Scalars['String']['output'];
+  episode: Episode;
   /** ID последней просмотренной серии */
   episodeId: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   /** ID выбранной озвучки */
   translationId: Scalars['Int']['output'];
+  user: User;
   userId: Scalars['String']['output'];
 };
 
@@ -477,14 +508,18 @@ export type Login = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  acceptFriendInvite: Friendship;
+  addFriend: Friendship;
   createAnimeComment: AnimeComment;
   createAnimeCommentLike: AnimeCommentLike;
   login: Login;
   refreshTokens: UserTokens;
+  rejectFriendInvite: Friendship;
   removeAnimeComment: AnimeComment;
   removeAnimeCommentLike: AnimeCommentLike;
   removeAnimeListEntry: AnimeListEntry;
   removeAnimeRating: AnimeRating;
+  removeFriend: Friendship;
   saveAnimeListEntry: AnimeListEntry;
   saveAnimeRating: AnimeRating;
   saveEpisodeProgress: EpisodeProgress;
@@ -495,6 +530,16 @@ export type Mutation = {
   toggleFavoriteAnime: FavoriteAnime;
   toggleFavoriteCharacter: FavoriteCharacter;
   updateAnimeComment: AnimeComment;
+};
+
+
+export type MutationAcceptFriendInviteArgs = {
+  friendshipId: Scalars['ID']['input'];
+};
+
+
+export type MutationAddFriendArgs = {
+  friendId: Scalars['ID']['input'];
 };
 
 
@@ -520,6 +565,11 @@ export type MutationRefreshTokensArgs = {
 };
 
 
+export type MutationRejectFriendInviteArgs = {
+  friendshipId: Scalars['ID']['input'];
+};
+
+
 export type MutationRemoveAnimeCommentArgs = {
   id: Scalars['String']['input'];
 };
@@ -537,6 +587,11 @@ export type MutationRemoveAnimeListEntryArgs = {
 
 export type MutationRemoveAnimeRatingArgs = {
   animeId: Scalars['String']['input'];
+};
+
+
+export type MutationRemoveFriendArgs = {
+  friendshipId: Scalars['ID']['input'];
 };
 
 
@@ -634,6 +689,7 @@ export type Query = {
   episodes: EpisodeConnection;
   favoriteAnimes: FavoriteAnimeConnection;
   favoriteCharacters: FavoriteCharacterConnection;
+  friendships: FriendshipsConnection;
   genre: AnimeGenre;
   genres: Array<AnimeGenre>;
   lastWatchedEpisode?: Maybe<LastWatchedEpisode>;
@@ -645,6 +701,7 @@ export type Query = {
   translations: Array<Translation>;
   user: User;
   userStatistics: UserStatistics;
+  users: UserConnection;
   viewer: User;
 };
 
@@ -777,6 +834,15 @@ export type QueryFavoriteCharactersArgs = {
 };
 
 
+export type QueryFriendshipsArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  status?: FriendshipStatus;
+  userId: Scalars['String']['input'];
+};
+
+
 export type QueryLastWatchedEpisodeArgs = {
   animeId: Scalars['String']['input'];
   userId: Scalars['String']['input'];
@@ -784,7 +850,6 @@ export type QueryLastWatchedEpisodeArgs = {
 
 
 export type QueryLastWatchedEpisodesArgs = {
-  animeId: Scalars['String']['input'];
   limit?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
   userId: Scalars['String']['input'];
@@ -822,6 +887,13 @@ export type QueryUserArgs = {
 
 export type QueryUserStatisticsArgs = {
   userId: Scalars['String']['input'];
+};
+
+
+export type QueryUsersArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
 };
 
 export const RatingMpa = {
@@ -888,15 +960,17 @@ export type User = {
   animeList: AnimeList;
   avatar?: Maybe<Scalars['String']['output']>;
   birthday?: Maybe<Scalars['DateTime']['output']>;
+  createdAt: Scalars['DateTime']['output'];
   email?: Maybe<Scalars['String']['output']>;
   favoriteAnimes: FavoriteAnimeConnection;
   favoriteCharacters: FavoriteCharacterConnection;
   googleId?: Maybe<Scalars['String']['output']>;
   id: Scalars['String']['output'];
   login: Scalars['String']['output'];
-  name?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
   role: UserRole;
   statistics: UserStatistics;
+  updatedAt: Scalars['DateTime']['output'];
   vkId?: Maybe<Scalars['String']['output']>;
 };
 
@@ -923,6 +997,12 @@ export type UserActivity = {
   days: Array<DayActivity>;
   user: User;
   userId: Scalars['String']['output'];
+};
+
+export type UserConnection = {
+  __typename?: 'UserConnection';
+  data: Array<User>;
+  pageInfo: PageInfo;
 };
 
 export type UserGenreDistribution = {
@@ -962,7 +1042,23 @@ export type AnimeLiteFragment = { __typename?: 'Anime', id: string, url: string,
 
 export type CharacterLightFragment = { __typename?: 'AnimeCharacter', id: string, about?: string | null, name: string, nameEn: string, nameKanji?: string | null, image: string, role: CharacterRole };
 
-export type ViewerFragment = { __typename?: 'User', name?: string | null, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string };
+export type ViewerFragment = { __typename?: 'User', name: string, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string };
+
+export type AcceptFriendInviteMutationVariables = Exact<{
+  friendshipId: Scalars['ID']['input'];
+}>;
+
+
+export type AcceptFriendInviteMutation = { __typename?: 'Mutation', acceptFriendInvite: { __typename?: 'Friendship', id: string, status: FriendshipStatus, friendId: string, userId: string, user: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }, friend: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } } } };
+
+export type FriendshipFragment = { __typename?: 'Friendship', id: string, status: FriendshipStatus, friendId: string, userId: string, user: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }, friend: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } } };
+
+export type AddFriendMutationVariables = Exact<{
+  friendId: Scalars['ID']['input'];
+}>;
+
+
+export type AddFriendMutation = { __typename?: 'Mutation', addFriend: { __typename?: 'Friendship', id: string, status: FriendshipStatus, friendId: string, userId: string, user: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }, friend: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } } } };
 
 export type LoginMutationVariables = Exact<{
   identifier: Scalars['String']['input'];
@@ -970,7 +1066,7 @@ export type LoginMutationVariables = Exact<{
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'Login', tokens: { __typename?: 'UserTokens', accessToken: string, refreshToken: string }, user: { __typename?: 'User', name?: string | null, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string } } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'Login', tokens: { __typename?: 'UserTokens', accessToken: string, refreshToken: string }, user: { __typename?: 'User', name: string, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string } } };
 
 export type UserTokensFragment = { __typename?: 'UserTokens', accessToken: string, refreshToken: string };
 
@@ -980,6 +1076,13 @@ export type RefreshTokensMutationVariables = Exact<{
 
 
 export type RefreshTokensMutation = { __typename?: 'Mutation', refreshTokens: { __typename?: 'UserTokens', accessToken: string, refreshToken: string } };
+
+export type RejectFriendInviteMutationVariables = Exact<{
+  friendshipId: Scalars['ID']['input'];
+}>;
+
+
+export type RejectFriendInviteMutation = { __typename?: 'Mutation', rejectFriendInvite: { __typename?: 'Friendship', id: string, status: FriendshipStatus, friendId: string, userId: string, user: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }, friend: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } } } };
 
 export type RemoveAnimeListEntryMutationVariables = Exact<{
   animeUrl: Scalars['String']['input'];
@@ -1044,7 +1147,7 @@ export type SignupMutationVariables = Exact<{
 }>;
 
 
-export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: 'Signup', user: { __typename?: 'User', name?: string | null, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string }, tokens: { __typename?: 'UserTokens', accessToken: string, refreshToken: string } } };
+export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: 'Signup', user: { __typename?: 'User', name: string, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string }, tokens: { __typename?: 'UserTokens', accessToken: string, refreshToken: string } } };
 
 export type ToggleFavoriteAnimeMutationVariables = Exact<{
   animeUrl: Scalars['String']['input'];
@@ -1152,6 +1255,17 @@ export type FavoriteCharactersQueryVariables = Exact<{
 
 export type FavoriteCharactersQuery = { __typename?: 'Query', favoriteCharacters: { __typename?: 'FavoriteCharacterConnection', data: Array<{ __typename?: 'FavoriteCharacter', count: number, characterId: string, character: { __typename?: 'Character', id: string, image: string, name: string, isFavorite?: boolean | null } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
 
+export type FriendshipsQueryVariables = Exact<{
+  userId: Scalars['String']['input'];
+  status?: InputMaybe<FriendshipStatus>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type FriendshipsQuery = { __typename?: 'Query', friendships: { __typename?: 'FriendshipsConnection', data: Array<{ __typename?: 'Friendship', id: string, createdAt: any, updatedAt: any, status: FriendshipStatus, friend: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
+
 export type LastWatchedEpisodeFragment = { __typename?: 'LastWatchedEpisode', id: string, animeId: string, episodeId: string, translationId: number, userId: string };
 
 export type LastWatchedEpisodeQueryVariables = Exact<{
@@ -1162,12 +1276,23 @@ export type LastWatchedEpisodeQueryVariables = Exact<{
 
 export type LastWatchedEpisodeQuery = { __typename?: 'Query', lastWatchedEpisode?: { __typename?: 'LastWatchedEpisode', id: string, animeId: string, episodeId: string, translationId: number, userId: string } | null };
 
+export type ContinueWatchingFragment = { __typename?: 'LastWatchedEpisode', id: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, totalRating?: number | null, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }> }, episode: { __typename?: 'Episode', id: string, number: number, duration?: number | null, progress?: { __typename?: 'EpisodeProgress', id: string, timing: number } | null } };
+
+export type LastWatchedEpisodesQueryVariables = Exact<{
+  userId: Scalars['String']['input'];
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type LastWatchedEpisodesQuery = { __typename?: 'Query', lastWatchedEpisodes?: { __typename?: 'LastWatchedEpisodeConnection', data: Array<{ __typename?: 'LastWatchedEpisode', id: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, totalRating?: number | null, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }> }, episode: { __typename?: 'Episode', id: string, number: number, duration?: number | null, progress?: { __typename?: 'EpisodeProgress', id: string, timing: number } | null } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } | null };
+
 export type ProfileQueryVariables = Exact<{
   login: Scalars['String']['input'];
 }>;
 
 
-export type ProfileQuery = { __typename?: 'Query', profile: { __typename?: 'User', id: string, login: string, googleId?: string | null, vkId?: string | null, name?: string | null, role: UserRole, avatar?: string | null, birthday?: any | null, email?: string | null } };
+export type ProfileQuery = { __typename?: 'Query', profile: { __typename?: 'User', id: string, login: string, googleId?: string | null, vkId?: string | null, name: string, role: UserRole, avatar?: string | null, birthday?: any | null, email?: string | null } };
 
 export type RandomAnimesQueryVariables = Exact<{
   count?: InputMaybe<Scalars['Int']['input']>;
@@ -1193,10 +1318,21 @@ export type UserStatisticsQueryVariables = Exact<{
 
 export type UserStatisticsQuery = { __typename?: 'Query', userStatistics: { __typename?: 'UserStatistics', activity: { __typename?: 'UserActivity', days: Array<{ __typename?: 'DayActivity', count: number, day: any }> }, genresDistribution: Array<{ __typename?: 'UserGenreDistribution', percent: number, genre: { __typename?: 'AnimeGenre', id: string, name: string } }>, total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedSeconds: number, totalWatchedEpisodes: number, totalWatchedAnimes: number } } };
 
+export type UserLiteFragment = { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } };
+
+export type UsersQueryVariables = Exact<{
+  search?: InputMaybe<Scalars['String']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type UsersQuery = { __typename?: 'Query', users: { __typename?: 'UserConnection', data: Array<{ __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
+
 export type ViewerQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ViewerQuery = { __typename?: 'Query', viewer: { __typename?: 'User', name?: string | null, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string } };
+export type ViewerQuery = { __typename?: 'Query', viewer: { __typename?: 'User', name: string, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string } };
 
 export const CharacterLightFragmentDoc = gql`
     fragment CharacterLight on AnimeCharacter {
@@ -1222,6 +1358,38 @@ export const ViewerFragmentDoc = gql`
   login
 }
     `;
+export const UserLiteFragmentDoc = gql`
+    fragment UserLite on User {
+  id
+  name
+  avatar
+  login
+  role
+  createdAt
+  statistics {
+    total {
+      totalActivity
+      totalWatchedAnimes
+      totalWatchedEpisodes
+      totalWatchedSeconds
+    }
+  }
+}
+    `;
+export const FriendshipFragmentDoc = gql`
+    fragment Friendship on Friendship {
+  id
+  status
+  friendId
+  userId
+  user {
+    ...UserLite
+  }
+  friend {
+    ...UserLite
+  }
+}
+    ${UserLiteFragmentDoc}`;
 export const UserTokensFragmentDoc = gql`
     fragment UserTokens on UserTokens {
   accessToken
@@ -1338,6 +1506,89 @@ export const LastWatchedEpisodeFragmentDoc = gql`
   userId
 }
     `;
+export const ContinueWatchingFragmentDoc = gql`
+    fragment ContinueWatching on LastWatchedEpisode {
+  id
+  anime {
+    ...AnimeLite
+  }
+  episode {
+    id
+    number
+    duration
+    progress(userId: $userId) {
+      id
+      timing
+    }
+  }
+}
+    ${AnimeLiteFragmentDoc}`;
+export const AcceptFriendInviteDocument = gql`
+    mutation acceptFriendInvite($friendshipId: ID!) {
+  acceptFriendInvite(friendshipId: $friendshipId) {
+    ...Friendship
+  }
+}
+    ${FriendshipFragmentDoc}`;
+export type AcceptFriendInviteMutationFn = Apollo.MutationFunction<AcceptFriendInviteMutation, AcceptFriendInviteMutationVariables>;
+
+/**
+ * __useAcceptFriendInviteMutation__
+ *
+ * To run a mutation, you first call `useAcceptFriendInviteMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAcceptFriendInviteMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [acceptFriendInviteMutation, { data, loading, error }] = useAcceptFriendInviteMutation({
+ *   variables: {
+ *      friendshipId: // value for 'friendshipId'
+ *   },
+ * });
+ */
+export function useAcceptFriendInviteMutation(baseOptions?: Apollo.MutationHookOptions<AcceptFriendInviteMutation, AcceptFriendInviteMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AcceptFriendInviteMutation, AcceptFriendInviteMutationVariables>(AcceptFriendInviteDocument, options);
+      }
+export type AcceptFriendInviteMutationHookResult = ReturnType<typeof useAcceptFriendInviteMutation>;
+export type AcceptFriendInviteMutationResult = Apollo.MutationResult<AcceptFriendInviteMutation>;
+export type AcceptFriendInviteMutationOptions = Apollo.BaseMutationOptions<AcceptFriendInviteMutation, AcceptFriendInviteMutationVariables>;
+export const AddFriendDocument = gql`
+    mutation addFriend($friendId: ID!) {
+  addFriend(friendId: $friendId) {
+    ...Friendship
+  }
+}
+    ${FriendshipFragmentDoc}`;
+export type AddFriendMutationFn = Apollo.MutationFunction<AddFriendMutation, AddFriendMutationVariables>;
+
+/**
+ * __useAddFriendMutation__
+ *
+ * To run a mutation, you first call `useAddFriendMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddFriendMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addFriendMutation, { data, loading, error }] = useAddFriendMutation({
+ *   variables: {
+ *      friendId: // value for 'friendId'
+ *   },
+ * });
+ */
+export function useAddFriendMutation(baseOptions?: Apollo.MutationHookOptions<AddFriendMutation, AddFriendMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddFriendMutation, AddFriendMutationVariables>(AddFriendDocument, options);
+      }
+export type AddFriendMutationHookResult = ReturnType<typeof useAddFriendMutation>;
+export type AddFriendMutationResult = Apollo.MutationResult<AddFriendMutation>;
+export type AddFriendMutationOptions = Apollo.BaseMutationOptions<AddFriendMutation, AddFriendMutationVariables>;
 export const LoginDocument = gql`
     mutation Login($identifier: String!, $password: String!) {
   login(identifier: $identifier, password: $password) {
@@ -1411,6 +1662,39 @@ export function useRefreshTokensMutation(baseOptions?: Apollo.MutationHookOption
 export type RefreshTokensMutationHookResult = ReturnType<typeof useRefreshTokensMutation>;
 export type RefreshTokensMutationResult = Apollo.MutationResult<RefreshTokensMutation>;
 export type RefreshTokensMutationOptions = Apollo.BaseMutationOptions<RefreshTokensMutation, RefreshTokensMutationVariables>;
+export const RejectFriendInviteDocument = gql`
+    mutation rejectFriendInvite($friendshipId: ID!) {
+  rejectFriendInvite(friendshipId: $friendshipId) {
+    ...Friendship
+  }
+}
+    ${FriendshipFragmentDoc}`;
+export type RejectFriendInviteMutationFn = Apollo.MutationFunction<RejectFriendInviteMutation, RejectFriendInviteMutationVariables>;
+
+/**
+ * __useRejectFriendInviteMutation__
+ *
+ * To run a mutation, you first call `useRejectFriendInviteMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRejectFriendInviteMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [rejectFriendInviteMutation, { data, loading, error }] = useRejectFriendInviteMutation({
+ *   variables: {
+ *      friendshipId: // value for 'friendshipId'
+ *   },
+ * });
+ */
+export function useRejectFriendInviteMutation(baseOptions?: Apollo.MutationHookOptions<RejectFriendInviteMutation, RejectFriendInviteMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RejectFriendInviteMutation, RejectFriendInviteMutationVariables>(RejectFriendInviteDocument, options);
+      }
+export type RejectFriendInviteMutationHookResult = ReturnType<typeof useRejectFriendInviteMutation>;
+export type RejectFriendInviteMutationResult = Apollo.MutationResult<RejectFriendInviteMutation>;
+export type RejectFriendInviteMutationOptions = Apollo.BaseMutationOptions<RejectFriendInviteMutation, RejectFriendInviteMutationVariables>;
 export const RemoveAnimeListEntryDocument = gql`
     mutation RemoveAnimeListEntry($animeUrl: String!) {
   removeAnimeListEntry(animeUrl: $animeUrl) {
@@ -2219,6 +2503,68 @@ export type FavoriteCharactersQueryHookResult = ReturnType<typeof useFavoriteCha
 export type FavoriteCharactersLazyQueryHookResult = ReturnType<typeof useFavoriteCharactersLazyQuery>;
 export type FavoriteCharactersSuspenseQueryHookResult = ReturnType<typeof useFavoriteCharactersSuspenseQuery>;
 export type FavoriteCharactersQueryResult = Apollo.QueryResult<FavoriteCharactersQuery, FavoriteCharactersQueryVariables>;
+export const FriendshipsDocument = gql`
+    query Friendships($userId: String!, $status: FriendshipStatus, $search: String, $limit: Int, $page: Int) {
+  friendships(
+    userId: $userId
+    status: $status
+    search: $search
+    limit: $limit
+    page: $page
+  ) {
+    data {
+      id
+      createdAt
+      updatedAt
+      status
+      friend {
+        ...UserLite
+      }
+    }
+    pageInfo {
+      hasNextPage
+      page
+    }
+  }
+}
+    ${UserLiteFragmentDoc}`;
+
+/**
+ * __useFriendshipsQuery__
+ *
+ * To run a query within a React component, call `useFriendshipsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFriendshipsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFriendshipsQuery({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *      status: // value for 'status'
+ *      search: // value for 'search'
+ *      limit: // value for 'limit'
+ *      page: // value for 'page'
+ *   },
+ * });
+ */
+export function useFriendshipsQuery(baseOptions: Apollo.QueryHookOptions<FriendshipsQuery, FriendshipsQueryVariables> & ({ variables: FriendshipsQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FriendshipsQuery, FriendshipsQueryVariables>(FriendshipsDocument, options);
+      }
+export function useFriendshipsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FriendshipsQuery, FriendshipsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FriendshipsQuery, FriendshipsQueryVariables>(FriendshipsDocument, options);
+        }
+export function useFriendshipsSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<FriendshipsQuery, FriendshipsQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<FriendshipsQuery, FriendshipsQueryVariables>(FriendshipsDocument, options);
+        }
+export type FriendshipsQueryHookResult = ReturnType<typeof useFriendshipsQuery>;
+export type FriendshipsLazyQueryHookResult = ReturnType<typeof useFriendshipsLazyQuery>;
+export type FriendshipsSuspenseQueryHookResult = ReturnType<typeof useFriendshipsSuspenseQuery>;
+export type FriendshipsQueryResult = Apollo.QueryResult<FriendshipsQuery, FriendshipsQueryVariables>;
 export const LastWatchedEpisodeDocument = gql`
     query LastWatchedEpisode($animeId: String!, $userId: String!) {
   lastWatchedEpisode(animeId: $animeId, userId: $userId) {
@@ -2260,6 +2606,54 @@ export type LastWatchedEpisodeQueryHookResult = ReturnType<typeof useLastWatched
 export type LastWatchedEpisodeLazyQueryHookResult = ReturnType<typeof useLastWatchedEpisodeLazyQuery>;
 export type LastWatchedEpisodeSuspenseQueryHookResult = ReturnType<typeof useLastWatchedEpisodeSuspenseQuery>;
 export type LastWatchedEpisodeQueryResult = Apollo.QueryResult<LastWatchedEpisodeQuery, LastWatchedEpisodeQueryVariables>;
+export const LastWatchedEpisodesDocument = gql`
+    query LastWatchedEpisodes($userId: String!, $limit: Int, $page: Int) {
+  lastWatchedEpisodes(userId: $userId, limit: $limit, page: $page) {
+    data {
+      ...ContinueWatching
+    }
+    pageInfo {
+      hasNextPage
+      page
+    }
+  }
+}
+    ${ContinueWatchingFragmentDoc}`;
+
+/**
+ * __useLastWatchedEpisodesQuery__
+ *
+ * To run a query within a React component, call `useLastWatchedEpisodesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLastWatchedEpisodesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLastWatchedEpisodesQuery({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *      limit: // value for 'limit'
+ *      page: // value for 'page'
+ *   },
+ * });
+ */
+export function useLastWatchedEpisodesQuery(baseOptions: Apollo.QueryHookOptions<LastWatchedEpisodesQuery, LastWatchedEpisodesQueryVariables> & ({ variables: LastWatchedEpisodesQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<LastWatchedEpisodesQuery, LastWatchedEpisodesQueryVariables>(LastWatchedEpisodesDocument, options);
+      }
+export function useLastWatchedEpisodesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LastWatchedEpisodesQuery, LastWatchedEpisodesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<LastWatchedEpisodesQuery, LastWatchedEpisodesQueryVariables>(LastWatchedEpisodesDocument, options);
+        }
+export function useLastWatchedEpisodesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<LastWatchedEpisodesQuery, LastWatchedEpisodesQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<LastWatchedEpisodesQuery, LastWatchedEpisodesQueryVariables>(LastWatchedEpisodesDocument, options);
+        }
+export type LastWatchedEpisodesQueryHookResult = ReturnType<typeof useLastWatchedEpisodesQuery>;
+export type LastWatchedEpisodesLazyQueryHookResult = ReturnType<typeof useLastWatchedEpisodesLazyQuery>;
+export type LastWatchedEpisodesSuspenseQueryHookResult = ReturnType<typeof useLastWatchedEpisodesSuspenseQuery>;
+export type LastWatchedEpisodesQueryResult = Apollo.QueryResult<LastWatchedEpisodesQuery, LastWatchedEpisodesQueryVariables>;
 export const ProfileDocument = gql`
     query Profile($login: String!) {
   profile(login: $login) {
@@ -2459,6 +2853,54 @@ export type UserStatisticsQueryHookResult = ReturnType<typeof useUserStatisticsQ
 export type UserStatisticsLazyQueryHookResult = ReturnType<typeof useUserStatisticsLazyQuery>;
 export type UserStatisticsSuspenseQueryHookResult = ReturnType<typeof useUserStatisticsSuspenseQuery>;
 export type UserStatisticsQueryResult = Apollo.QueryResult<UserStatisticsQuery, UserStatisticsQueryVariables>;
+export const UsersDocument = gql`
+    query Users($search: String, $limit: Int, $page: Int) {
+  users(search: $search, limit: $limit, page: $page) {
+    data {
+      ...UserLite
+    }
+    pageInfo {
+      hasNextPage
+      page
+    }
+  }
+}
+    ${UserLiteFragmentDoc}`;
+
+/**
+ * __useUsersQuery__
+ *
+ * To run a query within a React component, call `useUsersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUsersQuery({
+ *   variables: {
+ *      search: // value for 'search'
+ *      limit: // value for 'limit'
+ *      page: // value for 'page'
+ *   },
+ * });
+ */
+export function useUsersQuery(baseOptions?: Apollo.QueryHookOptions<UsersQuery, UsersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UsersQuery, UsersQueryVariables>(UsersDocument, options);
+      }
+export function useUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UsersQuery, UsersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UsersQuery, UsersQueryVariables>(UsersDocument, options);
+        }
+export function useUsersSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<UsersQuery, UsersQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<UsersQuery, UsersQueryVariables>(UsersDocument, options);
+        }
+export type UsersQueryHookResult = ReturnType<typeof useUsersQuery>;
+export type UsersLazyQueryHookResult = ReturnType<typeof useUsersLazyQuery>;
+export type UsersSuspenseQueryHookResult = ReturnType<typeof useUsersSuspenseQuery>;
+export type UsersQueryResult = Apollo.QueryResult<UsersQuery, UsersQueryVariables>;
 export const ViewerDocument = gql`
     query Viewer {
   viewer {

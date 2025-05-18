@@ -27,7 +27,12 @@ export const ROUTES = {
   PROFILE: {
     ROOT: '/profile/:login',
     ANIME_LIST: '/profile/:login/anime-list',
-    FAVORITES: '/profile/:login/favorites'
+    FAVORITES: '/profile/:login/favorites',
+    FRIENDS: {
+      ROOT: (login: string) => `/profile/${login}/friends`,
+      ADD: (login: string) => `/profile/${login}/friends/add`,
+      REQUESTS: (login: string) => `/profile/${login}/friends/requests`
+    }
   },
   APPS: {
     ROOT: '/apps',

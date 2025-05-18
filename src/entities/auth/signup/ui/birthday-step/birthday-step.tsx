@@ -37,9 +37,13 @@ export const BirthdayStep = () => {
         unstyled
         triggerClassName='mx-auto'
         trigger={
-          <Button>
-            {birthday ? dayjs(birthday).format('DD.MM.YYYY') : 'Выберите дату'}
-          </Button>
+          <div className='mx-auto'>
+            <Button>
+              {birthday
+                ? dayjs(birthday).format('DD.MM.YYYY')
+                : 'Выберите дату'}
+            </Button>
+          </div>
         }
       >
         <Calendar

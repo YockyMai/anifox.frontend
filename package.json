@@ -12,7 +12,7 @@
   "dependencies": {
     "@anifox/store": "^1.1.1",
     "@anifox/tailwind-config": "^1.0.5",
-    "@anifox/ui": "^1.6.18",
+    "@anifox/ui": "^1.6.20",
     "@apollo/client": "^3.13.4",
     "@hookform/resolvers": "^3.9.0",
     "@nivo/calendar": "^0.88.0",
