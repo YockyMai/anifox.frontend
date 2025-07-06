@@ -6,6 +6,7 @@ import {
   useAnimeQuery,
   useRelatedAnimesQuery
 } from '@/graphql/generated/output'
+import { AnimeComments } from '@/widgets/anime-comments'
 
 import { AnimePageParams } from '../anime.interface'
 import { AnimeEpisodesHistory } from './anime-episodes-history/anime-episodes-history'
@@ -74,6 +75,10 @@ export const AnimeOverviewScreen = () => {
       </div>
 
       <AnimeEpisodesHistory />
+
+      <ScreenSection withContainer title='Комментарии к аниме'>
+        <AnimeComments animeId={animeId!} />
+      </ScreenSection>
     </div>
   )
 }

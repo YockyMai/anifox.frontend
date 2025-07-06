@@ -27,7 +27,7 @@ export const UserCard = ({ user, actions }: UserCardProps) => {
           src={user.avatar ?? DEFAULT_USER_AVATAR}
         />
       </div>
-      <Link to={ROUTES.PROFILE.ROOT.replace(':login', user.login)}>
+      <Link to={ROUTES.PROFILE.ROOT(user.login)}>
         <p className='mt-2 text-center text-xl font-bold text-slate-700 hover:text-orange-300 dark:text-white'>
           {user.name}
         </p>

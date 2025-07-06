@@ -67,6 +67,7 @@ export const UserDropdown = () => {
         color='red'
         fullWidth
         size='sm'
+        onClick={() => $viewer.actions.logout()}
       >
         Выйти с аккаунта
       </Button>

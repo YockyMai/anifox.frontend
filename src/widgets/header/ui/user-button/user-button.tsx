@@ -23,7 +23,7 @@ export const UserButton = () => {
     setIsMobileMenuOpen(false)
 
     if (viewer) {
-      navigate(ROUTES.PROFILE.ROOT.replace(':login', viewer.login))
+      navigate(ROUTES.PROFILE.ROOT(viewer.login))
     } else {
       navigate(ROUTES.LOGIN)
     }

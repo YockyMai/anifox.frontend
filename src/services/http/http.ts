@@ -47,14 +47,7 @@ http.interceptors.response.use(
 
         return http.request(error.config)
       } catch {
-        cookie.serialize(COOKIES.ACCESS_TOKEN_KEY, '', {
-          maxAge: -1
-        })
-        cookie.serialize(COOKIES.REFRESH_TOKEN_KEY, '', {
-          maxAge: -1
-        })
-
-        $viewer.actions.resetViewer()
+        $viewer.actions.logout()
       }
     }
 

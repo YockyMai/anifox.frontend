@@ -1,0 +1,38 @@
+fragment AnimeComment on AnimeComment {
+  id
+  createdAt
+  comment
+  likes(limit: 1, page: 0) {
+    pageInfo {
+      totalCount
+    }
+  }
+  author {
+    role
+    name
+    avatar
+    login
+  }
+}
+
+query AnimeComments(
+  $animeId: String!
+  $limit: Int
+  $page: Int
+  $userId: String
+) {
+  animeComments(
+    animeId: $animeId
+    limit: $limit
+    page: $page
+    userId: $userId
+  ) {
+    data {
+      ...AnimeComment
+    }
+    pageInfo {
+      hasNextPage
+      page
+    }
+  }
+}

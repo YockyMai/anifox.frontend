@@ -10,7 +10,7 @@ export const LoginScreen = () => {
   const navigate = useNavigate()
 
   const onLoginSuccess = (user: ViewerFragment) => {
-    navigate(ROUTES.PROFILE.ROOT.replace(':login', user.login))
+    navigate(ROUTES.PROFILE.ROOT(user.login))
   }
 
   return (

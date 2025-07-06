@@ -66,7 +66,7 @@ export const Screens = () => {
         <Route path={ROUTES.CHARACTER.ROOT} element={<CharacterScreen />} />
 
         <Route path={ROUTES.RIGHT_HOLDERS} element={<RightHoldersScreen />} />
-        <Route path={ROUTES.PROFILE.ROOT} element={<ProfileLayout />}>
+        <Route path={ROUTES.PROFILE.ROOT(':login')} element={<ProfileLayout />}>
           <Route index element={<ProfileStatistics />} />
           <Route
             path={ROUTES.PROFILE.ANIME_LIST}

@@ -127,7 +127,7 @@ export type AnimeComment = {
   children: Array<AnimeComment>;
   comment: Scalars['String']['output'];
   createdAt: Scalars['DateTime']['output'];
-  dislikes: Array<User>;
+  dislikes: Array<AnimeCommentLikeConnection>;
   /** Example field (placeholder) */
   id: Scalars['String']['output'];
   likes: AnimeCommentLikeConnection;
@@ -783,7 +783,8 @@ export type QueryAnimesArgs = {
 
 
 export type QueryCharacterArgs = {
-  id: Scalars['String']['input'];
+  id?: InputMaybe<Scalars['String']['input']>;
+  malId?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -1060,6 +1061,14 @@ export type AddFriendMutationVariables = Exact<{
 
 export type AddFriendMutation = { __typename?: 'Mutation', addFriend: { __typename?: 'Friendship', id: string, status: FriendshipStatus, friendId: string, userId: string, user: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }, friend: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } } } };
 
+export type CreateAnimeCommentMutationVariables = Exact<{
+  animeId: Scalars['String']['input'];
+  comment: Scalars['String']['input'];
+}>;
+
+
+export type CreateAnimeCommentMutation = { __typename?: 'Mutation', createAnimeComment: { __typename?: 'AnimeComment', id: string, comment: string } };
+
 export type LoginMutationVariables = Exact<{
   identifier: Scalars['String']['input'];
   password: Scalars['String']['input'];
@@ -1163,6 +1172,18 @@ export type ToggleFavoriteCharacterMutationVariables = Exact<{
 
 export type ToggleFavoriteCharacterMutation = { __typename?: 'Mutation', toggleFavoriteCharacter: { __typename?: 'FavoriteCharacter', userId: string, characterId: string, user: { __typename?: 'User', id: string }, character: { __typename?: 'Character', id: string } } };
 
+export type AnimeCommentFragment = { __typename?: 'AnimeComment', id: string, createdAt: any, comment: string, likes: { __typename?: 'AnimeCommentLikeConnection', pageInfo: { __typename?: 'PageInfo', totalCount: number } }, author: { __typename?: 'User', role: UserRole, name: string, avatar?: string | null, login: string } };
+
+export type AnimeCommentsQueryVariables = Exact<{
+  animeId: Scalars['String']['input'];
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  userId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type AnimeCommentsQuery = { __typename?: 'Query', animeComments: { __typename?: 'AnimeCommentConnection', data: Array<{ __typename?: 'AnimeComment', id: string, createdAt: any, comment: string, likes: { __typename?: 'AnimeCommentLikeConnection', pageInfo: { __typename?: 'PageInfo', totalCount: number } }, author: { __typename?: 'User', role: UserRole, name: string, avatar?: string | null, login: string } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
+
 export type AnimeListEntryFragment = { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, totalRating?: number | null, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }> }, rating?: { __typename?: 'AnimeRating', rating: number } | null };
 
 export type AnimeListQueryVariables = Exact<{
@@ -1201,8 +1222,9 @@ export type AnimesQueryVariables = Exact<{
 export type AnimesQuery = { __typename?: 'Query', animes: { __typename?: 'AnimeConnection', data: Array<{ __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, totalRating?: number | null, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }> }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
 
 export type CharacterQueryVariables = Exact<{
-  characterId: Scalars['String']['input'];
+  characterId?: InputMaybe<Scalars['String']['input']>;
   userId?: InputMaybe<Scalars['String']['input']>;
+  malId?: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
@@ -1394,6 +1416,24 @@ export const UserTokensFragmentDoc = gql`
     fragment UserTokens on UserTokens {
   accessToken
   refreshToken
+}
+    `;
+export const AnimeCommentFragmentDoc = gql`
+    fragment AnimeComment on AnimeComment {
+  id
+  createdAt
+  comment
+  likes(limit: 1, page: 0) {
+    pageInfo {
+      totalCount
+    }
+  }
+  author {
+    role
+    name
+    avatar
+    login
+  }
 }
     `;
 export const AnimeLiteFragmentDoc = gql`
@@ -1589,6 +1629,41 @@ export function useAddFriendMutation(baseOptions?: Apollo.MutationHookOptions<Ad
 export type AddFriendMutationHookResult = ReturnType<typeof useAddFriendMutation>;
 export type AddFriendMutationResult = Apollo.MutationResult<AddFriendMutation>;
 export type AddFriendMutationOptions = Apollo.BaseMutationOptions<AddFriendMutation, AddFriendMutationVariables>;
+export const CreateAnimeCommentDocument = gql`
+    mutation CreateAnimeComment($animeId: String!, $comment: String!) {
+  createAnimeComment(animeId: $animeId, comment: $comment) {
+    id
+    comment
+  }
+}
+    `;
+export type CreateAnimeCommentMutationFn = Apollo.MutationFunction<CreateAnimeCommentMutation, CreateAnimeCommentMutationVariables>;
+
+/**
+ * __useCreateAnimeCommentMutation__
+ *
+ * To run a mutation, you first call `useCreateAnimeCommentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateAnimeCommentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createAnimeCommentMutation, { data, loading, error }] = useCreateAnimeCommentMutation({
+ *   variables: {
+ *      animeId: // value for 'animeId'
+ *      comment: // value for 'comment'
+ *   },
+ * });
+ */
+export function useCreateAnimeCommentMutation(baseOptions?: Apollo.MutationHookOptions<CreateAnimeCommentMutation, CreateAnimeCommentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateAnimeCommentMutation, CreateAnimeCommentMutationVariables>(CreateAnimeCommentDocument, options);
+      }
+export type CreateAnimeCommentMutationHookResult = ReturnType<typeof useCreateAnimeCommentMutation>;
+export type CreateAnimeCommentMutationResult = Apollo.MutationResult<CreateAnimeCommentMutation>;
+export type CreateAnimeCommentMutationOptions = Apollo.BaseMutationOptions<CreateAnimeCommentMutation, CreateAnimeCommentMutationVariables>;
 export const LoginDocument = gql`
     mutation Login($identifier: String!, $password: String!) {
   login(identifier: $identifier, password: $password) {
@@ -2052,6 +2127,55 @@ export function useToggleFavoriteCharacterMutation(baseOptions?: Apollo.Mutation
 export type ToggleFavoriteCharacterMutationHookResult = ReturnType<typeof useToggleFavoriteCharacterMutation>;
 export type ToggleFavoriteCharacterMutationResult = Apollo.MutationResult<ToggleFavoriteCharacterMutation>;
 export type ToggleFavoriteCharacterMutationOptions = Apollo.BaseMutationOptions<ToggleFavoriteCharacterMutation, ToggleFavoriteCharacterMutationVariables>;
+export const AnimeCommentsDocument = gql`
+    query AnimeComments($animeId: String!, $limit: Int, $page: Int, $userId: String) {
+  animeComments(animeId: $animeId, limit: $limit, page: $page, userId: $userId) {
+    data {
+      ...AnimeComment
+    }
+    pageInfo {
+      hasNextPage
+      page
+    }
+  }
+}
+    ${AnimeCommentFragmentDoc}`;
+
+/**
+ * __useAnimeCommentsQuery__
+ *
+ * To run a query within a React component, call `useAnimeCommentsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAnimeCommentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAnimeCommentsQuery({
+ *   variables: {
+ *      animeId: // value for 'animeId'
+ *      limit: // value for 'limit'
+ *      page: // value for 'page'
+ *      userId: // value for 'userId'
+ *   },
+ * });
+ */
+export function useAnimeCommentsQuery(baseOptions: Apollo.QueryHookOptions<AnimeCommentsQuery, AnimeCommentsQueryVariables> & ({ variables: AnimeCommentsQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AnimeCommentsQuery, AnimeCommentsQueryVariables>(AnimeCommentsDocument, options);
+      }
+export function useAnimeCommentsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AnimeCommentsQuery, AnimeCommentsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AnimeCommentsQuery, AnimeCommentsQueryVariables>(AnimeCommentsDocument, options);
+        }
+export function useAnimeCommentsSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<AnimeCommentsQuery, AnimeCommentsQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<AnimeCommentsQuery, AnimeCommentsQueryVariables>(AnimeCommentsDocument, options);
+        }
+export type AnimeCommentsQueryHookResult = ReturnType<typeof useAnimeCommentsQuery>;
+export type AnimeCommentsLazyQueryHookResult = ReturnType<typeof useAnimeCommentsLazyQuery>;
+export type AnimeCommentsSuspenseQueryHookResult = ReturnType<typeof useAnimeCommentsSuspenseQuery>;
+export type AnimeCommentsQueryResult = Apollo.QueryResult<AnimeCommentsQuery, AnimeCommentsQueryVariables>;
 export const AnimeListDocument = gql`
     query AnimeList($userId: String!, $status: AnimeListStatus) {
   animeList(userId: $userId, status: $status) {
@@ -2257,8 +2381,8 @@ export type AnimesLazyQueryHookResult = ReturnType<typeof useAnimesLazyQuery>;
 export type AnimesSuspenseQueryHookResult = ReturnType<typeof useAnimesSuspenseQuery>;
 export type AnimesQueryResult = Apollo.QueryResult<AnimesQuery, AnimesQueryVariables>;
 export const CharacterDocument = gql`
-    query Character($characterId: String!, $userId: String) {
-  character(id: $characterId) {
+    query Character($characterId: String, $userId: String, $malId: Int) {
+  character(id: $characterId, malId: $malId) {
     about
     aboutEn
     id
@@ -2287,10 +2411,11 @@ export const CharacterDocument = gql`
  *   variables: {
  *      characterId: // value for 'characterId'
  *      userId: // value for 'userId'
+ *      malId: // value for 'malId'
  *   },
  * });
  */
-export function useCharacterQuery(baseOptions: Apollo.QueryHookOptions<CharacterQuery, CharacterQueryVariables> & ({ variables: CharacterQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+export function useCharacterQuery(baseOptions?: Apollo.QueryHookOptions<CharacterQuery, CharacterQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<CharacterQuery, CharacterQueryVariables>(CharacterDocument, options);
       }

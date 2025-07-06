@@ -1,10 +1,65 @@
-import { Spoiler } from '@anifox/ui'
+import { HoverCard, Spoiler } from '@anifox/ui'
 import { useParams } from 'react-router'
 
+import { CharacterPopoverInfo } from '@/entities/characters/ui/character-popover-info'
 import { useAnimeQuery } from '@/graphql/generated/output'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 
-import './anime-description.css'
+interface CharacterTagProps {
+  id: string
+  children: React.ReactNode
+}
+
+const CharacterTag = ({ id, children }: CharacterTagProps) => {
+  return (
+    <HoverCard
+      unstyled
+      trigger={
+        <span className='cursor-pointer font-bold text-purple-500 hover:underline dark:text-purple-300'>
+          {children}
+        </span>
+      }
+    >
+      <div className='max-w-2xl'>
+        <CharacterPopoverInfo malId={Number.parseInt(id)} />
+      </div>
+    </HoverCard>
+  )
+}
+
+const parseCharacterTags = (text: string): React.ReactNode[] => {
+  const regex = /\[character=(\d+)\](.*?)\[\/character\]/gs
+  const result: React.ReactNode[] = []
+
+  let lastIndex = 0
+  let match
+
+  while ((match = regex.exec(text)) !== null) {
+    const [fullMatch, id, content] = match
+    const index = match.index
+
+    // Добавить обычный текст до тэга
+    if (lastIndex < index) {
+      result.push(text.slice(lastIndex, index))
+    }
+
+    // Добавить сам компонент
+    result.push(
+      <CharacterTag key={index} id={id}>
+        {content}
+      </CharacterTag>
+    )
+
+    lastIndex = index + fullMatch.length
+  }
+
+  // Добавить оставшийся текст после последнего тэга
+  if (lastIndex < text.length) {
+    result.push(text.slice(lastIndex))
+  }
+
+  return result
+}
 
 export const AnimeDescription = () => {
   const { animeUrl } = useParams<AnimePageParams>()!
@@ -22,17 +77,23 @@ export const AnimeDescription = () => {
   return (
     <>
       {/* only for PC */}
-      <div className='anime-description'>
+      <div className='h-full overflow-hidden max-lg:hidden'>
         <Spoiler maxHeight={125}>
-          <p className='anime-description__text'>{data?.anime.description}</p>
+          <p className='overflow-hidden whitespace-pre-line'>
+            {parseCharacterTags(data?.anime.description)}
+          </p>
         </Spoiler>
       </div>
 
       {/* only for mobile */}
-      <div className='anime-description-mobile'>
-        <p className='anime-description-mobile__title'>Описание</p>
+      <div className='mt-7 lg:hidden'>
+        <p className='mb-2 text-center text-xl font-bold dark:text-slate-300'>
+          Описание
+        </p>
         <Spoiler buttonWidthFull maxHeight={220}>
-          <p className='anime-description__text'>{data?.anime.description}</p>
+          <p className='whitespace-pre-line text-center'>
+            {parseCharacterTags(data?.anime.description)}
+          </p>
         </Spoiler>
       </div>
     </>

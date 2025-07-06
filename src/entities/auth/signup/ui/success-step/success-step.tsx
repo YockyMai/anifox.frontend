@@ -19,7 +19,7 @@ export const SuccessStep = () => {
         label: 'Перейти в профиль',
         onClick: () => {
           if (viewer) {
-            navigate(ROUTES.PROFILE.ROOT.replace(':login', viewer.login))
+            navigate(ROUTES.PROFILE.ROOT(viewer.login))
             resetForm()
           }
         }

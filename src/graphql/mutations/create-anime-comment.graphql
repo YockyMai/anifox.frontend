@@ -1,0 +1,6 @@
+mutation CreateAnimeComment($animeId: String!, $comment: String!) {
+  createAnimeComment(animeId: $animeId, comment: $comment) {
+    id
+    comment
+  }
+}

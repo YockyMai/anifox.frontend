@@ -18,7 +18,7 @@ export const ProfilePageTabs = () => {
   }, [pathname])
 
   const tabs = useMemo(() => {
-    const profileUrl = `${ROUTES.PROFILE.ROOT.replace(':login', profile!.login)}`
+    const profileUrl = `${ROUTES.PROFILE.ROOT(profile!.login)}`
     const animeListUrl = `${ROUTES.PROFILE.ANIME_LIST.replace(':login', profile!.login)}`
     const favoritesUrl = `${ROUTES.PROFILE.FAVORITES.replace(':login', profile!.login)}`
     const friendsUrl = ROUTES.PROFILE.FRIENDS.ROOT(profile!.login)
