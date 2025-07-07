@@ -3,22 +3,31 @@ import { useParams } from 'react-router'
 import { AnimeFavoriteButton } from '@/entities/anime/anime-favorite'
 import { AnimeListButton } from '@/entities/anime/anime-list'
 import { AnimeRateButton } from '@/entities/anime/anime-rating'
-import { useAnimeQuery } from '@/graphql/queries'
+import { $viewer } from '@/entities/viewer'
+import { useAnimeQuery } from '@/graphql/generated/output'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 
 export const AnimeActionBar = () => {
-  const { animeUrl } = useParams<AnimePageParams>()!
+  const { animeId, animeUrl } = useParams<AnimePageParams>()!
 
-  const { data } = useAnimeQuery(animeUrl!)
+  const viewer = $viewer.selectors.viewer()
+
+  const { data } = useAnimeQuery({
+    variables: {
+      url: animeUrl!,
+      userId: viewer?.id
+    }
+  })
 
   return (
     <div className='flex gap-2 max-lg:w-full max-lg:justify-center'>
       <AnimeFavoriteButton animeUrl={animeUrl!} />
-      <AnimeRateButton animeUrl={animeUrl!} rating={data?.user?.rating} />
-      <AnimeListButton
+      <AnimeRateButton
         animeUrl={animeUrl!}
-        currentTrackStatus={data?.user?.list}
+        animeId={animeId!}
+        rating={data?.anime.userRating?.rating}
       />
+      <AnimeListButton animeUrl={animeUrl!} currentTrackStatus={undefined} />
     </div>
   )
 }

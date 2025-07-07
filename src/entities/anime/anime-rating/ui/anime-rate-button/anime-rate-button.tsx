@@ -4,27 +4,52 @@ import { useMemo, useState } from 'react'
 
 import { UISizes } from '@/common/types/ui-sizes'
 import { AuthModal } from '@/entities/auth/auth-modal'
-import { useIsAuth } from '@/entities/viewer'
-import { useAnimeRatingMutation } from '@/graphql/mutations'
-import { useAnimeStatisticsQuery } from '@/graphql/queries'
+import { $viewer, useIsAuth } from '@/entities/viewer'
+import {
+  AnimeDocument,
+  AnimeRatingDistributionDocument,
+  useSaveAnimeRatingMutation
+} from '@/graphql/generated/output'
 
 import { AnimeRateButtonProps } from './anime-rate-button.interface'
 import { AnimeRateDropdown } from './ui'
 
 export const AnimeRateButton = ({
+  animeId,
   animeUrl,
   rating,
   size = 28,
   withoutText,
   openDelay
 }: AnimeRateButtonProps) => {
+  const viewer = $viewer.selectors.viewer()
   const isAuth = useIsAuth()
 
-  const { data: statistics } = useAnimeStatisticsQuery(animeUrl)
-  const ratingMutation = useAnimeRatingMutation()
+  const [ratingMutation, { loading: ratingMutationLoading }] =
+    useSaveAnimeRatingMutation({
+      refetchQueries: () => {
+        setProcessedRating(null)
+
+        return [
+          {
+            query: AnimeDocument,
+            variables: {
+              url: animeUrl,
+              userId: viewer?.id
+            }
+          },
+          {
+            query: AnimeRatingDistributionDocument,
+            variables: {
+              animeId
+            }
+          }
+        ]
+      }
+    })
 
   const [authModalIsOpened, setAuthModalIsOpened] = useState(false)
-  const [selectedRating, setSelectedRating] = useState<number | null>(null)
+  const [processedRating, setProcessedRating] = useState<number | null>(null)
 
   const trigger = useMemo(() => {
     if (withoutText) {
@@ -46,7 +71,9 @@ export const AnimeRateButton = ({
         color={UIColors.GREEN}
       >
         <p className='text-sm'>
-          {typeof rating !== 'undefined' ? `Ваша оценка 10` : 'Оценить аниме'}
+          {typeof rating !== 'undefined'
+            ? `Ваша оценка ${rating}`
+            : 'Оценить аниме'}
         </p>
         <IconStarFilled />
       </Badge>
@@ -54,10 +81,17 @@ export const AnimeRateButton = ({
   }, [size, rating, withoutText])
 
   const rateAnime = (rating: number) => {
+    setProcessedRating(rating)
     if (isAuth) {
-      ratingMutation.mutate({ animeUrl, rating })
+      ratingMutation({
+        variables: {
+          animeId,
+          rating
+        }
+      }).then(() => {
+        setProcessedRating(null)
+      })
     } else {
-      setSelectedRating(rating)
       setAuthModalIsOpened(true)
     }
   }
@@ -72,9 +106,10 @@ export const AnimeRateButton = ({
         trigger={trigger}
       >
         <AnimeRateDropdown
+          ratingMutationLoading={ratingMutationLoading}
+          processedRating={processedRating}
           onRateAnime={rateAnime}
-          scores={statistics?.scores ?? []}
-          totalVotes={statistics?.totalVotes ?? 0}
+          animeId={animeId}
         />
       </HoverCard>
 
@@ -82,9 +117,10 @@ export const AnimeRateButton = ({
         isOpen={authModalIsOpened}
         onClose={() => setAuthModalIsOpened(false)}
         onAuthSuccess={() => {
-          if (typeof selectedRating === 'number') {
-            ratingMutation.mutate({ animeUrl, rating: selectedRating })
-            setSelectedRating(null)
+          if (typeof processedRating === 'number') {
+            ratingMutation({
+              variables: { animeId, rating: processedRating }
+            })
           }
         }}
       />

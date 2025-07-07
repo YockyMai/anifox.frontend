@@ -75,6 +75,7 @@ export type Anime = {
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   /** Unique anime url derived from anime title */
   url: Scalars['String']['output'];
+  userRating?: Maybe<AnimeRating>;
   videos: Array<AnimeVideo>;
   /** Year of release */
   year: Scalars['Int']['output'];
@@ -102,6 +103,11 @@ export type AnimeRelatedArgs = {
 export type AnimeSimilarArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type AnimeUserRatingArgs = {
+  userId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type AnimeCharacter = {
@@ -253,17 +259,14 @@ export type AnimeRatingDistribution = {
   __typename?: 'AnimeRatingDistribution';
   anime: Anime;
   animeId: Scalars['String']['output'];
-  scoreEight: Scalars['Int']['output'];
-  scoreFive: Scalars['Int']['output'];
-  scoreFour: Scalars['Int']['output'];
-  scoreNine: Scalars['Int']['output'];
-  scoreOne: Scalars['Int']['output'];
-  scoreSeven: Scalars['Int']['output'];
-  scoreSix: Scalars['Int']['output'];
-  scoreTen: Scalars['Int']['output'];
-  scoreThree: Scalars['Int']['output'];
-  scoreTwo: Scalars['Int']['output'];
+  scores: Array<AnimeRatingDistributionScore>;
   total: Scalars['Int']['output'];
+};
+
+export type AnimeRatingDistributionScore = {
+  __typename?: 'AnimeRatingDistributionScore';
+  score: Scalars['Int']['output'];
+  votes: Scalars['Int']['output'];
 };
 
 export const AnimeSeason = {
@@ -1194,12 +1197,20 @@ export type AnimeListQueryVariables = Exact<{
 
 export type AnimeListQuery = { __typename?: 'Query', animeList: { __typename?: 'AnimeList', list: Array<{ __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, totalRating?: number | null, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }> }, rating?: { __typename?: 'AnimeRating', rating: number } | null }> } };
 
-export type AnimeQueryVariables = Exact<{
-  url: Scalars['String']['input'];
+export type AnimeRatingDistributionQueryVariables = Exact<{
+  animeId: Scalars['String']['input'];
 }>;
 
 
-export type AnimeQuery = { __typename?: 'Query', anime: { __typename?: 'Anime', accentColor: string, airedOn?: any | null, createdAt: any, description?: string | null, duration?: number | null, episodesAired: number, episodesCount?: number | null, franchise?: string | null, id: string, minimalAge: number, nextEpisode?: any | null, playerLink: string, ratingMpa: string, releasedOn: any, screenshots: Array<string>, season: AnimeSeason, shikimoriId: number, shikimoriRating: number, shikimoriVotes: number, status: AnimeStatus, title: string, totalRating?: number | null, type: AnimeType, updatedAt?: any | null, url: string, year: number, image: { __typename?: 'AnimeImage', medium?: string | null, cover?: string | null, large?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, image?: string | null, name: string }>, videos: Array<{ __typename?: 'AnimeVideo', id: string, imageUrl?: string | null, name?: string | null, type: AnimeVideoType, playerUrl: string }> } };
+export type AnimeRatingDistributionQuery = { __typename?: 'Query', animeRatingDistribution: { __typename?: 'AnimeRatingDistribution', animeId: string, total: number, scores: Array<{ __typename?: 'AnimeRatingDistributionScore', votes: number, score: number }> } };
+
+export type AnimeQueryVariables = Exact<{
+  url: Scalars['String']['input'];
+  userId?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type AnimeQuery = { __typename?: 'Query', anime: { __typename?: 'Anime', accentColor: string, airedOn?: any | null, createdAt: any, description?: string | null, duration?: number | null, episodesAired: number, episodesCount?: number | null, franchise?: string | null, id: string, minimalAge: number, nextEpisode?: any | null, playerLink: string, ratingMpa: string, releasedOn: any, screenshots: Array<string>, season: AnimeSeason, shikimoriId: number, shikimoriRating: number, shikimoriVotes: number, status: AnimeStatus, title: string, totalRating?: number | null, type: AnimeType, updatedAt?: any | null, url: string, year: number, image: { __typename?: 'AnimeImage', medium?: string | null, cover?: string | null, large?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, image?: string | null, name: string }>, videos: Array<{ __typename?: 'AnimeVideo', id: string, imageUrl?: string | null, name?: string | null, type: AnimeVideoType, playerUrl: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number, userId: string } | null } };
 
 export type AnimesQueryVariables = Exact<{
   genres?: InputMaybe<Array<Scalars['String']['input']> | Scalars['String']['input']>;
@@ -2219,8 +2230,53 @@ export type AnimeListQueryHookResult = ReturnType<typeof useAnimeListQuery>;
 export type AnimeListLazyQueryHookResult = ReturnType<typeof useAnimeListLazyQuery>;
 export type AnimeListSuspenseQueryHookResult = ReturnType<typeof useAnimeListSuspenseQuery>;
 export type AnimeListQueryResult = Apollo.QueryResult<AnimeListQuery, AnimeListQueryVariables>;
+export const AnimeRatingDistributionDocument = gql`
+    query AnimeRatingDistribution($animeId: String!) {
+  animeRatingDistribution(animeId: $animeId) {
+    animeId
+    total
+    scores {
+      votes
+      score
+    }
+  }
+}
+    `;
+
+/**
+ * __useAnimeRatingDistributionQuery__
+ *
+ * To run a query within a React component, call `useAnimeRatingDistributionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAnimeRatingDistributionQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAnimeRatingDistributionQuery({
+ *   variables: {
+ *      animeId: // value for 'animeId'
+ *   },
+ * });
+ */
+export function useAnimeRatingDistributionQuery(baseOptions: Apollo.QueryHookOptions<AnimeRatingDistributionQuery, AnimeRatingDistributionQueryVariables> & ({ variables: AnimeRatingDistributionQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AnimeRatingDistributionQuery, AnimeRatingDistributionQueryVariables>(AnimeRatingDistributionDocument, options);
+      }
+export function useAnimeRatingDistributionLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AnimeRatingDistributionQuery, AnimeRatingDistributionQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AnimeRatingDistributionQuery, AnimeRatingDistributionQueryVariables>(AnimeRatingDistributionDocument, options);
+        }
+export function useAnimeRatingDistributionSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<AnimeRatingDistributionQuery, AnimeRatingDistributionQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<AnimeRatingDistributionQuery, AnimeRatingDistributionQueryVariables>(AnimeRatingDistributionDocument, options);
+        }
+export type AnimeRatingDistributionQueryHookResult = ReturnType<typeof useAnimeRatingDistributionQuery>;
+export type AnimeRatingDistributionLazyQueryHookResult = ReturnType<typeof useAnimeRatingDistributionLazyQuery>;
+export type AnimeRatingDistributionSuspenseQueryHookResult = ReturnType<typeof useAnimeRatingDistributionSuspenseQuery>;
+export type AnimeRatingDistributionQueryResult = Apollo.QueryResult<AnimeRatingDistributionQuery, AnimeRatingDistributionQueryVariables>;
 export const AnimeDocument = gql`
-    query Anime($url: String!) {
+    query Anime($url: String!, $userId: String) {
   anime(url: $url) {
     accentColor
     airedOn
@@ -2269,6 +2325,11 @@ export const AnimeDocument = gql`
     updatedAt
     url
     year
+    userRating(userId: $userId) {
+      id
+      rating
+      userId
+    }
   }
 }
     `;
@@ -2286,6 +2347,7 @@ export const AnimeDocument = gql`
  * const { data, loading, error } = useAnimeQuery({
  *   variables: {
  *      url: // value for 'url'
+ *      userId: // value for 'userId'
  *   },
  * });
  */

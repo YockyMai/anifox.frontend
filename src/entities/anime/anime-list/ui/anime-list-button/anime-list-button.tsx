@@ -2,8 +2,9 @@ import { HoverCard } from '@anifox/ui'
 import { useState } from 'react'
 
 import { AuthModal } from '@/entities/auth/auth-modal'
-import { useIsAuth } from '@/entities/viewer'
+import { $viewer, useIsAuth } from '@/entities/viewer'
 import {
+  AnimeListDocument,
   AnimeListStatus,
   useRemoveAnimeListEntryMutation,
   useSaveAnimeListEntryMutation
@@ -22,14 +23,55 @@ export const AnimeListButton = ({
 }: AnimeListButtonProps) => {
   const isAuth = useIsAuth()
 
+  const viewer = $viewer.selectors.viewer()
   const [authModalIsOpened, setAuthModalIsOpened] = useState(false)
   const [trackStatusInProgress, setTrackStatusInProgress] =
     useState<AnimeListStatus | null>(null)
 
-  const [saveAnimeListEntry] = useSaveAnimeListEntryMutation()
-  const [removeAnimeListEntry] = useRemoveAnimeListEntryMutation({
-    variables: { animeUrl }
-  })
+  const [saveAnimeListEntry, { loading: saveAnimeListEntryLoading }] =
+    useSaveAnimeListEntryMutation({
+      refetchQueries: (result) => {
+        const newStatus = result.data?.saveAnimeListEntry.status
+
+        if (!viewer) {
+          return []
+        }
+
+        return [
+          {
+            query: AnimeListDocument,
+            variables: {
+              status: newStatus,
+              userId: viewer.id
+            }
+          },
+          {
+            query: AnimeListDocument,
+            variables: {
+              status: currentTrackStatus,
+              userId: viewer.id
+            }
+          }
+        ]
+      }
+    })
+
+  const [removeAnimeListEntry, { loading: removeAnimeListEntryLoading }] =
+    useRemoveAnimeListEntryMutation({
+      variables: { animeUrl },
+      refetchQueries: () => {
+        if (!viewer) {
+          return []
+        }
+
+        return [
+          {
+            query: AnimeListDocument,
+            variables: { userId: viewer.id, status: currentTrackStatus }
+          }
+        ]
+      }
+    })
 
   const addAnimeTrackedList = async (status: AnimeListStatus) => {
     if (isAuth) {

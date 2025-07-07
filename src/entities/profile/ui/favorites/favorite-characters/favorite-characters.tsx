@@ -38,7 +38,7 @@ export const FavoriteCharacters = () => {
       image: character.image,
       key: characterId,
       title: character.name,
-      to: ROUTES.CHARACTER.ROOT.replace(':id', characterId)
+      to: ROUTES.CHARACTER.ROOT(characterId)
     })) ?? []
 
   return (

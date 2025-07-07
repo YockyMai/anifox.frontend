@@ -1,4 +1,4 @@
-query Anime($url: String!) {
+query Anime($url: String!, $userId: String) {
   anime(url: $url) {
     accentColor
     airedOn
@@ -47,5 +47,10 @@ query Anime($url: String!) {
     updatedAt
     url
     year
+    userRating(userId: $userId) {
+      id
+      rating
+      userId
+    }
   }
 }

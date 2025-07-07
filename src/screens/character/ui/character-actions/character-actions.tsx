@@ -1,44 +1,51 @@
 import { Button, UIColors, UISizes } from '@anifox/ui'
 import { IconCheck, IconHeart, IconHeartFilled } from '@tabler/icons-react'
-import { useParams } from 'react-router'
 
 import { $viewer } from '@/entities/viewer'
 import {
+  CharacterDocument,
   useCharacterQuery,
   useToggleFavoriteCharacterMutation
 } from '@/graphql/generated/output'
 
-import { CharacterPageParams } from '../../character.interface'
+import { CharacterActionsProps } from './character-actions.interface'
 
-export const CharacterActions = () => {
+export const CharacterActions = ({ characterId }: CharacterActionsProps) => {
   const viewer = $viewer.selectors.viewer()
-
-  const { id } = useParams<CharacterPageParams>()
 
   const { data } = useCharacterQuery({
     variables: {
-      characterId: id!,
+      characterId,
       userId: viewer?.id
     }
   })
 
   const isFavorite = data?.character.isFavorite
 
-  const [toggleFavoriteCharacter] = useToggleFavoriteCharacterMutation({
-    variables: {
-      characterId: id!
-    }
-  })
+  const [toggleFavoriteCharacter, { loading }] =
+    useToggleFavoriteCharacterMutation({
+      variables: {
+        characterId
+      },
+      refetchQueries: [
+        {
+          query: CharacterDocument,
+          variables: {
+            characterId,
+            userId: viewer?.id
+          }
+        }
+      ]
+    })
 
   return (
     <Button
+      fullWidth
+      isLoading={loading}
       size={UISizes.SM}
       icon={isFavorite ? <IconHeartFilled /> : <IconHeart />}
-      rightIcon={isFavorite && <IconCheck />}
       color={UIColors.RED}
-      onClick={() =>
-        toggleFavoriteCharacter({ variables: { characterId: id! } })
-      }
+      onClick={() => toggleFavoriteCharacter()}
     >
       {isFavorite ? 'В избранном' : 'В избранное'}
     </Button>

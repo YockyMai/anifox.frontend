@@ -5,7 +5,6 @@ import { useCharacterQuery } from '@/graphql/generated/output'
 
 import { CharacterPageParams } from '../../character.interface'
 import { CharacterPictures } from '../character-pictures/character-pictures'
-import './character-participation.css'
 
 export const CharacterParticipation = () => {
   const { id } = useParams<CharacterPageParams>()
@@ -16,7 +15,7 @@ export const CharacterParticipation = () => {
 
   return (
     <>
-      <div className='character-participation'>
+      <div className='container mt-12'>
         {character?.pictures?.length ? (
           <ScreenSection title='Фотографии'>
             <CharacterPictures />

@@ -15,7 +15,7 @@ export const ROUTES = {
     }
   },
   CHARACTER: {
-    ROOT: '/character/:id'
+    ROOT: (id: string) => `/character/${id}`
   },
   SETTINGS: '/settings',
   LOGIN: '/login',

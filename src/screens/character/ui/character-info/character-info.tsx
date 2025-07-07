@@ -41,7 +41,7 @@ export const CharacterInfo = () => {
           <div className='character-info__name'>
             <div className='flex items-center gap-x-3'>
               <p className='character-info__name__main'>{character?.name}</p>
-              <CharacterActions />
+              {character && <CharacterActions characterId={character?.id} />}
             </div>
             {(character?.nameEn || character?.nameKanji) && (
               <div>
@@ -61,7 +61,10 @@ export const CharacterInfo = () => {
         <div />
         {character?.about && (
           <Spoiler maxHeight={145}>
-            <p className='whitespace-pre-line'>{character.about}</p>
+            <p
+              className='whitespace-pre-line'
+              dangerouslySetInnerHTML={{ __html: character.about ?? '' }}
+            />
           </Spoiler>
         )}
       </div>

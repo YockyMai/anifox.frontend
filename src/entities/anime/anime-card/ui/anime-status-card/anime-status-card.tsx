@@ -42,7 +42,11 @@ export const AnimeStatusCard = ({
         </motion.div>
 
         <div className='flex flex-[2] items-center justify-center gap-x-1.5'>
-          <AnimeRateButton animeUrl={anime.url} rating={rating?.rating} />
+          <AnimeRateButton
+            animeId={anime.id}
+            animeUrl={anime.url}
+            rating={rating?.rating}
+          />
         </div>
 
         <div className='flex flex-[1] items-center justify-center gap-x-1.5'>

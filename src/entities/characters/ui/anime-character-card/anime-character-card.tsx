@@ -12,7 +12,7 @@ export const AnimeCharacterCard = ({ character }: AnimeCharacterCardProps) => {
         <div className='absolute bottom-1 left-1/2 z-10 w-[90%] -translate-x-1/2 rounded bg-slate-800/60 p-2 text-white backdrop-blur-xl'>
           <p className='text-center text-xs'>{character.role} роль</p>
         </div>
-        <Link to={ROUTES.CHARACTER.ROOT.replace(':id', character.id)}>
+        <Link to={ROUTES.CHARACTER.ROOT(character.id)}>
           <div className='aspect-[3/4] w-full overflow-hidden rounded'>
             <Image
               className='h-full w-full scale-105 object-cover'
@@ -25,7 +25,7 @@ export const AnimeCharacterCard = ({ character }: AnimeCharacterCardProps) => {
       <Link
         title={character.name}
         className='mt-1 line-clamp-2 h-10 text-sm max-sm:h-8 max-sm:text-xs'
-        to={ROUTES.CHARACTER.ROOT.replace(':id', character.id)}
+        to={ROUTES.CHARACTER.ROOT(character.id)}
       >
         {character.name}
       </Link>

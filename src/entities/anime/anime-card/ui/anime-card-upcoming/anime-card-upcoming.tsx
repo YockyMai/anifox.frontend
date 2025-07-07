@@ -55,6 +55,7 @@ export const AnimeCardUpcoming = ({ anime }: AnimeCardUpcomingProps) => {
           <AnimeListButton openDelay={300} animeUrl={anime.url} withoutTitle />
           <AnimeRateButton
             openDelay={300}
+            animeId={anime.id}
             animeUrl={anime.url}
             withoutText
             rating={anime.rating ?? 0}

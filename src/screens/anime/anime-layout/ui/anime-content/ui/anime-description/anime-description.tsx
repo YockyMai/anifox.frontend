@@ -1,9 +1,10 @@
 import { HoverCard, Spoiler } from '@anifox/ui'
-import { useParams } from 'react-router'
+import { Link, useParams } from 'react-router'
 
 import { CharacterPopoverInfo } from '@/entities/characters/ui/character-popover-info'
 import { useAnimeQuery } from '@/graphql/generated/output'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
+import { ROUTES } from '@/screens/pages.routes'
 
 interface CharacterTagProps {
   id: string
@@ -14,10 +15,14 @@ const CharacterTag = ({ id, children }: CharacterTagProps) => {
   return (
     <HoverCard
       unstyled
+      position='bottom'
       trigger={
-        <span className='cursor-pointer font-bold text-purple-500 hover:underline dark:text-purple-300'>
+        <Link
+          to={ROUTES.CHARACTER.ROOT(id)}
+          className='cursor-pointer font-bold text-purple-500 hover:underline dark:text-purple-300'
+        >
           {children}
-        </span>
+        </Link>
       }
     >
       <div className='max-w-2xl'>

@@ -66,12 +66,13 @@ export const AnimeContentCharacteristics = () => {
 
     return infos
   }, [
-    data?.episodes,
-    data?.aired_on,
-    data?.year,
-    data?.type,
-    data?.status,
-    data?.released_on
+    anime?.episodesAired,
+    anime?.episodesCount,
+    anime?.year,
+    anime?.type,
+    anime?.status,
+    anime?.releasedOn,
+    anime?.type
   ])
 
   return <AnimeInfoBlock title='Об аниме: ' infos={infos} />

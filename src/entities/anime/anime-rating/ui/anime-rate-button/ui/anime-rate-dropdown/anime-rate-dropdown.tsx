@@ -1,17 +1,30 @@
+import { Loader } from '@anifox/ui'
 import { IconStarFilled } from '@tabler/icons-react'
 import { clsx } from 'clsx'
 import { useMemo } from 'react'
 
 import { UIColors } from '@/common/types/ui-colors'
+import { useAnimeRatingDistributionQuery } from '@/graphql/generated/output'
 
 import { getColorByRating, getRatingDistribution } from '../../../../lib'
 import { AnimeRateDropdownProps } from './anime-rate-dropdown.interface'
 
 export const AnimeRateDropdown = ({
-  scores,
+  animeId,
+  ratingMutationLoading,
+  processedRating,
   onRateAnime
 }: AnimeRateDropdownProps) => {
-  const { ratings } = useMemo(() => getRatingDistribution(scores), [scores])
+  const { data } = useAnimeRatingDistributionQuery({
+    variables: {
+      animeId
+    }
+  })
+
+  const { ratings } = useMemo(
+    () => getRatingDistribution(data?.animeRatingDistribution.scores ?? []),
+    [data?.animeRatingDistribution.scores]
+  )
 
   return (
     <div className='w-full max-w-xs rounded-xl bg-slate-800 py-2 pl-3 pr-5'>
@@ -37,9 +50,14 @@ export const AnimeRateDropdown = ({
                 )}
                 size={45}
               />
-              <p className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xs text-white'>
-                {score}
-              </p>
+
+              <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
+                {processedRating === score && ratingMutationLoading ? (
+                  <Loader size='sm' color='light' />
+                ) : (
+                  <p className='text-xs text-white'>{score}</p>
+                )}
+              </div>
             </div>
             <div className='relative h-4 w-full min-w-[10px] overflow-hidden rounded bg-slate-600'>
               <span

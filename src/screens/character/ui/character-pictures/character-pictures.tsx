@@ -5,7 +5,6 @@ import { useCharacterQuery } from '@/graphql/generated/output'
 
 import { CharacterPageParams } from '../../character.interface'
 import { CharacterPicture } from './character-picture'
-import './character-pictures.css'
 
 export const CharacterPictures = () => {
   const { id } = useParams<CharacterPageParams>()
@@ -16,7 +15,7 @@ export const CharacterPictures = () => {
 
   return (
     <Fancybox>
-      <div className='character-pictures'>
+      <div className='h-[160px]'>
         <Carousel
           slides={(pictures ?? []).map((src) => ({
             content: <CharacterPicture key={src} src={src} />,
