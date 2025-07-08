@@ -1,6 +1,6 @@
-import { AnimeTrackStatuses } from '@/services/api'
+import { AnimeListStatus } from '@/graphql/generated/output'
 
 export type TriggerProps = {
   withoutTitle?: boolean
-  currentTrackStatus?: AnimeTrackStatuses
+  currentTrackStatus?: AnimeListStatus
 }

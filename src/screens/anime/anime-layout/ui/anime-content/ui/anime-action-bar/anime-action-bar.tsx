@@ -27,7 +27,10 @@ export const AnimeActionBar = () => {
         animeId={animeId!}
         rating={data?.anime.userRating?.rating}
       />
-      <AnimeListButton animeUrl={animeUrl!} currentTrackStatus={undefined} />
+      <AnimeListButton
+        animeUrl={animeUrl!}
+        currentAnimeListStatus={data?.anime.animeListEntry?.status}
+      />
     </div>
   )
 }

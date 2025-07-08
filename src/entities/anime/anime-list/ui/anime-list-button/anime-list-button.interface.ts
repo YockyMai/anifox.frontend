@@ -5,5 +5,5 @@ export type AnimeListButtonProps = {
   withoutTitle?: boolean
   openDelay?: number
   onlyContent?: boolean
-  currentTrackStatus?: AnimeListStatus
+  currentAnimeListStatus?: AnimeListStatus
 }

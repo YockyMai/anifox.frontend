@@ -6,6 +6,7 @@ import { motion, Reorder, useDragControls } from 'framer-motion'
 import { AnimeTrackStatusIcon } from '@/common/components/anime-track-status-icon/anime-track-status-icon'
 import { $animeList, $animeListFilters } from '@/entities/profile'
 import { AnimeListStatus } from '@/graphql/generated/output'
+import { MAP_ANIME_LIST_STATUS_LABEL } from '@/services/api'
 
 export const TrackStatus = () => {
   const rows = $animeList.selectors.rows()
@@ -85,7 +86,7 @@ const StatusItem = ({
             <IconGripVertical />
           </motion.div>
 
-          <p className='font-semibold'>{status}</p>
+          <p className='font-semibold'>{MAP_ANIME_LIST_STATUS_LABEL[status]}</p>
         </div>
 
         {isSelected ? <IconX /> : <AnimeTrackStatusIcon status={status} />}

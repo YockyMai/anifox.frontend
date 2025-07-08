@@ -1,4 +1,4 @@
-import { Popover, Tooltip, UnstyledButton } from '@anifox/ui'
+import { Popover, UnstyledButton } from '@anifox/ui'
 import { IconPencil, IconTrash } from '@tabler/icons-react'
 import { AnimatePresence, motion } from 'framer-motion'
 
@@ -47,7 +47,7 @@ export const AnimeStatusMenu = ({
             <AnimeListButton
               animeUrl={anime.url}
               onlyContent
-              currentTrackStatus={status}
+              currentAnimeListStatus={status}
             />
           </Popover>
         </motion.div>

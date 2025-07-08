@@ -1,15 +1,9 @@
-export const ANIME_TRACK_STATUSES = {
-  COMPLETED: 'completed',
-  WATCHING: 'watching',
-  PLAN_TO_WATCH: 'plan_to_watch',
-  ON_HOLD: 'on_hold',
-  DROPPED: 'dropped'
-} as const
+import { AnimeListStatus } from '@/graphql/generated/output'
 
-export const MAP_ANIME_TRACK_STATUS_LABEL = {
-  [ANIME_TRACK_STATUSES.PLAN_TO_WATCH]: 'Запланировано',
-  [ANIME_TRACK_STATUSES.WATCHING]: 'Смотрю',
-  [ANIME_TRACK_STATUSES.COMPLETED]: 'Завершено',
-  [ANIME_TRACK_STATUSES.DROPPED]: 'Брошено',
-  [ANIME_TRACK_STATUSES.ON_HOLD]: 'Отложено'
+export const MAP_ANIME_LIST_STATUS_LABEL = {
+  [AnimeListStatus.PLAN_TO_WATCH]: 'Запланировано',
+  [AnimeListStatus.WATCHING]: 'Смотрю',
+  [AnimeListStatus.COMPLETED]: 'Завершено',
+  [AnimeListStatus.DROPPED]: 'Брошено',
+  [AnimeListStatus.ON_HOLD]: 'Отложено'
 } as const

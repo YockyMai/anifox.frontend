@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { AuthModal } from '@/entities/auth/auth-modal'
 import { $viewer, useIsAuth } from '@/entities/viewer'
 import {
+  AnimeDocument,
   AnimeListDocument,
   AnimeListStatus,
   useRemoveAnimeListEntryMutation,
@@ -18,18 +19,22 @@ export const AnimeListButton = ({
   animeUrl,
   withoutTitle,
   openDelay,
-  currentTrackStatus,
+  currentAnimeListStatus,
   onlyContent
 }: AnimeListButtonProps) => {
   const isAuth = useIsAuth()
 
   const viewer = $viewer.selectors.viewer()
+
   const [authModalIsOpened, setAuthModalIsOpened] = useState(false)
-  const [trackStatusInProgress, setTrackStatusInProgress] =
+  const [processedTrackStatus, setProcessedTrackStatus] =
     useState<AnimeListStatus | null>(null)
 
   const [saveAnimeListEntry, { loading: saveAnimeListEntryLoading }] =
     useSaveAnimeListEntryMutation({
+      onCompleted: () => {
+        setProcessedTrackStatus(null)
+      },
       refetchQueries: (result) => {
         const newStatus = result.data?.saveAnimeListEntry.status
 
@@ -48,7 +53,7 @@ export const AnimeListButton = ({
           {
             query: AnimeListDocument,
             variables: {
-              status: currentTrackStatus,
+              status: currentAnimeListStatus,
               userId: viewer.id
             }
           }
@@ -59,21 +64,32 @@ export const AnimeListButton = ({
   const [removeAnimeListEntry, { loading: removeAnimeListEntryLoading }] =
     useRemoveAnimeListEntryMutation({
       variables: { animeUrl },
+      onCompleted: () => {
+        setProcessedTrackStatus(null)
+      },
       refetchQueries: () => {
-        if (!viewer) {
+        if (!viewer || !currentAnimeListStatus) {
           return []
         }
 
         return [
           {
             query: AnimeListDocument,
-            variables: { userId: viewer.id, status: currentTrackStatus }
+            variables: { userId: viewer.id, status: currentAnimeListStatus }
+          },
+          {
+            query: AnimeDocument,
+            variables: {
+              animeUrl,
+              userId: viewer.id
+            }
           }
         ]
       }
     })
 
-  const addAnimeTrackedList = async (status: AnimeListStatus) => {
+  const onSaveAnimeListEntry = async (status: AnimeListStatus) => {
+    setProcessedTrackStatus(status)
     if (isAuth) {
       saveAnimeListEntry({
         variables: {
@@ -82,18 +98,28 @@ export const AnimeListButton = ({
         }
       })
     } else {
-      setTrackStatusInProgress(status)
+      setProcessedTrackStatus(status)
       setAuthModalIsOpened(true)
     }
+  }
+
+  const onRemoveAnimeListEntry = () => {
+    if (!currentAnimeListStatus) {
+      return
+    }
+    setProcessedTrackStatus(currentAnimeListStatus)
+    removeAnimeListEntry()
   }
 
   return (
     <>
       {onlyContent ? (
         <TrackStatusOptions
-          addAnimeToTrackedList={addAnimeTrackedList}
-          deleteAnimeFromTrackedList={removeAnimeListEntry}
-          currentTrackStatus={currentTrackStatus}
+          processedAnimeListStatus={processedTrackStatus}
+          isLoading={removeAnimeListEntryLoading || saveAnimeListEntryLoading}
+          saveAnimeListEntry={onSaveAnimeListEntry}
+          removeAnimeListEntry={onRemoveAnimeListEntry}
+          currentAnimeListStatus={currentAnimeListStatus}
         />
       ) : (
         <HoverCard
@@ -105,15 +131,17 @@ export const AnimeListButton = ({
             <div>
               <Trigger
                 withoutTitle={withoutTitle}
-                currentTrackStatus={currentTrackStatus}
+                currentTrackStatus={currentAnimeListStatus}
               />
             </div>
           }
         >
           <TrackStatusOptions
-            addAnimeToTrackedList={addAnimeTrackedList}
-            deleteAnimeFromTrackedList={removeAnimeListEntry}
-            currentTrackStatus={currentTrackStatus}
+            processedAnimeListStatus={processedTrackStatus}
+            isLoading={removeAnimeListEntryLoading || saveAnimeListEntryLoading}
+            saveAnimeListEntry={onSaveAnimeListEntry}
+            removeAnimeListEntry={onRemoveAnimeListEntry}
+            currentAnimeListStatus={currentAnimeListStatus}
           />
         </HoverCard>
       )}
@@ -122,14 +150,14 @@ export const AnimeListButton = ({
         isOpen={authModalIsOpened}
         onClose={() => setAuthModalIsOpened(false)}
         onAuthSuccess={() => {
-          if (trackStatusInProgress) {
+          if (processedTrackStatus) {
             saveAnimeListEntry({
               variables: {
-                status: trackStatusInProgress,
+                status: processedTrackStatus,
                 animeUrl
               }
             })
-            setTrackStatusInProgress(null)
+            setProcessedTrackStatus(null)
           }
         }}
       />

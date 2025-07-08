@@ -11,6 +11,7 @@ fragment AnimeListEntry on AnimeListEntry {
   updatedAt
   status
   rating {
+    id
     rating
   }
 }

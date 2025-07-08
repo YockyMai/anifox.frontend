@@ -52,5 +52,9 @@ query Anime($url: String!, $userId: String) {
       rating
       userId
     }
+    animeListEntry(userId: $userId) {
+      id
+      status
+    }
   }
 }
