@@ -7,7 +7,7 @@ import {
 import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
 
-import { COOKIES } from '@/common/const'
+import { LOCAL_STORAGE } from '@/common/const'
 
 import { pageBasedPaginationPolicy } from '../policies/page-based-pagination.policie'
 
@@ -46,7 +46,7 @@ const httpLink = createHttpLink({
 
 // Middleware для установки заголовков
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem(COOKIES.ACCESS_TOKEN_KEY)
+  const token = localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN_KEY)
 
   return {
     headers: {

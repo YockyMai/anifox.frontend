@@ -1,4 +1,3 @@
-import { UIColors } from '@anifox/ui'
 import React from 'react'
 
 import { useProfile } from '@/entities/profile'
@@ -26,7 +25,7 @@ export const TotalStatistics = () => {
   return (
     <div>
       <p className='mb-2 text-xl font-bold'>Общая статистика</p>
-      <div className='flex h-[160px] items-center justify-between rounded bg-white p-6 drop-shadow-sm dark:bg-slate-800'>
+      <div className='grid grid-cols-2 items-center justify-between gap-y-8 rounded bg-white p-6 drop-shadow-sm dark:bg-slate-800 md:h-[160px] md:grid-cols-4'>
         <TotalStatisticsItem
           variant={TotalStatisticsVariant.TOTAL_ACTIVITY}
           value={totalStatistics.totalActivity}

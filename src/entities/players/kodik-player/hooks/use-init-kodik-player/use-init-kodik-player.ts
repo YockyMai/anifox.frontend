@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { $viewer } from '@/entities/viewer'
 import { client } from '@/graphql/client'
@@ -29,7 +29,7 @@ export const useInitKodikPlayer = ({
     }
   })
 
-  const episodes = data?.episodes.data ?? []
+  const episodes = useMemo(() => data?.episodes.data ?? [], [data])
 
   const [initialData, setInitialData] = useState<KodikPlayerStore | null>(null)
 
@@ -123,7 +123,7 @@ export const useInitKodikPlayer = ({
     }
 
     initData()
-  }, [viewer, episodes])
+  }, [viewer, episodes, animeId, animeUrl, localLastWatchedEpisodes])
 
   return initialData
 }

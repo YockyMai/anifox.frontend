@@ -8,4 +8,6 @@ fragment Viewer on User {
   id
   googleId
   login
+  lastSeen
+  isOnline
 }

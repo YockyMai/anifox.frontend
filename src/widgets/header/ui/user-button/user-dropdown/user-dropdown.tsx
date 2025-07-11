@@ -1,9 +1,9 @@
 import { Button, Image, UnstyledButton } from '@anifox/ui'
 import { IconBell, IconLogout, IconSettings } from '@tabler/icons-react'
-import clsx from 'clsx'
 import { useMemo } from 'react'
 import { Link } from 'react-router'
 
+import { MenuList } from '@/common/components'
 import { DEFAULT_USER_AVATAR } from '@/entities/user'
 import { $viewer } from '@/entities/viewer'
 
@@ -15,12 +15,14 @@ export const UserDropdown = () => {
       {
         icon: <IconSettings />,
         title: 'Настройки',
-        link: ''
+        link: '',
+        id: 'settings'
       },
       {
         icon: <IconBell />,
         title: 'Уведомления',
-        link: ''
+        link: '',
+        id: 'settings'
       }
     ]
   }, [])
@@ -44,22 +46,7 @@ export const UserDropdown = () => {
         </Link>
       </UnstyledButton>
 
-      <div className='flex flex-col gap-y-1 rounded-lg bg-slate-100 p-2 dark:bg-slate-900'>
-        {links.map(({ icon, link, title }) => {
-          return (
-            <Link to={link}>
-              <div
-                className={clsx(
-                  'flex cursor-pointer select-none items-center justify-between rounded px-3 py-1 transition-colors hover:bg-slate-200 hover:dark:bg-slate-800'
-                )}
-              >
-                <p className='text-sm font-semibold'>{title}</p>
-                {icon}
-              </div>
-            </Link>
-          )
-        })}
-      </div>
+      <MenuList theme='darker' items={links} />
 
       <Button
         icon={<IconLogout />}

@@ -1,3 +1,7 @@
+import { Comment } from '../../store/comment-input.interface'
+
 export type CommentInputProps = {
-  onSubmit?: (comment: string) => void
+  onSubmit?: (comment: Comment) => void
+  animeId: string
+  parentCommentId?: string
 }

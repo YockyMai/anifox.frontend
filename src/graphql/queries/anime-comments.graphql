@@ -1,8 +1,22 @@
 fragment AnimeComment on AnimeComment {
   id
   createdAt
-  comment
-  likes(limit: 1, page: 0) {
+  text
+  html
+  json
+  animeId
+  likes(limit: 100000, page: 0) {
+    data {
+      userId
+    }
+    pageInfo {
+      totalCount
+    }
+  }
+  dislikes(limit: 100000, page: 0) {
+    data {
+      userId
+    }
     pageInfo {
       totalCount
     }
@@ -12,6 +26,48 @@ fragment AnimeComment on AnimeComment {
     name
     avatar
     login
+  }
+  parent {
+    id
+    author {
+      name
+    }
+  }
+  children {
+    id
+    createdAt
+    text
+    html
+    json
+    animeId
+    likes(limit: 100000, page: 0) {
+      data {
+        userId
+      }
+      pageInfo {
+        totalCount
+      }
+    }
+    dislikes(limit: 100000, page: 0) {
+      data {
+        userId
+      }
+      pageInfo {
+        totalCount
+      }
+    }
+    parent {
+      id
+      author {
+        name
+      }
+    }
+    author {
+      role
+      name
+      avatar
+      login
+    }
   }
 }
 

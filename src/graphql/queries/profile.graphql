@@ -9,5 +9,7 @@ query Profile($login: String!) {
     avatar
     birthday
     email
+    isOnline
+    lastSeen
   }
 }

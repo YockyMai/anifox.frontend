@@ -1,7 +1,7 @@
 import { useAtomValue } from 'jotai'
 import { useEffect } from 'react'
 
-import { COOKIES } from '@/common/const'
+import { LOCAL_STORAGE } from '@/common/const'
 import { $signupAtoms } from '@/entities/auth/signup'
 import { $viewer } from '@/entities/viewer'
 import { client } from '@/graphql/client'
@@ -36,8 +36,11 @@ export const useCreateAccount = (
 
         const { user, tokens } = data!.signup
 
-        localStorage.setItem(COOKIES.ACCESS_TOKEN_KEY, tokens.accessToken)
-        localStorage.setItem(COOKIES.REFRESH_TOKEN_KEY, tokens.refreshToken)
+        localStorage.setItem(LOCAL_STORAGE.ACCESS_TOKEN_KEY, tokens.accessToken)
+        localStorage.setItem(
+          LOCAL_STORAGE.REFRESH_TOKEN_KEY,
+          tokens.refreshToken
+        )
 
         const viewer: ViewerFragment = user
 

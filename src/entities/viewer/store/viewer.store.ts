@@ -1,7 +1,7 @@
 import { createStore } from '@anifox/store'
 import cookie from 'cookie'
 
-import { COOKIES } from '@/common/const'
+import { LOCAL_STORAGE } from '@/common/const'
 import { ViewerFragment } from '@/graphql/generated/output'
 
 import { VIEWER_PERSIST_NAME } from './viewer.const'
@@ -17,11 +17,16 @@ export const $viewer = createStore(
     setViewer: (state, user: ViewerFragment) => {
       state.viewer = user
     },
+    updateViewerLastSeen: (state) => {
+      if (state.viewer) {
+        state.viewer.lastSeen = new Date()
+      }
+    },
     logout: (state) => {
-      cookie.serialize(COOKIES.ACCESS_TOKEN_KEY, '', {
+      cookie.serialize(LOCAL_STORAGE.ACCESS_TOKEN_KEY, '', {
         maxAge: -1
       })
-      cookie.serialize(COOKIES.REFRESH_TOKEN_KEY, '', {
+      cookie.serialize(LOCAL_STORAGE.REFRESH_TOKEN_KEY, '', {
         maxAge: -1
       })
 

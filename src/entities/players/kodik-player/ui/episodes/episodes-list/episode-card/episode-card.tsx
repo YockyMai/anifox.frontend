@@ -70,7 +70,7 @@ export const EpisodeSelectionCard = ({
             <HoverCard
               openDelay={500}
               trigger={
-                <Badge className='' size={UISizes.SM} color={UIColors.PURPLE}>
+                <Badge size={UISizes.SM} color={UIColors.PURPLE}>
                   Рекап
                 </Badge>
               }

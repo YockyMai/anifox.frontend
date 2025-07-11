@@ -4,7 +4,8 @@ import { useParams } from 'react-router'
 import { KodikPlayer } from '@/entities/players/kodik-player'
 import {
   useAnimeQuery,
-  useRelatedAnimesQuery
+  useRelatedAnimesQuery,
+  useSimilarAnimesQuery
 } from '@/graphql/generated/output'
 import { AnimeComments } from '@/widgets/anime-comments'
 
@@ -13,6 +14,7 @@ import { AnimeEpisodesHistory } from './anime-episodes-history/anime-episodes-hi
 import { AnimeFranchise } from './anime-franchise'
 import { PLAYER_ELEMENT_ID } from './anime-overview.const'
 import { AnimeScreenshots } from './anime-screenshots'
+import { AnimeSimilar } from './anime-similar'
 import { AnimeVideos } from './anime-videos'
 
 export const AnimeOverviewScreen = () => {
@@ -29,6 +31,14 @@ export const AnimeOverviewScreen = () => {
   const videos = data?.anime.videos
 
   const { data: related, loading: loadingRelated } = useRelatedAnimesQuery({
+    variables: {
+      animeId: animeId!,
+      limit: 1000,
+      page: 0
+    }
+  })
+
+  const { data: similar, loading: loadingSimilar } = useSimilarAnimesQuery({
     variables: {
       animeId: animeId!,
       limit: 1000,
@@ -58,6 +68,16 @@ export const AnimeOverviewScreen = () => {
           <div className='container'>
             <ScreenSection title='Хронология'>
               <AnimeFranchise />
+            </ScreenSection>
+          </div>
+        )}
+
+      {!loadingSimilar &&
+        similar?.similarAnimes &&
+        similar.similarAnimes.data.length > 0 && (
+          <div className='container'>
+            <ScreenSection title='Похожие аниме'>
+              <AnimeSimilar />
             </ScreenSection>
           </div>
         )}

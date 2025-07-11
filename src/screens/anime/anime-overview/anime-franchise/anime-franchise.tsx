@@ -23,7 +23,6 @@ export const AnimeFranchise = () => {
       (data?.relatedAnimes?.data ?? []).map(({ anime, type }) => ({
         content: (
           <AnimeCard
-            withoutPanel
             anime={anime}
             label={`${type}${anime.year ? ` - ${anime.year} г.` : ''}`}
           />

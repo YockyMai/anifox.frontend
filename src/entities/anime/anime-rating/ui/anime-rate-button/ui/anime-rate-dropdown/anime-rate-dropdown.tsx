@@ -3,7 +3,6 @@ import { IconStarFilled } from '@tabler/icons-react'
 import { clsx } from 'clsx'
 import { useMemo } from 'react'
 
-import { UIColors } from '@/common/types/ui-colors'
 import { useAnimeRatingDistributionQuery } from '@/graphql/generated/output'
 
 import { getColorByRating, getRatingDistribution } from '../../../../lib'
@@ -40,16 +39,7 @@ export const AnimeRateDropdown = ({
             className='grid cursor-pointer select-none grid-cols-[45px_auto] items-center gap-x-2 transition-transform hover:scale-[120%]'
           >
             <div className='relative'>
-              <IconStarFilled
-                className={clsx(
-                  color === UIColors.RED
-                    ? 'fill-red-300'
-                    : UIColors.GREEN
-                      ? 'fill-green-400'
-                      : 'fill-orange-300'
-                )}
-                size={45}
-              />
+              <IconStarFilled className={color.fill} size={45} />
 
               <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
                 {processedRating === score && ratingMutationLoading ? (
@@ -65,14 +55,7 @@ export const AnimeRateDropdown = ({
                   width: `${percentage}%`,
                   transition: '0.3s'
                 }}
-                className={clsx(
-                  'absolute left-0 top-0 h-full w-0',
-                  color === UIColors.GREEN
-                    ? 'bg-green-500'
-                    : color === UIColors.ORANGE
-                      ? 'bg-orange-300'
-                      : 'bg-red-300'
-                )}
+                className={clsx('absolute left-0 top-0 h-full w-0', color.bg)}
               />
               <p className='absolute left-1 top-1/2 -translate-y-1/2 text-xs text-white'>
                 {votes} голосов

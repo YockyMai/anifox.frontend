@@ -2,6 +2,7 @@ import { Image } from '@anifox/ui'
 import { useInView } from 'react-intersection-observer'
 
 import { useProfile } from '@/entities/profile'
+import { UserLastSeenInfo } from '@/entities/user'
 import { useToggleHeaderOpacity } from '@/widgets/header'
 
 export const Banner = () => {
@@ -39,13 +40,10 @@ export const Banner = () => {
             {profile?.name ?? profile?.login}
           </p>
 
-          <div className='flex items-center gap-x-1.5'>
-            <p className='font-bold text-orange-300'>Сейчас онлайн</p>
-            <span className='relative flex size-3'>
-              <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-300 opacity-75'></span>
-              <span className='relative inline-flex size-3 rounded-full bg-orange-300'></span>
-            </span>
-          </div>
+          <UserLastSeenInfo
+            isOnline={profile.isOnline}
+            lastSeen={profile.lastSeen}
+          />
         </div>
       </div>
     </div>

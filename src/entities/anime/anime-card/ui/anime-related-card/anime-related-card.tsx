@@ -8,19 +8,19 @@ import { UIColors } from '@/common/types/ui-colors'
 import { ROUTES } from '@/screens/pages.routes'
 
 import './anime-related-card.css'
-import { AnimeSimilarCardProps } from './anime-related-card.interface'
+import { AnimeRelatedCardProps } from './anime-related-card.interface'
 
 export const AnimeRelatedCard = ({
   anime,
   relation
-}: AnimeSimilarCardProps) => {
+}: AnimeRelatedCardProps) => {
   return (
     <div className='anime-related-card'>
       <Link to={ROUTES.CATALOG.ANIME.ROOT(anime.id, anime.url)}>
         <Image
           width={60}
           height={130}
-          src={anime.image.medium}
+          src={anime.image.medium ?? ''}
           alt={anime.title}
         />
       </Link>
@@ -35,14 +35,14 @@ export const AnimeRelatedCard = ({
               size={12}
               key={index}
               className={clsx(
-                (anime.rating ?? 0) <= index + 1 &&
+                (anime.totalRating ?? 0) <= index + 1 &&
                   'fill-yellow-300 stroke-yellow-300'
               )}
             />
           ))}
         </div>
         <div className='anime-related-card__info'>
-          <Badge color={UIColors.PURPLE}>{relation.type}</Badge>
+          <Badge color={UIColors.PURPLE}>{relation}</Badge>
 
           {anime.year && (
             <Badge color={UIColors.GREEN}>Год выхода: {anime.year} г.</Badge>

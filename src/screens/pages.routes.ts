@@ -26,6 +26,7 @@ export const ROUTES = {
   RIGHT_HOLDERS: '/right-holders',
   PROFILE: {
     ROOT: (login: string) => `/profile/${login}`,
+    SETTINGS: (login: string) => `/profile/${login}/settings`,
     ANIME_LIST: '/profile/:login/anime-list',
     FAVORITES: '/profile/:login/favorites',
     FRIENDS: {

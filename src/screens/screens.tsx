@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router'
 
-import { $viewer } from '@/entities/viewer'
+import { useIsAuth } from '@/entities/viewer'
 
 import {
   AnimeCatalogScreen,
@@ -30,7 +30,7 @@ import { RightHoldersScreen } from './right-holders'
 import { SignupScreen } from './signup'
 
 export const Screens = () => {
-  const viewer = $viewer.selectors.viewer()
+  const isAuth = useIsAuth()
 
   return (
     <Routes>
@@ -94,7 +94,7 @@ export const Screens = () => {
             />
           </Route>
         </Route>
-        {viewer ? (
+        {isAuth ? (
           <></>
         ) : (
           <>

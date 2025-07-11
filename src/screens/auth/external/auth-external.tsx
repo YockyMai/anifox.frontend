@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router'
 
-import { COOKIES } from '@/common/const'
+import { LOCAL_STORAGE } from '@/common/const'
 import { client } from '@/graphql/client'
 import { UserTokens, ViewerDocument } from '@/graphql/generated/output'
 
@@ -17,8 +17,11 @@ export const AuthExternalScreen = () => {
       if (tokensString && userString) {
         const tokens: Omit<UserTokens, '__typename'> = JSON.parse(tokensString)
 
-        localStorage.setItem(COOKIES.ACCESS_TOKEN_KEY, tokens.accessToken)
-        localStorage.setItem(COOKIES.REFRESH_TOKEN_KEY, tokens.refreshToken)
+        localStorage.setItem(LOCAL_STORAGE.ACCESS_TOKEN_KEY, tokens.accessToken)
+        localStorage.setItem(
+          LOCAL_STORAGE.REFRESH_TOKEN_KEY,
+          tokens.refreshToken
+        )
 
         await client.query({ query: ViewerDocument })
 

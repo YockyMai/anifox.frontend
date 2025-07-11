@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from 'react'
 
-import { COOKIES } from '@/common/const'
+import { LOCAL_STORAGE } from '@/common/const'
 import { $viewer } from '@/entities/viewer'
 import { client } from '@/graphql/client'
 import {
@@ -15,7 +15,7 @@ import {
 export const WithAuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const initUser = async () => {
-      const accessToken = localStorage.getItem(COOKIES.ACCESS_TOKEN_KEY)
+      const accessToken = localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN_KEY)
 
       if (accessToken) {
         const { data } = await client.query<ViewerQuery, ViewerQueryVariables>({
@@ -28,7 +28,9 @@ export const WithAuthProvider = ({ children }: { children: ReactNode }) => {
           $viewer.actions.setViewer(viewer)
         }
       } else {
-        const refreshToken = localStorage.getItem(COOKIES.REFRESH_TOKEN_KEY)
+        const refreshToken = localStorage.getItem(
+          LOCAL_STORAGE.REFRESH_TOKEN_KEY
+        )
 
         if (refreshToken) {
           const { data } = await client.mutate<
@@ -43,8 +45,8 @@ export const WithAuthProvider = ({ children }: { children: ReactNode }) => {
 
           if (data) {
             const { accessToken, refreshToken } = data.refreshTokens
-            localStorage.setItem(COOKIES.ACCESS_TOKEN_KEY, accessToken)
-            localStorage.setItem(COOKIES.REFRESH_TOKEN_KEY, refreshToken)
+            localStorage.setItem(LOCAL_STORAGE.ACCESS_TOKEN_KEY, accessToken)
+            localStorage.setItem(LOCAL_STORAGE.REFRESH_TOKEN_KEY, refreshToken)
 
             const response = await client.query<
               ViewerQuery,
