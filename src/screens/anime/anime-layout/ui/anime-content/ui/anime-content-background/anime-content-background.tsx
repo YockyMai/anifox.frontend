@@ -3,7 +3,6 @@ import { useInView } from 'react-intersection-observer'
 import { useParams } from 'react-router'
 
 import { useAnimeQuery } from '@/graphql/generated/output'
-import { useAnimeScreenshotsQuery } from '@/graphql/queries'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { useToggleHeaderOpacity } from '@/widgets/header'
 
@@ -23,20 +22,18 @@ export const AnimeContentBackground = () => {
     }
   })
 
-  const { data: imagesData } = useAnimeScreenshotsQuery(animeUrl!)
-
   const [imageSrc, setImageSrc] = useState<null | string>(null)
 
   useEffect(() => {
     setImageSrc(null)
     const imageSrc = data?.anime?.image.cover
       ? data?.anime?.image.cover
-      : imagesData
-        ? imagesData[0]
+      : data?.anime.screenshots.length
+        ? data?.anime.screenshots[0]
         : ''
 
     setImageSrc(imageSrc)
-  }, [data, imagesData])
+  }, [data])
 
   return (
     <div ref={ref} className='anime-content-background'>

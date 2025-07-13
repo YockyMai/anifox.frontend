@@ -2,7 +2,8 @@ import { Badge, Button, UIColors } from '@anifox/ui'
 import { IconStack2Filled } from '@tabler/icons-react'
 
 import { AnimeTrackStatusIcon } from '@/common/components/anime-track-status-icon/anime-track-status-icon'
-import { MAP_ANIME_LIST_STATUS_LABEL } from '@/services/api'
+import { MAP_ANIME_LIST_STATUS_LABEL } from '@/common/const/translate'
+import { AnimeListStatus } from '@/graphql/generated/output'
 
 import { TriggerProps } from './trigger.interface'
 
@@ -26,7 +27,7 @@ export const Trigger = ({ withoutTitle, currentTrackStatus }: TriggerProps) => {
   }
 
   return (
-    <Badge className='flex h-full items-center justify-center gap-x-2 rounded bg-orange-300 px-2 text-orange-50'>
+    <Badge className='flex h-full w-[155px] items-center justify-center gap-x-2 rounded bg-orange-300 px-2 text-orange-50'>
       <p className='text-sm'>
         {currentTrackStatus
           ? MAP_ANIME_LIST_STATUS_LABEL[currentTrackStatus]

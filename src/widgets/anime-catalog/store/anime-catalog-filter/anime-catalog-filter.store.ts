@@ -1,5 +1,6 @@
 import { createStore } from '@anifox/store'
 
+import { AnimeStatus } from '@/graphql/generated/output'
 import {
   AnimeMinimalAge,
   AnimeOrderVariants,
@@ -16,7 +17,7 @@ export const createAnimeCatalogFilterStore = (
   initialState: AnimeCatalogFilterStore
 ) => {
   return createStore(initialState, {
-    setStatus: (state, status: AnimeStatuses | null) => {
+    setStatus: (state, status: AnimeStatus | null) => {
       state.status = status
     },
     setSearch: (state, search: string) => {

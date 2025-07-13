@@ -18,7 +18,7 @@ export const UserCard = ({ user, actions }: UserCardProps) => {
         <Image
           alt={`${user.name} banner`}
           className='!rounded-b-none'
-          src={DEFAULT_USER_BANNER}
+          src={user.banner ?? DEFAULT_USER_BANNER}
         />
       </div>
       <div className='mx-auto -mt-10 h-20 w-20'>

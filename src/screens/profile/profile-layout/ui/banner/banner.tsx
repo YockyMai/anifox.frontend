@@ -2,7 +2,7 @@ import { Image } from '@anifox/ui'
 import { useInView } from 'react-intersection-observer'
 
 import { useProfile } from '@/entities/profile'
-import { UserLastSeenInfo } from '@/entities/user'
+import { DEFAULT_USER_BANNER, UserLastSeenInfo } from '@/entities/user'
 import { useToggleHeaderOpacity } from '@/widgets/header'
 
 export const Banner = () => {
@@ -15,10 +15,9 @@ export const Banner = () => {
   return (
     <div
       ref={inViewRef}
-      className='relative flex aspect-[12/2] items-end'
+      className='relative flex aspect-[12/2] items-end bg-cover bg-center bg-no-repeat'
       style={{
-        backgroundImage:
-          'url(https://t3.ftcdn.net/jpg/07/32/10/90/360_F_732109080_4lXwGofazqAiysUpcCnrbflsNOl9EMdW.jpg)'
+        backgroundImage: `url(${profile.banner ?? DEFAULT_USER_BANNER})`
       }}
     >
       <div className='absolute top-0 h-full w-full bg-gradient-to-b from-black/0 to-black/60' />

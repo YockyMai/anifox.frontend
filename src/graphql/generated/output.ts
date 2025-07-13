@@ -717,7 +717,6 @@ export type Query = {
   animeList: AnimeList;
   animeRating: AnimeRating;
   animeRatingDistribution: AnimeRatingDistribution;
-  animeStudio: AnimeStudio;
   animeYears: AnimeYears;
   animes: AnimeConnection;
   character: Character;
@@ -737,6 +736,8 @@ export type Query = {
   randomAnimes: Array<Anime>;
   relatedAnimes: RelatedAnimeConnection;
   similarAnimes: AnimeConnection;
+  studio: AnimeStudio;
+  studios: Array<AnimeStudio>;
   translations: Array<Translation>;
   user: User;
   userStatistics: UserStatistics;
@@ -802,11 +803,6 @@ export type QueryAnimeRatingArgs = {
 
 export type QueryAnimeRatingDistributionArgs = {
   animeId: Scalars['String']['input'];
-};
-
-
-export type QueryAnimeStudioArgs = {
-  id: Scalars['String']['input'];
 };
 
 
@@ -927,6 +923,11 @@ export type QuerySimilarAnimesArgs = {
 };
 
 
+export type QueryStudioArgs = {
+  id: Scalars['String']['input'];
+};
+
+
 export type QueryUserArgs = {
   id: Scalars['String']['input'];
 };
@@ -1006,6 +1007,7 @@ export type User = {
   animeComments: AnimeCommentConnection;
   animeList: AnimeList;
   avatar?: Maybe<Scalars['String']['output']>;
+  banner?: Maybe<Scalars['String']['output']>;
   birthday?: Maybe<Scalars['DateTime']['output']>;
   createdAt: Scalars['DateTime']['output'];
   email?: Maybe<Scalars['String']['output']>;
@@ -1091,23 +1093,23 @@ export type AnimeLiteFragment = { __typename?: 'Anime', id: string, url: string,
 
 export type CharacterLightFragment = { __typename?: 'AnimeCharacter', id: string, about?: string | null, name: string, nameEn: string, nameKanji?: string | null, image: string, role: CharacterRole };
 
-export type ViewerFragment = { __typename?: 'User', name: string, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string, lastSeen: any, isOnline: boolean };
+export type ViewerFragment = { __typename?: 'User', name: string, banner?: string | null, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string, lastSeen: any, isOnline: boolean };
 
 export type AcceptFriendInviteMutationVariables = Exact<{
   friendshipId: Scalars['ID']['input'];
 }>;
 
 
-export type AcceptFriendInviteMutation = { __typename?: 'Mutation', acceptFriendInvite: { __typename?: 'Friendship', id: string, status: FriendshipStatus, friendId: string, userId: string, user: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }, friend: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } } } };
+export type AcceptFriendInviteMutation = { __typename?: 'Mutation', acceptFriendInvite: { __typename?: 'Friendship', id: string, status: FriendshipStatus, friendId: string, userId: string, user: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, banner?: string | null, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }, friend: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, banner?: string | null, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } } } };
 
-export type FriendshipFragment = { __typename?: 'Friendship', id: string, status: FriendshipStatus, friendId: string, userId: string, user: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }, friend: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } } };
+export type FriendshipFragment = { __typename?: 'Friendship', id: string, status: FriendshipStatus, friendId: string, userId: string, user: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, banner?: string | null, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }, friend: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, banner?: string | null, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } } };
 
 export type AddFriendMutationVariables = Exact<{
   friendId: Scalars['ID']['input'];
 }>;
 
 
-export type AddFriendMutation = { __typename?: 'Mutation', addFriend: { __typename?: 'Friendship', id: string, status: FriendshipStatus, friendId: string, userId: string, user: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }, friend: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } } } };
+export type AddFriendMutation = { __typename?: 'Mutation', addFriend: { __typename?: 'Friendship', id: string, status: FriendshipStatus, friendId: string, userId: string, user: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, banner?: string | null, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }, friend: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, banner?: string | null, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } } } };
 
 export type CreateAnimeCommentMutationVariables = Exact<{
   animeId: Scalars['String']['input'];
@@ -1126,7 +1128,7 @@ export type LoginMutationVariables = Exact<{
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'Login', tokens: { __typename?: 'UserTokens', accessToken: string, refreshToken: string }, user: { __typename?: 'User', name: string, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string, lastSeen: any, isOnline: boolean } } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'Login', tokens: { __typename?: 'UserTokens', accessToken: string, refreshToken: string }, user: { __typename?: 'User', name: string, banner?: string | null, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string, lastSeen: any, isOnline: boolean } } };
 
 export type UserTokensFragment = { __typename?: 'UserTokens', accessToken: string, refreshToken: string };
 
@@ -1142,7 +1144,7 @@ export type RejectFriendInviteMutationVariables = Exact<{
 }>;
 
 
-export type RejectFriendInviteMutation = { __typename?: 'Mutation', rejectFriendInvite: { __typename?: 'Friendship', id: string, status: FriendshipStatus, friendId: string, userId: string, user: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }, friend: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } } } };
+export type RejectFriendInviteMutation = { __typename?: 'Mutation', rejectFriendInvite: { __typename?: 'Friendship', id: string, status: FriendshipStatus, friendId: string, userId: string, user: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, banner?: string | null, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }, friend: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, banner?: string | null, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } } } };
 
 export type RemoveAnimeListEntryMutationVariables = Exact<{
   animeUrl: Scalars['String']['input'];
@@ -1207,7 +1209,7 @@ export type SignupMutationVariables = Exact<{
 }>;
 
 
-export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: 'Signup', user: { __typename?: 'User', name: string, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string, lastSeen: any, isOnline: boolean }, tokens: { __typename?: 'UserTokens', accessToken: string, refreshToken: string } } };
+export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: 'Signup', user: { __typename?: 'User', name: string, banner?: string | null, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string, lastSeen: any, isOnline: boolean }, tokens: { __typename?: 'UserTokens', accessToken: string, refreshToken: string } } };
 
 export type ToggleAnimeCommentDislikeMutationVariables = Exact<{
   animeCommentId: Scalars['String']['input'];
@@ -1254,6 +1256,13 @@ export type AnimeCommentsQueryVariables = Exact<{
 
 export type AnimeCommentsQuery = { __typename?: 'Query', animeComments: { __typename?: 'AnimeCommentConnection', data: Array<{ __typename?: 'AnimeComment', id: string, createdAt: any, text: string, html: string, json: string, animeId: string, likes: { __typename?: 'AnimeCommentLikeConnection', data: Array<{ __typename?: 'AnimeCommentLike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, dislikes: { __typename?: 'AnimeCommentDislikeConnection', data: Array<{ __typename?: 'AnimeCommentDislike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, author: { __typename?: 'User', role: UserRole, name: string, avatar?: string | null, login: string }, parent?: { __typename?: 'AnimeComment', id: string, author: { __typename?: 'User', name: string } } | null, children: Array<{ __typename?: 'AnimeComment', id: string, createdAt: any, text: string, html: string, json: string, animeId: string, likes: { __typename?: 'AnimeCommentLikeConnection', data: Array<{ __typename?: 'AnimeCommentLike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, dislikes: { __typename?: 'AnimeCommentDislikeConnection', data: Array<{ __typename?: 'AnimeCommentDislike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, parent?: { __typename?: 'AnimeComment', id: string, author: { __typename?: 'User', name: string } } | null, author: { __typename?: 'User', role: UserRole, name: string, avatar?: string | null, login: string } }> }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
 
+export type AnimeGenreFragment = { __typename?: 'AnimeGenre', id: string, name: string, image?: string | null };
+
+export type AnimeGenresQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AnimeGenresQuery = { __typename?: 'Query', genres: Array<{ __typename?: 'AnimeGenre', id: string, name: string, image?: string | null }> };
+
 export type AnimeListEntryFragment = { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, totalRating?: number | null, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }> }, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null };
 
 export type AnimeListQueryVariables = Exact<{
@@ -1270,6 +1279,13 @@ export type AnimeRatingDistributionQueryVariables = Exact<{
 
 
 export type AnimeRatingDistributionQuery = { __typename?: 'Query', animeRatingDistribution: { __typename?: 'AnimeRatingDistribution', animeId: string, total: number, scores: Array<{ __typename?: 'AnimeRatingDistributionScore', votes: number, score: number }> } };
+
+export type AnimeStudioFragment = { __typename?: 'AnimeStudio', id: string, name: string };
+
+export type AnimeStudiosQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AnimeStudiosQuery = { __typename?: 'Query', studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }> };
 
 export type AnimeQueryVariables = Exact<{
   url: Scalars['String']['input'];
@@ -1364,7 +1380,7 @@ export type FriendshipsQueryVariables = Exact<{
 }>;
 
 
-export type FriendshipsQuery = { __typename?: 'Query', friendships: { __typename?: 'FriendshipsConnection', data: Array<{ __typename?: 'Friendship', id: string, createdAt: any, updatedAt: any, status: FriendshipStatus, friend: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
+export type FriendshipsQuery = { __typename?: 'Query', friendships: { __typename?: 'FriendshipsConnection', data: Array<{ __typename?: 'Friendship', id: string, createdAt: any, updatedAt: any, status: FriendshipStatus, friend: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, banner?: string | null, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
 
 export type LastWatchedEpisodeFragment = { __typename?: 'LastWatchedEpisode', id: string, animeId: string, episodeId: string, translationId: number, userId: string };
 
@@ -1392,7 +1408,7 @@ export type ProfileQueryVariables = Exact<{
 }>;
 
 
-export type ProfileQuery = { __typename?: 'Query', profile: { __typename?: 'User', id: string, login: string, googleId?: string | null, vkId?: string | null, name: string, role: UserRole, avatar?: string | null, birthday?: any | null, email?: string | null, isOnline: boolean, lastSeen: any } };
+export type ProfileQuery = { __typename?: 'Query', profile: { __typename?: 'User', id: string, login: string, googleId?: string | null, vkId?: string | null, name: string, role: UserRole, avatar?: string | null, birthday?: any | null, email?: string | null, isOnline: boolean, lastSeen: any, banner?: string | null } };
 
 export type RandomAnimesQueryVariables = Exact<{
   count?: InputMaybe<Scalars['Int']['input']>;
@@ -1427,7 +1443,7 @@ export type UserStatisticsQueryVariables = Exact<{
 
 export type UserStatisticsQuery = { __typename?: 'Query', userStatistics: { __typename?: 'UserStatistics', activity: { __typename?: 'UserActivity', days: Array<{ __typename?: 'DayActivity', count: number, day: any }> }, genresDistribution: Array<{ __typename?: 'UserGenreDistribution', percent: number, genre: { __typename?: 'AnimeGenre', id: string, name: string } }>, total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedSeconds: number, totalWatchedEpisodes: number, totalWatchedAnimes: number } } };
 
-export type UserLiteFragment = { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } };
+export type UserLiteFragment = { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, banner?: string | null, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } };
 
 export type UsersQueryVariables = Exact<{
   search?: InputMaybe<Scalars['String']['input']>;
@@ -1436,12 +1452,12 @@ export type UsersQueryVariables = Exact<{
 }>;
 
 
-export type UsersQuery = { __typename?: 'Query', users: { __typename?: 'UserConnection', data: Array<{ __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
+export type UsersQuery = { __typename?: 'Query', users: { __typename?: 'UserConnection', data: Array<{ __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, banner?: string | null, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
 
 export type ViewerQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ViewerQuery = { __typename?: 'Query', viewer: { __typename?: 'User', name: string, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string, lastSeen: any, isOnline: boolean } };
+export type ViewerQuery = { __typename?: 'Query', viewer: { __typename?: 'User', name: string, banner?: string | null, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string, lastSeen: any, isOnline: boolean } };
 
 export const CharacterLightFragmentDoc = gql`
     fragment CharacterLight on AnimeCharacter {
@@ -1457,6 +1473,7 @@ export const CharacterLightFragmentDoc = gql`
 export const ViewerFragmentDoc = gql`
     fragment Viewer on User {
   name
+  banner
   role
   vkId
   avatar
@@ -1476,6 +1493,7 @@ export const UserLiteFragmentDoc = gql`
   avatar
   login
   role
+  banner
   createdAt
   statistics {
     total {
@@ -1581,6 +1599,13 @@ export const AnimeCommentFragmentDoc = gql`
   }
 }
     `;
+export const AnimeGenreFragmentDoc = gql`
+    fragment AnimeGenre on AnimeGenre {
+  id
+  name
+  image
+}
+    `;
 export const AnimeLiteFragmentDoc = gql`
     fragment AnimeLite on Anime {
   id
@@ -1630,6 +1655,12 @@ export const AnimeListEntryFragmentDoc = gql`
   }
 }
     ${AnimeLiteFragmentDoc}`;
+export const AnimeStudioFragmentDoc = gql`
+    fragment AnimeStudio on AnimeStudio {
+  id
+  name
+}
+    `;
 export const EpisodeProgressFragmentDoc = gql`
     fragment EpisodeProgress on EpisodeProgress {
   id
@@ -2431,6 +2462,45 @@ export type AnimeCommentsQueryHookResult = ReturnType<typeof useAnimeCommentsQue
 export type AnimeCommentsLazyQueryHookResult = ReturnType<typeof useAnimeCommentsLazyQuery>;
 export type AnimeCommentsSuspenseQueryHookResult = ReturnType<typeof useAnimeCommentsSuspenseQuery>;
 export type AnimeCommentsQueryResult = Apollo.QueryResult<AnimeCommentsQuery, AnimeCommentsQueryVariables>;
+export const AnimeGenresDocument = gql`
+    query AnimeGenres {
+  genres {
+    ...AnimeGenre
+  }
+}
+    ${AnimeGenreFragmentDoc}`;
+
+/**
+ * __useAnimeGenresQuery__
+ *
+ * To run a query within a React component, call `useAnimeGenresQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAnimeGenresQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAnimeGenresQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAnimeGenresQuery(baseOptions?: Apollo.QueryHookOptions<AnimeGenresQuery, AnimeGenresQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AnimeGenresQuery, AnimeGenresQueryVariables>(AnimeGenresDocument, options);
+      }
+export function useAnimeGenresLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AnimeGenresQuery, AnimeGenresQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AnimeGenresQuery, AnimeGenresQueryVariables>(AnimeGenresDocument, options);
+        }
+export function useAnimeGenresSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<AnimeGenresQuery, AnimeGenresQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<AnimeGenresQuery, AnimeGenresQueryVariables>(AnimeGenresDocument, options);
+        }
+export type AnimeGenresQueryHookResult = ReturnType<typeof useAnimeGenresQuery>;
+export type AnimeGenresLazyQueryHookResult = ReturnType<typeof useAnimeGenresLazyQuery>;
+export type AnimeGenresSuspenseQueryHookResult = ReturnType<typeof useAnimeGenresSuspenseQuery>;
+export type AnimeGenresQueryResult = Apollo.QueryResult<AnimeGenresQuery, AnimeGenresQueryVariables>;
 export const AnimeListDocument = gql`
     query AnimeList($userId: String!, $status: AnimeListStatus) {
   animeList(userId: $userId, status: $status) {
@@ -2519,6 +2589,45 @@ export type AnimeRatingDistributionQueryHookResult = ReturnType<typeof useAnimeR
 export type AnimeRatingDistributionLazyQueryHookResult = ReturnType<typeof useAnimeRatingDistributionLazyQuery>;
 export type AnimeRatingDistributionSuspenseQueryHookResult = ReturnType<typeof useAnimeRatingDistributionSuspenseQuery>;
 export type AnimeRatingDistributionQueryResult = Apollo.QueryResult<AnimeRatingDistributionQuery, AnimeRatingDistributionQueryVariables>;
+export const AnimeStudiosDocument = gql`
+    query AnimeStudios {
+  studios {
+    ...AnimeStudio
+  }
+}
+    ${AnimeStudioFragmentDoc}`;
+
+/**
+ * __useAnimeStudiosQuery__
+ *
+ * To run a query within a React component, call `useAnimeStudiosQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAnimeStudiosQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAnimeStudiosQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAnimeStudiosQuery(baseOptions?: Apollo.QueryHookOptions<AnimeStudiosQuery, AnimeStudiosQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AnimeStudiosQuery, AnimeStudiosQueryVariables>(AnimeStudiosDocument, options);
+      }
+export function useAnimeStudiosLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AnimeStudiosQuery, AnimeStudiosQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AnimeStudiosQuery, AnimeStudiosQueryVariables>(AnimeStudiosDocument, options);
+        }
+export function useAnimeStudiosSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<AnimeStudiosQuery, AnimeStudiosQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<AnimeStudiosQuery, AnimeStudiosQueryVariables>(AnimeStudiosDocument, options);
+        }
+export type AnimeStudiosQueryHookResult = ReturnType<typeof useAnimeStudiosQuery>;
+export type AnimeStudiosLazyQueryHookResult = ReturnType<typeof useAnimeStudiosLazyQuery>;
+export type AnimeStudiosSuspenseQueryHookResult = ReturnType<typeof useAnimeStudiosSuspenseQuery>;
+export type AnimeStudiosQueryResult = Apollo.QueryResult<AnimeStudiosQuery, AnimeStudiosQueryVariables>;
 export const AnimeDocument = gql`
     query Anime($url: String!, $userId: String) {
   anime(url: $url) {
@@ -3103,6 +3212,7 @@ export const ProfileDocument = gql`
     email
     isOnline
     lastSeen
+    banner
   }
 }
     `;

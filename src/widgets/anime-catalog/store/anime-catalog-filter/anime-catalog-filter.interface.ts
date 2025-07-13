@@ -1,3 +1,4 @@
+import { AnimeStatus } from '@/graphql/generated/output'
 import {
   AnimeMinimalAge,
   AnimeOrderVariants,
@@ -9,7 +10,7 @@ import {
 } from '@/services/api'
 
 export type AnimeCatalogFilterStore = {
-  status: AnimeStatuses | null
+  status: AnimeStatus | null
   search: string
   genres: string[]
   minimalAge: AnimeMinimalAge | null

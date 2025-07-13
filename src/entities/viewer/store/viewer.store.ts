@@ -27,6 +27,11 @@ export const $viewer = createStore(
         state.viewer.avatar = avatar
       }
     },
+    setBanner: (state, banner: string | null) => {
+      if (state.viewer) {
+        state.viewer.banner = banner
+      }
+    },
     logout: (state) => {
       cookie.serialize(LOCAL_STORAGE.ACCESS_TOKEN_KEY, '', {
         maxAge: -1

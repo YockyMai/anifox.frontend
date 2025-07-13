@@ -4,9 +4,9 @@ import clsx from 'clsx'
 import { motion, Reorder, useDragControls } from 'framer-motion'
 
 import { AnimeTrackStatusIcon } from '@/common/components/anime-track-status-icon/anime-track-status-icon'
+import { MAP_ANIME_LIST_STATUS_LABEL } from '@/common/const/translate'
 import { $animeList, $animeListFilters } from '@/entities/profile'
 import { AnimeListStatus } from '@/graphql/generated/output'
-import { MAP_ANIME_LIST_STATUS_LABEL } from '@/services/api'
 
 export const TrackStatus = () => {
   const rows = $animeList.selectors.rows()

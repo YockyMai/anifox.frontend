@@ -1,5 +1,6 @@
 fragment Viewer on User {
   name
+  banner
   role
   vkId
   avatar

@@ -4,6 +4,7 @@ fragment UserLite on User {
   avatar
   login
   role
+  banner
   createdAt
   statistics {
     total {

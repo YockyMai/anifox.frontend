@@ -11,5 +11,6 @@ query Profile($login: String!) {
     email
     isOnline
     lastSeen
+    banner
   }
 }

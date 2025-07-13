@@ -2,8 +2,9 @@ import { Tooltip, UnstyledButton } from '@anifox/ui'
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-react'
 
 import { AnimeTrackStatusIcon } from '@/common/components/anime-track-status-icon/anime-track-status-icon'
+import { MAP_ANIME_LIST_STATUS_LABEL } from '@/common/const/translate'
 import { $animeList } from '@/entities/profile'
-import { MAP_ANIME_LIST_STATUS_LABEL } from '@/services/api'
+import { AnimeListStatus } from '@/graphql/generated/output'
 
 import { AnimeListTableHeaderProps } from './anime-list-table-header.interface'
 

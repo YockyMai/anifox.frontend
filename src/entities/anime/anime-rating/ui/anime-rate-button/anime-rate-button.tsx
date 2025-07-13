@@ -66,7 +66,7 @@ export const AnimeRateButton = ({
 
     return (
       <Badge
-        className='flex w-fit items-center gap-1'
+        className='flex w-[155px] items-center justify-center gap-1'
         radius={UISizes.MD}
         color={UIColors.GREEN}
       >

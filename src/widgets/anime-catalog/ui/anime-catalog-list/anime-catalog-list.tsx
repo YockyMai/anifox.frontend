@@ -28,7 +28,7 @@ export const AnimeCatalogList = () => {
           ...animeListQueryParams
         }
       })
-  }, [loadMoreTriggerInView, data, animeListQueryParams])
+  }, [loadMoreTriggerInView, data, animeListQueryParams, fetchMore])
 
   if (error)
     return (

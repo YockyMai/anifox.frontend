@@ -1,7 +1,6 @@
-import { Image, Modal, ImageCropper, CroppedImage, Button } from '@anifox/ui'
+import { Image, Modal, ImageCropper, Button, Dropzone } from '@anifox/ui'
 import { gql, useApolloClient } from '@apollo/client'
-import { IconPhotoUp } from '@tabler/icons-react'
-import { use, useState } from 'react'
+import { useState } from 'react'
 
 import { fileToSrc } from '@/common/helpers'
 import { DEFAULT_USER_AVATAR } from '@/entities/user'
@@ -17,12 +16,10 @@ export const SettingsAvatar = () => {
     file: File
     src: string
   } | null>(null)
-  const [croppedImage, setCroppedImage] = useState<CroppedImage | null>(null)
 
   const closeModal = () => {
     setFileForUpload(null)
     setEditableImage(null)
-    setCroppedImage(null)
   }
 
   const saveAvatar = async () => {
@@ -56,38 +53,27 @@ export const SettingsAvatar = () => {
         src={viewer?.avatar ?? DEFAULT_USER_AVATAR}
       />
 
-      <div className='relative flex aspect-square w-full max-w-[300px] items-center justify-center rounded-lg border border-dashed border-slate-300'>
-        <div className='flex flex-col items-center gap-y-3'>
-          <IconPhotoUp />
-          <p className='text-center text-sm'>
-            Нажмите, чтобы загрузить новое изображение
-          </p>
-        </div>
+      <Dropzone
+        accept='image/*'
+        onFile={async (files) => {
+          const file = files[0]
 
-        <input
-          type='file'
-          accept='image/*'
-          className='absolute h-full w-full cursor-pointer opacity-0'
-          onChange={async (e) => {
-            const file = e.target.files?.[0]
+          if (file && file.type.includes('image')) {
+            const type = file.type.split('/')[1]
+            const src = await fileToSrc(file)
 
-            if (file) {
-              const type = file.type.split('/')[1]
-              const src = await fileToSrc(file)
-
-              if (type === 'jpeg') {
-                setEditableImage(src)
-                setFileForUpload({ file, src })
-              } else {
-                setFileForUpload({ file, src })
-              }
+            if (type === 'jpeg') {
+              setEditableImage(src)
+              setFileForUpload({ file, src })
             } else {
-              setEditableImage(null)
-              setFileForUpload(null)
+              setFileForUpload({ file, src })
             }
-          }}
-        />
-      </div>
+          } else {
+            setEditableImage(null)
+            setFileForUpload(null)
+          }
+        }}
+      />
 
       <Modal
         open={fileForUpload !== null}

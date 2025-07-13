@@ -1,21 +1,21 @@
 import { MultiSelect } from '@anifox/ui'
 import { SelectOption } from '@anifox/ui/dist/components/select/select.interface'
 
-import { useAnimeGenresQuery } from '@/graphql/queries'
+import { useAnimeGenresQuery } from '@/graphql/generated/output'
 import { useAnimeCatalogStores } from '@/widgets/anime-catalog'
 
 export const Genres = () => {
   const { $filter, changeSearchParams } = useAnimeCatalogStores()
   const genres = $filter.selectors.genres()
 
-  const { data, isLoading } = useAnimeGenresQuery()
+  const { data, loading } = useAnimeGenresQuery()
 
   const values = genres.map((id) => ({
-    label: data?.find((genre) => genre.id === id)?.name ?? '',
+    label: data?.genres?.find((genre) => genre.id === id)?.name ?? '',
     value: id
   }))
 
-  const genreOptions = data?.map(({ name, id }) => ({
+  const genreOptions = data?.genres?.map(({ name, id }) => ({
     value: id,
     label: name
   }))
@@ -36,7 +36,7 @@ export const Genres = () => {
   return (
     <MultiSelect
       isSearchable
-      isLoading={isLoading}
+      isLoading={loading}
       label={'Жанры'}
       placeholder={'Любой'}
       values={values}

@@ -61,9 +61,9 @@ export const useAnimeListQueryParams = () => {
   //   params.season = season
   // }
 
-  // if (status) {
-  //   params.status = status
-  // }
+  if (status) {
+    params.status = status
+  }
 
   // if (type) {
   //   params.type = type

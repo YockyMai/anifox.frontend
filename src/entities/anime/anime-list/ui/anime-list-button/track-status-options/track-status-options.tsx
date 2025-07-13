@@ -4,8 +4,8 @@ import clsx from 'clsx'
 import { useMemo } from 'react'
 
 import { AnimeTrackStatusIcon } from '@/common/components/anime-track-status-icon/anime-track-status-icon'
+import { MAP_ANIME_LIST_STATUS_LABEL } from '@/common/const/translate'
 import { AnimeListStatus } from '@/graphql/generated/output'
-import { MAP_ANIME_LIST_STATUS_LABEL } from '@/services/api'
 
 import { TrackStatusOptionsProps } from './track-status-options.interface'
 
