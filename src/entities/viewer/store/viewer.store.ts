@@ -17,9 +17,14 @@ export const $viewer = createStore(
     setViewer: (state, user: ViewerFragment) => {
       state.viewer = user
     },
-    updateViewerLastSeen: (state) => {
+    updateLastSeen: (state) => {
       if (state.viewer) {
         state.viewer.lastSeen = new Date()
+      }
+    },
+    setAvatar: (state, avatar: string | null) => {
+      if (state.viewer) {
+        state.viewer.avatar = avatar
       }
     },
     logout: (state) => {

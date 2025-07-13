@@ -16,4 +16,5 @@ export type MenuListProps = {
   items: (MenuListGroup | MenuListItem)[]
   theme?: 'default' | 'darker'
   selectedItemId?: string
+  size?: 'sm' | 'md'
 }

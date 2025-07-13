@@ -27,6 +27,9 @@ import { UserFriendsScreen } from './profile/profile-friends/user-friends/user-f
 import { ProfileLayout } from './profile/profile-layout'
 import { ProfileStatistics } from './profile/profile-statistics'
 import { RightHoldersScreen } from './right-holders'
+import { SettingsUser } from './settings'
+import { SettingsAppearance } from './settings/settings-appearance'
+import { SettingsLayout } from './settings/settings-layout'
 import { SignupScreen } from './signup'
 
 export const Screens = () => {
@@ -95,7 +98,15 @@ export const Screens = () => {
           </Route>
         </Route>
         {isAuth ? (
-          <></>
+          <>
+            <Route path={ROUTES.SETTINGS.ROOT} element={<SettingsLayout />}>
+              <Route index element={<SettingsUser />} />
+              <Route
+                path={ROUTES.SETTINGS.APPEARANCE}
+                element={<SettingsAppearance />}
+              />
+            </Route>
+          </>
         ) : (
           <>
             <Route path={ROUTES.LOGIN} element={<LoginScreen />} />

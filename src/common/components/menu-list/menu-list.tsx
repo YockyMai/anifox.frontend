@@ -7,7 +7,8 @@ import { MenuListGroup, MenuListProps } from './menu-list.interface'
 export const MenuList = ({
   items,
   selectedItemId,
-  theme = 'default'
+  theme = 'default',
+  size = 'md'
 }: MenuListProps) => {
   const normalizedItems = useMemo<MenuListGroup[]>(() => {
     if ('items' in items[0]) {
@@ -24,8 +25,8 @@ export const MenuList = ({
   return (
     <div className='flex flex-col gap-y-2'>
       {normalizedItems.map(({ items, title }) => (
-        <div>
-          <p>{title}</p>
+        <div className='flex flex-col gap-y-1' key={title}>
+          <p className='font-semibold'>{title}</p>
           <div
             className={clsx(
               'flex flex-col gap-y-1 rounded-lg p-2',
@@ -48,7 +49,14 @@ export const MenuList = ({
                         : 'bg-slate-300/30 text-orange-400/80 dark:bg-slate-700 dark:text-orange-300')
                   )}
                 >
-                  <p className='text-sm font-semibold'>{title}</p>
+                  <p
+                    className={clsx(
+                      'font-semibold',
+                      size === 'sm' && 'text-sm'
+                    )}
+                  >
+                    {title}
+                  </p>
                   {icon}
                 </div>
               )

@@ -16,5 +16,3 @@ export * from './fetch-character/fetch-character.interface'
 export * from './fetch-anime-episodes-history/fetch-anime-episodes-history.interface'
 export * from './fetch-user-anime-list/fetch-user-anime-list.interface'
 export * from './fetch-anime-statistics/fetch-anime-statistics.interface'
-
-export * from './set-anime-rating/set-anime-rating.interface'

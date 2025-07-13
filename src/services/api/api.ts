@@ -20,6 +20,6 @@ export * from './check-email'
 export * from './check-login'
 export * from './fetch-anime-episodes-history'
 export * from './fetch-anime-statistics'
+export * from './upload-user-avatar'
 
-export * from './set-anime-rating'
 export * from './delete-tracked-anime'

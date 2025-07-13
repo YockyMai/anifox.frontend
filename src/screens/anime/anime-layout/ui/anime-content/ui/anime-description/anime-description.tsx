@@ -33,7 +33,8 @@ const CharacterTag = ({ id, children }: CharacterTagProps) => {
 }
 
 const parseCharacterTags = (text: string): React.ReactNode[] => {
-  const regex = /\[character=(\d+)\](.*?)\[\/character\]/gs
+  const regex = /\[character=(\d+)\]([\s\S]*?)\[\/character\]/g
+
   const result: React.ReactNode[] = []
 
   let lastIndex = 0
@@ -83,7 +84,7 @@ export const AnimeDescription = () => {
     <>
       {/* only for PC */}
       <div className='h-full overflow-hidden max-lg:hidden'>
-        <Spoiler maxHeight={125}>
+        <Spoiler maxHeight={123}>
           <p className='overflow-hidden whitespace-pre-line'>
             {parseCharacterTags(data?.anime.description)}
           </p>

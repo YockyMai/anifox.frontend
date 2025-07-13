@@ -1,13 +1,15 @@
 import { Button, Image, UnstyledButton } from '@anifox/ui'
 import { IconBell, IconLogout, IconSettings } from '@tabler/icons-react'
 import { useMemo } from 'react'
-import { Link } from 'react-router'
+import { Link, useLocation } from 'react-router'
 
 import { MenuList } from '@/common/components'
 import { DEFAULT_USER_AVATAR } from '@/entities/user'
 import { $viewer } from '@/entities/viewer'
+import { ROUTES } from '@/screens/pages.routes'
 
 export const UserDropdown = () => {
+  const { pathname } = useLocation()
   const viewer = $viewer.selectors.viewer()!
 
   const links = useMemo(() => {
@@ -15,8 +17,8 @@ export const UserDropdown = () => {
       {
         icon: <IconSettings />,
         title: 'Настройки',
-        link: '',
-        id: 'settings'
+        link: ROUTES.SETTINGS.ROOT,
+        id: ROUTES.SETTINGS.ROOT
       },
       {
         icon: <IconBell />,
@@ -46,7 +48,12 @@ export const UserDropdown = () => {
         </Link>
       </UnstyledButton>
 
-      <MenuList theme='darker' items={links} />
+      <MenuList
+        size='sm'
+        selectedItemId={pathname}
+        theme='darker'
+        items={links}
+      />
 
       <Button
         icon={<IconLogout />}

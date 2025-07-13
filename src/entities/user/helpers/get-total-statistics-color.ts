@@ -3,7 +3,6 @@ import { UIColors } from '@anifox/ui'
 import { TotalStatisticsVariant } from '../const'
 
 export const getTotalStatisticsColor = (variant: TotalStatisticsVariant) => {
-  console.log(variant)
   if (variant === TotalStatisticsVariant.TOTAL_ACTIVITY) {
     return {
       text: 'text-green-500',

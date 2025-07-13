@@ -17,7 +17,11 @@ export const ROUTES = {
   CHARACTER: {
     ROOT: (id: string) => `/character/${id}`
   },
-  SETTINGS: '/settings',
+  SETTINGS: {
+    ROOT: '/settings',
+    ACCOUNT: '/settings/account',
+    APPEARANCE: '/settings/appearance'
+  },
   LOGIN: '/login',
   SIGN_UP: '/signup',
   AUTH: {
@@ -26,7 +30,6 @@ export const ROUTES = {
   RIGHT_HOLDERS: '/right-holders',
   PROFILE: {
     ROOT: (login: string) => `/profile/${login}`,
-    SETTINGS: (login: string) => `/profile/${login}/settings`,
     ANIME_LIST: '/profile/:login/anime-list',
     FAVORITES: '/profile/:login/favorites',
     FRIENDS: {
