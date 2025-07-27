@@ -1,3 +1,4 @@
+import { ResetFilters } from '../reset-filters/reset-filters'
 import { Search } from '../search'
 import { Status } from '../status'
 import { TrackStatus } from '../track-status'
@@ -10,6 +11,7 @@ export const DesktopFilter = () => {
       <TrackStatus />
       <Type />
       <Status />
+      <ResetFilters />
     </div>
   )
 }

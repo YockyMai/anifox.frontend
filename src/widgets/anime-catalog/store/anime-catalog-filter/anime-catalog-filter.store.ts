@@ -1,15 +1,13 @@
 import { createStore } from '@anifox/store'
 
-import { AnimeStatus } from '@/graphql/generated/output'
 import {
-  AnimeMinimalAge,
-  AnimeOrderVariants,
-  AnimeRatingMpa,
-  AnimeSeasons,
-  AnimeSortDirection,
-  AnimeStatuses,
-  AnimeTypeVariants
-} from '@/services/api'
+  AnimeOrder,
+  AnimeSeason,
+  AnimeStatus,
+  AnimeType,
+  RatingMpa,
+  SortOrder
+} from '@/graphql/generated/output'
 
 import { AnimeCatalogFilterStore } from './anime-catalog-filter.interface'
 
@@ -26,16 +24,16 @@ export const createAnimeCatalogFilterStore = (
     setGenres: (state, genres: string[]) => {
       state.genres = genres
     },
-    setMinimalAge: (state, minimalAge: AnimeMinimalAge | null) => {
+    setMinimalAge: (state, minimalAge: number | null) => {
       state.minimalAge = minimalAge
     },
-    setRatingMpa: (state, ratingMpa: AnimeRatingMpa | null) => {
+    setRatingMpa: (state, ratingMpa: RatingMpa | null) => {
       state.ratingMpa = ratingMpa
     },
-    setSeason: (state, season: AnimeSeasons | null) => {
+    setSeason: (state, season: AnimeSeason | null) => {
       state.season = season
     },
-    setType: (state, type: AnimeTypeVariants | null) => {
+    setType: (state, type: AnimeType | null) => {
       state.type = type
     },
     setYears: (state, years: number[]) => {
@@ -47,10 +45,10 @@ export const createAnimeCatalogFilterStore = (
     setStudio: (state, studio: string | null) => {
       state.studio = studio
     },
-    setSort: (state, sort: AnimeSortDirection | null) => {
+    setSort: (state, sort: SortOrder | null) => {
       state.sort = sort
     },
-    setOrder: (state, order: AnimeOrderVariants | null) => {
+    setOrder: (state, order: AnimeOrder | null) => {
       state.order = order
     }
   })

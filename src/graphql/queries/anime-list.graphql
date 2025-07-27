@@ -16,8 +16,8 @@ fragment AnimeListEntry on AnimeListEntry {
   }
 }
 
-query AnimeList($userId: String!, $status: AnimeListStatus) {
-  animeList(userId: $userId, status: $status) {
+query AnimeList($userId: String!) {
+  animeList(userId: $userId) {
     list {
       ...AnimeListEntry
     }

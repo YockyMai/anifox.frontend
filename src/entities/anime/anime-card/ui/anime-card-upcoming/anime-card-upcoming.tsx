@@ -13,7 +13,7 @@ import { AnimeCardUpcomingProps } from './anime-card-upcoming.interface'
 
 export const AnimeCardUpcoming = ({ anime }: AnimeCardUpcomingProps) => {
   const accentColorsStyles = getAnimeAccentColorStyles(
-    anime.accent_color,
+    anime.accentColor,
     'light'
   )
 
@@ -25,7 +25,7 @@ export const AnimeCardUpcoming = ({ anime }: AnimeCardUpcomingProps) => {
         to={ROUTES.CATALOG.ANIME.ROOT(anime.id, anime.url)}
       >
         <div className='anime-card-upcoming__image'>
-          <Image src={anime.image.medium} alt={anime.title} />
+          <Image src={anime.image.medium ?? ''} alt={anime.title} />
         </div>
       </Link>
       <div className='anime-card-upcoming__body'>
@@ -41,24 +41,29 @@ export const AnimeCardUpcoming = ({ anime }: AnimeCardUpcomingProps) => {
           </Link>
           <div className='anime-card-upcoming__episodes'>
             <Badge color='red' size='sm'>
-              Вышла {anime.episodes_aired ?? 0} серия
+              Вышла {anime.episodesAired ?? 0} серия
             </Badge>
             <IconArrowRight size={16} />
             <Badge color='green' size='sm'>
-              Выйдет {(anime.episodes_aired ?? 0) + 1} серия
+              Выйдет {(anime.episodesAired ?? 0) + 1} серия
             </Badge>
           </div>
         </div>
 
         <div className='anime-card-upcoming__actions'>
           <AnimeFavoriteButton animeUrl={anime.url} />
-          <AnimeListButton openDelay={300} animeUrl={anime.url} withoutTitle />
+          <AnimeListButton
+            currentAnimeListStatus={anime.animeListEntry?.status}
+            openDelay={300}
+            animeUrl={anime.url}
+            withoutTitle
+          />
           <AnimeRateButton
             openDelay={300}
             animeId={anime.id}
             animeUrl={anime.url}
             withoutText
-            rating={anime.rating ?? 0}
+            rating={anime.userRating?.rating}
           />
         </div>
       </div>

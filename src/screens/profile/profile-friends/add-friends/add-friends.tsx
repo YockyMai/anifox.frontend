@@ -9,9 +9,11 @@ import React, { useState } from 'react'
 
 import { UserCard } from '@/entities/user'
 import { AddFriendButton } from '@/entities/user/ui/add-friend-button'
+import { $viewer } from '@/entities/viewer'
 import { useUsersQuery } from '@/graphql/generated/output'
 
 export const AddFriendsScreen = () => {
+  const viewer = $viewer.selectors.viewer()
   const [search, setSearch] = useState('')
 
   const debouncedSearch = useDebounce(search, 300)
@@ -22,7 +24,9 @@ export const AddFriendsScreen = () => {
 
   const pageInfo = data?.users.pageInfo
 
-  const users = data?.users.data ?? []
+  const users = (data?.users.data ?? []).filter(
+    (user) => user.id !== viewer?.id
+  )
 
   const fetchNextPage = () => {
     if (pageInfo) {

@@ -42,7 +42,9 @@ query Anime($url: String!, $userId: String) {
     shikimoriVotes
     status
     title
-    totalRating
+    titlesEnglish
+    rating
+    ratingCount
     type
     updatedAt
     url

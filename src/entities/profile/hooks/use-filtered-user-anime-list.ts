@@ -13,22 +13,23 @@ import { useProfile } from './use-profile'
 export const useFilteredUserAnimeList = (tableStatus: AnimeListStatus) => {
   const { profile } = useProfile()
 
-  const { search, status, trackStatus, type } = useStore(
-    $animeListFilters.store
-  )
+  const { search, status, type } = useStore($animeListFilters.store)
 
   const isFiltersActive = useIsAnimeListFilterActive()
 
   const { data, loading } = useAnimeListQuery({
     variables: {
-      userId: profile.id,
-      status: trackStatus ?? tableStatus
+      userId: profile.id
     }
   })
 
   const list = useMemo(() => {
+    let filteredData = (data?.animeList.list ?? []).filter(
+      ({ status }) => status === tableStatus
+    )
+
     if (isFiltersActive) {
-      let filteredData = (data?.animeList.list ?? []).filter(({ anime }) => {
+      filteredData = filteredData.filter(({ anime }) => {
         if (type && type !== anime.type) {
           return false
         }
@@ -42,17 +43,15 @@ export const useFilteredUserAnimeList = (tableStatus: AnimeListStatus) => {
 
       if (search) {
         const fuse = new Fuse(filteredData, {
-          keys: ['title']
+          keys: ['anime.title']
         })
 
         filteredData = fuse.search(search).map(({ item }) => item)
       }
-
-      return filteredData
     }
 
-    return data?.animeList.list ?? []
-  }, [data, isFiltersActive, search, tableStatus, status, type])
+    return filteredData
+  }, [data?.animeList.list, isFiltersActive, search, status, tableStatus, type])
 
   return { list, loading }
 }

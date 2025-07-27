@@ -1,7 +1,7 @@
 import { Image, Badge, MarqueeText } from '@anifox/ui'
 import { useMemo } from 'react'
 
-import { AnimeStatus } from '@/graphql/generated/output'
+import { MAP_ANIME_STATUS_LABEL } from '@/common/const/translate'
 
 import { getAnimeAccentColorStyles } from '../../helpers'
 import { AnimeCardPanelProps } from './anime-card-panel.interface'
@@ -20,7 +20,7 @@ export const AnimeCardPanel = ({ anime }: AnimeCardPanelProps) => {
     }
 
     return null
-  }, [])
+  }, [anime.minimalAge])
 
   return (
     <div
@@ -64,9 +64,7 @@ export const AnimeCardPanel = ({ anime }: AnimeCardPanelProps) => {
             <div className='my-0.5 flex items-center justify-between'>
               <p>{anime.episodesAired} серий</p>
               <p>—</p>
-              <p>
-                {anime.status === AnimeStatus.ONGOING ? 'Выпущен' : 'Онгоинг'}
-              </p>
+              <p>{MAP_ANIME_STATUS_LABEL[anime.status]}</p>
             </div>
           </div>
 

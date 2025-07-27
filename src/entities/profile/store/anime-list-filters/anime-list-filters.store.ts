@@ -32,5 +32,6 @@ export const $animeListFilters = createStore(initialState, {
     state.search = initialState.search
     state.trackStatus = initialState.trackStatus
     state.type = initialState.type
+    state.status = initialState.status
   }
 })

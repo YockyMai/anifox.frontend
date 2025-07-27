@@ -6,10 +6,12 @@ import {
 } from '@tabler/icons-react'
 import { clsx } from 'clsx'
 
-import { AnimeOrderVariants, AnimeSortDirection } from '@/services/api'
+import {
+  AnimeOrder as AnimeOrderVariants,
+  SortOrder
+} from '@/graphql/generated/output'
 import { useAnimeCatalogStores } from '@/widgets/anime-catalog'
 
-import { ANIME_ORDER_OPTIONS } from './anime-order.const'
 import './anime-order.css'
 
 export const AnimeOrder = () => {
@@ -25,9 +27,7 @@ export const AnimeOrder = () => {
 
   const toggleSort = () => {
     $filter.actions.setSort(
-      sort === AnimeSortDirection.ASC
-        ? AnimeSortDirection.DESC
-        : AnimeSortDirection.ASC
+      sort === SortOrder.ASC ? SortOrder.DESC : SortOrder.ASC
     )
   }
 
@@ -50,7 +50,7 @@ export const AnimeOrder = () => {
               className='anime-order__dropdown__sort__icon'
               onClick={toggleSort}
             >
-              {sort === AnimeSortDirection.ASC ? (
+              {sort === SortOrder.ASC ? (
                 <IconSortDescending />
               ) : (
                 <IconSortAscending />
@@ -59,7 +59,7 @@ export const AnimeOrder = () => {
           </div>
         </div>
         <div />
-        {Object.values(ANIME_ORDER_OPTIONS).map((orderOption) => (
+        {Object.values(AnimeOrderVariants).map((orderOption) => (
           <UnstyledButton
             onClick={() => selectOrder(orderOption)}
             className={clsx(

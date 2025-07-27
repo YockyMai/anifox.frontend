@@ -4,11 +4,16 @@ import { AnimeCardPanel } from '../anime-card-panel'
 import { AnimeCardContent } from './anime-card-content'
 import { AnimeCardProps } from './anime-card.interface'
 
-export const AnimeCard = ({ anime, label, withoutPanel }: AnimeCardProps) => {
+export const AnimeCard = ({
+  anime,
+  label,
+  withoutPanel,
+  labelWhite
+}: AnimeCardProps) => {
   return (
     <div className='relative w-full'>
       {withoutPanel ? (
-        <AnimeCardContent anime={anime} label={label} />
+        <AnimeCardContent labelWhite={labelWhite} anime={anime} label={label} />
       ) : (
         <Tooltip
           width={280}
@@ -18,7 +23,11 @@ export const AnimeCard = ({ anime, label, withoutPanel }: AnimeCardProps) => {
           label={<AnimeCardPanel anime={anime} />}
         >
           <div className='w-full'>
-            <AnimeCardContent anime={anime} label={label} />
+            <AnimeCardContent
+              labelWhite={labelWhite}
+              anime={anime}
+              label={label}
+            />
           </div>
         </Tooltip>
       )}

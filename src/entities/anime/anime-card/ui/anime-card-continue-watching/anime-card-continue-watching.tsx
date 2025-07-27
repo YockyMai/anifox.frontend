@@ -31,7 +31,12 @@ export const AnimeCardContinueWatching = ({
               <Image src={anime.image.medium ?? ''} />
             </div>
 
-            <p className='font-bold dark:text-white'>{anime.title}</p>
+            <p
+              title={anime.title}
+              className='line-clamp-2 font-bold dark:text-white'
+            >
+              {anime.title}
+            </p>
           </div>
         </Link>
 

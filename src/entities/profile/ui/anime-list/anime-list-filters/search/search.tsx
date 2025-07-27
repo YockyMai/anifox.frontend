@@ -1,4 +1,4 @@
-import { Input } from '@anifox/ui'
+import { Input, UnstyledButton } from '@anifox/ui'
 import { IconSearch, IconX } from '@tabler/icons-react'
 
 import { $animeListFilters } from '@/entities/profile/store'
@@ -18,7 +18,15 @@ export const Search = () => {
           onClick={() => $animeListFilters.actions.setSearch('')}
         />
       }
-      rightIcon={search.length ? <IconX /> : undefined}
+      rightIcon={
+        search.length ? (
+          <UnstyledButton
+            onClick={() => $animeListFilters.actions.setSearch('')}
+          >
+            <IconX />
+          </UnstyledButton>
+        ) : undefined
+      }
     />
   )
 }

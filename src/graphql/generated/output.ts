@@ -16,6 +16,7 @@ export type Scalars = {
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
   DateTime: { input: any; output: any; }
+  JSON: { input: any; output: any; }
 };
 
 export type Anime = {
@@ -45,6 +46,10 @@ export type Anime = {
   nextEpisode?: Maybe<Scalars['DateTime']['output']>;
   /** Link for Kodik player iframe */
   playerLink: Scalars['String']['output'];
+  /** Средний рейтинг аниме */
+  rating: Scalars['Float']['output'];
+  /** Кол-во оценок аниме */
+  ratingCount: Scalars['Int']['output'];
   /** Age limit for view in MPAA format */
   ratingMpa: Scalars['String']['output'];
   /** Related animes */
@@ -69,8 +74,6 @@ export type Anime = {
   titlesJapan: Array<Scalars['String']['output']>;
   titlesOther: Array<Scalars['String']['output']>;
   titlesSynonyms: Array<Scalars['String']['output']>;
-  /** Averaged anime rating */
-  totalRating?: Maybe<Scalars['Float']['output']>;
   type: AnimeType;
   /** Date of last anime update (any data) */
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -298,6 +301,15 @@ export type AnimeRatingDistributionScore = {
   votes: Scalars['Int']['output'];
 };
 
+export type AnimeSchedule = {
+  __typename?: 'AnimeSchedule';
+  anime: Anime;
+  animeId: Scalars['String']['output'];
+  dayOfWeek: DayOfWeek;
+  nextEpisodeDate: Scalars['DateTime']['output'];
+  previousEpisodeDate: Scalars['DateTime']['output'];
+};
+
 export const AnimeSeason = {
   FALL: 'FALL',
   SPRING: 'SPRING',
@@ -391,6 +403,17 @@ export type DayActivity = {
   day: Scalars['DateTime']['output'];
 };
 
+export const DayOfWeek = {
+  FRIDAY: 'FRIDAY',
+  MONDAY: 'MONDAY',
+  SATURDAY: 'SATURDAY',
+  SUNDAY: 'SUNDAY',
+  THURSDAY: 'THURSDAY',
+  TUESDAY: 'TUESDAY',
+  WEDNESDAY: 'WEDNESDAY'
+} as const;
+
+export type DayOfWeek = typeof DayOfWeek[keyof typeof DayOfWeek];
 export type Episode = {
   __typename?: 'Episode';
   /** Episode air date */
@@ -431,6 +454,20 @@ export type EpisodeConnection = {
   pageInfo: PageInfo;
 };
 
+export type EpisodeHistory = {
+  __typename?: 'EpisodeHistory';
+  aired: Scalars['DateTime']['output'];
+  isUpcoming: Scalars['Boolean']['output'];
+  number: Scalars['Int']['output'];
+  title: Scalars['String']['output'];
+};
+
+export const EpisodeOrder = {
+  AIRED: 'AIRED',
+  NUMBER: 'NUMBER'
+} as const;
+
+export type EpisodeOrder = typeof EpisodeOrder[keyof typeof EpisodeOrder];
 export type EpisodeProgress = {
   __typename?: 'EpisodeProgress';
   animeId: Scalars['String']['output'];
@@ -550,10 +587,12 @@ export type Mutation = {
   removeAnimeListEntry: AnimeListEntry;
   removeAnimeRating: AnimeRating;
   removeFriend: Friendship;
+  removeUserAbout: UserAbout;
   saveAnimeListEntry: AnimeListEntry;
   saveAnimeRating: AnimeRating;
   saveEpisodeProgress: EpisodeProgress;
   saveLastWatchedEpisode: LastWatchedEpisode;
+  saveUserAbout: UserAbout;
   /** Запрос для установки длительности серии через kodik */
   setEpisodeDuration: Episode;
   signup: Signup;
@@ -650,6 +689,13 @@ export type MutationSaveLastWatchedEpisodeArgs = {
 };
 
 
+export type MutationSaveUserAboutArgs = {
+  html: Scalars['String']['input'];
+  json: Scalars['JSON']['input'];
+  text: Scalars['String']['input'];
+};
+
+
 export type MutationSetEpisodeDurationArgs = {
   duration: Scalars['Int']['input'];
   episodeId: Scalars['String']['input'];
@@ -717,6 +763,7 @@ export type Query = {
   animeList: AnimeList;
   animeRating: AnimeRating;
   animeRatingDistribution: AnimeRatingDistribution;
+  animeSchedules: Array<AnimeSchedule>;
   animeYears: AnimeYears;
   animes: AnimeConnection;
   character: Character;
@@ -725,6 +772,7 @@ export type Query = {
   episodeProgress: EpisodeProgress;
   episodeTranslations: Array<EpisodeTranslation>;
   episodes: EpisodeConnection;
+  episodesHistory: Array<EpisodeHistory>;
   favoriteAnimes: FavoriteAnimeConnection;
   favoriteCharacters: FavoriteCharacterConnection;
   friendships: FriendshipsConnection;
@@ -806,6 +854,11 @@ export type QueryAnimeRatingDistributionArgs = {
 };
 
 
+export type QueryAnimeSchedulesArgs = {
+  dayOfWeek?: InputMaybe<DayOfWeek>;
+};
+
+
 export type QueryAnimesArgs = {
   genres?: InputMaybe<Array<Scalars['String']['input']>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -859,7 +912,14 @@ export type QueryEpisodeTranslationsArgs = {
 export type QueryEpisodesArgs = {
   animeUrl: Scalars['String']['input'];
   limit?: InputMaybe<Scalars['Int']['input']>;
+  order?: InputMaybe<EpisodeOrder>;
   page?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<SortOrder>;
+};
+
+
+export type QueryEpisodesHistoryArgs = {
+  animeUrl: Scalars['String']['input'];
 };
 
 
@@ -1004,6 +1064,7 @@ export const TranslationType = {
 export type TranslationType = typeof TranslationType[keyof typeof TranslationType];
 export type User = {
   __typename?: 'User';
+  about?: Maybe<UserAbout>;
   animeComments: AnimeCommentConnection;
   animeList: AnimeList;
   avatar?: Maybe<Scalars['String']['output']>;
@@ -1041,6 +1102,15 @@ export type UserFavoriteAnimesArgs = {
 export type UserFavoriteCharactersArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   page?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type UserAbout = {
+  __typename?: 'UserAbout';
+  html: Scalars['String']['output'];
+  id: Scalars['String']['output'];
+  json: Scalars['JSON']['output'];
+  text: Scalars['String']['output'];
+  userId: Scalars['String']['output'];
 };
 
 export type UserActivity = {
@@ -1089,11 +1159,13 @@ export type UserTokens = {
   refreshToken: Scalars['String']['output'];
 };
 
-export type AnimeLiteFragment = { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, totalRating?: number | null, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }> };
+export type AnimeLiteFragment = { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null };
 
 export type CharacterLightFragment = { __typename?: 'AnimeCharacter', id: string, about?: string | null, name: string, nameEn: string, nameKanji?: string | null, image: string, role: CharacterRole };
 
-export type ViewerFragment = { __typename?: 'User', name: string, banner?: string | null, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string, lastSeen: any, isOnline: boolean };
+export type UserAboutFragment = { __typename?: 'UserAbout', id: string, html: string, json: any, text: string };
+
+export type ViewerFragment = { __typename?: 'User', name: string, banner?: string | null, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string, lastSeen: any, isOnline: boolean, about?: { __typename?: 'UserAbout', id: string, html: string, json: any, text: string } | null };
 
 export type AcceptFriendInviteMutationVariables = Exact<{
   friendshipId: Scalars['ID']['input'];
@@ -1128,7 +1200,7 @@ export type LoginMutationVariables = Exact<{
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'Login', tokens: { __typename?: 'UserTokens', accessToken: string, refreshToken: string }, user: { __typename?: 'User', name: string, banner?: string | null, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string, lastSeen: any, isOnline: boolean } } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'Login', tokens: { __typename?: 'UserTokens', accessToken: string, refreshToken: string }, user: { __typename?: 'User', name: string, banner?: string | null, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string, lastSeen: any, isOnline: boolean, about?: { __typename?: 'UserAbout', id: string, html: string, json: any, text: string } | null } } };
 
 export type UserTokensFragment = { __typename?: 'UserTokens', accessToken: string, refreshToken: string };
 
@@ -1153,6 +1225,11 @@ export type RemoveAnimeListEntryMutationVariables = Exact<{
 
 export type RemoveAnimeListEntryMutation = { __typename?: 'Mutation', removeAnimeListEntry: { __typename?: 'AnimeListEntry', id: string } };
 
+export type RemoveUserAboutMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RemoveUserAboutMutation = { __typename?: 'Mutation', removeUserAbout: { __typename?: 'UserAbout', id: string, html: string, json: any, text: string } };
+
 export type SaveAnimeListEntryMutationVariables = Exact<{
   animeUrl: Scalars['String']['input'];
   endedAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -1162,7 +1239,7 @@ export type SaveAnimeListEntryMutationVariables = Exact<{
 }>;
 
 
-export type SaveAnimeListEntryMutation = { __typename?: 'Mutation', saveAnimeListEntry: { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, totalRating?: number | null, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }> }, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null } };
+export type SaveAnimeListEntryMutation = { __typename?: 'Mutation', saveAnimeListEntry: { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null }, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null } };
 
 export type SaveAnimeRatingMutationVariables = Exact<{
   animeId: Scalars['String']['input'];
@@ -1190,6 +1267,15 @@ export type SaveLastWatchedEpisodeMutationVariables = Exact<{
 
 export type SaveLastWatchedEpisodeMutation = { __typename?: 'Mutation', saveLastWatchedEpisode: { __typename?: 'LastWatchedEpisode', id: string, animeId: string, episodeId: string, translationId: number, userId: string } };
 
+export type SaveUserAboutMutationVariables = Exact<{
+  html: Scalars['String']['input'];
+  json: Scalars['JSON']['input'];
+  text: Scalars['String']['input'];
+}>;
+
+
+export type SaveUserAboutMutation = { __typename?: 'Mutation', saveUserAbout: { __typename?: 'UserAbout', id: string, html: string, json: any, text: string } };
+
 export type SetEpisodeDurationMutationVariables = Exact<{
   episodeId: Scalars['String']['input'];
   duration: Scalars['Int']['input'];
@@ -1209,7 +1295,7 @@ export type SignupMutationVariables = Exact<{
 }>;
 
 
-export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: 'Signup', user: { __typename?: 'User', name: string, banner?: string | null, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string, lastSeen: any, isOnline: boolean }, tokens: { __typename?: 'UserTokens', accessToken: string, refreshToken: string } } };
+export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: 'Signup', user: { __typename?: 'User', name: string, banner?: string | null, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string, lastSeen: any, isOnline: boolean, about?: { __typename?: 'UserAbout', id: string, html: string, json: any, text: string } | null }, tokens: { __typename?: 'UserTokens', accessToken: string, refreshToken: string } } };
 
 export type ToggleAnimeCommentDislikeMutationVariables = Exact<{
   animeCommentId: Scalars['String']['input'];
@@ -1263,15 +1349,14 @@ export type AnimeGenresQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type AnimeGenresQuery = { __typename?: 'Query', genres: Array<{ __typename?: 'AnimeGenre', id: string, name: string, image?: string | null }> };
 
-export type AnimeListEntryFragment = { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, totalRating?: number | null, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }> }, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null };
+export type AnimeListEntryFragment = { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null }, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null };
 
 export type AnimeListQueryVariables = Exact<{
   userId: Scalars['String']['input'];
-  status?: InputMaybe<AnimeListStatus>;
 }>;
 
 
-export type AnimeListQuery = { __typename?: 'Query', animeList: { __typename?: 'AnimeList', list: Array<{ __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, totalRating?: number | null, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }> }, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null }> } };
+export type AnimeListQuery = { __typename?: 'Query', animeList: { __typename?: 'AnimeList', list: Array<{ __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null }, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null }> } };
 
 export type AnimeRatingDistributionQueryVariables = Exact<{
   animeId: Scalars['String']['input'];
@@ -1279,6 +1364,11 @@ export type AnimeRatingDistributionQueryVariables = Exact<{
 
 
 export type AnimeRatingDistributionQuery = { __typename?: 'Query', animeRatingDistribution: { __typename?: 'AnimeRatingDistribution', animeId: string, total: number, scores: Array<{ __typename?: 'AnimeRatingDistributionScore', votes: number, score: number }> } };
+
+export type AnimeSchedulesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AnimeSchedulesQuery = { __typename?: 'Query', animeSchedules: Array<{ __typename?: 'AnimeSchedule', dayOfWeek: DayOfWeek, nextEpisodeDate: any, previousEpisodeDate: any, animeId: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null } }> };
 
 export type AnimeStudioFragment = { __typename?: 'AnimeStudio', id: string, name: string };
 
@@ -1293,7 +1383,7 @@ export type AnimeQueryVariables = Exact<{
 }>;
 
 
-export type AnimeQuery = { __typename?: 'Query', anime: { __typename?: 'Anime', accentColor: string, airedOn?: any | null, createdAt: any, description?: string | null, duration?: number | null, episodesAired: number, episodesCount?: number | null, franchise?: string | null, id: string, minimalAge: number, nextEpisode?: any | null, playerLink: string, ratingMpa: string, releasedOn: any, screenshots: Array<string>, season: AnimeSeason, shikimoriId: number, shikimoriRating: number, shikimoriVotes: number, status: AnimeStatus, title: string, totalRating?: number | null, type: AnimeType, updatedAt?: any | null, url: string, year: number, image: { __typename?: 'AnimeImage', medium?: string | null, cover?: string | null, large?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, image?: string | null, name: string }>, videos: Array<{ __typename?: 'AnimeVideo', id: string, imageUrl?: string | null, name?: string | null, type: AnimeVideoType, playerUrl: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number, userId: string } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null } };
+export type AnimeQuery = { __typename?: 'Query', anime: { __typename?: 'Anime', accentColor: string, airedOn?: any | null, createdAt: any, description?: string | null, duration?: number | null, episodesAired: number, episodesCount?: number | null, franchise?: string | null, id: string, minimalAge: number, nextEpisode?: any | null, playerLink: string, ratingMpa: string, releasedOn: any, screenshots: Array<string>, season: AnimeSeason, shikimoriId: number, shikimoriRating: number, shikimoriVotes: number, status: AnimeStatus, title: string, titlesEnglish: Array<string>, rating: number, ratingCount: number, type: AnimeType, updatedAt?: any | null, url: string, year: number, image: { __typename?: 'AnimeImage', medium?: string | null, cover?: string | null, large?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, image?: string | null, name: string }>, videos: Array<{ __typename?: 'AnimeVideo', id: string, imageUrl?: string | null, name?: string | null, type: AnimeVideoType, playerUrl: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number, userId: string } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null } };
 
 export type AnimesQueryVariables = Exact<{
   genres?: InputMaybe<Array<Scalars['String']['input']> | Scalars['String']['input']>;
@@ -1313,7 +1403,7 @@ export type AnimesQueryVariables = Exact<{
 }>;
 
 
-export type AnimesQuery = { __typename?: 'Query', animes: { __typename?: 'AnimeConnection', data: Array<{ __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, totalRating?: number | null, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }> }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
+export type AnimesQuery = { __typename?: 'Query', animes: { __typename?: 'AnimeConnection', data: Array<{ __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
 
 export type CharacterQueryVariables = Exact<{
   characterId?: InputMaybe<Scalars['String']['input']>;
@@ -1333,6 +1423,13 @@ export type CharactersQueryVariables = Exact<{
 
 
 export type CharactersQuery = { __typename?: 'Query', characters: { __typename?: 'CharacterConnection', data: Array<{ __typename?: 'AnimeCharacter', id: string, about?: string | null, name: string, nameEn: string, nameKanji?: string | null, image: string, role: CharacterRole }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
+
+export type EpisodesHistoryQueryVariables = Exact<{
+  animeUrl: Scalars['String']['input'];
+}>;
+
+
+export type EpisodesHistoryQuery = { __typename?: 'Query', episodesHistory: Array<{ __typename?: 'EpisodeHistory', aired: any, number: number, title: string, isUpcoming: boolean }> };
 
 export type EpisodeProgressFragment = { __typename?: 'EpisodeProgress', id: string, timing: number };
 
@@ -1392,7 +1489,7 @@ export type LastWatchedEpisodeQueryVariables = Exact<{
 
 export type LastWatchedEpisodeQuery = { __typename?: 'Query', lastWatchedEpisode?: { __typename?: 'LastWatchedEpisode', id: string, animeId: string, episodeId: string, translationId: number, userId: string } | null };
 
-export type ContinueWatchingFragment = { __typename?: 'LastWatchedEpisode', id: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, totalRating?: number | null, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }> }, episode: { __typename?: 'Episode', id: string, number: number, duration?: number | null, progress?: { __typename?: 'EpisodeProgress', id: string, timing: number } | null } };
+export type ContinueWatchingFragment = { __typename?: 'LastWatchedEpisode', id: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null }, episode: { __typename?: 'Episode', id: string, number: number, duration?: number | null, progress?: { __typename?: 'EpisodeProgress', id: string, timing: number } | null } };
 
 export type LastWatchedEpisodesQueryVariables = Exact<{
   userId: Scalars['String']['input'];
@@ -1401,14 +1498,14 @@ export type LastWatchedEpisodesQueryVariables = Exact<{
 }>;
 
 
-export type LastWatchedEpisodesQuery = { __typename?: 'Query', lastWatchedEpisodes?: { __typename?: 'LastWatchedEpisodeConnection', data: Array<{ __typename?: 'LastWatchedEpisode', id: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, totalRating?: number | null, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }> }, episode: { __typename?: 'Episode', id: string, number: number, duration?: number | null, progress?: { __typename?: 'EpisodeProgress', id: string, timing: number } | null } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } | null };
+export type LastWatchedEpisodesQuery = { __typename?: 'Query', lastWatchedEpisodes?: { __typename?: 'LastWatchedEpisodeConnection', data: Array<{ __typename?: 'LastWatchedEpisode', id: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null }, episode: { __typename?: 'Episode', id: string, number: number, duration?: number | null, progress?: { __typename?: 'EpisodeProgress', id: string, timing: number } | null } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } | null };
 
 export type ProfileQueryVariables = Exact<{
   login: Scalars['String']['input'];
 }>;
 
 
-export type ProfileQuery = { __typename?: 'Query', profile: { __typename?: 'User', id: string, login: string, googleId?: string | null, vkId?: string | null, name: string, role: UserRole, avatar?: string | null, birthday?: any | null, email?: string | null, isOnline: boolean, lastSeen: any, banner?: string | null } };
+export type ProfileQuery = { __typename?: 'Query', profile: { __typename?: 'User', name: string, banner?: string | null, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string, lastSeen: any, isOnline: boolean, about?: { __typename?: 'UserAbout', id: string, html: string, json: any, text: string } | null } };
 
 export type RandomAnimesQueryVariables = Exact<{
   count?: InputMaybe<Scalars['Int']['input']>;
@@ -1424,7 +1521,7 @@ export type RelatedAnimesQueryVariables = Exact<{
 }>;
 
 
-export type RelatedAnimesQuery = { __typename?: 'Query', relatedAnimes: { __typename?: 'RelatedAnimeConnection', data: Array<{ __typename?: 'RelatedAnime', type: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, totalRating?: number | null, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }> } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
+export type RelatedAnimesQuery = { __typename?: 'Query', relatedAnimes: { __typename?: 'RelatedAnimeConnection', data: Array<{ __typename?: 'RelatedAnime', type: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
 
 export type SimilarAnimesQueryVariables = Exact<{
   animeId: Scalars['String']['input'];
@@ -1433,7 +1530,7 @@ export type SimilarAnimesQueryVariables = Exact<{
 }>;
 
 
-export type SimilarAnimesQuery = { __typename?: 'Query', similarAnimes: { __typename?: 'AnimeConnection', data: Array<{ __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, totalRating?: number | null, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }> }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
+export type SimilarAnimesQuery = { __typename?: 'Query', similarAnimes: { __typename?: 'AnimeConnection', data: Array<{ __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
 
 export type UserStatisticsQueryVariables = Exact<{
   userId: Scalars['String']['input'];
@@ -1457,7 +1554,7 @@ export type UsersQuery = { __typename?: 'Query', users: { __typename?: 'UserConn
 export type ViewerQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ViewerQuery = { __typename?: 'Query', viewer: { __typename?: 'User', name: string, banner?: string | null, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string, lastSeen: any, isOnline: boolean } };
+export type ViewerQuery = { __typename?: 'Query', viewer: { __typename?: 'User', name: string, banner?: string | null, role: UserRole, vkId?: string | null, avatar?: string | null, birthday?: any | null, email?: string | null, id: string, googleId?: string | null, login: string, lastSeen: any, isOnline: boolean, about?: { __typename?: 'UserAbout', id: string, html: string, json: any, text: string } | null } };
 
 export const CharacterLightFragmentDoc = gql`
     fragment CharacterLight on AnimeCharacter {
@@ -1468,6 +1565,14 @@ export const CharacterLightFragmentDoc = gql`
   nameKanji
   image
   role
+}
+    `;
+export const UserAboutFragmentDoc = gql`
+    fragment UserAbout on UserAbout {
+  id
+  html
+  json
+  text
 }
     `;
 export const ViewerFragmentDoc = gql`
@@ -1484,8 +1589,11 @@ export const ViewerFragmentDoc = gql`
   login
   lastSeen
   isOnline
+  about {
+    ...UserAbout
+  }
 }
-    `;
+    ${UserAboutFragmentDoc}`;
 export const UserLiteFragmentDoc = gql`
     fragment UserLite on User {
   id
@@ -1627,9 +1735,17 @@ export const AnimeLiteFragmentDoc = gql`
     name
     id
   }
+  userRating {
+    id
+    rating
+  }
+  animeListEntry {
+    id
+    status
+  }
   status
   ratingMpa
-  totalRating
+  rating
   accentColor
   year
   type
@@ -1988,6 +2104,38 @@ export function useRemoveAnimeListEntryMutation(baseOptions?: Apollo.MutationHoo
 export type RemoveAnimeListEntryMutationHookResult = ReturnType<typeof useRemoveAnimeListEntryMutation>;
 export type RemoveAnimeListEntryMutationResult = Apollo.MutationResult<RemoveAnimeListEntryMutation>;
 export type RemoveAnimeListEntryMutationOptions = Apollo.BaseMutationOptions<RemoveAnimeListEntryMutation, RemoveAnimeListEntryMutationVariables>;
+export const RemoveUserAboutDocument = gql`
+    mutation RemoveUserAbout {
+  removeUserAbout {
+    ...UserAbout
+  }
+}
+    ${UserAboutFragmentDoc}`;
+export type RemoveUserAboutMutationFn = Apollo.MutationFunction<RemoveUserAboutMutation, RemoveUserAboutMutationVariables>;
+
+/**
+ * __useRemoveUserAboutMutation__
+ *
+ * To run a mutation, you first call `useRemoveUserAboutMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveUserAboutMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeUserAboutMutation, { data, loading, error }] = useRemoveUserAboutMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useRemoveUserAboutMutation(baseOptions?: Apollo.MutationHookOptions<RemoveUserAboutMutation, RemoveUserAboutMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RemoveUserAboutMutation, RemoveUserAboutMutationVariables>(RemoveUserAboutDocument, options);
+      }
+export type RemoveUserAboutMutationHookResult = ReturnType<typeof useRemoveUserAboutMutation>;
+export type RemoveUserAboutMutationResult = Apollo.MutationResult<RemoveUserAboutMutation>;
+export type RemoveUserAboutMutationOptions = Apollo.BaseMutationOptions<RemoveUserAboutMutation, RemoveUserAboutMutationVariables>;
 export const SaveAnimeListEntryDocument = gql`
     mutation SaveAnimeListEntry($animeUrl: String!, $endedAt: DateTime, $episodesWatched: Int, $startedAt: DateTime, $status: AnimeListStatus) {
   saveAnimeListEntry(
@@ -2144,6 +2292,41 @@ export function useSaveLastWatchedEpisodeMutation(baseOptions?: Apollo.MutationH
 export type SaveLastWatchedEpisodeMutationHookResult = ReturnType<typeof useSaveLastWatchedEpisodeMutation>;
 export type SaveLastWatchedEpisodeMutationResult = Apollo.MutationResult<SaveLastWatchedEpisodeMutation>;
 export type SaveLastWatchedEpisodeMutationOptions = Apollo.BaseMutationOptions<SaveLastWatchedEpisodeMutation, SaveLastWatchedEpisodeMutationVariables>;
+export const SaveUserAboutDocument = gql`
+    mutation SaveUserAbout($html: String!, $json: JSON!, $text: String!) {
+  saveUserAbout(html: $html, json: $json, text: $text) {
+    ...UserAbout
+  }
+}
+    ${UserAboutFragmentDoc}`;
+export type SaveUserAboutMutationFn = Apollo.MutationFunction<SaveUserAboutMutation, SaveUserAboutMutationVariables>;
+
+/**
+ * __useSaveUserAboutMutation__
+ *
+ * To run a mutation, you first call `useSaveUserAboutMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSaveUserAboutMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [saveUserAboutMutation, { data, loading, error }] = useSaveUserAboutMutation({
+ *   variables: {
+ *      html: // value for 'html'
+ *      json: // value for 'json'
+ *      text: // value for 'text'
+ *   },
+ * });
+ */
+export function useSaveUserAboutMutation(baseOptions?: Apollo.MutationHookOptions<SaveUserAboutMutation, SaveUserAboutMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SaveUserAboutMutation, SaveUserAboutMutationVariables>(SaveUserAboutDocument, options);
+      }
+export type SaveUserAboutMutationHookResult = ReturnType<typeof useSaveUserAboutMutation>;
+export type SaveUserAboutMutationResult = Apollo.MutationResult<SaveUserAboutMutation>;
+export type SaveUserAboutMutationOptions = Apollo.BaseMutationOptions<SaveUserAboutMutation, SaveUserAboutMutationVariables>;
 export const SetEpisodeDurationDocument = gql`
     mutation SetEpisodeDuration($episodeId: String!, $duration: Int!) {
   setEpisodeDuration(episodeId: $episodeId, duration: $duration) {
@@ -2502,8 +2685,8 @@ export type AnimeGenresLazyQueryHookResult = ReturnType<typeof useAnimeGenresLaz
 export type AnimeGenresSuspenseQueryHookResult = ReturnType<typeof useAnimeGenresSuspenseQuery>;
 export type AnimeGenresQueryResult = Apollo.QueryResult<AnimeGenresQuery, AnimeGenresQueryVariables>;
 export const AnimeListDocument = gql`
-    query AnimeList($userId: String!, $status: AnimeListStatus) {
-  animeList(userId: $userId, status: $status) {
+    query AnimeList($userId: String!) {
+  animeList(userId: $userId) {
     list {
       ...AnimeListEntry
     }
@@ -2524,7 +2707,6 @@ export const AnimeListDocument = gql`
  * const { data, loading, error } = useAnimeListQuery({
  *   variables: {
  *      userId: // value for 'userId'
- *      status: // value for 'status'
  *   },
  * });
  */
@@ -2589,6 +2771,51 @@ export type AnimeRatingDistributionQueryHookResult = ReturnType<typeof useAnimeR
 export type AnimeRatingDistributionLazyQueryHookResult = ReturnType<typeof useAnimeRatingDistributionLazyQuery>;
 export type AnimeRatingDistributionSuspenseQueryHookResult = ReturnType<typeof useAnimeRatingDistributionSuspenseQuery>;
 export type AnimeRatingDistributionQueryResult = Apollo.QueryResult<AnimeRatingDistributionQuery, AnimeRatingDistributionQueryVariables>;
+export const AnimeSchedulesDocument = gql`
+    query AnimeSchedules {
+  animeSchedules {
+    dayOfWeek
+    nextEpisodeDate
+    previousEpisodeDate
+    animeId
+    anime {
+      ...AnimeLite
+    }
+  }
+}
+    ${AnimeLiteFragmentDoc}`;
+
+/**
+ * __useAnimeSchedulesQuery__
+ *
+ * To run a query within a React component, call `useAnimeSchedulesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAnimeSchedulesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAnimeSchedulesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAnimeSchedulesQuery(baseOptions?: Apollo.QueryHookOptions<AnimeSchedulesQuery, AnimeSchedulesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AnimeSchedulesQuery, AnimeSchedulesQueryVariables>(AnimeSchedulesDocument, options);
+      }
+export function useAnimeSchedulesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AnimeSchedulesQuery, AnimeSchedulesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AnimeSchedulesQuery, AnimeSchedulesQueryVariables>(AnimeSchedulesDocument, options);
+        }
+export function useAnimeSchedulesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<AnimeSchedulesQuery, AnimeSchedulesQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<AnimeSchedulesQuery, AnimeSchedulesQueryVariables>(AnimeSchedulesDocument, options);
+        }
+export type AnimeSchedulesQueryHookResult = ReturnType<typeof useAnimeSchedulesQuery>;
+export type AnimeSchedulesLazyQueryHookResult = ReturnType<typeof useAnimeSchedulesLazyQuery>;
+export type AnimeSchedulesSuspenseQueryHookResult = ReturnType<typeof useAnimeSchedulesSuspenseQuery>;
+export type AnimeSchedulesQueryResult = Apollo.QueryResult<AnimeSchedulesQuery, AnimeSchedulesQueryVariables>;
 export const AnimeStudiosDocument = gql`
     query AnimeStudios {
   studios {
@@ -2673,7 +2900,9 @@ export const AnimeDocument = gql`
     shikimoriVotes
     status
     title
-    totalRating
+    titlesEnglish
+    rating
+    ratingCount
     type
     updatedAt
     url
@@ -2899,6 +3128,49 @@ export type CharactersQueryHookResult = ReturnType<typeof useCharactersQuery>;
 export type CharactersLazyQueryHookResult = ReturnType<typeof useCharactersLazyQuery>;
 export type CharactersSuspenseQueryHookResult = ReturnType<typeof useCharactersSuspenseQuery>;
 export type CharactersQueryResult = Apollo.QueryResult<CharactersQuery, CharactersQueryVariables>;
+export const EpisodesHistoryDocument = gql`
+    query EpisodesHistory($animeUrl: String!) {
+  episodesHistory(animeUrl: $animeUrl) {
+    aired
+    number
+    title
+    isUpcoming
+  }
+}
+    `;
+
+/**
+ * __useEpisodesHistoryQuery__
+ *
+ * To run a query within a React component, call `useEpisodesHistoryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useEpisodesHistoryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useEpisodesHistoryQuery({
+ *   variables: {
+ *      animeUrl: // value for 'animeUrl'
+ *   },
+ * });
+ */
+export function useEpisodesHistoryQuery(baseOptions: Apollo.QueryHookOptions<EpisodesHistoryQuery, EpisodesHistoryQueryVariables> & ({ variables: EpisodesHistoryQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<EpisodesHistoryQuery, EpisodesHistoryQueryVariables>(EpisodesHistoryDocument, options);
+      }
+export function useEpisodesHistoryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<EpisodesHistoryQuery, EpisodesHistoryQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<EpisodesHistoryQuery, EpisodesHistoryQueryVariables>(EpisodesHistoryDocument, options);
+        }
+export function useEpisodesHistorySuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<EpisodesHistoryQuery, EpisodesHistoryQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<EpisodesHistoryQuery, EpisodesHistoryQueryVariables>(EpisodesHistoryDocument, options);
+        }
+export type EpisodesHistoryQueryHookResult = ReturnType<typeof useEpisodesHistoryQuery>;
+export type EpisodesHistoryLazyQueryHookResult = ReturnType<typeof useEpisodesHistoryLazyQuery>;
+export type EpisodesHistorySuspenseQueryHookResult = ReturnType<typeof useEpisodesHistorySuspenseQuery>;
+export type EpisodesHistoryQueryResult = Apollo.QueryResult<EpisodesHistoryQuery, EpisodesHistoryQueryVariables>;
 export const EpisodesDocument = gql`
     query Episodes($animeUrl: String!, $page: Int!, $limit: Int, $userId: String) {
   episodes(animeUrl: $animeUrl, page: $page, limit: $limit) {
@@ -3201,21 +3473,10 @@ export type LastWatchedEpisodesQueryResult = Apollo.QueryResult<LastWatchedEpiso
 export const ProfileDocument = gql`
     query Profile($login: String!) {
   profile(login: $login) {
-    id
-    login
-    googleId
-    vkId
-    name
-    role
-    avatar
-    birthday
-    email
-    isOnline
-    lastSeen
-    banner
+    ...Viewer
   }
 }
-    `;
+    ${ViewerFragmentDoc}`;
 
 /**
  * __useProfileQuery__

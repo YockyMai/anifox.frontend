@@ -15,7 +15,7 @@ export const Banner = () => {
   return (
     <div
       ref={inViewRef}
-      className='relative flex aspect-[12/2] items-end bg-cover bg-center bg-no-repeat'
+      className='relative flex h-[330px] items-end bg-cover bg-center bg-no-repeat'
       style={{
         backgroundImage: `url(${profile.banner ?? DEFAULT_USER_BANNER})`
       }}

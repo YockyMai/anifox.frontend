@@ -1,25 +1,23 @@
-import { AnimeStatus } from '@/graphql/generated/output'
 import {
-  AnimeMinimalAge,
-  AnimeOrderVariants,
-  AnimeRatingMpa,
-  AnimeSeasons,
-  AnimeSortDirection,
-  AnimeStatuses,
-  AnimeTypeVariants
-} from '@/services/api'
+  AnimeOrder,
+  AnimeSeason,
+  AnimeStatus,
+  AnimeType,
+  RatingMpa,
+  SortOrder
+} from '@/graphql/generated/output'
 
 export type AnimeCatalogFilterStore = {
   status: AnimeStatus | null
   search: string
   genres: string[]
-  minimalAge: AnimeMinimalAge | null
-  ratingMpa: AnimeRatingMpa | null
-  season: AnimeSeasons | null
-  type: AnimeTypeVariants | null
+  minimalAge: number | null
+  ratingMpa: RatingMpa | null
+  season: AnimeSeason | null
+  type: AnimeType | null
   years: number[]
   translations: string[]
   studio: string | null
-  sort: AnimeSortDirection | null
-  order: AnimeOrderVariants | null
+  sort: SortOrder | null
+  order: AnimeOrder | null
 }

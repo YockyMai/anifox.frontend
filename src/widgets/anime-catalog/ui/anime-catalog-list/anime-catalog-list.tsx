@@ -14,7 +14,7 @@ export const AnimeCatalogList = () => {
   const loadMoreTriggerInView = useInView(loadMoreTriggerRef)
 
   const animeListQueryParams = useAnimeListQueryParams()
-
+  console.log(animeListQueryParams)
   const { data, fetchMore, error, loading } = useAnimesQuery({
     variables: { page: 0, ...animeListQueryParams },
     notifyOnNetworkStatusChange: true

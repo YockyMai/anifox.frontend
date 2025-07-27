@@ -35,7 +35,7 @@ export const AnimeRelatedCard = ({
               size={12}
               key={index}
               className={clsx(
-                (anime.totalRating ?? 0) <= index + 1 &&
+                (anime.rating ?? 0) <= index + 1 &&
                   'fill-yellow-300 stroke-yellow-300'
               )}
             />

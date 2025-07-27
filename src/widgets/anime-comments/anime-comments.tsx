@@ -1,4 +1,5 @@
-import { InfinityLoadingContainer } from '@anifox/ui'
+import { Alert, InfinityLoadingContainer, UIColors } from '@anifox/ui'
+import { IconAlertCircle } from '@tabler/icons-react'
 import React from 'react'
 
 import { $commentInput } from '@/entities/comment/store/comment-input.store'
@@ -36,7 +37,21 @@ export const AnimeComments = ({ animeId }: AnimeCommentsProps) => {
 
   return (
     <div>
+      <Alert
+        className='mb-6'
+        icon={<IconAlertCircle />}
+        color={UIColors.ORANGE}
+        title='Уважайте других участников обсуждения'
+        variant='light'
+      >
+        Просим воздерживаться от нецензурной лексики, оскорблений, провокаций и
+        любых проявлений неуважения. Комментарии, нарушающие нормы приличия и
+        правила платформы, могут быть удалены, а пользователи — заблокированы.
+        Давайте поддерживать конструктивный и дружелюбный диалог.
+      </Alert>
+
       {!replyingCommentId && <CommentInput animeId={animeId} />}
+
       <div className='mt-6'>
         <InfinityLoadingContainer
           fetchNextPage={fetchNextPage}

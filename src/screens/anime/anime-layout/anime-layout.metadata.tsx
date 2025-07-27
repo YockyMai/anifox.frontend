@@ -1,50 +1,60 @@
 import { useParams } from 'react-router'
 
 import { Helmet } from '@/common/lib/helmet'
-import { useAnimeQuery } from '@/graphql/queries'
+import { useAnimeQuery } from '@/entities/anime/hooks'
 
 import { AnimePageParams } from '../anime.interface'
 
 export const AnimeLayoutMetadata = () => {
   const { animeUrl } = useParams<AnimePageParams>()
 
-  const { data, isLoading } = useAnimeQuery(animeUrl!)
+  const { data, loading } = useAnimeQuery(animeUrl!)
+
+  const anime = data?.anime
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Movie',
-    image: data?.image?.medium,
-    name: data?.title,
-    description: data?.description,
-    genre: data?.genres
-      ? data.genres.map(({ name }) => name).join(', ')
+    image: anime?.image?.medium,
+    name: anime?.title,
+    description: anime?.description,
+    genre: anime?.genres
+      ? anime.genres.map(({ name }) => name).join(', ')
       : undefined,
-    datePublished: data?.aired_on,
-    ...(data?.rating && data?.rating_count
+    datePublished: anime?.airedOn,
+    ...(anime?.ratingCount && anime?.ratingCount
       ? {
           aggregateRating: {
             '@type': 'AggregateRating',
-            ratingValue: data?.rating,
-            ratingCount: data?.rating_count
+            ratingValue: anime?.rating,
+            ratingCount: anime?.ratingCount
           }
         }
       : {})
   }
 
-  const englishTitle = data?.english?.filter((title) => title !== 'null')[0]
-  const year = data?.year
-  const otherTitleInfo = Boolean(englishTitle || year)
-    ? `(${englishTitle ?? ''}${englishTitle && year ? ', ' : ''}${year ?? ''})`
-    : ''
+  const englishTitle = anime?.titlesEnglish?.filter(
+    (title) => title !== 'null'
+  )[0]
+  const year = anime?.year
+  const otherTitleInfo =
+    englishTitle ?? year
+      ? `(${englishTitle ?? ''}${englishTitle && year ? ', ' : ''}${year ?? ''})`
+      : ''
 
-  const pageTitle = `${data?.title} — смотреть аниме ${otherTitleInfo}`.trim()
+  const pageTitle = `${anime?.title} — смотреть аниме ${otherTitleInfo}`.trim()
 
   return (
-    <Helmet isLoading={isLoading}>
+    <Helmet isLoading={loading}>
       <title>{pageTitle}</title>
-      <meta name='description' content={data?.description} />
+
+      {anime?.description}
+      <meta name='description' content={anime?.description ?? ''} />
+
       <meta property='og:type' content='video.movie' />
-      {data?.image && <meta property='og:image' content={data.image.medium} />}
+      {anime?.image.medium && (
+        <meta property='og:image' content={anime.image.medium} />
+      )}
       <script type='application/ld+json'>{JSON.stringify(jsonLd)}</script>
     </Helmet>
   )

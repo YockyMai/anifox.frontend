@@ -80,7 +80,7 @@ export const AnimeListButton = ({
           {
             query: AnimeDocument,
             variables: {
-              animeUrl,
+              url: animeUrl,
               userId: viewer.id
             }
           }

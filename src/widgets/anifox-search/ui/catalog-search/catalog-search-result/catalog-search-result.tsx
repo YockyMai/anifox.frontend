@@ -26,6 +26,7 @@ export const CatalogSearchResult = () => {
   }
 
   const pageInfo = data?.animes.pageInfo
+
   return (
     <InfinityLoadingContainer
       fetchNextPage={fetchNextPage}
@@ -34,7 +35,7 @@ export const CatalogSearchResult = () => {
     >
       <div className='anifox-grid'>
         {data?.animes.data.map((anime) => (
-          <AnimeCard anime={anime} key={anime.id} />
+          <AnimeCard labelWhite anime={anime} key={anime.id} />
         ))}
         {loading && ANIME_CARD_LOADERS}
       </div>

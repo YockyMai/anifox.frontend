@@ -19,8 +19,8 @@ importers:
         specifier: ^1.0.5
         version: 1.0.5
       '@anifox/ui':
-        specifier: ^1.9.0
-        version: 1.9.0(@anifox/store@1.1.1(@types/react@19.0.8)(react@18.3.1))(@anifox/tailwind-config@1.0.5)(@tabler/icons-react@3.6.0(react@18.3.1))(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(clsx@2.1.1)(embla-carousel@8.6.0)(framer-motion@11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-intersection-observer@9.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@6.0.11(@types/node@20.14.2)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.33.0)(yaml@2.4.5))
+        specifier: ^1.9.3
+        version: 1.9.3(@anifox/store@1.1.1(@types/react@19.0.8)(react@18.3.1))(@anifox/tailwind-config@1.0.5)(@tabler/icons-react@3.6.0(react@18.3.1))(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(clsx@2.1.1)(embla-carousel@8.6.0)(framer-motion@11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-intersection-observer@9.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@6.0.11(@types/node@20.14.2)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.33.0)(yaml@2.4.5))
       '@apollo/client':
         specifier: ^3.13.4
         version: 3.13.4(@types/react@19.0.8)(graphql-ws@6.0.4(graphql@16.10.0)(ws@8.18.1))(graphql@16.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -255,8 +255,8 @@ packages:
   '@anifox/tailwind-config@1.0.5':
     resolution: {integrity: sha512-ohdff3DdYk/yqeu5OQUnII67GXF8QonULKX6YB8s9rNcNkGQRfUL2E0l0w2fym0+mOFIEYi7W8f4KLdibUUNZg==}
 
-  '@anifox/ui@1.9.0':
-    resolution: {integrity: sha512-2rWz93nuxNVAKJPEgL9fWMEGx8ctRtPB26Uy0/lNLEs99Nip8ZJHoT/juH1h0ZcLKrzyOP2Yv7UJMR5OPJr4Fw==}
+  '@anifox/ui@1.9.3':
+    resolution: {integrity: sha512-ra9k5S/9h1Ag4mmlE7q8wedclPoV/YPzEIIjAVbKlBTPIdQXMnluGCzxM0xmTdvT2exobKVmFPgJRU06cYYbbg==}
     peerDependencies:
       '@anifox/store': ^1.1.0
       '@anifox/tailwind-config': ^1.0.5
@@ -2569,6 +2569,11 @@ packages:
     resolution: {integrity: sha512-/rW2+a21VBGBv5c/78CVW8XA7bThSqE3FqcBtWyq8IxZoe8Hj9+Jac7FcB2YR3aY0BeHwso474e1RuVr1iYBKQ==}
     peerDependencies:
       '@tiptap/core': ^2.7.0
+
+  '@tiptap/extension-image@3.0.7':
+    resolution: {integrity: sha512-hs6TiSmefwvAqxwhy4+ZFCbmAXiAeWq4v5Zd65kQ7dvN7epeV0NM7ME5su/oscQgoKvNAy1r/4sJVaTnHomYMQ==}
+    peerDependencies:
+      '@tiptap/core': ^3.0.7
 
   '@tiptap/extension-italic@2.23.0':
     resolution: {integrity: sha512-hX3oacTUloWM8Xu8IapcU2onMWmSkJi8mNAJiIFMiAYcERfTfxPsT3u2yO2gvpoh1iqtZWFM2gc+3x6BnXek8g==}
@@ -4994,6 +4999,13 @@ packages:
   tippy.js@6.3.7:
     resolution: {integrity: sha512-E1d3oP2emgJ9dRQZdf3Kkn0qJgI6ZLpyS5z6ZkY1DF3kaQaBsGZsndEpHwx+eC+tYM41HaSNvNtLx8tU57FzTQ==}
 
+  tiptap-extension-resize-image@1.2.3:
+    resolution: {integrity: sha512-NC1BRn2ap7kxpdFI8UUFldlecSokqJj8Uug5b3/BY/vQeje4O+uCEOQofray90QKz/8gSu8l8wXwK1zH7W5vwQ==}
+    peerDependencies:
+      '@tiptap/core': ^2.0.0 || ^3.0.0
+      '@tiptap/extension-image': ^2.0.0 || ^3.0.0
+      '@tiptap/pm': ^2.0.0 || ^3.0.0
+
   title-case@3.0.3:
     resolution: {integrity: sha512-e1zGYRvbffpcHIrnuqT0Dh+gEJtDaxDSoG4JAIpq4oDFyooziLBIiYQv0GBT4FUAnUop5uZ1hiIAj7oAF6sOCA==}
 
@@ -5358,7 +5370,7 @@ snapshots:
 
   '@anifox/tailwind-config@1.0.5': {}
 
-  '@anifox/ui@1.9.0(@anifox/store@1.1.1(@types/react@19.0.8)(react@18.3.1))(@anifox/tailwind-config@1.0.5)(@tabler/icons-react@3.6.0(react@18.3.1))(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(clsx@2.1.1)(embla-carousel@8.6.0)(framer-motion@11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-intersection-observer@9.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@6.0.11(@types/node@20.14.2)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.33.0)(yaml@2.4.5))':
+  '@anifox/ui@1.9.3(@anifox/store@1.1.1(@types/react@19.0.8)(react@18.3.1))(@anifox/tailwind-config@1.0.5)(@tabler/icons-react@3.6.0(react@18.3.1))(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(clsx@2.1.1)(embla-carousel@8.6.0)(framer-motion@11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-intersection-observer@9.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@6.0.11(@types/node@20.14.2)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.33.0)(yaml@2.4.5))':
     dependencies:
       '@anifox/store': 1.1.1(@types/react@19.0.8)(react@18.3.1)
       '@anifox/tailwind-config': 1.0.5
@@ -5372,7 +5384,7 @@ snapshots:
       '@tabler/icons-react': 3.6.0(react@18.3.1)
       '@tailwindcss/vite': 4.1.11(vite@6.0.11(@types/node@20.14.2)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.33.0)(yaml@2.4.5))
       '@tiptap/extension-highlight': 2.23.0(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))
-      '@tiptap/extension-image': 2.23.0(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))
+      '@tiptap/extension-image': 3.0.7(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))
       '@tiptap/extension-link': 2.23.0(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@tiptap/pm@2.23.0)
       '@tiptap/extension-subscript': 2.23.0(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))
       '@tiptap/extension-superscript': 2.23.0(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))
@@ -5401,6 +5413,7 @@ snapshots:
       react-intersection-observer: 9.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-select: 5.10.2(@types/react@19.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-transition-group: 4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      tiptap-extension-resize-image: 1.2.3(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@tiptap/extension-image@3.0.7(@tiptap/core@2.23.0(@tiptap/pm@2.23.0)))(@tiptap/pm@2.23.0)
     transitivePeerDependencies:
       - '@tiptap/core'
       - '@types/react'
@@ -8095,6 +8108,10 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.23.0(@tiptap/pm@2.23.0)
 
+  '@tiptap/extension-image@3.0.7(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))':
+    dependencies:
+      '@tiptap/core': 2.23.0(@tiptap/pm@2.23.0)
+
   '@tiptap/extension-italic@2.23.0(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))':
     dependencies:
       '@tiptap/core': 2.23.0(@tiptap/pm@2.23.0)
@@ -10624,6 +10641,12 @@ snapshots:
   tippy.js@6.3.7:
     dependencies:
       '@popperjs/core': 2.11.8
+
+  tiptap-extension-resize-image@1.2.3(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@tiptap/extension-image@3.0.7(@tiptap/core@2.23.0(@tiptap/pm@2.23.0)))(@tiptap/pm@2.23.0):
+    dependencies:
+      '@tiptap/core': 2.23.0(@tiptap/pm@2.23.0)
+      '@tiptap/extension-image': 3.0.7(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))
+      '@tiptap/pm': 2.23.0
 
   title-case@3.0.3:
     dependencies:

@@ -1,5 +1,6 @@
-import { Button, RichTextEditor } from '@anifox/ui'
+import { Button, Editor, RichTextEditor } from '@anifox/ui'
 import { IconSend2 } from '@tabler/icons-react'
+import { useState } from 'react'
 
 import {
   AnimeCommentFragment,
@@ -16,6 +17,8 @@ export const CommentInput = ({
   parentCommentId,
   onSubmit
 }: CommentInputProps) => {
+  const [editor, setEditor] = useState<Editor | null>(null)
+
   const [createCommentMutation, { loading }] = useCreateAnimeCommentMutation({
     onCompleted: () => {
       $commentInput.actions.setComment({
@@ -27,6 +30,7 @@ export const CommentInput = ({
         }
       })
       $commentInput.actions.setReplyingCommentId(null)
+      editor?.commands.clearContent()
     },
     update: (cache, { data }) => {
       if (!data?.createAnimeComment) return
@@ -121,6 +125,7 @@ export const CommentInput = ({
     <div>
       <div className='overflow-hidden rounded bg-slate-50 dark:bg-slate-800'>
         <RichTextEditor
+          onEditorInit={setEditor}
           disabledFeatures={['images', 'align']}
           content={comment.json}
           onUpdateContent={(content) =>

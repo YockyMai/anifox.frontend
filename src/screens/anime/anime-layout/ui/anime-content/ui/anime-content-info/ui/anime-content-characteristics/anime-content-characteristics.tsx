@@ -2,10 +2,13 @@ import dayjs from 'dayjs'
 import { useMemo } from 'react'
 import { useParams } from 'react-router'
 
+import {
+  MAP_ANIME_STATUS_LABEL,
+  MAP_ANIME_TYPE_VARIANTS
+} from '@/common/const/translate'
 import { useAnimeQuery } from '@/graphql/generated/output'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { ROUTES } from '@/screens/pages.routes'
-import { MAP_ANIME_STATUS_LABEL, MAP_ANIME_TYPE_VARIANTS } from '@/services/api'
 import { createAnimeCatalogSearchParams } from '@/widgets/anime-catalog'
 
 import { AnimeInfoBlock } from '../anime-info-block'
@@ -44,7 +47,7 @@ export const AnimeContentCharacteristics = () => {
       {
         element: `Тип: ${anime?.type ? MAP_ANIME_TYPE_VARIANTS[anime?.type] : '?'}`,
         href: anime?.type
-          ? `${ROUTES.CATALOG.ROOT}?${createAnimeCatalogSearchParams({ type: data.anime.type })}`
+          ? `${ROUTES.CATALOG.ROOT}?${createAnimeCatalogSearchParams({ type: anime.type })}`
           : undefined,
         key: 'type'
       },
@@ -71,8 +74,7 @@ export const AnimeContentCharacteristics = () => {
     anime?.year,
     anime?.type,
     anime?.status,
-    anime?.releasedOn,
-    anime?.type
+    anime?.releasedOn
   ])
 
   return <AnimeInfoBlock title='Об аниме: ' infos={infos} />

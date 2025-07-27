@@ -13,16 +13,14 @@ const AnimeCatalog = () => {
     <div className='mt-[100]'>
       <AnimeCatalogMetadata />
 
-      <AnimeCatalogContextProvider>
-        <AnimeCatalogFilter />
-        {isFilterActive ? (
-          <AnimeCatalogList />
-        ) : (
-          <div className='mt-52'>
-            <AnimeCatalogLanding />
-          </div>
-        )}
-      </AnimeCatalogContextProvider>
+      <AnimeCatalogFilter />
+      {isFilterActive ? (
+        <AnimeCatalogList />
+      ) : (
+        <div className='mt-52'>
+          <AnimeCatalogLanding />
+        </div>
+      )}
     </div>
   )
 }

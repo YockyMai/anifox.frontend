@@ -4,4 +4,5 @@ export type AnimeCardProps = {
   anime: AnimeLiteFragment
   label?: string
   withoutPanel?: boolean
+  labelWhite?: boolean
 }

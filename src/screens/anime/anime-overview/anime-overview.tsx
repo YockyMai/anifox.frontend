@@ -96,9 +96,11 @@ export const AnimeOverviewScreen = () => {
 
       <AnimeEpisodesHistory />
 
-      <ScreenSection withContainer title='Комментарии к аниме'>
-        <AnimeComments animeId={animeId!} />
-      </ScreenSection>
+      <div className='mt-10'>
+        <ScreenSection withContainer title='Комментарии к аниме'>
+          <AnimeComments animeId={animeId!} />
+        </ScreenSection>
+      </div>
     </div>
   )
 }

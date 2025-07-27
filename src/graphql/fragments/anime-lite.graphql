@@ -18,9 +18,17 @@ fragment AnimeLite on Anime {
     name
     id
   }
+  userRating {
+    id
+    rating
+  }
+  animeListEntry {
+    id
+    status
+  }
   status
   ratingMpa
-  totalRating
+  rating
   accentColor
   year
   type
