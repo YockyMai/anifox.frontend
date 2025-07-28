@@ -369,7 +369,6 @@ export type Character = {
   __typename?: 'Character';
   about?: Maybe<Scalars['String']['output']>;
   aboutEn?: Maybe<Scalars['String']['output']>;
-  animes: Array<Anime>;
   id: Scalars['String']['output'];
   image: Scalars['String']['output'];
   isFavorite?: Maybe<Scalars['Boolean']['output']>;
@@ -377,6 +376,7 @@ export type Character = {
   name: Scalars['String']['output'];
   nameEn: Scalars['String']['output'];
   nameKanji?: Maybe<Scalars['String']['output']>;
+  participation: Array<CharacterParticipation>;
   pictures: Array<Scalars['String']['output']>;
 };
 
@@ -389,6 +389,14 @@ export type CharacterConnection = {
   __typename?: 'CharacterConnection';
   data: Array<AnimeCharacter>;
   pageInfo: PageInfo;
+};
+
+export type CharacterParticipation = {
+  __typename?: 'CharacterParticipation';
+  anime: Anime;
+  animeId: Scalars['String']['output'];
+  characterId: Scalars['String']['output'];
+  role: CharacterRole;
 };
 
 export const CharacterRole = {
@@ -436,7 +444,7 @@ export type Episode = {
   /** Episode is a recap */
   recap: Scalars['Boolean']['output'];
   /** Episode title in russian */
-  title: Scalars['String']['output'];
+  title?: Maybe<Scalars['String']['output']>;
   /** Episode title in english */
   titleEn: Scalars['String']['output'];
   /** Available translations for episode */
@@ -459,7 +467,7 @@ export type EpisodeHistory = {
   aired: Scalars['DateTime']['output'];
   isUpcoming: Scalars['Boolean']['output'];
   number: Scalars['Int']['output'];
-  title: Scalars['String']['output'];
+  title?: Maybe<Scalars['String']['output']>;
 };
 
 export const EpisodeOrder = {
@@ -1412,7 +1420,7 @@ export type CharacterQueryVariables = Exact<{
 }>;
 
 
-export type CharacterQuery = { __typename?: 'Query', character: { __typename?: 'Character', about?: string | null, aboutEn?: string | null, id: string, image: string, malId: number, name: string, nameEn: string, nameKanji?: string | null, pictures: Array<string>, isFavorite?: boolean | null } };
+export type CharacterQuery = { __typename?: 'Query', character: { __typename?: 'Character', about?: string | null, aboutEn?: string | null, id: string, image: string, malId: number, name: string, nameEn: string, nameKanji?: string | null, pictures: Array<string>, isFavorite?: boolean | null, participation: Array<{ __typename?: 'CharacterParticipation', role: CharacterRole, animeId: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null } }> } };
 
 export type CharactersQueryVariables = Exact<{
   animeUrl: Scalars['String']['input'];
@@ -1429,13 +1437,13 @@ export type EpisodesHistoryQueryVariables = Exact<{
 }>;
 
 
-export type EpisodesHistoryQuery = { __typename?: 'Query', episodesHistory: Array<{ __typename?: 'EpisodeHistory', aired: any, number: number, title: string, isUpcoming: boolean }> };
+export type EpisodesHistoryQuery = { __typename?: 'Query', episodesHistory: Array<{ __typename?: 'EpisodeHistory', aired: any, number: number, title?: string | null, isUpcoming: boolean }> };
 
 export type EpisodeProgressFragment = { __typename?: 'EpisodeProgress', id: string, timing: number };
 
 export type EpisodeTranslationFragment = { __typename?: 'EpisodeTranslation', id: string, kodikPlayerLink: string, title: string, type: TranslationType, translationId: number };
 
-export type EpisodeFragment = { __typename?: 'Episode', id: string, aired?: any | null, title: string, description?: string | null, duration?: number | null, filler: boolean, recap: boolean, number: number, image: string, progress?: { __typename?: 'EpisodeProgress', id: string, timing: number } | null, translations: Array<{ __typename?: 'EpisodeTranslation', id: string, kodikPlayerLink: string, title: string, type: TranslationType, translationId: number }> };
+export type EpisodeFragment = { __typename?: 'Episode', id: string, aired?: any | null, title?: string | null, description?: string | null, duration?: number | null, filler: boolean, recap: boolean, number: number, image: string, progress?: { __typename?: 'EpisodeProgress', id: string, timing: number } | null, translations: Array<{ __typename?: 'EpisodeTranslation', id: string, kodikPlayerLink: string, title: string, type: TranslationType, translationId: number }> };
 
 export type EpisodesQueryVariables = Exact<{
   animeUrl: Scalars['String']['input'];
@@ -1445,7 +1453,7 @@ export type EpisodesQueryVariables = Exact<{
 }>;
 
 
-export type EpisodesQuery = { __typename?: 'Query', episodes: { __typename?: 'EpisodeConnection', data: Array<{ __typename?: 'Episode', id: string, aired?: any | null, title: string, description?: string | null, duration?: number | null, filler: boolean, recap: boolean, number: number, image: string, progress?: { __typename?: 'EpisodeProgress', id: string, timing: number } | null, translations: Array<{ __typename?: 'EpisodeTranslation', id: string, kodikPlayerLink: string, title: string, type: TranslationType, translationId: number }> }> } };
+export type EpisodesQuery = { __typename?: 'Query', episodes: { __typename?: 'EpisodeConnection', data: Array<{ __typename?: 'Episode', id: string, aired?: any | null, title?: string | null, description?: string | null, duration?: number | null, filler: boolean, recap: boolean, number: number, image: string, progress?: { __typename?: 'EpisodeProgress', id: string, timing: number } | null, translations: Array<{ __typename?: 'EpisodeTranslation', id: string, kodikPlayerLink: string, title: string, type: TranslationType, translationId: number }> }> } };
 
 export type FavoriteAnimeFragment = { __typename?: 'Anime', id: string, url: string, title: string, image: { __typename?: 'AnimeImage', medium?: string | null } };
 
@@ -3040,10 +3048,17 @@ export const CharacterDocument = gql`
     nameEn
     nameKanji
     pictures
+    participation {
+      anime {
+        ...AnimeLite
+      }
+      role
+      animeId
+    }
     isFavorite(userId: $userId)
   }
 }
-    `;
+    ${AnimeLiteFragmentDoc}`;
 
 /**
  * __useCharacterQuery__

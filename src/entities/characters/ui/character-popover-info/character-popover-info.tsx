@@ -9,6 +9,7 @@ import {
 } from '@anifox/ui'
 import { IconPhoto } from '@tabler/icons-react'
 
+import { AnimeCard } from '@/entities/anime/anime-card'
 import { useCharacterQuery } from '@/graphql/generated/output'
 import { CharacterActions } from '@/screens/character/ui/character-actions'
 import { CharacterPicture } from '@/screens/character/ui/character-pictures/character-picture'
@@ -86,6 +87,28 @@ export const CharacterPopoverInfo = ({ malId }: CharacterPopoverInfoProps) => {
                     align='end'
                   />
                 </div>
+              </Fancybox>
+            </ScreenSection>
+
+            <ScreenSection title='Участие в аниме'>
+              <Fancybox>
+                <Carousel
+                  slides={(character.participation ?? []).map(
+                    ({ anime, role, animeId }) => ({
+                      content: (
+                        <AnimeCard
+                          label={`${role} роль`}
+                          key={animeId}
+                          anime={anime}
+                        />
+                      ),
+                      size: 200
+                    })
+                  )}
+                  dragFree
+                  slideSpacing={10}
+                  align='end'
+                />
               </Fancybox>
             </ScreenSection>
           </div>

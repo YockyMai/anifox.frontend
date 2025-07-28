@@ -1,6 +1,7 @@
 import { ScreenSection } from '@anifox/ui'
 import { useParams } from 'react-router'
 
+import { AnimeCard } from '@/entities/anime/anime-card'
 import { useCharacterQuery } from '@/graphql/generated/output'
 
 import { CharacterPageParams } from '../../character.interface'
@@ -22,19 +23,15 @@ export const CharacterParticipation = () => {
           </ScreenSection>
         ) : undefined}
 
-        {/* {data?.roles?.length ? (
+        {character?.participation && character.participation.length > 0 && (
           <ScreenSection title='Участие в аниме'>
             <div className='anifox-grid'>
-              {data?.roles.map(({ anime, role }) => (
-                <AnimeCard
-                  label={`${role} роль`}
-                  key={anime.url}
-                  anime={anime}
-                />
+              {character.participation.map(({ anime, role, animeId }) => (
+                <AnimeCard label={`${role} роль`} key={animeId} anime={anime} />
               ))}
             </div>
           </ScreenSection>
-        ) : undefined} */}
+        )}
       </div>
     </>
   )

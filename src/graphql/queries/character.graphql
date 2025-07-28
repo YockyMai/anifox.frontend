@@ -9,6 +9,13 @@ query Character($characterId: String, $userId: String, $malId: Int) {
     nameEn
     nameKanji
     pictures
+    participation {
+      anime {
+        ...AnimeLite
+      }
+      role
+      animeId
+    }
     isFavorite(userId: $userId)
   }
 }
