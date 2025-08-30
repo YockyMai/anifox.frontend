@@ -446,7 +446,7 @@ export type Episode = {
   /** Episode title in russian */
   title?: Maybe<Scalars['String']['output']>;
   /** Episode title in english */
-  titleEn: Scalars['String']['output'];
+  titleEn?: Maybe<Scalars['String']['output']>;
   /** Available translations for episode */
   translations: Array<EpisodeTranslation>;
 };
@@ -776,6 +776,8 @@ export type Query = {
   animes: AnimeConnection;
   character: Character;
   characters: CharacterConnection;
+  checkEmailExist: Scalars['Boolean']['output'];
+  checkLoginExist: Scalars['Boolean']['output'];
   episode: Episode;
   episodeProgress: EpisodeProgress;
   episodeTranslations: Array<EpisodeTranslation>;
@@ -897,6 +899,16 @@ export type QueryCharactersArgs = {
   page?: InputMaybe<Scalars['Int']['input']>;
   role?: InputMaybe<CharacterRole>;
   search?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryCheckEmailExistArgs = {
+  email: Scalars['String']['input'];
+};
+
+
+export type QueryCheckLoginExistArgs = {
+  login: Scalars['String']['input'];
 };
 
 
@@ -1432,6 +1444,20 @@ export type CharactersQueryVariables = Exact<{
 
 export type CharactersQuery = { __typename?: 'Query', characters: { __typename?: 'CharacterConnection', data: Array<{ __typename?: 'AnimeCharacter', id: string, about?: string | null, name: string, nameEn: string, nameKanji?: string | null, image: string, role: CharacterRole }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
 
+export type CheckEmailExistQueryVariables = Exact<{
+  email: Scalars['String']['input'];
+}>;
+
+
+export type CheckEmailExistQuery = { __typename?: 'Query', checkEmailExist: boolean };
+
+export type CheckLoginExistQueryVariables = Exact<{
+  login: Scalars['String']['input'];
+}>;
+
+
+export type CheckLoginExistQuery = { __typename?: 'Query', checkLoginExist: boolean };
+
 export type EpisodesHistoryQueryVariables = Exact<{
   animeUrl: Scalars['String']['input'];
 }>;
@@ -1443,7 +1469,7 @@ export type EpisodeProgressFragment = { __typename?: 'EpisodeProgress', id: stri
 
 export type EpisodeTranslationFragment = { __typename?: 'EpisodeTranslation', id: string, kodikPlayerLink: string, title: string, type: TranslationType, translationId: number };
 
-export type EpisodeFragment = { __typename?: 'Episode', id: string, aired?: any | null, title?: string | null, description?: string | null, duration?: number | null, filler: boolean, recap: boolean, number: number, image: string, progress?: { __typename?: 'EpisodeProgress', id: string, timing: number } | null, translations: Array<{ __typename?: 'EpisodeTranslation', id: string, kodikPlayerLink: string, title: string, type: TranslationType, translationId: number }> };
+export type EpisodeFragment = { __typename?: 'Episode', id: string, aired?: any | null, title?: string | null, titleEn?: string | null, description?: string | null, duration?: number | null, filler: boolean, recap: boolean, number: number, image: string, progress?: { __typename?: 'EpisodeProgress', id: string, timing: number } | null, translations: Array<{ __typename?: 'EpisodeTranslation', id: string, kodikPlayerLink: string, title: string, type: TranslationType, translationId: number }> };
 
 export type EpisodesQueryVariables = Exact<{
   animeUrl: Scalars['String']['input'];
@@ -1453,7 +1479,7 @@ export type EpisodesQueryVariables = Exact<{
 }>;
 
 
-export type EpisodesQuery = { __typename?: 'Query', episodes: { __typename?: 'EpisodeConnection', data: Array<{ __typename?: 'Episode', id: string, aired?: any | null, title?: string | null, description?: string | null, duration?: number | null, filler: boolean, recap: boolean, number: number, image: string, progress?: { __typename?: 'EpisodeProgress', id: string, timing: number } | null, translations: Array<{ __typename?: 'EpisodeTranslation', id: string, kodikPlayerLink: string, title: string, type: TranslationType, translationId: number }> }> } };
+export type EpisodesQuery = { __typename?: 'Query', episodes: { __typename?: 'EpisodeConnection', data: Array<{ __typename?: 'Episode', id: string, aired?: any | null, title?: string | null, titleEn?: string | null, description?: string | null, duration?: number | null, filler: boolean, recap: boolean, number: number, image: string, progress?: { __typename?: 'EpisodeProgress', id: string, timing: number } | null, translations: Array<{ __typename?: 'EpisodeTranslation', id: string, kodikPlayerLink: string, title: string, type: TranslationType, translationId: number }> }> } };
 
 export type FavoriteAnimeFragment = { __typename?: 'Anime', id: string, url: string, title: string, image: { __typename?: 'AnimeImage', medium?: string | null } };
 
@@ -1805,6 +1831,7 @@ export const EpisodeFragmentDoc = gql`
   id
   aired
   title
+  titleEn
   description
   duration
   filler
@@ -3143,6 +3170,82 @@ export type CharactersQueryHookResult = ReturnType<typeof useCharactersQuery>;
 export type CharactersLazyQueryHookResult = ReturnType<typeof useCharactersLazyQuery>;
 export type CharactersSuspenseQueryHookResult = ReturnType<typeof useCharactersSuspenseQuery>;
 export type CharactersQueryResult = Apollo.QueryResult<CharactersQuery, CharactersQueryVariables>;
+export const CheckEmailExistDocument = gql`
+    query CheckEmailExist($email: String!) {
+  checkEmailExist(email: $email)
+}
+    `;
+
+/**
+ * __useCheckEmailExistQuery__
+ *
+ * To run a query within a React component, call `useCheckEmailExistQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCheckEmailExistQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCheckEmailExistQuery({
+ *   variables: {
+ *      email: // value for 'email'
+ *   },
+ * });
+ */
+export function useCheckEmailExistQuery(baseOptions: Apollo.QueryHookOptions<CheckEmailExistQuery, CheckEmailExistQueryVariables> & ({ variables: CheckEmailExistQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CheckEmailExistQuery, CheckEmailExistQueryVariables>(CheckEmailExistDocument, options);
+      }
+export function useCheckEmailExistLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CheckEmailExistQuery, CheckEmailExistQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CheckEmailExistQuery, CheckEmailExistQueryVariables>(CheckEmailExistDocument, options);
+        }
+export function useCheckEmailExistSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<CheckEmailExistQuery, CheckEmailExistQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<CheckEmailExistQuery, CheckEmailExistQueryVariables>(CheckEmailExistDocument, options);
+        }
+export type CheckEmailExistQueryHookResult = ReturnType<typeof useCheckEmailExistQuery>;
+export type CheckEmailExistLazyQueryHookResult = ReturnType<typeof useCheckEmailExistLazyQuery>;
+export type CheckEmailExistSuspenseQueryHookResult = ReturnType<typeof useCheckEmailExistSuspenseQuery>;
+export type CheckEmailExistQueryResult = Apollo.QueryResult<CheckEmailExistQuery, CheckEmailExistQueryVariables>;
+export const CheckLoginExistDocument = gql`
+    query CheckLoginExist($login: String!) {
+  checkLoginExist(login: $login)
+}
+    `;
+
+/**
+ * __useCheckLoginExistQuery__
+ *
+ * To run a query within a React component, call `useCheckLoginExistQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCheckLoginExistQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCheckLoginExistQuery({
+ *   variables: {
+ *      login: // value for 'login'
+ *   },
+ * });
+ */
+export function useCheckLoginExistQuery(baseOptions: Apollo.QueryHookOptions<CheckLoginExistQuery, CheckLoginExistQueryVariables> & ({ variables: CheckLoginExistQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CheckLoginExistQuery, CheckLoginExistQueryVariables>(CheckLoginExistDocument, options);
+      }
+export function useCheckLoginExistLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CheckLoginExistQuery, CheckLoginExistQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CheckLoginExistQuery, CheckLoginExistQueryVariables>(CheckLoginExistDocument, options);
+        }
+export function useCheckLoginExistSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<CheckLoginExistQuery, CheckLoginExistQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<CheckLoginExistQuery, CheckLoginExistQueryVariables>(CheckLoginExistDocument, options);
+        }
+export type CheckLoginExistQueryHookResult = ReturnType<typeof useCheckLoginExistQuery>;
+export type CheckLoginExistLazyQueryHookResult = ReturnType<typeof useCheckLoginExistLazyQuery>;
+export type CheckLoginExistSuspenseQueryHookResult = ReturnType<typeof useCheckLoginExistSuspenseQuery>;
+export type CheckLoginExistQueryResult = Apollo.QueryResult<CheckLoginExistQuery, CheckLoginExistQueryVariables>;
 export const EpisodesHistoryDocument = gql`
     query EpisodesHistory($animeUrl: String!) {
   episodesHistory(animeUrl: $animeUrl) {

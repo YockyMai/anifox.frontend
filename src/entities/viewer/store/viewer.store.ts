@@ -40,12 +40,8 @@ export const $viewer = createStore(
       }
     },
     logout: (state) => {
-      cookie.serialize(LOCAL_STORAGE.ACCESS_TOKEN_KEY, '', {
-        maxAge: -1
-      })
-      cookie.serialize(LOCAL_STORAGE.REFRESH_TOKEN_KEY, '', {
-        maxAge: -1
-      })
+      localStorage.removeItem(LOCAL_STORAGE.ACCESS_TOKEN_KEY)
+      localStorage.removeItem(LOCAL_STORAGE.REFRESH_TOKEN_KEY)
 
       state.viewer = null
     }

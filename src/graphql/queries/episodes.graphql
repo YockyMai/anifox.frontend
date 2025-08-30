@@ -15,6 +15,7 @@ fragment Episode on Episode {
   id
   aired
   title
+  titleEn
   description
   duration
   filler

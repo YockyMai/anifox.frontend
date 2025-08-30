@@ -1,6 +1,6 @@
 import { Select } from '@anifox/ui'
 
-import { AnimeSeasons } from '@/services/api'
+import { AnimeSeason } from '@/graphql/generated/output'
 import { useAnimeCatalogStores } from '@/widgets/anime-catalog'
 
 import { SEASON_OPTIONS } from './season.const'
@@ -13,7 +13,7 @@ export const Season = () => {
     <Select
       value={season}
       onValueChange={(option) => {
-        const season = option ? (option.value as AnimeSeasons) : null
+        const season = option ? (option.value as AnimeSeason) : null
 
         $filter.actions.setSeason(season)
         changeSearchParams({ season })

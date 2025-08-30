@@ -1,11 +1,11 @@
 import { Input } from '@anifox/ui'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useAtom } from 'jotai'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { UIVariants } from '@/common/types/ui-variants'
-import { api } from '@/services/api'
+import { useCheckLoginExistLazyQuery } from '@/graphql/generated/output'
 
 import { $signupAtoms } from '../../atoms'
 import { useStepsActions } from '../../hooks'
@@ -13,8 +13,10 @@ import { StepContainer } from '../step-container'
 import { loginSchema } from './login-step.schema'
 
 export const LoginStep = () => {
-  const [isLoginChecking, setIsLoginChecking] = useState(false)
   const [login, setLogin] = useAtom($signupAtoms.login)
+
+  const [checkLoginExist, { loading: isLoginChecking }] =
+    useCheckLoginExistLazyQuery()
 
   const { incrementStep, decrementStep } = useStepsActions()
 
@@ -31,16 +33,17 @@ export const LoginStep = () => {
   }, [login, reset])
 
   const handleLoginSubmit = handleSubmit(async (fields) => {
-    setIsLoginChecking(true)
-    try {
-      await api.checkLogin(fields.login)
+    const { data } = await checkLoginExist({
+      variables: {
+        login: fields.login
+      }
+    })
 
+    if (!data?.checkLoginExist) {
       setLogin(fields.login)
       incrementStep()
-    } catch {
+    } else {
       setError('login', { message: 'Такой логин уже существует' })
-    } finally {
-      setIsLoginChecking(false)
     }
   })
 

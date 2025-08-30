@@ -20,7 +20,12 @@ export const EpisodeFullInfoModal = ({
           <Badge className='w-fit' color='red'>
             Эпизод #{episode.number}
           </Badge>
-          <p className='text-xl font-bold dark:text-white'>{episode.title}</p>
+          <div>
+            <p className='text-xl font-bold dark:text-white'>{episode.title}</p>
+            <p className='text-xs font-bold text-slate-500 dark:text-slate-300'>
+              {episode.titleEn}
+            </p>
+          </div>
         </div>
 
         <p className='text-sm'>{episode.description}</p>

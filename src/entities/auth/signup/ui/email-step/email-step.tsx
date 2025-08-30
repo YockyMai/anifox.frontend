@@ -1,11 +1,11 @@
 import { Input } from '@anifox/ui'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useAtom } from 'jotai'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { UIVariants } from '@/common/types/ui-variants'
-import { api } from '@/services/api'
+import { useCheckEmailExistLazyQuery } from '@/graphql/generated/output'
 
 import { $signupAtoms } from '../../atoms'
 import { useStepsActions } from '../../hooks'
@@ -13,9 +13,10 @@ import { StepContainer } from '../step-container'
 import { emailSchema } from './email-step.schema'
 
 export const EmailStep = () => {
-  const [isEmailChecking, setIsEmailChecking] = useState(false)
-
   const [email, setEmail] = useAtom($signupAtoms.email)
+
+  const [checkEmailExist, { loading: isEmailChecking }] =
+    useCheckEmailExistLazyQuery()
 
   const { incrementStep, decrementStep } = useStepsActions()
 
@@ -32,16 +33,17 @@ export const EmailStep = () => {
   }, [email, reset])
 
   const handleSubmitEmail = handleSubmit(async (fields) => {
-    setIsEmailChecking(true)
+    const { data } = await checkEmailExist({
+      variables: {
+        email: fields.email
+      }
+    })
 
-    try {
-      await api.checkEmail(fields.email)
+    if (!data?.checkEmailExist) {
       setEmail(fields.email)
       incrementStep()
-    } catch {
-      setError('email', { message: 'Такой email уже существует' })
-    } finally {
-      setIsEmailChecking(false)
+    } else {
+      setError('email', { message: 'Такой email уже зарегистрирован' })
     }
   })
 

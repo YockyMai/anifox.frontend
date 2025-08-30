@@ -1,6 +1,3 @@
-export * from './fetch-anime'
-export * from './check-email'
-export * from './check-login'
 export * from './fetch-anime-episodes-history'
 export * from './upload-user-avatar'
 export * from './upload-user-banner'
