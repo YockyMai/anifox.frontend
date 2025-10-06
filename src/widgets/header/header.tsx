@@ -8,11 +8,7 @@ import { UIVariants } from '@/common/types/ui-variants'
 import { SiteThemeToggler } from '@/entities/site-theme'
 import { ROUTES } from '@/screens/pages.routes'
 
-import {
-  CatalogSearch,
-  CatalogSearchButton,
-  CatalogSearchRoot
-} from '../anifox-search'
+import { CatalogSearch, CatalogSearchButton } from '../catalog-search'
 import './header.css'
 import { useIsMobileHeader, useOnChangeHeaderVisibility } from './hooks'
 import { $headerAtoms } from './store'

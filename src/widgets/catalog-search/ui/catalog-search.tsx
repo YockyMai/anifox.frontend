@@ -2,13 +2,15 @@ import { useDisableScroll } from '@anifox/ui'
 import { AnimatePresence } from 'framer-motion'
 import React from 'react'
 
-import { $anifoxSearch } from '../store'
-import { CatalogSearch } from './catalog-search/anifox-search'
+import { useCatalogSearchParamsSync } from '../hooks'
+import { $catalogSearch } from '../store'
+import { CatalogSearch } from './catalog-search/catalog-search'
 
 export const CatalogSearchRoot = () => {
-  const isOpened = $anifoxSearch.selectors.isOpened()
+  const isOpened = $catalogSearch.selectors.isOpened()
 
   useDisableScroll(isOpened)
+  useCatalogSearchParamsSync()
 
   return <AnimatePresence>{isOpened && <CatalogSearch />}</AnimatePresence>
 }

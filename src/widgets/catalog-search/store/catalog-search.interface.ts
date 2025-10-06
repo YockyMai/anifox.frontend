@@ -1,4 +1,4 @@
-export type AnifoxSearchStore = {
+export type CatalogSearchStore = {
   isOpened: boolean
   search: string
 }

@@ -9,20 +9,20 @@ import { IconSearch, IconX } from '@tabler/icons-react'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
-import { $anifoxSearch } from '../../store'
+import { $catalogSearch } from '../../store'
 import { CatalogSearchResult } from './catalog-search-result/catalog-search-result'
 
 export const CatalogSearch = () => {
-  useKeyDown('Escape', () => $anifoxSearch.actions.toggleIsOpened())
+  useKeyDown('Escape', () => $catalogSearch.actions.toggleIsOpened())
 
-  const search = $anifoxSearch.selectors.search()
+  const search = $catalogSearch.selectors.search()
 
   const [localSearch, setLocalSearch] = useState(search)
 
   const debouncedSearch = useDebounce(localSearch, 300)
 
   useEffect(() => {
-    $anifoxSearch.actions.setSearch(debouncedSearch)
+    $catalogSearch.actions.setSearch(debouncedSearch)
   }, [debouncedSearch])
 
   return (
@@ -34,7 +34,7 @@ export const CatalogSearch = () => {
         className='fixed left-0 top-0 z-50 h-screen w-screen bg-[#12161ce6]'
       />
       <div
-        onClick={() => $anifoxSearch.actions.toggleIsOpened()}
+        onClick={() => $catalogSearch.actions.toggleIsOpened()}
         className='scrollbar fixed right-0 top-0 z-50 h-screen w-screen overflow-y-auto'
       >
         <div className='fixed left-1/2 top-8 z-50 mx-auto w-full max-w-4xl -translate-x-1/2 drop-shadow-2xl'>
@@ -45,11 +45,12 @@ export const CatalogSearch = () => {
             exit={{ y: -100 }}
           >
             <Input
+              value={localSearch}
               placeholder={'Поиск AniFox'}
               icon={<IconSearch />}
               rightIcon={
                 <UnstyledButton
-                  onClick={() => $anifoxSearch.actions.toggleIsOpened()}
+                  onClick={() => $catalogSearch.actions.toggleIsOpened()}
                 >
                   <IconX />
                 </UnstyledButton>

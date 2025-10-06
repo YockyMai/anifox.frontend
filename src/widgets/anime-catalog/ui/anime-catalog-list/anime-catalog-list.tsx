@@ -14,7 +14,7 @@ export const AnimeCatalogList = () => {
   const loadMoreTriggerInView = useInView(loadMoreTriggerRef)
 
   const animeListQueryParams = useAnimeListQueryParams()
-  console.log(animeListQueryParams)
+  2
   const { data, fetchMore, error, loading } = useAnimesQuery({
     variables: { page: 0, ...animeListQueryParams },
     notifyOnNetworkStatusChange: true
@@ -30,7 +30,7 @@ export const AnimeCatalogList = () => {
       })
   }, [loadMoreTriggerInView, data, animeListQueryParams, fetchMore])
 
-  if (error)
+  if (error) {
     return (
       <div className='catalog-list-error'>
         <IconExclamationCircle />
@@ -42,8 +42,9 @@ export const AnimeCatalogList = () => {
         </div>
       </div>
     )
+  }
 
-  if (data?.animes.data.length === 0)
+  if (data?.animes.data.length === 0) {
     return (
       <div className='catalog-list-empty'>
         <IconMoodSad />
@@ -55,6 +56,7 @@ export const AnimeCatalogList = () => {
         </div>
       </div>
     )
+  }
 
   return (
     <div className='catalog-list'>

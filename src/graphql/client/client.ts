@@ -1,9 +1,4 @@
-import {
-  ApolloClient,
-  createHttpLink,
-  InMemoryCache,
-  Observable
-} from '@apollo/client'
+import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
 

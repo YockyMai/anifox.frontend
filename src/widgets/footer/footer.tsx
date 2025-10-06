@@ -9,13 +9,11 @@ import { Link } from 'react-router'
 
 import { ROUTES } from '@/screens/pages.routes'
 
-import './footer.css'
-
 export const Footer = () => {
   return (
-    <footer className='footer'>
-      <div className='footer__container'>
-        <div className='footer__left'>
+    <footer className='mt-16 bg-slate-200 py-5 dark:bg-slate-800'>
+      <div className='container flex flex-wrap justify-between'>
+        <div className='flex flex-col justify-between'>
           <div>
             <Link to={ROUTES.HOME}>
               <AnifoxLogo withoutText />
@@ -26,16 +24,16 @@ export const Footer = () => {
           </div>
 
           <div>
-            <Link className='footer__category__link' to={ROUTES.RIGHT_HOLDERS}>
+            <Link className='font-normal' to={ROUTES.RIGHT_HOLDERS}>
               Для правообладателей
             </Link>
             <p>© anifox.club 2023 - current time</p>
           </div>
         </div>
-        <div className='footer__right'>
-          <div className='footer__category'>
-            <p className='footer__category__title'>Соцсети</p>
-            <div className='footer__category__content'>
+        <div className='mt-6 flex w-full justify-center gap-x-10 md:w-fit md:justify-normal'>
+          <div>
+            <p className='mb-4'>Соцсети</p>
+            <div className='flex flex-col flex-wrap gap-y-3'>
               <Link target='_blank' to='https://t.me/anifoxclub'>
                 <Button
                   fullWidth
@@ -63,9 +61,9 @@ export const Footer = () => {
             </div>
           </div>
 
-          <div className='footer__category'>
-            <p className='footer__category__title'>Приложения</p>
-            <div className='footer__category__content'>
+          <div>
+            <p className='mb-4'>Приложения</p>
+            <div className='flex flex-col flex-wrap gap-y-3'>
               <Link to={ROUTES.APPS.ANDROID}>
                 <Button
                   fullWidth

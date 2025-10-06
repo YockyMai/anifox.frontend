@@ -3,11 +3,11 @@ import React from 'react'
 
 import { AnimeCard } from '@/entities/anime/anime-card'
 import { useAnimesQuery } from '@/graphql/generated/output'
-import { $anifoxSearch } from '@/widgets/anifox-search/store'
 import { ANIME_CARD_LOADERS } from '@/widgets/anime-catalog/ui/anime-catalog-list/anime-catalog-list.const'
+import { $catalogSearch } from '@/widgets/catalog-search/store'
 
 export const CatalogSearchResult = () => {
-  const search = $anifoxSearch.selectors.search()
+  const search = $catalogSearch.selectors.search()
 
   const { data, fetchMore, loading } = useAnimesQuery({
     variables: { page: 0, search },
