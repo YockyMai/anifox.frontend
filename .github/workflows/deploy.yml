@@ -21,14 +21,11 @@ jobs:
 
       - name: Build React
         run: |
-          cd frontend
           pnpm install
           pnpm build
 
       - name: Archive React build
-        run: |
-          cd frontend
-          tar -czf react-build.tar.gz build
+        run: tar -czf react-build.tar.gz build
 
       - name: Transfer files to remote server
         uses: appleboy/scp-action@v0.1.7
@@ -37,9 +34,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           source: |
-            frontend/react-build.tar.gz
-            apps/anifox.backend/Dockerfile
-            apps/anifox.backend/package*.json
+            react-build.tar.gz
           target: /opt/frontend
 
       - name: SSH into server and deploy
@@ -49,7 +44,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            mkdir -p /opt/deploy/frontend
-            tar -xzf /opt/frontend/react-build.tar.gz -C /opt/deploy/frontend
-            docker cp /opt/deploy/frontend/build nginx:/usr/share/nginx/html
+            mkdir -p /opt/frontend
+            tar -xzf /opt/frontend/react-build.tar.gz -C /opt/frontend
+            docker cp /opt/frontend/build nginx:/usr/share/nginx/html
             docker exec nginx nginx -s reload
