@@ -33,7 +33,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           source: ./app.tar
-          target: /home/project/frontend
+          target: /opt/frontend
 
       - name: SSH into remote server and run Docker container
         uses: appleboy/ssh-action@v0.1.10
@@ -42,7 +42,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            cd /home/project/frontend
+            cd /opt/frontend
             docker container stop anifox
             docker container rm anifox
             docker rmi anifox
