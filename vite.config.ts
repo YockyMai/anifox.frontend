@@ -21,7 +21,7 @@ export default defineConfig(({ mode }) => {
       }),
       host: true,
       strictPort: true,
-      port: 4000,
+      port: 3000,
       allowedHosts: ['anifox.org']
     },
     resolve: {

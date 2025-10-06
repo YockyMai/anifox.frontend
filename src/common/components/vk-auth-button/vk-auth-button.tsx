@@ -7,7 +7,7 @@ export const VkAuthButton = () => {
   const oneTap = useMemo(() => {
     VKID.Config.init({
       app: 53283763,
-      redirectUrl: 'http://localhost/api/auth/vk/callback',
+      redirectUrl: `${import.meta.env.VITE_PUBLIC_API_URL}/auth/vk/callback`,
       codeVerifier: 'codeVerifier'
     })
 

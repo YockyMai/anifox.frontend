@@ -2,7 +2,7 @@ import { Image, UnstyledButton } from '@anifox/ui'
 
 export const GoogleAuthButton = () => {
   const handleClick = () => {
-    window.location.href = 'http://localhost/api/auth/google'
+    window.location.href = `${import.meta.env.VITE_PUBLIC_API_URL}/auth/google`
   }
 
   return (

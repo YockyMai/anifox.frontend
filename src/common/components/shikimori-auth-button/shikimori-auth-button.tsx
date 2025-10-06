@@ -3,8 +3,7 @@ import React from 'react'
 
 export const ShikimoriAuthButton = () => {
   const handleClick = () => {
-    window.location.href =
-      'https://shikimori.one/oauth/authorize?client_id=E9EgRXqEFcb2UDgYZpzwKv_IuJYW6StUcFhQe8OK-RY&redirect_uri=http%3A%2F%2Flocalhost%2Fapi%2Fauth%2Fshikimori%2Fcallback&response_type=code&scope='
+    window.location.href = `https://shikimori.one/oauth/authorize?client_id=E9EgRXqEFcb2UDgYZpzwKv_IuJYW6StUcFhQe8OK-RY&redirect_uri=${import.meta.env.VITE_PUBLIC_API_URL}/auth/shikimori/callback&response_type=code&scope=`
   }
 
   return (
