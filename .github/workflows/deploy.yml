@@ -7,25 +7,24 @@ on:
       - main
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 10
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
 
-      - name: Build React
-        run: |
-          pnpm install
-          pnpm build
+      - name: Build Docker image
+        run: docker build -t anifox .
 
-      - name: Archive React build
-        run: tar -czf react-build.tar.gz dist
+      - name: Save Docker image as tar
+        run: docker save anifox -o app.tar
+
+      - name: Add permission for tar
+        run: chmod 664 app.tar
 
       - name: Transfer files to remote server
         uses: appleboy/scp-action@v0.1.7
@@ -33,18 +32,19 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          source: |
-            react-build.tar.gz
+          source: ./app.tar
           target: /opt/frontend
 
-      - name: SSH into server and deploy
+      - name: SSH into remote server and run Docker container
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            mkdir -p /opt/frontend
-            tar -xzf /opt/frontend/react-build.tar.gz -C /opt/frontend
-            docker cp /opt/frontend/dist nginx:/usr/share/nginx/html
-            docker exec nginx nginx -s reload
+            cd /opt/frontend
+            docker container stop anifox
+            docker container rm anifox
+            docker rmi anifox
+            docker load -i app.tar
+            docker run -d --network -p 8000:8000 --log-opt max-size=50m --name anifox anifox
