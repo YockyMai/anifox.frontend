@@ -25,7 +25,7 @@ jobs:
           pnpm build
 
       - name: Archive React build
-        run: tar -czf react-build.tar.gz build
+        run: tar -czf react-build.tar.gz dist
 
       - name: Transfer files to remote server
         uses: appleboy/scp-action@v0.1.7
@@ -46,5 +46,5 @@ jobs:
           script: |
             mkdir -p /opt/frontend
             tar -xzf /opt/frontend/react-build.tar.gz -C /opt/frontend
-            docker cp /opt/frontend/build nginx:/usr/share/nginx/html
+            docker cp /opt/frontend/dist nginx:/usr/share/nginx/html
             docker exec nginx nginx -s reload
