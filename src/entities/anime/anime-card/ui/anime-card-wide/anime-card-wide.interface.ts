@@ -1,6 +1,6 @@
-import { Anime } from '@/services/api'
+import { AnimeLiteFragment } from '@/graphql/generated/output'
 
 export type AnimeCardSimpleProps = {
-  anime: Anime
+  anime: AnimeLiteFragment
   isActive?: boolean
 }

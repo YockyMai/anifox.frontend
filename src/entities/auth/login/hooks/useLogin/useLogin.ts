@@ -8,7 +8,6 @@ import {
   LoginMutation,
   ViewerFragment
 } from '@/graphql/generated/output'
-import { LoginParams } from '@/services/api/login'
 
 export const useLogin = (
   onSuccess?: (user: ViewerFragment) => void,
@@ -17,7 +16,10 @@ export const useLogin = (
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
-  const login = async (params: LoginParams) => {
+  const login = async (params: {
+    password: string
+    user_identifier: string
+  }) => {
     setIsLoading(true)
 
     try {

@@ -1,8 +1,8 @@
-import { AnimeSeasons } from '@/services/api'
+import { AnimeSeason } from '@/graphql/generated/output'
 
-export const SEASON_OPTIONS: { value: AnimeSeasons; label: string }[] = [
-  { value: 'Fall', label: 'Осень' },
-  { value: 'Spring', label: 'Весна' },
-  { value: 'Winter', label: 'Зима' },
-  { value: 'Summer', label: 'Лето' }
+export const SEASON_OPTIONS: { value: AnimeSeason; label: string }[] = [
+  { value: 'FALL', label: 'Осень' },
+  { value: 'SPRING', label: 'Весна' },
+  { value: 'WINTER', label: 'Зима' },
+  { value: 'SUMMER', label: 'Лето' }
 ]

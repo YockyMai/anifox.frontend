@@ -1,6 +1,6 @@
 import { Select } from '@anifox/ui'
 
-import { AnimeRatingMpa } from '@/services/api'
+import { RatingMpa as AnimeRatingMpa } from '@/graphql/generated/output'
 import { useAnimeCatalogStores } from '@/widgets/anime-catalog'
 
 import { RATING_MPA_OPTIONS } from './rating-mpa.const'

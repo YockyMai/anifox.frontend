@@ -86,7 +86,7 @@ export const EpisodeSelectionCard = ({
 
       <div className='episode-card__content'>
         <p
-          title={episode.title}
+          title={episode.title ?? undefined}
           className={clsx(
             'episode-card__content__title',
             !episode.description && 'line-clamp-none'
