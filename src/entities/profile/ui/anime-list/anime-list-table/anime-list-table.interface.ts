@@ -1,5 +1,5 @@
-import { AnimeTrackStatuses } from '@/services/api'
+import { AnimeListStatus } from '@/graphql/generated/output'
 
 export type AnimeListTableProps = {
-  status: AnimeTrackStatuses
+  status: AnimeListStatus
 }

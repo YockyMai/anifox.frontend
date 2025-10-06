@@ -8,7 +8,7 @@ export const AnimeCardSimple = ({ anime }: AnimeCardSimpleProps) => {
     <div className='anime-card-simple'>
       <Image
         className='anime-card-simple__image'
-        src={anime.image.medium}
+        src={anime.image.medium ?? undefined}
         alt={anime.title}
       />
       <p className='anime-card-simple__title'>{anime.title}</p>

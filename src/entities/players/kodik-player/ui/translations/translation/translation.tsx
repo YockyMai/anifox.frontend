@@ -20,10 +20,8 @@ export const Translation = ({
 
   const dragControls = useDragControls()
 
-  const animeUrl = $kodikPlayer.selectors.animeUrl()
-
   const { totalTranslatedEpisodes, isSeasonTotalTranslated } =
-    useTotalTranslatedEpisodes(animeUrl, translation.id)
+    useTotalTranslatedEpisodes(translation.translationId)
 
   const { isHovered, hoverProps } = useHover()
 

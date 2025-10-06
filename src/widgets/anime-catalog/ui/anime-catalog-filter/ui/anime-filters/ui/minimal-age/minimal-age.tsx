@@ -1,7 +1,6 @@
 import { Select } from '@anifox/ui'
 import { useMemo } from 'react'
 
-import { AnimeMinimalAge } from '@/services/api'
 import { useAnimeCatalogStores } from '@/widgets/anime-catalog'
 
 import { MINIMAL_AGE_OPTIONS } from './minimal-age.const'
@@ -22,7 +21,7 @@ export const MinimalAge = () => {
       value={value}
       onValueChange={(option) => {
         const minimalAge = option?.value
-          ? (Number.parseInt(option.value) as AnimeMinimalAge)
+          ? (Number.parseInt(option.value) as number)
           : null
 
         $filter.actions.setMinimalAge(minimalAge)
