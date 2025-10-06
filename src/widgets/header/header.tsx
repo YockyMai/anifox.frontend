@@ -8,6 +8,7 @@ import { UIVariants } from '@/common/types/ui-variants'
 import { SiteThemeToggler } from '@/entities/site-theme'
 import { ROUTES } from '@/screens/pages.routes'
 
+import { CatalogSearch, CatalogSearchButton } from '../catalog-search'
 import './header.css'
 import { useIsMobileHeader, useOnChangeHeaderVisibility } from './hooks'
 import { $headerAtoms } from './store'
@@ -55,6 +56,7 @@ export const Header = () => {
 
       <div className='site-header__desktop'>
         <div className='site-header__section'>
+          <CatalogSearchButton />
           <SiteThemeToggler />
           <UserButton />
         </div>
@@ -62,6 +64,7 @@ export const Header = () => {
 
       <div className='site-header__mobile'>
         <div className='site-header__section'>
+          <CatalogSearchButton />
           <SiteThemeToggler />
           <UnstyledButton
             onClick={(e) => {
@@ -76,6 +79,8 @@ export const Header = () => {
       </div>
 
       {isMobileHeader && <MobileMenu />}
+
+      <CatalogSearch />
     </header>
   )
 }

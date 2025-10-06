@@ -1,7 +1,7 @@
 import { Select } from '@anifox/ui'
 import React, { useMemo } from 'react'
 
-import { AnimeStatuses } from '@/services/api'
+import { AnimeStatus } from '@/graphql/generated/output'
 
 import { STATUS_OPTIONS } from './anime-status-selector.const'
 import { AnimeStatusSelectorProps } from './anime-type-selector.interface'
@@ -20,7 +20,7 @@ export const AnimeStatusSelector = ({
     <Select
       value={value}
       onValueChange={(option) => {
-        const newValue = option ? (option.value as AnimeStatuses) : null
+        const newValue = option ? (option.value as AnimeStatus) : null
 
         onChangeStatus(newValue)
       }}

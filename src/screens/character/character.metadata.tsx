@@ -1,28 +1,34 @@
 import { useParams } from 'react-router'
 
 import { Helmet } from '@/common/lib/helmet'
-import { useCharacterQuery } from '@/services/queries'
+import { useCharacterQuery } from '@/graphql/generated/output'
 
 import { CharacterPageParams } from './character.interface'
 
 export const CharacterMetadata = () => {
   const { id } = useParams<CharacterPageParams>()
 
-  const { data, isLoading } = useCharacterQuery(id!)
+  const { data, loading } = useCharacterQuery({
+    variables: {
+      characterId: id
+    }
+  })
+
+  const character = data?.character
 
   const generateOtherNames = () => {
-    const names = [data?.name_en, data?.name_kanji].filter(Boolean)
+    const names = [character?.nameEn, character?.nameKanji].filter(Boolean)
     return names.length ? `(${names.join(', ')})` : ''
   }
 
   const metadata = {
-    title: data ? `${data.name} ${generateOtherNames()}` : '',
-    description: data?.about ?? '',
-    image: data?.image ?? ''
+    title: data ? `${character?.name} ${generateOtherNames()}` : '',
+    description: character?.about ?? '',
+    image: character?.image ?? ''
   }
 
   return (
-    <Helmet isLoading={isLoading}>
+    <Helmet isLoading={loading}>
       <title>{metadata.title}</title>
       <meta name='description' content={metadata.description} />
       {metadata.image && <meta property='og:image' content={metadata.image} />}

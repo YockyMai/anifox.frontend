@@ -5,15 +5,17 @@ import 'dayjs/locale/ru'
 import React, { useMemo } from 'react'
 import { useParams } from 'react-router'
 
-import { useAnimeEpisodesHistoryQuery } from '@/services/queries'
+import { useEpisodesHistoryQuery } from '@/graphql/generated/output'
 
 import { AnimePageParams } from '../../anime.interface'
 import { TABLE_MAX_HEIGHT } from './anime-episodes-history.const'
 
 export const AnimeEpisodesHistory = () => {
   const { animeUrl } = useParams<AnimePageParams>()
-  const { data, isSuccess } = useAnimeEpisodesHistoryQuery({
-    animeUrl: animeUrl!
+  const { data, loading } = useEpisodesHistoryQuery({
+    variables: {
+      animeUrl: animeUrl!
+    }
   })
 
   const columns = useMemo(() => {
@@ -21,31 +23,29 @@ export const AnimeEpisodesHistory = () => {
   }, [])
 
   const rows = useMemo(() => {
-    const flatted = data?.pages.flatMap((page) => page) ?? []
+    const rows = (data?.episodesHistory ?? []).map(
+      ({ aired, number, title, isUpcoming }) => {
+        const className = clsx(
+          isUpcoming && 'font-bold text-orange-400 dark:text-orange-300'
+        )
 
-    const rows = flatted.map(({ aired, number, title }) => {
-      const isNewEpisode = dayjs().diff(dayjs(aired), 'day') < 7
-
-      const className = clsx(
-        isNewEpisode && 'font-bold text-orange-400 dark:text-orange-300'
-      )
-
-      return {
-        aired: (
-          <p className={className}>
-            {aired
-              ? dayjs(aired).locale('ru').format('D MMMM YYYYг.')
-              : 'Неизвестно'}
-          </p>
-        ),
-        number: <p className={className}>{number} серия</p>,
-        title: <p className={className}>{title}</p>
+        return {
+          aired: (
+            <p className={className}>
+              {aired
+                ? dayjs(aired).locale('ru').format('D MMMM YYYYг.')
+                : 'Неизвестно'}
+            </p>
+          ),
+          number: <p className={className}>{number} серия</p>,
+          title: <p className={className}>{title ?? `${number} серия`}</p>
+        }
       }
-    })
+    )
     return rows
-  }, [data?.pages])
+  }, [data?.episodesHistory])
 
-  if (!isSuccess) return null
+  if (loading || !data?.episodesHistory.length) return null
 
   return (
     <ScreenSection

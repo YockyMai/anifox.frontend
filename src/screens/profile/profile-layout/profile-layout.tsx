@@ -3,20 +3,19 @@ import React, { Suspense } from 'react'
 import { Outlet } from 'react-router'
 
 import { ProfileContextProvider } from '@/entities/profile'
-import { $viewer } from '@/entities/viewer'
+import { useProfile } from '@/entities/profile/hooks'
 
 import { Banner, ProfilePageTabs } from './ui'
 
 export const ProfileLayout = () => {
-  // Пока что отображаем профиль только владельца.
-  const user = $viewer.selectors.user()
+  const { profile } = useProfile()
 
-  if (!user) {
+  if (!profile) {
     return null
   }
 
   return (
-    <ProfileContextProvider user={user} isOwner>
+    <ProfileContextProvider>
       <div className='relative'>
         <Banner />
         <ProfilePageTabs />

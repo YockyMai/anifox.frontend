@@ -1,20 +1,15 @@
 import { useMemo } from 'react'
 
-import { useAnimeEpisodesQuery } from '@/services/queries'
+import { useEpisodes } from '../use-episodes'
 
-export const useTotalTranslatedEpisodes = (
-  animeUrl: string,
-  translationId: number
-) => {
-  const { data: episodes } = useAnimeEpisodesQuery({ animeUrl })
-
-  const flattedEpisodes = episodes?.pages.flat() ?? []
+export const useTotalTranslatedEpisodes = (translationId: number) => {
+  const episodes = useEpisodes()
 
   const totalTranslatedEpisodes = useMemo(
     () =>
-      flattedEpisodes.reduce((acc, value) => {
+      (episodes ?? []).reduce((acc, value) => {
         const isEpisodeTranslated = value.translations.some(
-          ({ id }) => id === translationId
+          (translation) => translation.translationId === translationId
         )
 
         if (isEpisodeTranslated) {
@@ -23,11 +18,11 @@ export const useTotalTranslatedEpisodes = (
 
         return acc
       }, 0),
-    [flattedEpisodes, translationId]
+    [episodes, translationId]
   )
 
   return {
     totalTranslatedEpisodes,
-    isSeasonTotalTranslated: flattedEpisodes.length === totalTranslatedEpisodes
+    isSeasonTotalTranslated: (episodes ?? []).length === totalTranslatedEpisodes
   }
 }

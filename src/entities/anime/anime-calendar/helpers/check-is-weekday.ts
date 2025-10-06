@@ -1,4 +1,4 @@
-import { ANIME_SCHEDULE_DAY, AnimeScheduleDay } from '@/services/api'
+import { DayOfWeek } from '@/graphql/generated/output'
 
-export const checkIsWeekday = (day: AnimeScheduleDay) =>
-  day !== ANIME_SCHEDULE_DAY.SUNDAY && day !== ANIME_SCHEDULE_DAY.SATURDAY
+export const checkIsWeekday = (day: DayOfWeek) =>
+  day !== DayOfWeek.SUNDAY && day !== DayOfWeek.SATURDAY

@@ -1,12 +1,12 @@
 import {
-  AnimeStatuses,
-  AnimeTrackStatuses,
-  AnimeTypeVariants
-} from '@/services/api'
+  AnimeListStatus,
+  AnimeStatus,
+  AnimeType
+} from '@/graphql/generated/output'
 
 export type AnimeListFiltersStore = {
   search: string
-  trackStatus: AnimeTrackStatuses | null
-  type: AnimeTypeVariants | null
-  status: AnimeStatuses | null
+  trackStatus: AnimeListStatus | null
+  type: AnimeType | null
+  status: AnimeStatus | null
 }

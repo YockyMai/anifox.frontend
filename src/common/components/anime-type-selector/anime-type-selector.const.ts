@@ -1,10 +1,10 @@
-import { AnimeTypeVariants } from '@/services/api'
+import { AnimeType } from '@/graphql/generated/output'
 
-export const TYPE_OPTIONS: { value: AnimeTypeVariants; label: string }[] = [
-  { value: 'Movie', label: 'Фильм' },
-  { value: 'Ona', label: 'Ona' },
-  { value: 'Ova', label: 'Ova' },
-  { value: 'Music', label: 'Музыкальный' },
-  { value: 'Special', label: 'Специальный' },
-  { value: 'Tv', label: 'Телесериал' }
+export const TYPE_OPTIONS: { value: AnimeType; label: string }[] = [
+  { value: 'MOVIE', label: 'Фильм' },
+  { value: 'ONA', label: 'Ona' },
+  { value: 'OVA', label: 'Ova' },
+  { value: 'MUSIC', label: 'Музыкальный' },
+  { value: 'SPECIAL', label: 'Специальный' },
+  { value: 'TV', label: 'Телесериал' }
 ]

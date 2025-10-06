@@ -1,6 +1,6 @@
-import { AnimeScheduleDay } from '@/services/api'
+import { DayOfWeek } from '@/graphql/generated/output'
 
 export type AnimeCalendarSliderProps = {
-  day: AnimeScheduleDay
+  day: DayOfWeek
   isWeekday: boolean
 }

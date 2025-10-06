@@ -1,13 +1,18 @@
-import { AnimeEpisode, AnimeEpisodeTranslation } from '@/services/api'
+import {
+  EpisodeFragment,
+  EpisodeTranslationFragment
+} from '@/graphql/generated/output'
 
 export type KodikPlayerStore = {
   animeUrl: string
-  selectedEpisode: AnimeEpisode | null
-  selectedTranslation: AnimeEpisodeTranslation | null
+  animeId: string
+  selectedEpisode: EpisodeFragment
+  selectedTranslation: EpisodeTranslationFragment
 }
 
 export type InitKodikPlayerPayload = {
   animeUrl: string
-  selectedEpisode: AnimeEpisode
-  selectedTranslation: AnimeEpisodeTranslation
+  animeId: string
+  selectedEpisode: EpisodeFragment
+  selectedTranslation: EpisodeTranslationFragment
 }

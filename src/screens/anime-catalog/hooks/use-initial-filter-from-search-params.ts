@@ -2,14 +2,13 @@ import { useMemo } from 'react'
 import { useSearchParams } from 'react-router'
 
 import {
-  AnimeMinimalAge,
-  AnimeOrderVariants,
-  AnimeRatingMpa,
-  AnimeSeasons,
-  AnimeSortDirection,
-  AnimeStatuses,
-  AnimeTypeVariants
-} from '@/services/api'
+  AnimeOrder,
+  AnimeSeason,
+  AnimeStatus,
+  AnimeType,
+  RatingMpa,
+  SortOrder
+} from '@/graphql/generated/output'
 import { AnimeCatalogFilterStore } from '@/widgets/anime-catalog'
 
 export const useInitialFilterFromSearchParams = () => {
@@ -20,18 +19,16 @@ export const useInitialFilterFromSearchParams = () => {
 
     return {
       genres: searchParams.getAll('genres'),
-      minimalAge: minimalAge
-        ? (Number.parseInt(minimalAge) as AnimeMinimalAge)
-        : null,
+      minimalAge: minimalAge ? Number.parseInt(minimalAge) : null,
       search: searchParams.get('search') ?? '',
-      order: searchParams.get('order') as AnimeOrderVariants | null,
-      sort: searchParams.get('sort') as AnimeSortDirection | null,
-      ratingMpa: searchParams.get('ratingMpa') as AnimeRatingMpa | null,
-      season: searchParams.get('season') as AnimeSeasons | null,
-      status: searchParams.get('status') as AnimeStatuses | null,
+      order: searchParams.get('order') as AnimeOrder | null,
+      sort: searchParams.get('sort') as SortOrder | null,
+      ratingMpa: searchParams.get('ratingMpa') as RatingMpa | null,
+      season: searchParams.get('season') as AnimeSeason | null,
+      status: searchParams.get('status') as AnimeStatus | null,
       studio: searchParams.get('studio'),
       translations: searchParams.getAll('translations'),
-      type: searchParams.get('type') as AnimeTypeVariants | null,
+      type: searchParams.get('type') as AnimeType | null,
       years: searchParams.getAll('years').map(Number.parseInt)
     }
   }, [searchParams])

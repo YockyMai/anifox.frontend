@@ -1,8 +1,8 @@
-import { User } from '@/entities/viewer'
+import { ViewerFragment } from '@/graphql/generated/output'
 
 export type LoginFormProps = {
   onSignupClick?: () => void
-  onLoginSuccess?: (user: User) => void
+  onLoginSuccess?: (user: ViewerFragment) => void
 }
 
 export type LoginSchema = {

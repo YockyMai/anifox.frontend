@@ -1,21 +1,23 @@
-import { createContext, ReactNode, useContext, useRef } from 'react'
+import { createContext, useContext, useRef } from 'react'
 
 import { createKodikPlayerStore } from '../store'
 import { createEpisodeSelectorStore } from '../store/episode-selector'
-import { KodikPlayerStoresContext } from './kodik-player.interface'
+import {
+  KodikPlayerStoresContext,
+  KodikPlayerStoresProviderProps
+} from './kodik-player.interface'
 
 const StoreContext = createContext<KodikPlayerStoresContext>(null)
 
 export const KodikPlayerStoresProvider = ({
-  children
-}: {
-  children: ReactNode
-}) => {
+  children,
+  initialKodikPlayerStore
+}: KodikPlayerStoresProviderProps) => {
   const storeRef = useRef<KodikPlayerStoresContext>(null)
 
   if (!storeRef.current) {
     const $episodeSelector = createEpisodeSelectorStore()
-    const $kodikPlayer = createKodikPlayerStore()
+    const $kodikPlayer = createKodikPlayerStore(initialKodikPlayerStore)
 
     storeRef.current = {
       $episodeSelector,

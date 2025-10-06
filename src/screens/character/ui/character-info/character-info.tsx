@@ -1,18 +1,21 @@
-import { Image, Spoiler } from '@anifox/ui'
+import { DEFAULT_DELEGATE_VALUE, Fancybox, Image, Spoiler } from '@anifox/ui'
 import clsx from 'clsx'
 import { useParams } from 'react-router'
 
-import { useCharacterQuery } from '@/services/queries'
+import { useCharacterQuery } from '@/graphql/generated/output'
 
 import { CharacterPageParams } from '../../character.interface'
+import { CharacterActions } from '../character-actions'
 import './character-info.css'
 
 export const CharacterInfo = () => {
   const { id } = useParams<CharacterPageParams>()
 
-  const { data } = useCharacterQuery(id!)
+  const { data } = useCharacterQuery({ variables: { characterId: id! } })
 
-  const otherTitles = [data?.name_en, data?.name_kanji]
+  const character = data?.character
+
+  const otherTitles = [character?.nameEn, character?.nameKanji]
     .filter(Boolean)
     .join(', ')
 
@@ -22,15 +25,25 @@ export const CharacterInfo = () => {
         <div className='character-info__header__content'>
           <div className='relative'>
             <div className='character-info__image'>
-              <Image src={data?.image} alt='character image' />
+              <Fancybox>
+                <a
+                  data-fancybox={DEFAULT_DELEGATE_VALUE}
+                  href={character?.image}
+                >
+                  <div className='aspect-[3/4] w-full transition-transform hover:-translate-y-3 hover:scale-105'>
+                    <Image src={character?.image} alt='character image' />
+                  </div>
+                </a>
+              </Fancybox>
             </div>
           </div>
 
           <div className='character-info__name'>
-            <div>
-              <p className='character-info__name__main'>{data?.name}</p>
+            <div className='flex items-center gap-x-3'>
+              <p className='character-info__name__main'>{character?.name}</p>
+              {character && <CharacterActions characterId={character?.id} />}
             </div>
-            {(data?.name_en || data?.name_kanji) && (
+            {(character?.nameEn || character?.nameKanji) && (
               <div>
                 <p>{otherTitles}</p>
               </div>
@@ -42,13 +55,16 @@ export const CharacterInfo = () => {
       <div
         className={clsx(
           'character-info__body',
-          !data?.about && 'character-info__body__mobile-hidden'
+          !character?.about && 'character-info__body__mobile-hidden'
         )}
       >
         <div />
-        {data?.about && (
+        {character?.about && (
           <Spoiler maxHeight={145}>
-            <p className='whitespace-pre-line'>{data.about}</p>
+            <p
+              className='whitespace-pre-line'
+              dangerouslySetInnerHTML={{ __html: character.about ?? '' }}
+            />
           </Spoiler>
         )}
       </div>

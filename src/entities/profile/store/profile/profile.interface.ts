@@ -1,11 +1,11 @@
-import { User } from '@/entities/viewer'
+import { ViewerFragment } from '@/graphql/generated/output'
 
 export type ProfileStore = {
-  user: User
+  user: ViewerFragment
   isOwner: boolean
 }
 
 export type InitProfilePayload = {
-  user: User
+  user: ViewerFragment
   isOwner: boolean
 }

@@ -1,5 +1,5 @@
-import { Anime } from '@/services/api'
+import { AnimeLiteFragment } from '@/graphql/generated/output'
 
 export type AnimeCardPanelProps = {
-  anime: Anime
+  anime: AnimeLiteFragment
 }

@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 import { useParams } from 'react-router'
 
+import { useAnimeQuery } from '@/graphql/generated/output'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { ROUTES } from '@/screens/pages.routes'
-import { useAnimeQuery } from '@/services/queries'
 import { createAnimeCatalogSearchParams } from '@/widgets/anime-catalog'
 
 import { AnimeInfoBlock } from '../anime-info-block'
@@ -11,19 +11,23 @@ import { AnimeInfoBlock } from '../anime-info-block'
 export const AnimeContentStudios = () => {
   const { animeUrl } = useParams<AnimePageParams>()!
 
-  const { data } = useAnimeQuery(animeUrl!)
+  const { data } = useAnimeQuery({
+    variables: {
+      url: animeUrl!
+    }
+  })
 
   const infos = useMemo(() => {
-    const studios = data?.studio ?? []
+    const studios = data?.anime?.studios ?? []
 
     return studios.map(({ name, id }) => ({
       element: name,
       href: `${ROUTES.CATALOG.ROOT}?${createAnimeCatalogSearchParams({ studio: id })}`,
       key: id
     }))
-  }, [data?.studio])
+  }, [data?.anime.studios])
 
-  if (!data?.studio?.length) return null
+  if (!data?.anime.studios?.length) return null
 
   return <AnimeInfoBlock title='Студии: ' infos={infos} />
 }

@@ -1,11 +1,11 @@
 import { ReactNode } from 'react'
 
-import { Anime } from '@/services/api'
+import { AnimeLiteFragment } from '@/graphql/generated/output'
 
 export type AnimeCategoryListProps = {
   category: ReactNode
   categoryLink?: string
-  items: Anime[]
+  items: AnimeLiteFragment[]
   icon: ReactNode
   isLoading: boolean
 }

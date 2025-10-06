@@ -1,7 +1,7 @@
 import { memo } from 'react'
 
 import { AnimeCardUpcoming } from '@/entities/anime/anime-card/ui'
-import { useAnimeSchedulesQuery } from '@/services/queries'
+import { useAnimeSchedulesQuery } from '@/graphql/generated/output'
 
 import './anime-calendar-content.css'
 import { AnimeCalendarSliderProps } from './anime-calendar-content.interface'
@@ -9,9 +9,11 @@ import { AnimeCalendarSliderProps } from './anime-calendar-content.interface'
 const AnimeCalendarContent = ({ day, isWeekday }: AnimeCalendarSliderProps) => {
   const { data } = useAnimeSchedulesQuery()
 
-  const anime = data![day]
+  const daySchedule = data!.animeSchedules.filter(
+    ({ dayOfWeek }) => dayOfWeek === day
+  )
 
-  if (!anime.length)
+  if (!daySchedule.length)
     return (
       <div className='anime-calendar-content-empty'>
         <p>В этот день не запланирован выход аниме</p>
@@ -20,7 +22,7 @@ const AnimeCalendarContent = ({ day, isWeekday }: AnimeCalendarSliderProps) => {
 
   return (
     <div className='anime-calendar-content'>
-      {anime.map((anime) => (
+      {daySchedule.map(({ anime }) => (
         <AnimeCardUpcoming anime={anime} key={anime.url} />
       ))}
     </div>

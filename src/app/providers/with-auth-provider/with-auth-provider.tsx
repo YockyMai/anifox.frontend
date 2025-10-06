@@ -1,44 +1,65 @@
-import cookie from 'cookie'
-import { jwtDecode } from 'jwt-decode'
 import { ReactNode, useEffect } from 'react'
 
-import { COOKIES } from '@/common/const'
-import { $viewer, User } from '@/entities/viewer'
-import { http } from '@/services/http'
+import { LOCAL_STORAGE } from '@/common/const'
+import { $viewer } from '@/entities/viewer'
+import { client } from '@/graphql/client'
+import {
+  RefreshTokensDocument,
+  RefreshTokensMutation,
+  RefreshTokensMutationVariables,
+  ViewerDocument,
+  ViewerQuery,
+  ViewerQueryVariables
+} from '@/graphql/generated/output'
 
 export const WithAuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const initUser = async () => {
-      const accessToken = cookie.parse(document.cookie)[
-        COOKIES.ACCESS_TOKEN_KEY
-      ]
+      const accessToken = localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN_KEY)
 
       if (accessToken) {
-        // TODO: как будет запрос /me, запрашивать пользователя по токену
-        const user: User = jwtDecode(accessToken)
+        const { data } = await client.query<ViewerQuery, ViewerQueryVariables>({
+          query: ViewerDocument
+        })
 
-        if (user) {
-          $viewer.actions.setViewer(user)
+        const viewer = data.viewer
+
+        if (viewer) {
+          $viewer.actions.setViewer(viewer)
         }
       } else {
-        const refreshToken = cookie.parse(document.cookie)[
-          COOKIES.REFRESH_TOKEN_KEY
-        ]
+        const refreshToken = localStorage.getItem(
+          LOCAL_STORAGE.REFRESH_TOKEN_KEY
+        )
 
         if (refreshToken) {
-          await http.get('/auth/refreshToken', {
-            params: { refreshToken },
-            headers: {}
+          const { data } = await client.mutate<
+            RefreshTokensMutation,
+            RefreshTokensMutationVariables
+          >({
+            mutation: RefreshTokensDocument,
+            variables: {
+              refreshToken
+            }
           })
 
-          const accessToken = cookie.parse(document.cookie)[
-            COOKIES.ACCESS_TOKEN_KEY
-          ]
+          if (data) {
+            const { accessToken, refreshToken } = data.refreshTokens
+            localStorage.setItem(LOCAL_STORAGE.ACCESS_TOKEN_KEY, accessToken)
+            localStorage.setItem(LOCAL_STORAGE.REFRESH_TOKEN_KEY, refreshToken)
 
-          const user: User = jwtDecode(accessToken)
+            const response = await client.query<
+              ViewerQuery,
+              ViewerQueryVariables
+            >({
+              query: ViewerDocument
+            })
 
-          if (user) {
-            $viewer.actions.setViewer(user)
+            const viewer = response.data.viewer
+
+            if (viewer) {
+              $viewer.actions.setViewer(viewer)
+            }
           }
         }
       }

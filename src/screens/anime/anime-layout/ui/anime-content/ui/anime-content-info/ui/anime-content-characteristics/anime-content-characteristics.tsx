@@ -2,13 +2,13 @@ import dayjs from 'dayjs'
 import { useMemo } from 'react'
 import { useParams } from 'react-router'
 
+import {
+  MAP_ANIME_STATUS_LABEL,
+  MAP_ANIME_TYPE_VARIANTS
+} from '@/common/const/translate'
+import { useAnimeQuery } from '@/graphql/generated/output'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { ROUTES } from '@/screens/pages.routes'
-import {
-  MAP_ANIME_STATUSES_LABEL,
-  MAP_ANIME_TYPE_VARIANTS
-} from '@/services/api'
-import { useAnimeQuery } from '@/services/queries'
 import { createAnimeCatalogSearchParams } from '@/widgets/anime-catalog'
 
 import { AnimeInfoBlock } from '../anime-info-block'
@@ -17,58 +17,64 @@ import { AnimeInfoBlockItem } from '../anime-info-block/anime-info-block.interfa
 export const AnimeContentCharacteristics = () => {
   const { animeUrl } = useParams<AnimePageParams>()!
 
-  const { data } = useAnimeQuery(animeUrl!)
+  const { data } = useAnimeQuery({
+    variables: {
+      url: animeUrl!
+    }
+  })
+
+  const anime = data?.anime
 
   const infos = useMemo(() => {
     const infos: AnimeInfoBlockItem[] = []
 
     infos.push(
       {
-        element: `Серий: ${data?.episodes_aired ?? '?'} из ${data?.episodes ?? '?'}`,
+        element: `Серий: ${anime?.episodesAired ?? '?'} из ${anime?.episodesCount ?? '?'}`,
         key: 'episodes'
       },
       {
-        element: `Стартовал: ${data?.aired_on ? dayjs(data.aired_on).locale('ru').format('D MMM YYYYг') : '?'}`,
+        element: `Стартовал: ${anime?.episodesAired ? dayjs(anime?.episodesAired).locale('ru').format('D MMM YYYYг') : '?'}`,
         key: 'aired_on'
       },
       {
-        element: `Год: ${data?.year ?? '?'}`,
-        href: data?.year
-          ? `${ROUTES.CATALOG.ROOT}?${createAnimeCatalogSearchParams({ years: [data.year] })}`
+        element: `Год: ${anime?.year ?? '?'}`,
+        href: anime?.year
+          ? `${ROUTES.CATALOG.ROOT}?${createAnimeCatalogSearchParams({ years: [anime?.year] })}`
           : undefined,
         key: 'year'
       },
       {
-        element: `Тип: ${data?.type ? MAP_ANIME_TYPE_VARIANTS[data.type] : '?'}`,
-        href: data?.type
-          ? `${ROUTES.CATALOG.ROOT}?${createAnimeCatalogSearchParams({ type: data.type })}`
+        element: `Тип: ${anime?.type ? MAP_ANIME_TYPE_VARIANTS[anime?.type] : '?'}`,
+        href: anime?.type
+          ? `${ROUTES.CATALOG.ROOT}?${createAnimeCatalogSearchParams({ type: anime.type })}`
           : undefined,
         key: 'type'
       },
       {
-        element: `Статус: ${data?.status ? MAP_ANIME_STATUSES_LABEL[data.status] : '?'}`,
-        href: data?.status
-          ? `${ROUTES.CATALOG.ROOT}?${createAnimeCatalogSearchParams({ status: data.status })}`
+        element: `Статус: ${anime?.status ? MAP_ANIME_STATUS_LABEL[anime.status] : '?'}`,
+        href: anime?.status
+          ? `${ROUTES.CATALOG.ROOT}?${createAnimeCatalogSearchParams({ status: anime.status })}`
           : undefined,
         key: 'status'
       }
     )
 
-    if (data?.released_on) {
+    if (anime?.releasedOn) {
       infos.push({
-        element: `Выпущен: ${dayjs(data.released_on).locale('ru').format('D MMM YYYYг')}`,
+        element: `Выпущен: ${dayjs(anime.releasedOn).locale('ru').format('D MMM YYYYг')}`,
         key: 'released_on'
       })
     }
 
     return infos
   }, [
-    data?.episodes,
-    data?.aired_on,
-    data?.year,
-    data?.type,
-    data?.status,
-    data?.released_on
+    anime?.episodesAired,
+    anime?.episodesCount,
+    anime?.year,
+    anime?.type,
+    anime?.status,
+    anime?.releasedOn
   ])
 
   return <AnimeInfoBlock title='Об аниме: ' infos={infos} />

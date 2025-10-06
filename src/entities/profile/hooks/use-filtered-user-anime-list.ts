@@ -2,33 +2,34 @@ import { useStore } from '@anifox/store'
 import Fuse from 'fuse.js'
 import { useMemo } from 'react'
 
-import { useProfileStores } from '@/entities/profile/context'
 import {
   $animeListFilters,
   useIsAnimeListFilterActive
 } from '@/entities/profile/store'
-import { AnimeTrackStatuses } from '@/services/api'
-import { useUserAnimeListQuery } from '@/services/queries/use-user-anime-list-query'
+import { AnimeListStatus, useAnimeListQuery } from '@/graphql/generated/output'
 
-export const useFilteredUserAnimeList = (tableStatus: AnimeTrackStatuses) => {
-  const { $profile } = useProfileStores()
+import { useProfile } from './use-profile'
 
-  const user = $profile.selectors.user()
+export const useFilteredUserAnimeList = (tableStatus: AnimeListStatus) => {
+  const { profile } = useProfile()
 
-  const { search, status, trackStatus, type } = useStore(
-    $animeListFilters.store
-  )
+  const { search, status, type } = useStore($animeListFilters.store)
 
   const isFiltersActive = useIsAnimeListFilterActive()
 
-  const { data = [], isLoading } = useUserAnimeListQuery({
-    status: trackStatus ?? tableStatus,
-    login: user.preferred_username
+  const { data, loading } = useAnimeListQuery({
+    variables: {
+      userId: profile.id
+    }
   })
 
   const list = useMemo(() => {
+    let filteredData = (data?.animeList.list ?? []).filter(
+      ({ status }) => status === tableStatus
+    )
+
     if (isFiltersActive) {
-      let filteredData = data.filter((anime) => {
+      filteredData = filteredData.filter(({ anime }) => {
         if (type && type !== anime.type) {
           return false
         }
@@ -42,17 +43,15 @@ export const useFilteredUserAnimeList = (tableStatus: AnimeTrackStatuses) => {
 
       if (search) {
         const fuse = new Fuse(filteredData, {
-          keys: ['title']
+          keys: ['anime.title']
         })
 
         filteredData = fuse.search(search).map(({ item }) => item)
       }
-
-      return filteredData
     }
 
-    return data
-  }, [data, isFiltersActive, search, tableStatus, status, type])
+    return filteredData
+  }, [data?.animeList.list, isFiltersActive, search, status, tableStatus, type])
 
-  return { list, isLoading }
+  return { list, loading }
 }

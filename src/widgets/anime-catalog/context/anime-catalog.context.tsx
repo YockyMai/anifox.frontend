@@ -49,7 +49,7 @@ export const AnimeCatalogContextProvider = ({
         }
       }
     },
-    [storeRef.current, navigate]
+    [navigate]
   )
 
   if (!storeRef.current) {

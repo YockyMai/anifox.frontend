@@ -9,13 +9,13 @@ export const Search = () => {
 
   const search = $filter.selectors.search()
 
-  const [searchValue, setSearchValue] = useState(search)
+  const [localSearch, setLocalSearch] = useState(search)
 
   useEffect(() => {
-    setSearchValue(search)
+    setLocalSearch(search)
   }, [search])
 
-  const debouncedValue = useDebounce(searchValue, 300)
+  const debouncedValue = useDebounce(localSearch, 300)
 
   useEffect(() => {
     $filter.actions.setSearch(debouncedValue)
@@ -37,11 +37,11 @@ export const Search = () => {
         maxLength={40}
         label={'Поиск'}
         placeholder={'Название аниме'}
-        value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
+        value={localSearch}
+        onChange={(e) => setLocalSearch(e.target.value)}
         icon={<IconSearch />}
         rightIcon={
-          searchValue.length > 0 && (
+          localSearch.length > 0 && (
             <IconX cursor={'pointer'} onClick={clearSearch} />
           )
         }

@@ -1,3 +1,6 @@
-import { AnimeRelated } from '@/services/api'
+import { AnimeLiteFragment } from '@/graphql/generated/output'
 
-export type AnimeSimilarCardProps = AnimeRelated
+export type AnimeRelatedCardProps = {
+  anime: AnimeLiteFragment
+  relation: string
+}

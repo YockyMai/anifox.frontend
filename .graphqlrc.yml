@@ -1,0 +1,5 @@
+schema: http://localhost/graphql
+documents:
+  - src/graphql/queries/*.graphql
+  - src/graphql/mutations/*.graphql
+  - src/graphql/fragments/*.graphql

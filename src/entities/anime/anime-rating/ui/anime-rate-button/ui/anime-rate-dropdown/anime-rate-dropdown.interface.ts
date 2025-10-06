@@ -1,5 +1,6 @@
 export type AnimeRateDropdownProps = {
-  scores: { score: number; votes: number }[]
-  totalVotes: number
+  animeId: string
   onRateAnime: (rate: number) => void
+  processedRating: number | null
+  ratingMutationLoading: boolean
 }

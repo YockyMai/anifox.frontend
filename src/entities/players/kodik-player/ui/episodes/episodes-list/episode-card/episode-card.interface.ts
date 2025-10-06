@@ -1,6 +1,7 @@
-import { AnimeEpisode } from '@/services/api'
+import { EpisodeFragment } from '@/graphql/generated/output'
 
 export type EpisodeCardProps = {
-  episode: AnimeEpisode
+  episode: EpisodeFragment
   isSelected?: boolean
+  onOpenFullInfo?: () => void
 }

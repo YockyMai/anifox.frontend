@@ -6,10 +6,15 @@ import { useNavigate } from 'react-router'
 import { UIColors } from '@/common/types/ui-colors'
 import { UISizes } from '@/common/types/ui-sizes'
 import { UIVariants } from '@/common/types/ui-variants'
+import { client } from '@/graphql/client'
+import {
+  RandomAnimesDocument,
+  RandomAnimesQuery,
+  RandomAnimesQueryVariables
+} from '@/graphql/generated/output'
 import { ROUTES } from '@/screens/pages.routes'
-import { Anime, api } from '@/services/api'
-import { ANIME_ORDER_OPTIONS } from '@/widgets/anime-catalog/ui/anime-catalog-filter/ui/anime-order/anime-order.const'
 
+import { RANDOM_ANIMES_COUNT } from './random-anime-button.const'
 import './random-anime-button.interface'
 import { RandomAnimeButtonProps } from './random-anime-button.interface'
 
@@ -20,19 +25,26 @@ export const RandomAnimeButton = ({
 
   const navigate = useNavigate()
 
-  const [randomAnime, setRandomAnime] = useState<Anime[]>([])
+  const [randomAnimes, setRandomAnimes] = useState<
+    RandomAnimesQuery['randomAnimes']
+  >([])
   const [currentAnimeIndex, setCurrentAnimeIndex] = useState(0)
 
-  const randomAnimeUrl = randomAnime[currentAnimeIndex]?.url
+  const randomAnime = randomAnimes[currentAnimeIndex]
 
   const fetchRandomAnimeList = useCallback(async () => {
-    const { data } = await api.fetchAnimeList({
-      order: ANIME_ORDER_OPTIONS.RANDOM,
-      limit: 20,
-      page: 0
+    const { data } = await client.query<
+      RandomAnimesQuery,
+      RandomAnimesQueryVariables
+    >({
+      query: RandomAnimesDocument,
+      variables: {
+        count: RANDOM_ANIMES_COUNT
+      },
+      fetchPolicy: 'no-cache'
     })
 
-    setRandomAnime(data)
+    setRandomAnimes(data.randomAnimes)
   }, [])
 
   useEffect(() => {
@@ -46,18 +58,18 @@ export const RandomAnimeButton = ({
       setCurrentAnimeIndex(0)
     }
 
-    if (currentAnimeIndex === 20) {
+    if (currentAnimeIndex === RANDOM_ANIMES_COUNT) {
       refetchRandomAnimeList()
     }
   }, [currentAnimeIndex, fetchRandomAnimeList])
 
   const handleClick = () => {
-    if (randomAnimeUrl) {
-      if (currentAnimeIndex < 21) {
+    if (randomAnime) {
+      if (currentAnimeIndex < RANDOM_ANIMES_COUNT + 1) {
         setCurrentAnimeIndex((prev) => prev + 1)
       }
 
-      navigate(ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', randomAnimeUrl))
+      navigate(ROUTES.CATALOG.ANIME.ROOT(randomAnime.id, randomAnime.url))
     }
   }
 

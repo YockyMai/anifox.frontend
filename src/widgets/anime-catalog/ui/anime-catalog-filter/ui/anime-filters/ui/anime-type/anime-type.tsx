@@ -1,6 +1,6 @@
 import { Select } from '@anifox/ui'
 
-import { AnimeTypeVariants } from '@/services/api'
+import { AnimeType as AnimeTypeVariants } from '@/graphql/generated/output'
 import { useAnimeCatalogStores } from '@/widgets/anime-catalog'
 
 import { TYPE_OPTIONS } from './anime-type.const'

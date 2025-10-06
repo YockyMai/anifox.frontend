@@ -9,22 +9,22 @@ import { AnimeListTableProps } from './anime-list-table.interface'
 
 export const AnimeListTable = ({ status }: AnimeListTableProps) => {
   const isFilterActive = useIsAnimeListFilterActive()
-  const { list, isLoading } = useFilteredUserAnimeList(status)
+  const { list, loading } = useFilteredUserAnimeList(status)
 
   return (
     <div className='rounded bg-white drop-shadow-2xl dark:bg-slate-800'>
       <AnimeListColumns status={status} />
 
       <div>
-        {list.length && !isLoading ? (
+        {list.length && !loading ? (
           <>
-            {list.map((anime) => (
-              <AnimeListRow status={status} key={anime.url} anime={anime} />
+            {list.map((entry) => (
+              <AnimeListRow animeListEntry={entry} />
             ))}
           </>
         ) : (
           <div className='flex items-center justify-center pb-8'>
-            {isLoading ? (
+            {loading ? (
               <Loader />
             ) : (
               <p>{isFilterActive ? 'Ничего не найдено' : 'Список пуст'}</p>

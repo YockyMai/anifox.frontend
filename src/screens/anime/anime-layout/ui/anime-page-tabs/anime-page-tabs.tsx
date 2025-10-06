@@ -9,7 +9,7 @@ import { ROUTES } from '@/screens/pages.routes'
 import './anime-page-tabs.css'
 
 export const AnimePageTabs = () => {
-  const { animeUrl } = useParams<AnimePageParams>()!
+  const { animeUrl, animeId } = useParams<AnimePageParams>()!
   const { pathname } = useLocation()
 
   const [activeTab, setActiveTab] = useState(pathname)
@@ -19,8 +19,11 @@ export const AnimePageTabs = () => {
   }, [pathname])
 
   const tabs = useMemo(() => {
-    const animeOverviewUrl = `${ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', animeUrl!)}`
-    const animeCharactersUrl = `${ROUTES.CATALOG.ANIME.CHARACTERS.replace(':animeUrl', animeUrl!)}`
+    const animeOverviewUrl = ROUTES.CATALOG.ANIME.ROOT(animeId!, animeUrl!)
+    const animeCharactersUrl = ROUTES.CATALOG.ANIME.CHARACTERS(
+      animeId!,
+      animeUrl!
+    )
 
     return [
       {

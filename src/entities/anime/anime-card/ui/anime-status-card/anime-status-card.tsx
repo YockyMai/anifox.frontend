@@ -1,6 +1,8 @@
 import { Image, useHover } from '@anifox/ui'
+import { motion } from 'framer-motion'
 import { Link } from 'react-router'
 
+import { AnimeRateButton } from '@/entities/anime/anime-rating'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { AnimeCardPanel } from '../anime-card-panel'
@@ -8,40 +10,49 @@ import { AnimeStatusCardProps } from './anime-status-card.interface'
 import { AnimeStatusMenu } from './anime-status-menu'
 
 export const AnimeStatusCard = ({
-  anime,
+  animeListEntry,
   onDeleteButtonClick,
   onEditButtonClick
 }: AnimeStatusCardProps) => {
+  const { anime, episodesWatched, rating, status } = animeListEntry
+
   const { isHovered, hoverProps } = useHover()
 
   return (
     <div {...hoverProps} className='relative flex flex-col'>
       <div className='relative flex items-center justify-between overflow-hidden py-1 pl-3'>
-        <div className='flex flex-[7] items-center'>
-          <div className='w-[40px]'>
-            <Link
-              to={ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', anime.url)}
-            >
+        <motion.div layout className='flex flex-[7] items-center'>
+          <AnimeStatusMenu
+            isCardHovered={isHovered}
+            anime={anime}
+            status={status}
+            onDeleteButtonClick={onDeleteButtonClick}
+            onEditButtonClick={onEditButtonClick}
+          />
+          <div className='w-[40px] pl-1'>
+            <Link to={ROUTES.CATALOG.ANIME.ROOT(anime.id, anime.url)}>
               <div className='aspect-[3/4] h-full py-1'>
-                <Image src={anime.image.medium} />
+                <Image src={anime.image.medium ?? ''} />
               </div>
             </Link>
           </div>
-          <Link to={ROUTES.CATALOG.ANIME.ROOT.replace(':animeUrl', anime.url)}>
+          <Link to={ROUTES.CATALOG.ANIME.ROOT(anime.id, anime.url)}>
             <p className='pl-3 font-semibold'>{anime.title}</p>
           </Link>
+        </motion.div>
+
+        <div className='flex flex-[2] items-center justify-center gap-x-1.5'>
+          <AnimeRateButton
+            animeId={anime.id}
+            animeUrl={anime.url}
+            rating={rating?.rating}
+          />
         </div>
 
-        <div className='flex flex-1 items-center justify-center gap-x-1.5'></div>
-
-        <div className='flex flex-1 items-center justify-center gap-x-1.5'></div>
-
-        <AnimeStatusMenu
-          isCardHovered={isHovered}
-          anime={anime}
-          onDeleteButtonClick={onDeleteButtonClick}
-          onEditButtonClick={onEditButtonClick}
-        />
+        <div className='flex flex-[1] items-center justify-center gap-x-1.5'>
+          {episodesWatched ?? 0} /{' '}
+          {anime.episodesAired ?? anime.episodesCount ?? '?'}
+        </div>
       </div>
 
       {isHovered && (

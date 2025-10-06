@@ -1,20 +1,20 @@
-import { ANIME_SCHEDULE_DAY, AnimeScheduleDay } from '@/services/api'
+import { DayOfWeek } from '@/graphql/generated/output'
 
-export const getWeekDayLabel = (weekday: AnimeScheduleDay) => {
+export const getWeekDayLabel = (weekday: DayOfWeek) => {
   switch (weekday) {
-    case ANIME_SCHEDULE_DAY.MONDAY:
+    case DayOfWeek.MONDAY:
       return 'Понедельник'
-    case ANIME_SCHEDULE_DAY.TUESDAY:
+    case DayOfWeek.TUESDAY:
       return 'Вторник'
-    case ANIME_SCHEDULE_DAY.WEDNESDAY:
+    case DayOfWeek.WEDNESDAY:
       return 'Среда'
-    case ANIME_SCHEDULE_DAY.THURSDAY:
+    case DayOfWeek.THURSDAY:
       return 'Четверг'
-    case ANIME_SCHEDULE_DAY.FRIDAY:
+    case DayOfWeek.FRIDAY:
       return 'Пятница'
-    case ANIME_SCHEDULE_DAY.SATURDAY:
+    case DayOfWeek.SATURDAY:
       return 'Суббота'
-    case ANIME_SCHEDULE_DAY.SUNDAY:
+    case DayOfWeek.SUNDAY:
       return 'Воскресенье'
   }
 }

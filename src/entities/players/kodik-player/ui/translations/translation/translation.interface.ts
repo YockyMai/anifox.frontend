@@ -1,6 +1,6 @@
-import { AnimeEpisodeTranslation } from '@/services/api'
+import { EpisodeTranslationFragment } from '@/graphql/generated/output'
 
 export type TranslationProps = {
-  selectedTranslation: AnimeEpisodeTranslation | null
-  translation: AnimeEpisodeTranslation
+  selectedTranslation: EpisodeTranslationFragment | null
+  translation: EpisodeTranslationFragment
 }

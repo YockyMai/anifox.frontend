@@ -1,7 +1,9 @@
-import { AnimeTrackStatuses } from '@/services/api'
+import { AnimeListStatus } from '@/graphql/generated/output'
 
 export type TrackStatusOptionsProps = {
-  currentTrackStatus?: AnimeTrackStatuses
-  addAnimeToTrackedList: (status: AnimeTrackStatuses) => void
-  deleteAnimeFromTrackedList: (status: AnimeTrackStatuses) => void
+  currentAnimeListStatus?: AnimeListStatus
+  saveAnimeListEntry: (status: AnimeListStatus) => void
+  removeAnimeListEntry: (status: AnimeListStatus) => void
+  processedAnimeListStatus: AnimeListStatus | null
+  isLoading: boolean
 }

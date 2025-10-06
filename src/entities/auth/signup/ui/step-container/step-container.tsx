@@ -9,7 +9,6 @@ import {
   stepContainerExit,
   stepContainerInitial
 } from './step-container.animations'
-import './step-container.css'
 import { StepContainerProps } from './step-container.interface'
 
 export const StepContainer = ({
@@ -24,14 +23,18 @@ export const StepContainer = ({
       initial={stepContainerInitial}
       animate={stepContainerAnimate}
       exit={stepContainerExit}
-      className='step-container'
+      className='flex h-full w-full flex-col justify-between px-12 pt-12'
     >
-      {title && <p className='step-container__title'>{title}</p>}
+      {title && (
+        <p className='pb-10 text-center text-lg font-bold text-black dark:text-white'>
+          {title}
+        </p>
+      )}
 
-      <div className='step-container__content'>{children}</div>
+      <div>{children}</div>
 
       <div>
-        <div className='step-container__buttons'>
+        <div className='flex justify-center gap-x-3 pt-12'>
           {prevButton && (
             <Button
               isLoading={prevButton.isLoading}

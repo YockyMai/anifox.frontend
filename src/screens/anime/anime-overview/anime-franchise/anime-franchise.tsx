@@ -3,23 +3,28 @@ import { useMemo } from 'react'
 import { useParams } from 'react-router'
 
 import { AnimeCard } from '@/entities/anime/anime-card'
-import { useAnimeRelatedQuery } from '@/services/queries'
+import { useRelatedAnimesQuery } from '@/graphql/generated/output'
 
 import { AnimePageParams } from '../../anime.interface'
 
 export const AnimeFranchise = () => {
-  const { animeUrl } = useParams<AnimePageParams>()
+  const { animeId } = useParams<AnimePageParams>()
 
-  const { data = [] } = useAnimeRelatedQuery(animeUrl!)
+  const { data } = useRelatedAnimesQuery({
+    variables: {
+      animeId: animeId!,
+      limit: 1000,
+      page: 0
+    }
+  })
 
   const slides = useMemo(
     () =>
-      data.map(({ anime, relation }) => ({
+      (data?.relatedAnimes?.data ?? []).map(({ anime, type }) => ({
         content: (
           <AnimeCard
-            withoutPanel
             anime={anime}
-            label={`${relation.type}${anime.year ? ` - ${anime.year} г.` : ''}`}
+            label={`${type}${anime.year ? ` - ${anime.year} г.` : ''}`}
           />
         ),
         size: 200

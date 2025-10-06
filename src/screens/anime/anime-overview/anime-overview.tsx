@@ -4,56 +4,83 @@ import { useParams } from 'react-router'
 import { KodikPlayer } from '@/entities/players/kodik-player'
 import {
   useAnimeQuery,
-  useAnimeRelatedQuery,
-  useAnimeScreenshotsQuery,
-  useAnimeVideosQuery
-} from '@/services/queries'
+  useRelatedAnimesQuery,
+  useSimilarAnimesQuery
+} from '@/graphql/generated/output'
+import { AnimeComments } from '@/widgets/anime-comments'
 
 import { AnimePageParams } from '../anime.interface'
 import { AnimeEpisodesHistory } from './anime-episodes-history/anime-episodes-history'
 import { AnimeFranchise } from './anime-franchise'
 import { PLAYER_ELEMENT_ID } from './anime-overview.const'
 import { AnimeScreenshots } from './anime-screenshots'
+import { AnimeSimilar } from './anime-similar'
 import { AnimeVideos } from './anime-videos'
 
 export const AnimeOverviewScreen = () => {
-  const { animeUrl } = useParams<AnimePageParams>()
+  const { animeUrl, animeId } = useParams<AnimePageParams>()
 
-  const { data } = useAnimeQuery(animeUrl!)
+  const { data, loading } = useAnimeQuery({
+    variables: {
+      url: animeUrl!
+    }
+  })
 
-  const { data: screenshots, isLoading: isLoadingScreenshots } =
-    useAnimeScreenshotsQuery(animeUrl!)
+  const screenshots = data?.anime.screenshots
 
-  const { data: videos, isLoading: isLoadingVideos } = useAnimeVideosQuery(
-    animeUrl!
-  )
+  const videos = data?.anime.videos
 
-  const { data: related, isLoading: isLoadingRelated } = useAnimeRelatedQuery(
-    animeUrl!
-  )
+  const { data: related, loading: loadingRelated } = useRelatedAnimesQuery({
+    variables: {
+      animeId: animeId!,
+      limit: 1000,
+      page: 0
+    }
+  })
+
+  const { data: similar, loading: loadingSimilar } = useSimilarAnimesQuery({
+    variables: {
+      animeId: animeId!,
+      limit: 1000,
+      page: 0
+    }
+  })
+
   return (
     <div>
       <div className='container'>
-        {!isLoadingScreenshots && screenshots && screenshots.length > 0 && (
+        {!loading && screenshots && screenshots.length > 0 && (
           <ScreenSection title='Кадры из аниме'>
             <AnimeScreenshots />
           </ScreenSection>
         )}
 
-        {!isLoadingVideos && videos && videos.length > 0 && (
+        {!loading && videos && videos.length > 0 && (
           <ScreenSection title='Трейлеры и видео'>
             <AnimeVideos />
           </ScreenSection>
         )}
       </div>
 
-      {!isLoadingRelated && related && related.length > 0 && (
-        <div className='container'>
-          <ScreenSection title='Хронология'>
-            <AnimeFranchise />
-          </ScreenSection>
-        </div>
-      )}
+      {!loadingRelated &&
+        related?.relatedAnimes &&
+        related.relatedAnimes.data.length > 0 && (
+          <div className='container'>
+            <ScreenSection title='Хронология'>
+              <AnimeFranchise />
+            </ScreenSection>
+          </div>
+        )}
+
+      {!loadingSimilar &&
+        similar?.similarAnimes &&
+        similar.similarAnimes.data.length > 0 && (
+          <div className='container'>
+            <ScreenSection title='Похожие аниме'>
+              <AnimeSimilar />
+            </ScreenSection>
+          </div>
+        )}
 
       <div
         id={PLAYER_ELEMENT_ID}
@@ -61,13 +88,19 @@ export const AnimeOverviewScreen = () => {
       >
         <MarqueeText>
           <p className='text-lg font-bold dark:text-slate-300 xl:text-2xl'>
-            Смотреть аниме &quot;{data?.title}&quot;
+            Смотреть аниме &quot;{data?.anime.title}&quot;
           </p>
         </MarqueeText>
-        <KodikPlayer animeUrl={animeUrl!} />
+        <KodikPlayer animeUrl={animeUrl!} animeId={animeId!} />
       </div>
 
       <AnimeEpisodesHistory />
+
+      <div className='mt-10'>
+        <ScreenSection withContainer title='Комментарии к аниме'>
+          <AnimeComments animeId={animeId!} />
+        </ScreenSection>
+      </div>
     </div>
   )
 }

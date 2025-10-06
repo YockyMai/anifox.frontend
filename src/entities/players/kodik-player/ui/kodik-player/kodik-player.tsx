@@ -6,32 +6,27 @@ import {
 } from '../../context/kodik-player.context'
 import { getPlayerLinkFromParams } from '../../helpers/get-player-link-from-params'
 import { useInitKodikPlayer } from '../../hooks'
+import { KodikMessageListener } from '../kodik-message-listener/kodik-message-listener'
 import { KodikSidebar } from '../kodik-sidebar'
-import './kodik-player.css'
 import { KodikPlayerProps } from './kodik-player.interface'
 
-const KodikPlayer = ({ animeUrl }: KodikPlayerProps) => {
+const KodikPlayer = () => {
   const { $kodikPlayer } = useKodikPlayerStores()
 
   const playerRef = useRef<HTMLIFrameElement>(null)
 
   const selectedTranslation = $kodikPlayer.selectors.selectedTranslation()
 
-  const { isLoading } = useInitKodikPlayer({ animeUrl })
-
-  if (isLoading) {
-    return null
-  }
-
   return (
-    <div className='kodik-player'>
-      <div className='kodik-player__frame-container'>
+    <div className='relative mx-auto grid w-full gap-x-4 py-5 xl:grid-cols-[auto_400px]'>
+      <KodikMessageListener />
+      <div className='mx-auto aspect-[12/6] w-full drop-shadow-2xl'>
         {selectedTranslation && (
           <iframe
             ref={playerRef}
-            className='kodik-player__frame'
+            className='h-full w-full rounded-t-lg xl:rounded-lg'
             allowFullScreen
-            src={getPlayerLinkFromParams(selectedTranslation.link, {
+            src={getPlayerLinkFromParams(selectedTranslation.kodikPlayerLink, {
               only_episode: true,
               only_season: true,
               start_from: 0
@@ -45,10 +40,18 @@ const KodikPlayer = ({ animeUrl }: KodikPlayerProps) => {
   )
 }
 
-const Root = ({ animeUrl }: KodikPlayerProps) => {
+const Root = ({ animeUrl, animeId }: KodikPlayerProps) => {
+  const initialKodikPlayerStore = useInitKodikPlayer({ animeUrl, animeId })
+
+  if (!initialKodikPlayerStore) {
+    return null
+  }
+
   return (
-    <KodikPlayerStoresProvider>
-      <KodikPlayer animeUrl={animeUrl} />
+    <KodikPlayerStoresProvider
+      initialKodikPlayerStore={initialKodikPlayerStore}
+    >
+      <KodikPlayer />
     </KodikPlayerStoresProvider>
   )
 }

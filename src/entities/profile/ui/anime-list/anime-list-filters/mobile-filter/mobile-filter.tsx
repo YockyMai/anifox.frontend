@@ -1,7 +1,8 @@
 import { UnstyledButton } from '@anifox/ui'
-import { Icon, IconMenu2, IconX } from '@tabler/icons-react'
+import { IconMenu2, IconX } from '@tabler/icons-react'
 import { useState } from 'react'
 
+import { ResetFilters } from '../reset-filters/reset-filters'
 import { Search } from '../search'
 import { Status } from '../status'
 import { TrackStatus } from '../track-status'
@@ -28,6 +29,7 @@ export const MobileFilter = () => {
           <TrackStatus />
           <Type />
           <Status />
+          <ResetFilters />
         </div>
       )}
     </div>

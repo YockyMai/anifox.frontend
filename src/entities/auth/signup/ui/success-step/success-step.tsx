@@ -11,7 +11,7 @@ export const SuccessStep = () => {
   const resetForm = useResetSignupForm()
   const navigate = useNavigate()
 
-  const viewer = $viewer.selectors.user()
+  const viewer = $viewer.selectors.viewer()
 
   return (
     <StepContainer
@@ -19,9 +19,7 @@ export const SuccessStep = () => {
         label: 'Перейти в профиль',
         onClick: () => {
           if (viewer) {
-            navigate(
-              ROUTES.PROFILE.ROOT.replace(':login', viewer.preferred_username)
-            )
+            navigate(ROUTES.PROFILE.ROOT(viewer.login))
             resetForm()
           }
         }

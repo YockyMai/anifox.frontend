@@ -1,7 +1,0 @@
-.character-participation {
-  @apply container mt-12;
-
-  &__title {
-    @apply mb-5 text-xl font-bold;
-  }
-}

@@ -1,4 +1,4 @@
-import { ANIME_ORDER_VARIANTS } from '@/services/api'
+import { AnimeOrder } from '@/graphql/generated/output'
 import { AnimeCatalogContextProvider } from '@/widgets/anime-catalog'
 import {
   AnimeCatalogFilter,
@@ -13,7 +13,7 @@ export const AnimeMostRatedScreen = () => {
       <AnimeMostRatedMetadata />
 
       <AnimeCatalogContextProvider
-        initialFilterState={{ order: ANIME_ORDER_VARIANTS.RATING }}
+        initialFilterState={{ order: AnimeOrder.RATING }}
       >
         <AnimeCatalogFilter />
         <AnimeCatalogList />

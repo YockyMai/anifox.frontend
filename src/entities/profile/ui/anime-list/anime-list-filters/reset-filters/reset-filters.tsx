@@ -1,4 +1,4 @@
-import { Button, UIColors } from '@anifox/ui'
+import { Button, Transition, UIColors } from '@anifox/ui'
 
 import {
   $animeListFilters,
@@ -8,16 +8,16 @@ import {
 export const ResetFilters = () => {
   const isFilterActive = useIsAnimeListFilterActive()
 
-  if (!isFilterActive) {
-    return null
-  }
-
   return (
-    <Button
-      onClick={() => $animeListFilters.actions.resetFilters()}
-      color={UIColors.RED}
-    >
-      Очистить фильтры
-    </Button>
+    <Transition mounded={isFilterActive}>
+      <Button
+        fullWidth
+        variant='light'
+        onClick={() => $animeListFilters.actions.resetFilters()}
+        color={UIColors.RED}
+      >
+        Очистить фильтры
+      </Button>
+    </Transition>
   )
 }

@@ -1,4 +1,11 @@
-import { Badge, HoverCard, Image } from '@anifox/ui'
+import {
+  Badge,
+  HoverCard,
+  Image,
+  Transition,
+  UnstyledButton,
+  useHover
+} from '@anifox/ui'
 import { clsx } from 'clsx'
 
 import { UIColors } from '@/common/types/ui-colors'
@@ -6,13 +13,18 @@ import { UISizes } from '@/common/types/ui-sizes'
 
 import './episode-card.css'
 import { EpisodeCardProps } from './episode-card.interface'
+import { EpisodeProgress } from './episode-progress/episode-progress'
 
 export const EpisodeSelectionCard = ({
   episode,
-  isSelected
+  isSelected,
+  onOpenFullInfo
 }: EpisodeCardProps) => {
+  const { isHovered, hoverProps } = useHover()
+
   return (
     <div
+      {...hoverProps}
       className={clsx('episode-card', isSelected && 'episode-card_selected')}
     >
       <div className='episode-card__image-container'>
@@ -23,12 +35,29 @@ export const EpisodeSelectionCard = ({
           height={84}
           alt={episode.title ?? ''}
         />
+
+        <Transition
+          mounded={!!(onOpenFullInfo && isHovered)}
+          animation='fade'
+          duration='sm'
+        >
+          <UnstyledButton
+            onClick={(e) => {
+              e.stopPropagation()
+              onOpenFullInfo?.()
+            }}
+            className='absolute bottom-0.5 left-1/2 -translate-x-1/2 rounded bg-slate-900/70 px-1.5 py-0.5 backdrop-blur-xl'
+          >
+            <p className='text-nowrap text-xs text-white'>Показать описание</p>
+          </UnstyledButton>
+        </Transition>
+
         {(episode.filler || episode.recap) && (
           <div className='episode-card__additional-info'>
             <HoverCard
               openDelay={500}
               trigger={
-                <Badge className='' size={UISizes.SM} color={UIColors.RED}>
+                <Badge size={UISizes.SM} color={UIColors.RED}>
                   Филлер
                 </Badge>
               }
@@ -41,7 +70,7 @@ export const EpisodeSelectionCard = ({
             <HoverCard
               openDelay={500}
               trigger={
-                <Badge className='' size={UISizes.SM} color={UIColors.PURPLE}>
+                <Badge size={UISizes.SM} color={UIColors.PURPLE}>
                   Рекап
                 </Badge>
               }
@@ -77,6 +106,12 @@ export const EpisodeSelectionCard = ({
         >
           {episode.description}
         </p>
+        {episode.duration && episode.progress && (
+          <EpisodeProgress
+            episodeDuration={episode.duration}
+            progress={episode.progress}
+          />
+        )}
       </div>
     </div>
   )

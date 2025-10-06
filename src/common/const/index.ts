@@ -1,1 +1,1 @@
-export { COOKIES } from './cookies'
+export { LOCAL_STORAGE } from './cookies'

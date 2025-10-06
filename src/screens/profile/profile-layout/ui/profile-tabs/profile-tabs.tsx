@@ -1,13 +1,14 @@
 import { Tabs } from '@anifox/ui'
-import { IconBook, IconHeart } from '@tabler/icons-react'
+import { IconBook, IconHeart, IconUsers } from '@tabler/icons-react'
 import { useEffect, useMemo, useState } from 'react'
-import { Link, useLocation, useParams } from 'react-router'
+import { Link, useLocation } from 'react-router'
 
+import { useProfile } from '@/entities/profile'
 import { ROUTES } from '@/screens/pages.routes'
-import { ProfilePageParams } from '@/screens/profile/profile.interface'
 
 export const ProfilePageTabs = () => {
-  const { login } = useParams<ProfilePageParams>()
+  const { profile } = useProfile()
+
   const { pathname } = useLocation()
 
   const [activeTab, setActiveTab] = useState(pathname)
@@ -17,8 +18,10 @@ export const ProfilePageTabs = () => {
   }, [pathname])
 
   const tabs = useMemo(() => {
-    const profileUrl = `${ROUTES.PROFILE.ROOT.replace(':login', login!)}`
-    const favoritesUrl = `${ROUTES.PROFILE.FAVORITES.replace(':login', login!)}`
+    const profileUrl = `${ROUTES.PROFILE.ROOT(profile!.login)}`
+    const animeListUrl = `${ROUTES.PROFILE.ANIME_LIST.replace(':login', profile!.login)}`
+    const favoritesUrl = `${ROUTES.PROFILE.FAVORITES.replace(':login', profile!.login)}`
+    const friendsUrl = ROUTES.PROFILE.FRIENDS.ROOT(profile!.login)
 
     return [
       {
@@ -28,10 +31,22 @@ export const ProfilePageTabs = () => {
             to={profileUrl}
           >
             <IconBook />
-            Список аниме
+            Обзор
           </Link>
         ),
         key: profileUrl
+      },
+      {
+        content: (
+          <Link
+            className='flex items-center gap-x-1 text-nowrap'
+            to={animeListUrl}
+          >
+            <IconBook />
+            Список аниме
+          </Link>
+        ),
+        key: animeListUrl
       },
       {
         content: (
@@ -44,12 +59,24 @@ export const ProfilePageTabs = () => {
           </Link>
         ),
         key: favoritesUrl
+      },
+      {
+        content: (
+          <Link
+            className='flex items-center gap-x-1 text-nowrap'
+            to={friendsUrl}
+          >
+            <IconUsers />
+            Друзья
+          </Link>
+        ),
+        key: friendsUrl
       }
     ]
-  }, [login])
+  }, [profile!.login])
 
   return (
-    <div className='flex w-full justify-center bg-slate-400/30 dark:bg-slate-800/50'>
+    <div className='flex w-full justify-center bg-white dark:bg-slate-800/50'>
       <Tabs
         tabs={tabs}
         activeTab={activeTab}

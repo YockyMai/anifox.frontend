@@ -2,39 +2,36 @@ import { ScreenSection } from '@anifox/ui'
 import { useParams } from 'react-router'
 
 import { AnimeCard } from '@/entities/anime/anime-card'
-import { useCharacterQuery } from '@/services/queries'
+import { useCharacterQuery } from '@/graphql/generated/output'
 
 import { CharacterPageParams } from '../../character.interface'
 import { CharacterPictures } from '../character-pictures/character-pictures'
-import './character-participation.css'
 
 export const CharacterParticipation = () => {
   const { id } = useParams<CharacterPageParams>()
 
-  const { data } = useCharacterQuery(id!)
+  const { data } = useCharacterQuery({ variables: { characterId: id! } })
+
+  const character = data?.character
 
   return (
     <>
-      <div className='character-participation'>
-        {data?.pictures?.length ? (
+      <div className='container mt-12'>
+        {character?.pictures?.length ? (
           <ScreenSection title='Фотографии'>
             <CharacterPictures />
           </ScreenSection>
         ) : undefined}
 
-        {data?.roles?.length ? (
+        {character?.participation && character.participation.length > 0 && (
           <ScreenSection title='Участие в аниме'>
             <div className='anifox-grid'>
-              {data?.roles.map(({ anime, role }) => (
-                <AnimeCard
-                  label={`${role} роль`}
-                  key={anime.url}
-                  anime={anime}
-                />
+              {character.participation.map(({ anime, role, animeId }) => (
+                <AnimeCard label={`${role} роль`} key={animeId} anime={anime} />
               ))}
             </div>
           </ScreenSection>
-        ) : undefined}
+        )}
       </div>
     </>
   )

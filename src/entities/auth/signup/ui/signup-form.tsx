@@ -4,6 +4,7 @@ import { useAtomValue } from 'jotai'
 
 import { UISizes } from '@/common/types/ui-sizes'
 
+import { AuthWithExternal } from '../../auth-with-external/auth-with-external'
 import { $signupAtoms } from '../atoms'
 import { STEPS, TOTAL_STEPS } from '../atoms/signup.const'
 import { BirthdayStep } from './birthday-step'
@@ -24,24 +25,32 @@ export const SignupForm = ({
   const step = useAtomValue($signupAtoms.step)
 
   return (
-    <div className='signup-form'>
-      <div className='steps__progress'>
-        <ProgressBar
-          size={UISizes.MD}
-          progress={`${(step / TOTAL_STEPS) * 100}%`}
-        />
+    <div className='overflow-hidden rounded-2xl bg-slate-50 drop-shadow-sm dark:bg-slate-800'>
+      <div className='relative h-[400px] w-full'>
+        <div className='absolute left-0 top-0 w-full'>
+          <ProgressBar
+            size={UISizes.MD}
+            progress={`${(step / TOTAL_STEPS) * 100}%`}
+          />
+        </div>
+
+        <AnimatePresence mode='wait' initial={false}>
+          {step === STEPS.WELCOME && (
+            <WelcomeStep onLoginClick={onLoginClick} />
+          )}
+          {step === STEPS.EMAIL && <EmailStep />}
+          {step === STEPS.LOGIN && <LoginStep />}
+          {step === STEPS.BIRTHDAY && <BirthdayStep />}
+          {step === STEPS.PASSWORD && <PasswordStep />}
+          {step === STEPS.CREATE_ACCOUNT && <CreateAccountStep />}
+          {step === STEPS.ERROR && <ErrorStep />}
+          {step === STEPS.SUCCESS && <SuccessStep />}
+        </AnimatePresence>
       </div>
 
-      <AnimatePresence mode='wait' initial={false}>
-        {step === STEPS.WELCOME && <WelcomeStep onLoginClick={onLoginClick} />}
-        {step === STEPS.EMAIL && <EmailStep />}
-        {step === STEPS.LOGIN && <LoginStep />}
-        {step === STEPS.BIRTHDAY && <BirthdayStep />}
-        {step === STEPS.PASSWORD && <PasswordStep />}
-        {step === STEPS.CREATE_ACCOUNT && <CreateAccountStep />}
-        {step === STEPS.ERROR && <ErrorStep />}
-        {step === STEPS.SUCCESS && <SuccessStep />}
-      </AnimatePresence>
+      <div className='mt-3 w-full px-12 pb-12'>
+        <AuthWithExternal />
+      </div>
     </div>
   )
 }

@@ -3,7 +3,7 @@ import cloneDeep from 'lodash.clonedeep'
 import { useCallback, useMemo } from 'react'
 
 import { $preferredEpisodeTranslations } from '@/entities/translation/store'
-import { AnimeEpisodeTranslation } from '@/services/api'
+import { EpisodeTranslationFragment } from '@/graphql/generated/output'
 
 import { useKodikPlayerStores } from '../../context'
 import { Translation } from './translation'
@@ -22,10 +22,10 @@ export const Translations = () => {
 
     const sorted = translations.sort((a, b) => {
       const aTranslationIndex = preferredTranslations.find(
-        ({ translationId }) => translationId === a.id
+        ({ translationId }) => translationId === a.translationId
       )?.index
       const bTranslationIndex = preferredTranslations.find(
-        ({ translationId }) => translationId === b.id
+        ({ translationId }) => translationId === b.translationId
       )?.index
 
       if (!aTranslationIndex && !bTranslationIndex) {
@@ -43,9 +43,9 @@ export const Translations = () => {
   }, [selectedEpisode?.translations, preferredTranslations])
 
   const handleReorder = useCallback(
-    (values: AnimeEpisodeTranslation[]) =>
+    (values: EpisodeTranslationFragment[]) =>
       $preferredEpisodeTranslations.actions.reorder(
-        values.map(({ id }, index) => ({ index, translationId: id }))
+        values.map(({ translationId }, index) => ({ index, translationId }))
       ),
     []
   )

@@ -1,22 +1,23 @@
 import { Carousel, Fancybox } from '@anifox/ui'
 import { useParams } from 'react-router'
 
-import { useCharacterQuery } from '@/services/queries'
+import { useCharacterQuery } from '@/graphql/generated/output'
 
 import { CharacterPageParams } from '../../character.interface'
 import { CharacterPicture } from './character-picture'
-import './character-pictures.css'
 
 export const CharacterPictures = () => {
   const { id } = useParams<CharacterPageParams>()
 
-  const { data } = useCharacterQuery(id!)
+  const { data } = useCharacterQuery({ variables: { characterId: id! } })
+
+  const pictures = data?.character.pictures
 
   return (
     <Fancybox>
-      <div className='character-pictures'>
+      <div className='h-[160px]'>
         <Carousel
-          slides={(data?.pictures ?? []).map((src) => ({
+          slides={(pictures ?? []).map((src) => ({
             content: <CharacterPicture key={src} src={src} />,
             size: 120
           }))}

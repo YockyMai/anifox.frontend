@@ -1,18 +1,20 @@
 import { Select } from '@anifox/ui'
 import { useMemo } from 'react'
 
-import { useAnimeStudiosQuery } from '@/services/queries'
+import { useAnimeStudiosQuery } from '@/graphql/generated/output'
 import { useAnimeCatalogStores } from '@/widgets/anime-catalog'
 
 export const Studios = () => {
-  const { data, isLoading } = useAnimeStudiosQuery()
+  const { data, loading } = useAnimeStudiosQuery()
   const { $filter, changeSearchParams } = useAnimeCatalogStores()
 
   const studio = $filter.selectors.studio()
 
   const options = useMemo(
     () =>
-      data ? data.map(({ id, name }) => ({ value: id, label: name })) : [],
+      data
+        ? data.studios.map(({ id, name }) => ({ value: id, label: name }))
+        : [],
     [data]
   )
 
@@ -31,7 +33,7 @@ export const Studios = () => {
         changeSearchParams({ studio })
       }}
       isSearchable
-      isLoading={isLoading}
+      isLoading={loading}
       options={options}
       placeholder='Любой'
       label='Студия'

@@ -1,13 +1,15 @@
-import { Badge, HoverCard, UnstyledButton } from '@anifox/ui'
+import { HoverCard } from '@anifox/ui'
 import { useState } from 'react'
 
 import { AuthModal } from '@/entities/auth/auth-modal'
-import { useIsAuth } from '@/entities/viewer'
-import { AnimeTrackStatuses } from '@/services/api'
+import { $viewer, useIsAuth } from '@/entities/viewer'
 import {
-  useAnimeStatusMutation,
-  useDeleteTrackedAnimeMutation
-} from '@/services/mutations'
+  AnimeDocument,
+  AnimeListDocument,
+  AnimeListStatus,
+  useRemoveAnimeListEntryMutation,
+  useSaveAnimeListEntryMutation
+} from '@/graphql/generated/output'
 
 import { AnimeListButtonProps } from './anime-list-button.interface'
 import { TrackStatusOptions } from './track-status-options/track-status-options'
@@ -17,38 +19,107 @@ export const AnimeListButton = ({
   animeUrl,
   withoutTitle,
   openDelay,
-  currentTrackStatus,
+  currentAnimeListStatus,
   onlyContent
 }: AnimeListButtonProps) => {
   const isAuth = useIsAuth()
 
+  const viewer = $viewer.selectors.viewer()
+
   const [authModalIsOpened, setAuthModalIsOpened] = useState(false)
-  const [trackStatusInProgress, setTrackStatusInProgress] =
-    useState<AnimeTrackStatuses | null>(null)
+  const [processedTrackStatus, setProcessedTrackStatus] =
+    useState<AnimeListStatus | null>(null)
 
-  const trackedAnimeMutation = useAnimeStatusMutation()
-  const deleteTrackedAnimeMutation = useDeleteTrackedAnimeMutation()
+  const [saveAnimeListEntry, { loading: saveAnimeListEntryLoading }] =
+    useSaveAnimeListEntryMutation({
+      onCompleted: () => {
+        setProcessedTrackStatus(null)
+      },
+      refetchQueries: (result) => {
+        const newStatus = result.data?.saveAnimeListEntry.status
 
-  const addAnimeTrackedList = async (status: AnimeTrackStatuses) => {
+        if (!viewer) {
+          return []
+        }
+
+        return [
+          {
+            query: AnimeListDocument,
+            variables: {
+              status: newStatus,
+              userId: viewer.id
+            }
+          },
+          {
+            query: AnimeListDocument,
+            variables: {
+              status: currentAnimeListStatus,
+              userId: viewer.id
+            }
+          }
+        ]
+      }
+    })
+
+  const [removeAnimeListEntry, { loading: removeAnimeListEntryLoading }] =
+    useRemoveAnimeListEntryMutation({
+      variables: { animeUrl },
+      onCompleted: () => {
+        setProcessedTrackStatus(null)
+      },
+      refetchQueries: () => {
+        if (!viewer || !currentAnimeListStatus) {
+          return []
+        }
+
+        return [
+          {
+            query: AnimeListDocument,
+            variables: { userId: viewer.id, status: currentAnimeListStatus }
+          },
+          {
+            query: AnimeDocument,
+            variables: {
+              url: animeUrl,
+              userId: viewer.id
+            }
+          }
+        ]
+      }
+    })
+
+  const onSaveAnimeListEntry = async (status: AnimeListStatus) => {
+    setProcessedTrackStatus(status)
     if (isAuth) {
-      trackedAnimeMutation.mutate({ animeUrl, status })
+      saveAnimeListEntry({
+        variables: {
+          status,
+          animeUrl
+        }
+      })
     } else {
-      setTrackStatusInProgress(status)
+      setProcessedTrackStatus(status)
       setAuthModalIsOpened(true)
     }
   }
 
-  const deleteAnimeFromTrackedList = () => {
-    deleteTrackedAnimeMutation.mutate(animeUrl)
+  const onRemoveAnimeListEntry = () => {
+    if (!currentAnimeListStatus) {
+      return
+    }
+    setProcessedTrackStatus(currentAnimeListStatus)
+    removeAnimeListEntry()
   }
 
   return (
     <>
       {onlyContent ? (
         <TrackStatusOptions
-          addAnimeToTrackedList={addAnimeTrackedList}
-          deleteAnimeFromTrackedList={deleteAnimeFromTrackedList}
-          currentTrackStatus={currentTrackStatus}
+          processedAnimeListStatus={processedTrackStatus}
+          isLoading={removeAnimeListEntryLoading || saveAnimeListEntryLoading}
+          saveAnimeListEntry={onSaveAnimeListEntry}
+          removeAnimeListEntry={onRemoveAnimeListEntry}
+          currentAnimeListStatus={currentAnimeListStatus}
         />
       ) : (
         <HoverCard
@@ -60,15 +131,17 @@ export const AnimeListButton = ({
             <div>
               <Trigger
                 withoutTitle={withoutTitle}
-                currentTrackStatus={currentTrackStatus}
+                currentTrackStatus={currentAnimeListStatus}
               />
             </div>
           }
         >
           <TrackStatusOptions
-            addAnimeToTrackedList={addAnimeTrackedList}
-            deleteAnimeFromTrackedList={deleteAnimeFromTrackedList}
-            currentTrackStatus={currentTrackStatus}
+            processedAnimeListStatus={processedTrackStatus}
+            isLoading={removeAnimeListEntryLoading || saveAnimeListEntryLoading}
+            saveAnimeListEntry={onSaveAnimeListEntry}
+            removeAnimeListEntry={onRemoveAnimeListEntry}
+            currentAnimeListStatus={currentAnimeListStatus}
           />
         </HoverCard>
       )}
@@ -77,12 +150,14 @@ export const AnimeListButton = ({
         isOpen={authModalIsOpened}
         onClose={() => setAuthModalIsOpened(false)}
         onAuthSuccess={() => {
-          if (trackStatusInProgress) {
-            trackedAnimeMutation.mutate({
-              animeUrl,
-              status: trackStatusInProgress
+          if (processedTrackStatus) {
+            saveAnimeListEntry({
+              variables: {
+                status: processedTrackStatus,
+                animeUrl
+              }
             })
-            setTrackStatusInProgress(null)
+            setProcessedTrackStatus(null)
           }
         }}
       />
