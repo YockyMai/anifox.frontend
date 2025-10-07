@@ -109,14 +109,15 @@ export const Screens = () => {
           </>
         ) : (
           <>
-            <Route path={ROUTES.LOGIN} element={<LoginScreen />} />
-            <Route path={ROUTES.SIGN_UP} element={<SignupScreen />} />
             <Route
               path={ROUTES.AUTH.EXTERNAL}
               element={<AuthExternalScreen />}
             />
           </>
         )}
+
+        <Route path={ROUTES.LOGIN} element={<LoginScreen />} />
+        <Route path={ROUTES.SIGN_UP} element={<SignupScreen />} />
         <Route path={ROUTES.APPS.ROOT} element={<AppsScreen />} />
 
         <Route path='*' element={'NOT FOUND'} />

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Confetti from 'react-confetti'
 import { useNavigate } from 'react-router'
 
@@ -13,14 +14,21 @@ export const SuccessStep = () => {
 
   const viewer = $viewer.selectors.viewer()
 
+  useEffect(() => {
+    return () => {
+      resetForm()
+    }
+  }, [])
+
   return (
     <StepContainer
       nextButton={{
         label: 'Перейти в профиль',
         onClick: () => {
+          resetForm()
+
           if (viewer) {
             navigate(ROUTES.PROFILE.ROOT(viewer.login))
-            resetForm()
           }
         }
       }}

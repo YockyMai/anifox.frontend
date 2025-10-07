@@ -30,7 +30,7 @@ export const AuthExternalScreen = () => {
     }
 
     auth()
-  }, [searchParams])
+  }, [searchParams, navigate])
 
   return null
 }
