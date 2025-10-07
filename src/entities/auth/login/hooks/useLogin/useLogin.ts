@@ -1,11 +1,13 @@
 import { useState } from 'react'
 
 import { LOCAL_STORAGE } from '@/common/const'
+import { password } from '@/entities/auth/signup/atoms/signup.atoms'
 import { $viewer } from '@/entities/viewer'
 import { client } from '@/graphql/client'
 import {
   LoginDocument,
   LoginMutation,
+  LoginMutationVariables,
   ViewerFragment
 } from '@/graphql/generated/output'
 
@@ -23,8 +25,15 @@ export const useLogin = (
     setIsLoading(true)
 
     try {
-      const { data } = await client.mutate<LoginMutation>({
-        mutation: LoginDocument
+      const { data } = await client.mutate<
+        LoginMutation,
+        LoginMutationVariables
+      >({
+        mutation: LoginDocument,
+        variables: {
+          identifier: params.user_identifier,
+          password: params.password
+        }
       })
 
       const { user, tokens } = data!.login
@@ -36,7 +45,6 @@ export const useLogin = (
 
       onSuccess?.(user)
     } catch (e) {
-      console.error(e)
       setError('Неверный логин или пароль')
       if (e instanceof Error) {
         onError?.(e)

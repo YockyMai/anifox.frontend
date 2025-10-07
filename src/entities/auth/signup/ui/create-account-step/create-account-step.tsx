@@ -1,6 +1,5 @@
 import { Loader } from '@anifox/ui'
 import { useSetAtom } from 'jotai'
-import { useRef } from 'react'
 
 import { UISizes } from '@/common/types/ui-sizes'
 
