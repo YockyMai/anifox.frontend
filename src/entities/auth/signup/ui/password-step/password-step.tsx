@@ -42,7 +42,7 @@ export const PasswordStep = () => {
         label='Пароль'
         variant={UIVariants.FILLED}
         placeholder='********'
-        type='password'
+        isPassword
       />
 
       <p className='step-container__description'>

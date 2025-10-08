@@ -21,24 +21,26 @@ export const AnimeStatusCard = ({
   return (
     <div {...hoverProps} className='relative flex flex-col'>
       <div className='relative flex items-center justify-between overflow-hidden py-1 pl-3'>
-        <motion.div layout className='flex flex-[7] items-center'>
-          <AnimeStatusMenu
-            isCardHovered={isHovered}
-            anime={anime}
-            status={status}
-            onDeleteButtonClick={onDeleteButtonClick}
-            onEditButtonClick={onEditButtonClick}
-          />
-          <div className='w-[40px] pl-1'>
+        <motion.div className='flex flex-[7] items-center' layout>
+          <div className='flex w-fit items-center'>
+            <AnimeStatusMenu
+              isCardHovered={isHovered}
+              anime={anime}
+              status={status}
+              onDeleteButtonClick={onDeleteButtonClick}
+              onEditButtonClick={onEditButtonClick}
+            />
+            <div className='w-[40px] pl-1'>
+              <Link to={ROUTES.CATALOG.ANIME.ROOT(anime.id, anime.url)}>
+                <div className='aspect-[3/4] h-full py-1'>
+                  <Image src={anime.image.medium ?? ''} />
+                </div>
+              </Link>
+            </div>
             <Link to={ROUTES.CATALOG.ANIME.ROOT(anime.id, anime.url)}>
-              <div className='aspect-[3/4] h-full py-1'>
-                <Image src={anime.image.medium ?? ''} />
-              </div>
+              <p className='pl-3 font-semibold'>{anime.title}</p>
             </Link>
           </div>
-          <Link to={ROUTES.CATALOG.ANIME.ROOT(anime.id, anime.url)}>
-            <p className='pl-3 font-semibold'>{anime.title}</p>
-          </Link>
         </motion.div>
 
         <div className='flex flex-[2] items-center justify-center gap-x-1.5'>

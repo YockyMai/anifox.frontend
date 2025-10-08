@@ -32,7 +32,7 @@ export const SettingsLayout = () => {
   }, [])
 
   return (
-    <div className='container mt-[120px] grid grid-cols-[250px_1fr] gap-x-10'>
+    <div className='container mt-[120px] grid grid-cols-1 gap-x-10 xl:grid-cols-[250px_1fr]'>
       <MenuList items={links} selectedItemId={pathname} />
 
       <div className='mt-7 rounded-md bg-white p-8 dark:bg-slate-800'>

@@ -76,6 +76,7 @@ export const RandomAnimeButton = ({
   return (
     <Button
       {...hoverProps}
+      fullWidth
       color={UIColors.PURPLE}
       radius={UISizes.MD}
       size={UISizes.SM}

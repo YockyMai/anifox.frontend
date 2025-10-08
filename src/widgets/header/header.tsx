@@ -64,8 +64,8 @@ export const Header = () => {
 
       <div className='site-header__mobile'>
         <div className='site-header__section'>
-          <CatalogSearchButton />
-          <SiteThemeToggler />
+          {!isMobileHeader && <CatalogSearchButton />}
+          {isMobileHeader ? <UserButton /> : <SiteThemeToggler />}
           <UnstyledButton
             onClick={(e) => {
               e.stopPropagation()

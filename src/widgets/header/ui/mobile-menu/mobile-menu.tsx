@@ -5,11 +5,11 @@ import { useAtom, useAtomValue } from 'jotai'
 import React, { useRef } from 'react'
 
 import { UIVariants } from '@/common/types/ui-variants'
+import { CatalogSearchButton } from '@/widgets/catalog-search'
 
 import { $headerAtoms } from '../../store'
 import { NavigatePanel } from '../navigate-panel/navigate-panel'
 import { RandomAnimeButton } from '../random-anime-button'
-import { SearchButton } from '../search-button/search-button'
 import { UserButton } from '../user-button/user-button'
 import './mobile-menu.css'
 
@@ -40,21 +40,20 @@ export const MobileMenu = () => {
         }}
         animate={isMobileMenuOpen ? 'open' : 'closed'}
         className={clsx(
-          'mobile-menu',
-          !headerIsVisible && 'mobile-menu_header-hidden'
+          'fixed left-0 top-[--header-height] z-50 flex w-full flex-col gap-y-3 overflow-hidden bg-slate-800 px-2 shadow-sm shadow-black/10 backdrop-blur-3xl transition-transform duration-500',
+          !headerIsVisible && '-translate-y-[--header-height]'
         )}
       >
-        <div className='mt-0.5'>
-          <NavigatePanel />
-        </div>
+        <div className='py-2'>
+          <div className='flex flex-col gap-y-2'>
+            <NavigatePanel />
 
-        <div className='mt-2 grid grid-cols-2 gap-x-3'>
-          <SearchButton />
-          <RandomAnimeButton variant={UIVariants.OUTLINE} />
-        </div>
+            <RandomAnimeButton variant={UIVariants.OUTLINE} />
+          </div>
 
-        <div className='my-2'>
-          <UserButton />
+          <div className='mt-5'>
+            <CatalogSearchButton />
+          </div>
         </div>
       </motion.div>
     </Portal>

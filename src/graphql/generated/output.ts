@@ -587,6 +587,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   acceptFriendInvite: Friendship;
   addFriend: Friendship;
+  changePassword: Scalars['Boolean']['output'];
   createAnimeComment: AnimeComment;
   login: Login;
   refreshTokens: UserTokens;
@@ -600,6 +601,7 @@ export type Mutation = {
   saveAnimeRating: AnimeRating;
   saveEpisodeProgress: EpisodeProgress;
   saveLastWatchedEpisode: LastWatchedEpisode;
+  saveUser: User;
   saveUserAbout: UserAbout;
   /** Запрос для установки длительности серии через kodik */
   setEpisodeDuration: Episode;
@@ -620,6 +622,12 @@ export type MutationAcceptFriendInviteArgs = {
 
 export type MutationAddFriendArgs = {
   friendId: Scalars['ID']['input'];
+};
+
+
+export type MutationChangePasswordArgs = {
+  currentPassword: Scalars['String']['input'];
+  newPassword: Scalars['String']['input'];
 };
 
 
@@ -694,6 +702,13 @@ export type MutationSaveLastWatchedEpisodeArgs = {
   animeId: Scalars['String']['input'];
   episodeId: Scalars['String']['input'];
   translationId: Scalars['Int']['input'];
+};
+
+
+export type MutationSaveUserArgs = {
+  birthday?: InputMaybe<Scalars['DateTime']['input']>;
+  login?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -1203,6 +1218,14 @@ export type AddFriendMutationVariables = Exact<{
 
 export type AddFriendMutation = { __typename?: 'Mutation', addFriend: { __typename?: 'Friendship', id: string, status: FriendshipStatus, friendId: string, userId: string, user: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, banner?: string | null, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }, friend: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, banner?: string | null, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } } } };
 
+export type ChangePasswordMutationVariables = Exact<{
+  currentPassword: Scalars['String']['input'];
+  newPassword: Scalars['String']['input'];
+}>;
+
+
+export type ChangePasswordMutation = { __typename?: 'Mutation', changePassword: boolean };
+
 export type CreateAnimeCommentMutationVariables = Exact<{
   animeId: Scalars['String']['input'];
   json: Scalars['String']['input'];
@@ -1287,6 +1310,13 @@ export type SaveLastWatchedEpisodeMutationVariables = Exact<{
 
 export type SaveLastWatchedEpisodeMutation = { __typename?: 'Mutation', saveLastWatchedEpisode: { __typename?: 'LastWatchedEpisode', id: string, animeId: string, episodeId: string, translationId: number, userId: string } };
 
+export type SaveLoginMutationVariables = Exact<{
+  login: Scalars['String']['input'];
+}>;
+
+
+export type SaveLoginMutation = { __typename?: 'Mutation', saveUser: { __typename?: 'User', id: string, login: string } };
+
 export type SaveUserAboutMutationVariables = Exact<{
   html: Scalars['String']['input'];
   json: Scalars['JSON']['input'];
@@ -1295,6 +1325,13 @@ export type SaveUserAboutMutationVariables = Exact<{
 
 
 export type SaveUserAboutMutation = { __typename?: 'Mutation', saveUserAbout: { __typename?: 'UserAbout', id: string, html: string, json: any, text: string } };
+
+export type SaveUsernameMutationVariables = Exact<{
+  name: Scalars['String']['input'];
+}>;
+
+
+export type SaveUsernameMutation = { __typename?: 'Mutation', saveUser: { __typename?: 'User', id: string, name: string } };
 
 export type SetEpisodeDurationMutationVariables = Exact<{
   episodeId: Scalars['String']['input'];
@@ -1957,6 +1994,38 @@ export function useAddFriendMutation(baseOptions?: Apollo.MutationHookOptions<Ad
 export type AddFriendMutationHookResult = ReturnType<typeof useAddFriendMutation>;
 export type AddFriendMutationResult = Apollo.MutationResult<AddFriendMutation>;
 export type AddFriendMutationOptions = Apollo.BaseMutationOptions<AddFriendMutation, AddFriendMutationVariables>;
+export const ChangePasswordDocument = gql`
+    mutation ChangePassword($currentPassword: String!, $newPassword: String!) {
+  changePassword(currentPassword: $currentPassword, newPassword: $newPassword)
+}
+    `;
+export type ChangePasswordMutationFn = Apollo.MutationFunction<ChangePasswordMutation, ChangePasswordMutationVariables>;
+
+/**
+ * __useChangePasswordMutation__
+ *
+ * To run a mutation, you first call `useChangePasswordMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useChangePasswordMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [changePasswordMutation, { data, loading, error }] = useChangePasswordMutation({
+ *   variables: {
+ *      currentPassword: // value for 'currentPassword'
+ *      newPassword: // value for 'newPassword'
+ *   },
+ * });
+ */
+export function useChangePasswordMutation(baseOptions?: Apollo.MutationHookOptions<ChangePasswordMutation, ChangePasswordMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ChangePasswordMutation, ChangePasswordMutationVariables>(ChangePasswordDocument, options);
+      }
+export type ChangePasswordMutationHookResult = ReturnType<typeof useChangePasswordMutation>;
+export type ChangePasswordMutationResult = Apollo.MutationResult<ChangePasswordMutation>;
+export type ChangePasswordMutationOptions = Apollo.BaseMutationOptions<ChangePasswordMutation, ChangePasswordMutationVariables>;
 export const CreateAnimeCommentDocument = gql`
     mutation CreateAnimeComment($animeId: String!, $json: String!, $text: String!, $html: String!, $parentCommentId: String) {
   createAnimeComment(
@@ -2327,6 +2396,40 @@ export function useSaveLastWatchedEpisodeMutation(baseOptions?: Apollo.MutationH
 export type SaveLastWatchedEpisodeMutationHookResult = ReturnType<typeof useSaveLastWatchedEpisodeMutation>;
 export type SaveLastWatchedEpisodeMutationResult = Apollo.MutationResult<SaveLastWatchedEpisodeMutation>;
 export type SaveLastWatchedEpisodeMutationOptions = Apollo.BaseMutationOptions<SaveLastWatchedEpisodeMutation, SaveLastWatchedEpisodeMutationVariables>;
+export const SaveLoginDocument = gql`
+    mutation SaveLogin($login: String!) {
+  saveUser(login: $login) {
+    id
+    login
+  }
+}
+    `;
+export type SaveLoginMutationFn = Apollo.MutationFunction<SaveLoginMutation, SaveLoginMutationVariables>;
+
+/**
+ * __useSaveLoginMutation__
+ *
+ * To run a mutation, you first call `useSaveLoginMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSaveLoginMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [saveLoginMutation, { data, loading, error }] = useSaveLoginMutation({
+ *   variables: {
+ *      login: // value for 'login'
+ *   },
+ * });
+ */
+export function useSaveLoginMutation(baseOptions?: Apollo.MutationHookOptions<SaveLoginMutation, SaveLoginMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SaveLoginMutation, SaveLoginMutationVariables>(SaveLoginDocument, options);
+      }
+export type SaveLoginMutationHookResult = ReturnType<typeof useSaveLoginMutation>;
+export type SaveLoginMutationResult = Apollo.MutationResult<SaveLoginMutation>;
+export type SaveLoginMutationOptions = Apollo.BaseMutationOptions<SaveLoginMutation, SaveLoginMutationVariables>;
 export const SaveUserAboutDocument = gql`
     mutation SaveUserAbout($html: String!, $json: JSON!, $text: String!) {
   saveUserAbout(html: $html, json: $json, text: $text) {
@@ -2362,6 +2465,40 @@ export function useSaveUserAboutMutation(baseOptions?: Apollo.MutationHookOption
 export type SaveUserAboutMutationHookResult = ReturnType<typeof useSaveUserAboutMutation>;
 export type SaveUserAboutMutationResult = Apollo.MutationResult<SaveUserAboutMutation>;
 export type SaveUserAboutMutationOptions = Apollo.BaseMutationOptions<SaveUserAboutMutation, SaveUserAboutMutationVariables>;
+export const SaveUsernameDocument = gql`
+    mutation SaveUsername($name: String!) {
+  saveUser(name: $name) {
+    id
+    name
+  }
+}
+    `;
+export type SaveUsernameMutationFn = Apollo.MutationFunction<SaveUsernameMutation, SaveUsernameMutationVariables>;
+
+/**
+ * __useSaveUsernameMutation__
+ *
+ * To run a mutation, you first call `useSaveUsernameMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSaveUsernameMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [saveUsernameMutation, { data, loading, error }] = useSaveUsernameMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useSaveUsernameMutation(baseOptions?: Apollo.MutationHookOptions<SaveUsernameMutation, SaveUsernameMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SaveUsernameMutation, SaveUsernameMutationVariables>(SaveUsernameDocument, options);
+      }
+export type SaveUsernameMutationHookResult = ReturnType<typeof useSaveUsernameMutation>;
+export type SaveUsernameMutationResult = Apollo.MutationResult<SaveUsernameMutation>;
+export type SaveUsernameMutationOptions = Apollo.BaseMutationOptions<SaveUsernameMutation, SaveUsernameMutationVariables>;
 export const SetEpisodeDurationDocument = gql`
     mutation SetEpisodeDuration($episodeId: String!, $duration: Int!) {
   setEpisodeDuration(episodeId: $episodeId, duration: $duration) {

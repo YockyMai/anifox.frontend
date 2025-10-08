@@ -1,8 +1,7 @@
 import { createStore } from '@anifox/store'
-import cookie from 'cookie'
 
 import { LOCAL_STORAGE } from '@/common/const'
-import { UserAboutFragment, ViewerFragment } from '@/graphql/generated/output'
+import { ViewerFragment } from '@/graphql/generated/output'
 
 import { VIEWER_PERSIST_NAME } from './viewer.const'
 import { ViewerStore } from './viewer.interface'
@@ -37,6 +36,16 @@ export const $viewer = createStore(
     setBanner: (state, banner: string | null) => {
       if (state.viewer) {
         state.viewer.banner = banner
+      }
+    },
+    setName: (state, name: string) => {
+      if (state.viewer) {
+        state.viewer.name = name
+      }
+    },
+    setLogin: (state, login: string) => {
+      if (state.viewer) {
+        state.viewer.login = login
       }
     },
     logout: (state) => {

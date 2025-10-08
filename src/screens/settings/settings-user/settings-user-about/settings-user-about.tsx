@@ -1,4 +1,10 @@
-import { Button, Editor, EditorContent, RichTextEditor } from '@anifox/ui'
+import {
+  Button,
+  Editor,
+  EditorContent,
+  RichTextEditor,
+  ScreenSection
+} from '@anifox/ui'
 import { useMemo, useState } from 'react'
 
 import { $viewer } from '@/entities/viewer'
@@ -87,22 +93,27 @@ export const SettingsUserAbout = () => {
   }
 
   return (
-    <div className='flex flex-col gap-y-3'>
-      <div className='rounded-md bg-slate-50 drop-shadow-xl dark:bg-slate-900/30'>
-        <RichTextEditor
-          onEditorInit={setEditor}
-          fileUpload={fileUpload}
-          content={localContent?.html}
-          onUpdateContent={(content) => {
-            setLocalContent(editor?.isEmpty ? null : content)
-          }}
-        />
+    <ScreenSection
+      title='Описание профиля'
+      description='Расскажите о себе и своих увлечениях, эта информация будет отображатся в профиле. Максимальная длина - 1000 символов.'
+    >
+      <div className='flex flex-col gap-y-3'>
+        <div className='rounded-md bg-slate-50 drop-shadow-xl dark:bg-slate-900/30'>
+          <RichTextEditor
+            onEditorInit={setEditor}
+            fileUpload={fileUpload}
+            content={localContent?.html}
+            onUpdateContent={(content) => {
+              setLocalContent(editor?.isEmpty ? null : content)
+            }}
+          />
+        </div>
+        {isEditable && (
+          <Button isLoading={loading} disabled={loading} onClick={onSave}>
+            Сохранить
+          </Button>
+        )}
       </div>
-      {isEditable && (
-        <Button isLoading={loading} disabled={loading} onClick={onSave}>
-          Сохранить
-        </Button>
-      )}
-    </div>
+    </ScreenSection>
   )
 }

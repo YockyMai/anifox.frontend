@@ -70,7 +70,7 @@ export const AnimeRateButton = ({
         radius={UISizes.MD}
         color={UIColors.GREEN}
       >
-        <p className='text-sm'>
+        <p className='text-nowrap text-sm'>
           {typeof rating !== 'undefined'
             ? `Ваша оценка ${rating}`
             : 'Оценить аниме'}

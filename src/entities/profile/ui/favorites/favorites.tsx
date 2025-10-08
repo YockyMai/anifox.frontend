@@ -8,7 +8,7 @@ export const Favorites = () => {
   return (
     <div className='container pt-10'>
       <FavoritesFilter />
-      <div className='mt-6 grid grid-cols-2 gap-x-3'>
+      <div className='mt-6 grid grid-cols-1 gap-x-3 max-xl:gap-y-5 xl:grid-cols-2'>
         <FavoriteAnimes />
         <FavoriteCharacters />
       </div>

@@ -49,7 +49,7 @@ export const LoginForm = ({
             label='Пароль'
             error={errors.password?.message}
             placeholder='Пароль'
-            type='password'
+            isPassword
             rightIcon
             variant={UIVariants.FILLED}
             {...register('password')}

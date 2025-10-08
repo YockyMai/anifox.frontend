@@ -46,7 +46,7 @@ export const SettingsSiteTheme = () => {
   const [theme, setTheme] = useAtom($siteThemeAtom)
 
   return (
-    <div className='mt-6 grid grid-cols-2 gap-x-8'>
+    <div className='mt-6 grid grid-cols-1 gap-x-8 max-lg:gap-y-8 lg:grid-cols-2'>
       <ThemeButton
         hint='Светлая тема'
         onClick={() => setTheme(SITE_THEME.LIGHT)}
