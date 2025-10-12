@@ -40,7 +40,7 @@ export const StepContainer = ({
               isLoading={prevButton.isLoading}
               onClick={prevButton.onClick}
               size={UISizes.SM}
-              color={UIColors.RED}
+              color={prevButton.color ?? UIColors.RED}
               radius={UISizes.XXL}
             >
               {prevButton.label}
@@ -52,7 +52,7 @@ export const StepContainer = ({
               isLoading={nextButton.isLoading}
               onClick={nextButton.onClick}
               size={UISizes.SM}
-              color={UIColors.ORANGE}
+              color={nextButton.color ?? UIColors.ORANGE}
               radius={UISizes.XXL}
             >
               {nextButton.label}

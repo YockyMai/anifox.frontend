@@ -38,6 +38,7 @@ export const MenuList = ({
             {items.map(({ icon, link, title, id }) => {
               const content = (
                 <div
+                  key={id}
                   className={clsx(
                     'flex cursor-pointer select-none items-center justify-between rounded px-3 py-1 transition-colors',
                     theme === 'darker'
