@@ -5,9 +5,9 @@ import { useForm } from 'react-hook-form'
 
 import { UIVariants } from '@/common/types/ui-variants'
 
+import { StepContainer } from '../../../../../common/components/step-container'
 import { $signupAtoms } from '../../atoms'
 import { useStepsActions } from '../../hooks'
-import { StepContainer } from '../step-container'
 import { passwordSchema } from './password-step.schema'
 
 export const PasswordStep = () => {

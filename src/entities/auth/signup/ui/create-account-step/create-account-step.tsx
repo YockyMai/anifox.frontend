@@ -3,10 +3,10 @@ import { useSetAtom } from 'jotai'
 
 import { UISizes } from '@/common/types/ui-sizes'
 
+import { StepContainer } from '../../../../../common/components/step-container'
 import { $signupAtoms } from '../../atoms'
 import { STEPS } from '../../atoms/signup.const'
 import { useCreateAccount } from '../../hooks/use-create-account'
-import { StepContainer } from '../step-container'
 import './create-account-step.css'
 
 export const CreateAccountStep = () => {

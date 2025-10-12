@@ -8,7 +8,7 @@ export const UserLastSeenInfo = ({
 }: UserLastSeenInfoProps) => {
   return (
     <div className='flex items-center gap-x-1.5'>
-      <p className='font-bold text-orange-300'>
+      <p className='text-xs font-bold text-orange-300 sm:text-base'>
         {isOnline
           ? 'Сейчас онлайн'
           : `Был в сети ${formatDateDistance(lastSeen)}`}

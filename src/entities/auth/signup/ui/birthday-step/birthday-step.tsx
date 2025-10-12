@@ -5,9 +5,9 @@ import { useAtom } from 'jotai'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
+import { StepContainer } from '../../../../../common/components/step-container'
 import { $signupAtoms } from '../../atoms'
 import { useStepsActions } from '../../hooks'
-import { StepContainer } from '../step-container'
 import { birthdaySchema } from './birthday-step.schema'
 
 export const BirthdayStep = () => {

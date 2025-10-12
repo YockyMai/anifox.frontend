@@ -15,7 +15,7 @@ export const Banner = () => {
   return (
     <div
       ref={inViewRef}
-      className='relative flex h-[330px] items-end bg-cover bg-center bg-no-repeat'
+      className='relative flex h-[250px] items-end bg-cover bg-center bg-no-repeat sm:h-[330px]'
       style={{
         backgroundImage: `url(${profile.banner ?? DEFAULT_USER_BANNER})`
       }}
@@ -23,19 +23,19 @@ export const Banner = () => {
       <div className='absolute top-0 h-full w-full bg-gradient-to-b from-black/0 to-black/60' />
 
       <div className='container z-10 flex h-fit items-end'>
-        <div className='flex h-40 w-40'>
+        <div className='flex aspect-square h-28 sm:h-40'>
           <Image
             src={
               profile?.avatar ??
               'https://avatars.githubusercontent.com/u/75245399?v=4'
             }
             alt='user avatar'
-            className='rounded-b-none'
+            className='h-full w-full rounded-b-none'
           />
         </div>
 
-        <div className='flex items-end gap-x-3 px-5 pb-3'>
-          <p className='text-3xl font-extrabold text-white'>
+        <div className='flex flex-wrap items-end gap-x-3 px-5 pb-3'>
+          <p className='text-xl font-extrabold text-white sm:text-3xl'>
             {profile?.name ?? profile?.login}
           </p>
 

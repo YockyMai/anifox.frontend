@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 import { LOCAL_STORAGE } from '@/common/const'
-import { password } from '@/entities/auth/signup/atoms/signup.atoms'
 import { $viewer } from '@/entities/viewer'
 import { client } from '@/graphql/client'
 import {

@@ -1,5 +1,5 @@
+import { StepContainer } from '../../../../../common/components/step-container'
 import { useResetSignupForm } from '../../hooks'
-import { StepContainer } from '../step-container'
 
 export const ErrorStep = () => {
   const resetForm = useResetSignupForm()

@@ -43,5 +43,6 @@ export const ROUTES = {
     ANDROID: '/apps#android',
     WINDOWS: '/apps#windows'
   },
-  KODIK: '/kodik'
+  KODIK: '/kodik',
+  RESET_PASSWORD: '/reset-password'
 }

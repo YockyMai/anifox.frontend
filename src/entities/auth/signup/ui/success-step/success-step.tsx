@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router'
 import { $viewer } from '@/entities/viewer'
 import { ROUTES } from '@/screens/pages.routes'
 
+import { StepContainer } from '../../../../../common/components/step-container'
 import { useResetSignupForm } from '../../hooks'
-import { StepContainer } from '../step-container'
 
 export const SuccessStep = () => {
   const resetForm = useResetSignupForm()

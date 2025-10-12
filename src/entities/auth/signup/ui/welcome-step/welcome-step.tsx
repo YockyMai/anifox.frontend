@@ -3,8 +3,8 @@ import { Link } from 'react-router'
 
 import { ROUTES } from '@/screens/pages.routes'
 
+import { StepContainer } from '../../../../../common/components/step-container'
 import { useStepsActions } from '../../hooks'
-import { StepContainer } from '../step-container'
 import { WelcomeStepProps } from './welcome-step.interface'
 
 export const WelcomeStep = ({ onLoginClick }: WelcomeStepProps) => {

@@ -7,9 +7,9 @@ import { useForm } from 'react-hook-form'
 import { UIVariants } from '@/common/types/ui-variants'
 import { useCheckEmailExistLazyQuery } from '@/graphql/generated/output'
 
+import { StepContainer } from '../../../../../common/components/step-container'
 import { $signupAtoms } from '../../atoms'
 import { useStepsActions } from '../../hooks'
-import { StepContainer } from '../step-container'
 import { emailSchema } from './email-step.schema'
 
 export const EmailStep = () => {

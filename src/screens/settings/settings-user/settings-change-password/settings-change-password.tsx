@@ -1,13 +1,19 @@
-import { Badge, Button, Input, ScreenSection } from '@anifox/ui'
+import { Badge, Button, Input, ScreenSection, UnstyledButton } from '@anifox/ui'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 
-import { useChangePasswordMutation } from '@/graphql/generated/output'
+import {
+  useChangePasswordMutation,
+  useRequestPasswordResetMutation
+} from '@/graphql/generated/output'
+import { ROUTES } from '@/screens/pages.routes'
 
 import { settingsChangePasswordSchema } from './settings-change-password.schema'
 
 export const SettingsChangePassword = () => {
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -19,7 +25,14 @@ export const SettingsChangePassword = () => {
     defaultValues: { currentPassword: '', newPassword: '' }
   })
 
-  const [changePasswordMutation, { loading }] = useChangePasswordMutation()
+  const [changePasswordMutation, { loading: changePasswordMutationLoading }] =
+    useChangePasswordMutation()
+
+  const [requestPasswordResetMutation] = useRequestPasswordResetMutation({
+    onCompleted: () => {
+      navigate(ROUTES.RESET_PASSWORD)
+    }
+  })
 
   const handleChangePasswordSubmit = handleSubmit(async (fields) => {
     try {
@@ -58,8 +71,8 @@ export const SettingsChangePassword = () => {
         />
         <div className='flex items-center gap-x-1.5'>
           <p className='text-sm'>Не помните текущий пароль? Попробуйте</p>
-          <Link to={'#'}>
-            <Badge variant='light'>восстановить пароль</Badge>
+          <Link to={ROUTES.RESET_PASSWORD} className='text-sm text-orange-300'>
+            восстановить пароль
           </Link>
         </div>
 
@@ -67,7 +80,10 @@ export const SettingsChangePassword = () => {
           <p className='text-sm text-red-300'>{errors.root?.message}</p>
         )}
 
-        <Button isLoading={loading} onClick={handleChangePasswordSubmit}>
+        <Button
+          isLoading={changePasswordMutationLoading}
+          onClick={handleChangePasswordSubmit}
+        >
           Сменить пароль
         </Button>
       </div>

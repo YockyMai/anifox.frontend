@@ -73,15 +73,17 @@ export const ProfilePageTabs = () => {
         key: friendsUrl
       }
     ]
-  }, [profile!.login])
+  }, [profile])
 
   return (
     <div className='flex w-full justify-center bg-white dark:bg-slate-800/50'>
-      <Tabs
-        tabs={tabs}
-        activeTab={activeTab}
-        onChange={(url) => setActiveTab(url)}
-      />
+      <div className='overflow-x-auto'>
+        <Tabs
+          tabs={tabs}
+          activeTab={activeTab}
+          onChange={(url) => setActiveTab(url)}
+        />
+      </div>
     </div>
   )
 }

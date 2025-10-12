@@ -26,6 +26,7 @@ import { FriendRequestsScreen } from './profile/profile-friends/friend-requests/
 import { UserFriendsScreen } from './profile/profile-friends/user-friends/user-friends'
 import { ProfileLayout } from './profile/profile-layout'
 import { ProfileStatistics } from './profile/profile-statistics'
+import { ResetPasswordScreen } from './reset-password'
 import { RightHoldersScreen } from './right-holders'
 import { SettingsUser } from './settings'
 import { SettingsAppearance } from './settings/settings-appearance'
@@ -41,6 +42,8 @@ export const Screens = () => {
 
       <Route path={ROUTES.HOME} element={<HomeLayout />}>
         <Route index element={<HomeScreen />} />
+        <Route path={ROUTES.RESET_PASSWORD} element={<ResetPasswordScreen />} />
+
         <Route path={ROUTES.CATALOG.ROOT}>
           <Route index element={<AnimeCatalogScreen />} />
           <Route

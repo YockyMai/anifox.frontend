@@ -19,8 +19,8 @@ importers:
         specifier: ^1.0.5
         version: 1.0.5
       '@anifox/ui':
-        specifier: ^1.9.5
-        version: 1.9.5(@anifox/store@1.1.1(@types/react@19.0.8)(react@18.3.1))(@anifox/tailwind-config@1.0.5)(@tabler/icons-react@3.6.0(react@18.3.1))(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(clsx@2.1.1)(embla-carousel@8.6.0)(framer-motion@11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-intersection-observer@9.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@6.0.11(@types/node@20.14.2)(jiti@2.6.1)(lightningcss@1.30.1)(terser@5.33.0)(yaml@2.4.5))
+        specifier: ^1.10.2
+        version: 1.10.2(@anifox/store@1.1.1(@types/react@19.0.8)(react@18.3.1))(@anifox/tailwind-config@1.0.5)(@tabler/icons-react@3.6.0(react@18.3.1))(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(clsx@2.1.1)(embla-carousel@8.6.0)(framer-motion@11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-intersection-observer@9.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@6.0.11(@types/node@20.14.2)(jiti@2.6.1)(lightningcss@1.30.1)(terser@5.33.0)(yaml@2.4.5))
       '@apollo/client':
         specifier: ^3.13.4
         version: 3.13.4(@types/react@19.0.8)(graphql-ws@6.0.4(graphql@16.10.0)(ws@8.18.1))(graphql@16.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -255,8 +255,8 @@ packages:
   '@anifox/tailwind-config@1.0.5':
     resolution: {integrity: sha512-ohdff3DdYk/yqeu5OQUnII67GXF8QonULKX6YB8s9rNcNkGQRfUL2E0l0w2fym0+mOFIEYi7W8f4KLdibUUNZg==}
 
-  '@anifox/ui@1.9.5':
-    resolution: {integrity: sha512-NRGuBkXO8T4oqsMnGkUAGSSIOMAumcKatRxrLavVQeICwJYbYjKM1xEaRfytwuO1h8JDWMiQJxqbOu0pO0H+rA==}
+  '@anifox/ui@1.10.2':
+    resolution: {integrity: sha512-0BLiVB+sNWYBp7jPFjreLcOb/B81cbXGPval1/e6HGcf/vp6uchqRou6eLCg6g6Z/Sy1+15actl5VdnEE2Okaw==}
     peerDependencies:
       '@anifox/store': ^1.1.0
       '@anifox/tailwind-config': ^1.0.5
@@ -2573,10 +2573,10 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.7.0
 
-  '@tiptap/extension-image@3.6.5':
-    resolution: {integrity: sha512-Tzej5vSjiIPmr+3zeFYIGOdZ7T+tnOMMuFuduiitynTsVY2oG34Y/oBnwBfD+jLq8v3SBFF55J972Ga6+vBvrA==}
+  '@tiptap/extension-image@3.6.6':
+    resolution: {integrity: sha512-9tZwCY1Q9dmbQ7OE9vtyXFEqC4Q0NigeIOze2HzYyWnnuX6oVkOjLMPNv2vISa44o65vLDZWHWAnsuEfVc12Mw==}
     peerDependencies:
-      '@tiptap/core': ^3.6.5
+      '@tiptap/core': ^3.6.6
 
   '@tiptap/extension-italic@2.23.0':
     resolution: {integrity: sha512-hX3oacTUloWM8Xu8IapcU2onMWmSkJi8mNAJiIFMiAYcERfTfxPsT3u2yO2gvpoh1iqtZWFM2gc+3x6BnXek8g==}
@@ -2655,8 +2655,8 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.7.0
 
-  '@tiptap/extension-youtube@2.26.2':
-    resolution: {integrity: sha512-Qw0uE2C1ZmUL2oc5oImX4F2ogmKNubTUs+rLhQczHGiWbLqmPlm/TeRxFTpXWjXWfOj6aKMrrLL13z7GN7yOGA==}
+  '@tiptap/extension-youtube@2.26.3':
+    resolution: {integrity: sha512-czDl/hJTW1/np39R9dP3TzfBpFj6WjDboSMgfUKVuay1Ko/5XCpQaL4ac3ziBp/fPPwgMmo9Xs16/e89vDOPrQ==}
     peerDependencies:
       '@tiptap/core': ^2.7.0
 
@@ -4636,6 +4636,12 @@ packages:
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
+  react-otp-input@3.1.1:
+    resolution: {integrity: sha512-bjPavgJ0/Zmf/AYi4onj8FbH93IjeD+e8pWwxIJreDEWsU1ILR5fs8jEJmMGWSBe/yyvPP6X/W6Mk9UkOCkTPw==}
+    peerDependencies:
+      react: '>=16.8.6 || ^17.0.0 || ^18.0.0'
+      react-dom: '>=16.8.6 || ^17.0.0 || ^18.0.0'
+
   react-refresh@0.14.2:
     resolution: {integrity: sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==}
     engines: {node: '>=0.10.0'}
@@ -5372,7 +5378,7 @@ snapshots:
 
   '@anifox/tailwind-config@1.0.5': {}
 
-  '@anifox/ui@1.9.5(@anifox/store@1.1.1(@types/react@19.0.8)(react@18.3.1))(@anifox/tailwind-config@1.0.5)(@tabler/icons-react@3.6.0(react@18.3.1))(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(clsx@2.1.1)(embla-carousel@8.6.0)(framer-motion@11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-intersection-observer@9.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@6.0.11(@types/node@20.14.2)(jiti@2.6.1)(lightningcss@1.30.1)(terser@5.33.0)(yaml@2.4.5))':
+  '@anifox/ui@1.10.2(@anifox/store@1.1.1(@types/react@19.0.8)(react@18.3.1))(@anifox/tailwind-config@1.0.5)(@tabler/icons-react@3.6.0(react@18.3.1))(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(clsx@2.1.1)(embla-carousel@8.6.0)(framer-motion@11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-intersection-observer@9.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@6.0.11(@types/node@20.14.2)(jiti@2.6.1)(lightningcss@1.30.1)(terser@5.33.0)(yaml@2.4.5))':
     dependencies:
       '@anifox/store': 1.1.1(@types/react@19.0.8)(react@18.3.1)
       '@anifox/tailwind-config': 1.0.5
@@ -5386,7 +5392,7 @@ snapshots:
       '@tabler/icons-react': 3.6.0(react@18.3.1)
       '@tailwindcss/vite': 4.1.14(vite@6.0.11(@types/node@20.14.2)(jiti@2.6.1)(lightningcss@1.30.1)(terser@5.33.0)(yaml@2.4.5))
       '@tiptap/extension-highlight': 2.23.0(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))
-      '@tiptap/extension-image': 3.6.5(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))
+      '@tiptap/extension-image': 3.6.6(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))
       '@tiptap/extension-link': 2.23.0(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@tiptap/pm@2.23.0)
       '@tiptap/extension-subscript': 2.23.0(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))
       '@tiptap/extension-superscript': 2.23.0(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))
@@ -5395,7 +5401,7 @@ snapshots:
       '@tiptap/extension-text-align': 2.23.0(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))
       '@tiptap/extension-typography': 2.23.0(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))
       '@tiptap/extension-underline': 2.23.0(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))
-      '@tiptap/extension-youtube': 2.26.2(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))
+      '@tiptap/extension-youtube': 2.26.3(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))
       '@tiptap/pm': 2.23.0
       '@tiptap/react': 2.23.0(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@tiptap/pm@2.23.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tiptap/starter-kit': 2.23.0
@@ -5413,9 +5419,10 @@ snapshots:
       react-easy-crop: 5.5.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-helmet-async: 2.0.5(react@18.3.1)
       react-intersection-observer: 9.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-otp-input: 3.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-select: 5.10.2(@types/react@19.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-transition-group: 4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      tiptap-extension-resize-image: 1.3.1(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@tiptap/extension-image@3.6.5(@tiptap/core@2.23.0(@tiptap/pm@2.23.0)))(@tiptap/pm@2.23.0)
+      tiptap-extension-resize-image: 1.3.1(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@tiptap/extension-image@3.6.6(@tiptap/core@2.23.0(@tiptap/pm@2.23.0)))(@tiptap/pm@2.23.0)
     transitivePeerDependencies:
       - '@tiptap/core'
       - '@types/react'
@@ -8113,7 +8120,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.23.0(@tiptap/pm@2.23.0)
 
-  '@tiptap/extension-image@3.6.5(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))':
+  '@tiptap/extension-image@3.6.6(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))':
     dependencies:
       '@tiptap/core': 2.23.0(@tiptap/pm@2.23.0)
 
@@ -8180,7 +8187,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.23.0(@tiptap/pm@2.23.0)
 
-  '@tiptap/extension-youtube@2.26.2(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))':
+  '@tiptap/extension-youtube@2.26.3(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))':
     dependencies:
       '@tiptap/core': 2.23.0(@tiptap/pm@2.23.0)
 
@@ -10254,6 +10261,11 @@ snapshots:
 
   react-is@16.13.1: {}
 
+  react-otp-input@3.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
   react-refresh@0.14.2: {}
 
   react-remove-scroll-bar@2.3.8(@types/react@19.0.8)(react@18.3.1):
@@ -10646,10 +10658,10 @@ snapshots:
     dependencies:
       '@popperjs/core': 2.11.8
 
-  tiptap-extension-resize-image@1.3.1(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@tiptap/extension-image@3.6.5(@tiptap/core@2.23.0(@tiptap/pm@2.23.0)))(@tiptap/pm@2.23.0):
+  tiptap-extension-resize-image@1.3.1(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@tiptap/extension-image@3.6.6(@tiptap/core@2.23.0(@tiptap/pm@2.23.0)))(@tiptap/pm@2.23.0):
     dependencies:
       '@tiptap/core': 2.23.0(@tiptap/pm@2.23.0)
-      '@tiptap/extension-image': 3.6.5(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))
+      '@tiptap/extension-image': 3.6.6(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))
       '@tiptap/pm': 2.23.0
 
   title-case@3.0.3:

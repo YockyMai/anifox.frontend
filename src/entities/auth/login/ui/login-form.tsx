@@ -68,7 +68,14 @@ export const LoginForm = ({
           </Button>
         </div>
 
-        {error && <p className='text-center text-sm text-red-400'>{error}</p>}
+        {error && (
+          <p className='text-center text-sm text-red-400'>
+            {error}.{' '}
+            <Link className='text-orange-300' to={ROUTES.RESET_PASSWORD}>
+              Восстановить пароль
+            </Link>
+          </p>
+        )}
 
         <p className='mt-1 text-center text-sm'>
           Еще нет аккаунта?{' '}
