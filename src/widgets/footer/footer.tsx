@@ -10,6 +10,8 @@ import { Link } from 'react-router'
 import { ROUTES } from '@/screens/pages.routes'
 
 export const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className='mt-16 bg-slate-200 py-5 dark:bg-slate-800'>
       <div className='container flex flex-wrap justify-between'>
@@ -27,7 +29,7 @@ export const Footer = () => {
             <Link className='font-normal' to={ROUTES.RIGHT_HOLDERS}>
               Для правообладателей
             </Link>
-            <p>© anifox.club 2023 - current time</p>
+            <p>© anifox.club 2023 - {currentYear}</p>
           </div>
         </div>
         <div className='mt-6 flex w-full justify-center gap-x-10 md:w-fit md:justify-normal'>
