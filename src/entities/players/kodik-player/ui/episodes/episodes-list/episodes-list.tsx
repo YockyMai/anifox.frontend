@@ -8,7 +8,6 @@ import { useKodikPlayerStores } from '../../../context'
 import { EpisodeSelectionCard } from './episode-card'
 import { EpisodeFullInfoModal } from './episode-full-info-modal/episode-full-info-modal'
 import { EPISODE_CARD_HEIGHT } from './episodes-list.const'
-import './episodes-list.css'
 import { EpisodesListProps } from './episodes-list.interface'
 
 export const EpisodesList = ({ episodes }: EpisodesListProps) => {
@@ -45,7 +44,10 @@ export const EpisodesList = ({ episodes }: EpisodesListProps) => {
   const [ref, size] = useElementSize<HTMLDivElement>()
 
   return (
-    <div ref={ref} className='episodes__list'>
+    <div
+      ref={ref}
+      className='h-full overflow-hidden rounded-b-[10px] bg-white backdrop-blur-xl dark:bg-slate-900/80'
+    >
       {fullOpenedEpisode && (
         <EpisodeFullInfoModal
           episode={fullOpenedEpisode}
@@ -55,7 +57,7 @@ export const EpisodesList = ({ episodes }: EpisodesListProps) => {
       )}
 
       <FixedSizeList
-        className='episodes__list__content'
+        className='scrollbar-hide hover:scrollbar'
         height={size.height}
         width={'100%'}
         itemSize={EPISODE_CARD_HEIGHT}
@@ -74,7 +76,7 @@ export const EpisodesList = ({ episodes }: EpisodesListProps) => {
             <EpisodeSelectionCard
               onOpenFullInfo={() => setFullOpenedSeasonId(episodes[index].id)}
               isSelected={selectedEpisode?.number === episodes[index].number}
-              key={episodes[index].translations[0].id}
+              key={episodes[index].id}
               episode={episodes[index]}
             />
           </UnstyledButton>

@@ -1,19 +1,14 @@
-import { Badge, Button, Input, ScreenSection, UnstyledButton } from '@anifox/ui'
+import { Button, Input, ScreenSection, toast } from '@anifox/ui'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
-import { Link, useNavigate } from 'react-router'
+import { Link } from 'react-router'
 
-import {
-  useChangePasswordMutation,
-  useRequestPasswordResetMutation
-} from '@/graphql/generated/output'
+import { useChangePasswordMutation } from '@/graphql/generated/output'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { settingsChangePasswordSchema } from './settings-change-password.schema'
 
 export const SettingsChangePassword = () => {
-  const navigate = useNavigate()
-
   const {
     register,
     handleSubmit,
@@ -28,13 +23,9 @@ export const SettingsChangePassword = () => {
   const [changePasswordMutation, { loading: changePasswordMutationLoading }] =
     useChangePasswordMutation()
 
-  const [requestPasswordResetMutation] = useRequestPasswordResetMutation({
-    onCompleted: () => {
-      navigate(ROUTES.RESET_PASSWORD)
-    }
-  })
-
   const handleChangePasswordSubmit = handleSubmit(async (fields) => {
+    const toastId = toast.loading('Смена пароля...')
+
     try {
       await changePasswordMutation({
         variables: {
@@ -43,8 +34,22 @@ export const SettingsChangePassword = () => {
         }
       })
 
+      toast.update(toastId, {
+        render: 'Пароль успешно изменен',
+        type: 'success',
+        isLoading: false,
+        autoClose: 3000
+      })
+
       reset()
     } catch {
+      toast.update(toastId, {
+        render: 'Неверный текущий пароль',
+        type: 'error',
+        isLoading: false,
+        autoClose: 3000
+      })
+
       setError('root', { message: 'Неверный текущий пароль' })
     }
   })

@@ -4,7 +4,8 @@ import {
   ImageCropper,
   Button,
   Dropzone,
-  ScreenSection
+  ScreenSection,
+  toast
 } from '@anifox/ui'
 import { gql, useApolloClient } from '@apollo/client'
 import { useState } from 'react'
@@ -34,6 +35,8 @@ export const SettingsAvatar = () => {
       return
     }
 
+    const toastId = toast.loading('Загрузка аватара...')
+
     const user = await api.uploadUserAvatar(fileForUpload.file)
 
     $viewer.actions.setAvatar(user.avatar)
@@ -51,6 +54,13 @@ export const SettingsAvatar = () => {
     })
 
     closeModal()
+
+    toast.update(toastId, {
+      render: 'Аватар успешно обновлен',
+      type: 'success',
+      isLoading: false,
+      autoClose: 3000
+    })
   }
 
   return (

@@ -19,8 +19,8 @@ importers:
         specifier: ^1.0.5
         version: 1.0.5
       '@anifox/ui':
-        specifier: ^1.10.3
-        version: 1.10.3(@anifox/store@1.1.1(@types/react@19.0.8)(react@18.3.1))(@anifox/tailwind-config@1.0.5)(@tabler/icons-react@3.6.0(react@18.3.1))(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(clsx@2.1.1)(embla-carousel@8.6.0)(framer-motion@11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-intersection-observer@9.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@6.0.11(@types/node@20.14.2)(jiti@2.6.1)(lightningcss@1.30.1)(terser@5.33.0)(yaml@2.4.5))
+        specifier: ^1.11.0
+        version: 1.11.0(@anifox/store@1.1.1(@types/react@19.0.8)(react@18.3.1))(@anifox/tailwind-config@1.0.5)(@tabler/icons-react@3.6.0(react@18.3.1))(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(clsx@2.1.1)(embla-carousel@8.6.0)(framer-motion@11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-intersection-observer@9.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@6.0.11(@types/node@20.14.2)(jiti@2.6.1)(lightningcss@1.30.1)(terser@5.33.0)(yaml@2.4.5))
       '@apollo/client':
         specifier: ^3.13.4
         version: 3.13.4(@types/react@19.0.8)(graphql-ws@6.0.4(graphql@16.10.0)(ws@8.18.1))(graphql@16.10.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -105,6 +105,9 @@ importers:
       fuse.js:
         specifier: ^7.0.0
         version: 7.0.0
+      interweave:
+        specifier: ^13.1.1
+        version: 13.1.1(react@18.3.1)
       jotai:
         specifier: ^2.8.3
         version: 2.8.3(@types/react@19.0.8)(react@18.3.1)
@@ -255,8 +258,8 @@ packages:
   '@anifox/tailwind-config@1.0.5':
     resolution: {integrity: sha512-ohdff3DdYk/yqeu5OQUnII67GXF8QonULKX6YB8s9rNcNkGQRfUL2E0l0w2fym0+mOFIEYi7W8f4KLdibUUNZg==}
 
-  '@anifox/ui@1.10.3':
-    resolution: {integrity: sha512-p5BScaokOnhWmNDgMi5pjsFfBhV+UY6PY9sPwKrPoc5ySnusl4OQNV4G9HU9YwBmuYMB/YHmE1YX1+wnLova/Q==}
+  '@anifox/ui@1.11.0':
+    resolution: {integrity: sha512-kC51CM8oDcRmUvxvCy65twxsDzFLuohGRFcX4MF1YAmIme//Roxi5zut99MaWV52LbhZE2PchQMLGa95ZsdQgw==}
     peerDependencies:
       '@anifox/store': ^1.1.0
       '@anifox/tailwind-config': ^1.0.5
@@ -3429,6 +3432,9 @@ packages:
     resolution: {integrity: sha512-WUj2qlxaQtO4g6Pq5c29GTcWGDyd8itL8zTlipgECz3JesAiiOKotd8JU6otB3PACgG6xkJUyVhboMS+bje/jA==}
     engines: {node: '>=6'}
 
+  escape-html@1.0.3:
+    resolution: {integrity: sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==}
+
   escape-string-regexp@1.0.5:
     resolution: {integrity: sha512-vbRorB5FUQWvla16U8R/qgaFIya2qGzwDrNmCZuYKrbdSUMG6I1ZCGQRefkRVhuOkIGVne7BQ35DSfo1qvJqFg==}
     engines: {node: '>=0.8.0'}
@@ -3776,6 +3782,11 @@ packages:
   internmap@2.0.3:
     resolution: {integrity: sha512-5Hh7Y1wQbvY5ooGgPbDaL5iYLAPzMTUrjMulskHLH6wnv/A+1q5rgEaiuqEjB+oxGXIVZs1FF+R/KPN3ZSQYYg==}
     engines: {node: '>=12'}
+
+  interweave@13.1.1:
+    resolution: {integrity: sha512-5GdAavzK1i2BeeLTPzj0o6/zJMfLqQZq/2Q4c3ALT8ByEWf1syzl2MlQMTUoWzETy1x1/cAkZjiqOlulaoDRxw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   invariant@2.2.4:
     resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}
@@ -4692,6 +4703,12 @@ packages:
       '@types/react':
         optional: true
 
+  react-toastify@11.0.5:
+    resolution: {integrity: sha512-EpqHBGvnSTtHYhCPLxML05NLY2ZX0JURbAdNYa6BUkk+amz4wbKBQvoKQAB0ardvSarUBuY4Q4s1sluAzZwkmA==}
+    peerDependencies:
+      react: ^18 || ^19
+      react-dom: ^18 || ^19
+
   react-transition-group@4.4.5:
     resolution: {integrity: sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==}
     peerDependencies:
@@ -5378,7 +5395,7 @@ snapshots:
 
   '@anifox/tailwind-config@1.0.5': {}
 
-  '@anifox/ui@1.10.3(@anifox/store@1.1.1(@types/react@19.0.8)(react@18.3.1))(@anifox/tailwind-config@1.0.5)(@tabler/icons-react@3.6.0(react@18.3.1))(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(clsx@2.1.1)(embla-carousel@8.6.0)(framer-motion@11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-intersection-observer@9.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@6.0.11(@types/node@20.14.2)(jiti@2.6.1)(lightningcss@1.30.1)(terser@5.33.0)(yaml@2.4.5))':
+  '@anifox/ui@1.11.0(@anifox/store@1.1.1(@types/react@19.0.8)(react@18.3.1))(@anifox/tailwind-config@1.0.5)(@tabler/icons-react@3.6.0(react@18.3.1))(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@types/react-dom@19.0.3(@types/react@19.0.8))(@types/react@19.0.8)(clsx@2.1.1)(embla-carousel@8.6.0)(framer-motion@11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-intersection-observer@9.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(vite@6.0.11(@types/node@20.14.2)(jiti@2.6.1)(lightningcss@1.30.1)(terser@5.33.0)(yaml@2.4.5))':
     dependencies:
       '@anifox/store': 1.1.1(@types/react@19.0.8)(react@18.3.1)
       '@anifox/tailwind-config': 1.0.5
@@ -5421,6 +5438,7 @@ snapshots:
       react-intersection-observer: 9.13.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-otp-input: 3.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-select: 5.10.2(@types/react@19.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-toastify: 11.0.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-transition-group: 4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       tiptap-extension-resize-image: 1.3.1(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))(@tiptap/extension-image@3.6.6(@tiptap/core@2.23.0(@tiptap/pm@2.23.0)))(@tiptap/pm@2.23.0)
     transitivePeerDependencies:
@@ -9074,6 +9092,8 @@ snapshots:
 
   escalade@3.2.0: {}
 
+  escape-html@1.0.3: {}
+
   escape-string-regexp@1.0.5: {}
 
   escape-string-regexp@4.0.0: {}
@@ -9458,6 +9478,11 @@ snapshots:
       wrap-ansi: 6.2.0
 
   internmap@2.0.3: {}
+
+  interweave@13.1.1(react@18.3.1):
+    dependencies:
+      escape-html: 1.0.3
+      react: 18.3.1
 
   invariant@2.2.4:
     dependencies:
@@ -10321,6 +10346,12 @@ snapshots:
       tslib: 2.8.1
     optionalDependencies:
       '@types/react': 19.0.8
+
+  react-toastify@11.0.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      clsx: 2.1.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   react-transition-group@4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:

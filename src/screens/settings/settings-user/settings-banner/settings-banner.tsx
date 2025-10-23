@@ -1,4 +1,4 @@
-import { Image, Dropzone, ScreenSection } from '@anifox/ui'
+import { Image, Dropzone, ScreenSection, toast } from '@anifox/ui'
 import { gql, useApolloClient } from '@apollo/client'
 
 import { DEFAULT_USER_BANNER } from '@/entities/user'
@@ -14,6 +14,8 @@ export const SettingsBanner = () => {
       return
     }
 
+    const toastId = toast.loading('Загрузка баннера...')
+
     const user = await api.uploadUserBanner(file)
 
     $viewer.actions.setBanner(user.banner)
@@ -28,6 +30,13 @@ export const SettingsBanner = () => {
       data: {
         banner: user.banner
       }
+    })
+
+    toast.update(toastId, {
+      render: 'Баннер успешно обновлен',
+      type: 'success',
+      isLoading: false,
+      autoClose: 3000
     })
   }
 

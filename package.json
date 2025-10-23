@@ -12,7 +12,7 @@
   "dependencies": {
     "@anifox/store": "^1.1.1",
     "@anifox/tailwind-config": "^1.0.5",
-    "@anifox/ui": "^1.10.3",
+    "@anifox/ui": "^1.11.0",
     "@apollo/client": "^3.13.4",
     "@floating-ui/react": "^0.27.13",
     "@hookform/resolvers": "^3.9.0",
@@ -41,6 +41,7 @@
     "dayjs": "^1.11.11",
     "framer-motion": "^11.18.2",
     "fuse.js": "^7.0.0",
+    "interweave": "^13.1.1",
     "jotai": "^2.8.3",
     "jwt-decode": "^4.0.0",
     "lodash.clonedeep": "^4.5.0",

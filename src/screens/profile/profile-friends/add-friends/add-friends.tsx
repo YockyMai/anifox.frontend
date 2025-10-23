@@ -54,7 +54,7 @@ export const AddFriendsScreen = () => {
         hasNextPage={pageInfo?.hasNextPage ?? true}
         isFetchingNextPage={loading && !!pageInfo}
       >
-        <div className='mt-5 grid grid-cols-1 gap-x-6 md:grid-cols-2 2xl:grid-cols-3'>
+        <div className='mt-5 grid grid-cols-1 gap-6 md:grid-cols-2 2xl:grid-cols-3'>
           {users.map((user) => (
             <UserCard
               key={user.id}

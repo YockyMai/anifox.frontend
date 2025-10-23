@@ -1,8 +1,12 @@
 import { HoverCard, Spoiler } from '@anifox/ui'
-import { Link, useParams } from 'react-router'
+import { Link, useNavigate, useParams } from 'react-router'
 
 import { CharacterPopoverInfo } from '@/entities/characters/ui/character-popover-info'
-import { useAnimeQuery } from '@/graphql/generated/output'
+import {
+  useAnimeQuery,
+  useCharacterLazyQuery,
+  useCharacterQuery
+} from '@/graphql/generated/output'
 import { AnimePageParams } from '@/screens/anime/anime.interface'
 import { ROUTES } from '@/screens/pages.routes'
 
@@ -12,17 +16,31 @@ interface CharacterTagProps {
 }
 
 const CharacterTag = ({ id, children }: CharacterTagProps) => {
+  const navigate = useNavigate()
+
+  const [fetchCharacter] = useCharacterLazyQuery({
+    variables: {
+      malId: Number.parseInt(id)
+    }
+  })
+
   return (
     <HoverCard
       unstyled
       position='bottom'
       trigger={
-        <Link
-          to={ROUTES.CHARACTER.ROOT(id)}
+        <span
+          onClick={async () => {
+            const { data } = await fetchCharacter()
+
+            if (data?.character.id) {
+              navigate(ROUTES.CHARACTER.ROOT(data?.character.id))
+            }
+          }}
           className='cursor-pointer font-bold text-purple-500 hover:underline dark:text-purple-300'
         >
           {children}
-        </Link>
+        </span>
       }
     >
       <div className='max-w-2xl'>
