@@ -53,7 +53,7 @@ export const AnimeCardUpcoming = ({ anime }: AnimeCardUpcomingProps) => {
         <div className='anime-card-upcoming__actions'>
           <AnimeFavoriteButton animeUrl={anime.url} />
           <AnimeListButton
-            currentAnimeListStatus={anime.animeListEntry?.status}
+            animeListEntry={anime.animeListEntry}
             openDelay={300}
             animeUrl={anime.url}
             withoutTitle

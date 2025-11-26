@@ -1208,7 +1208,7 @@ export type UserTokens = {
   refreshToken: Scalars['String']['output'];
 };
 
-export type AnimeLiteFragment = { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null };
+export type AnimeLiteFragment = { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null } | null };
 
 export type CharacterLightFragment = { __typename?: 'AnimeCharacter', id: string, about?: string | null, name: string, nameEn: string, nameKanji?: string | null, image: string, role: CharacterRole };
 
@@ -1258,7 +1258,7 @@ export type CreateAnimeCommentMutationVariables = Exact<{
 }>;
 
 
-export type CreateAnimeCommentMutation = { __typename?: 'Mutation', createAnimeComment: { __typename?: 'AnimeComment', id: string, createdAt: any, text: string, html: string, json: string, animeId: string, likes: { __typename?: 'AnimeCommentLikeConnection', data: Array<{ __typename?: 'AnimeCommentLike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, dislikes: { __typename?: 'AnimeCommentDislikeConnection', data: Array<{ __typename?: 'AnimeCommentDislike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, author: { __typename?: 'User', role: UserRole, name: string, avatar?: string | null, login: string }, parent?: { __typename?: 'AnimeComment', id: string, author: { __typename?: 'User', name: string } } | null, children: Array<{ __typename?: 'AnimeComment', id: string, createdAt: any, text: string, html: string, json: string, animeId: string, likes: { __typename?: 'AnimeCommentLikeConnection', data: Array<{ __typename?: 'AnimeCommentLike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, dislikes: { __typename?: 'AnimeCommentDislikeConnection', data: Array<{ __typename?: 'AnimeCommentDislike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, parent?: { __typename?: 'AnimeComment', id: string, author: { __typename?: 'User', name: string } } | null, author: { __typename?: 'User', role: UserRole, name: string, avatar?: string | null, login: string } }> } };
+export type CreateAnimeCommentMutation = { __typename?: 'Mutation', createAnimeComment: { __typename?: 'AnimeComment', id: string, createdAt: any, text: string, html: string, json: string, animeId: string, likes: { __typename?: 'AnimeCommentLikeConnection', data: Array<{ __typename?: 'AnimeCommentLike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, dislikes: { __typename?: 'AnimeCommentDislikeConnection', data: Array<{ __typename?: 'AnimeCommentDislike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, author: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, banner?: string | null, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }, parent?: { __typename?: 'AnimeComment', id: string, author: { __typename?: 'User', name: string } } | null, children: Array<{ __typename?: 'AnimeComment', id: string, createdAt: any, text: string, html: string, json: string, animeId: string, likes: { __typename?: 'AnimeCommentLikeConnection', data: Array<{ __typename?: 'AnimeCommentLike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, dislikes: { __typename?: 'AnimeCommentDislikeConnection', data: Array<{ __typename?: 'AnimeCommentDislike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, parent?: { __typename?: 'AnimeComment', id: string, author: { __typename?: 'User', name: string } } | null, author: { __typename?: 'User', role: UserRole, name: string, avatar?: string | null, login: string } }> } };
 
 export type LoginMutationVariables = Exact<{
   identifier: Scalars['String']['input'];
@@ -1312,7 +1312,7 @@ export type SaveAnimeListEntryMutationVariables = Exact<{
 }>;
 
 
-export type SaveAnimeListEntryMutation = { __typename?: 'Mutation', saveAnimeListEntry: { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null }, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null } };
+export type SaveAnimeListEntryMutation = { __typename?: 'Mutation', saveAnimeListEntry: { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null } };
 
 export type SaveAnimeRatingMutationVariables = Exact<{
   animeId: Scalars['String']['input'];
@@ -1417,7 +1417,7 @@ export type UpdateUserLastSeenMutationVariables = Exact<{ [key: string]: never; 
 
 export type UpdateUserLastSeenMutation = { __typename?: 'Mutation', updateUserLastSeen: { __typename?: 'User', id: string, lastSeen: any } };
 
-export type AnimeCommentFragment = { __typename?: 'AnimeComment', id: string, createdAt: any, text: string, html: string, json: string, animeId: string, likes: { __typename?: 'AnimeCommentLikeConnection', data: Array<{ __typename?: 'AnimeCommentLike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, dislikes: { __typename?: 'AnimeCommentDislikeConnection', data: Array<{ __typename?: 'AnimeCommentDislike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, author: { __typename?: 'User', role: UserRole, name: string, avatar?: string | null, login: string }, parent?: { __typename?: 'AnimeComment', id: string, author: { __typename?: 'User', name: string } } | null, children: Array<{ __typename?: 'AnimeComment', id: string, createdAt: any, text: string, html: string, json: string, animeId: string, likes: { __typename?: 'AnimeCommentLikeConnection', data: Array<{ __typename?: 'AnimeCommentLike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, dislikes: { __typename?: 'AnimeCommentDislikeConnection', data: Array<{ __typename?: 'AnimeCommentDislike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, parent?: { __typename?: 'AnimeComment', id: string, author: { __typename?: 'User', name: string } } | null, author: { __typename?: 'User', role: UserRole, name: string, avatar?: string | null, login: string } }> };
+export type AnimeCommentFragment = { __typename?: 'AnimeComment', id: string, createdAt: any, text: string, html: string, json: string, animeId: string, likes: { __typename?: 'AnimeCommentLikeConnection', data: Array<{ __typename?: 'AnimeCommentLike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, dislikes: { __typename?: 'AnimeCommentDislikeConnection', data: Array<{ __typename?: 'AnimeCommentDislike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, author: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, banner?: string | null, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }, parent?: { __typename?: 'AnimeComment', id: string, author: { __typename?: 'User', name: string } } | null, children: Array<{ __typename?: 'AnimeComment', id: string, createdAt: any, text: string, html: string, json: string, animeId: string, likes: { __typename?: 'AnimeCommentLikeConnection', data: Array<{ __typename?: 'AnimeCommentLike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, dislikes: { __typename?: 'AnimeCommentDislikeConnection', data: Array<{ __typename?: 'AnimeCommentDislike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, parent?: { __typename?: 'AnimeComment', id: string, author: { __typename?: 'User', name: string } } | null, author: { __typename?: 'User', role: UserRole, name: string, avatar?: string | null, login: string } }> };
 
 export type AnimeCommentsQueryVariables = Exact<{
   animeId: Scalars['String']['input'];
@@ -1427,7 +1427,7 @@ export type AnimeCommentsQueryVariables = Exact<{
 }>;
 
 
-export type AnimeCommentsQuery = { __typename?: 'Query', animeComments: { __typename?: 'AnimeCommentConnection', data: Array<{ __typename?: 'AnimeComment', id: string, createdAt: any, text: string, html: string, json: string, animeId: string, likes: { __typename?: 'AnimeCommentLikeConnection', data: Array<{ __typename?: 'AnimeCommentLike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, dislikes: { __typename?: 'AnimeCommentDislikeConnection', data: Array<{ __typename?: 'AnimeCommentDislike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, author: { __typename?: 'User', role: UserRole, name: string, avatar?: string | null, login: string }, parent?: { __typename?: 'AnimeComment', id: string, author: { __typename?: 'User', name: string } } | null, children: Array<{ __typename?: 'AnimeComment', id: string, createdAt: any, text: string, html: string, json: string, animeId: string, likes: { __typename?: 'AnimeCommentLikeConnection', data: Array<{ __typename?: 'AnimeCommentLike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, dislikes: { __typename?: 'AnimeCommentDislikeConnection', data: Array<{ __typename?: 'AnimeCommentDislike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, parent?: { __typename?: 'AnimeComment', id: string, author: { __typename?: 'User', name: string } } | null, author: { __typename?: 'User', role: UserRole, name: string, avatar?: string | null, login: string } }> }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
+export type AnimeCommentsQuery = { __typename?: 'Query', animeComments: { __typename?: 'AnimeCommentConnection', data: Array<{ __typename?: 'AnimeComment', id: string, createdAt: any, text: string, html: string, json: string, animeId: string, likes: { __typename?: 'AnimeCommentLikeConnection', data: Array<{ __typename?: 'AnimeCommentLike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, dislikes: { __typename?: 'AnimeCommentDislikeConnection', data: Array<{ __typename?: 'AnimeCommentDislike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, author: { __typename?: 'User', id: string, name: string, avatar?: string | null, login: string, role: UserRole, banner?: string | null, createdAt: any, statistics: { __typename?: 'UserStatistics', total: { __typename?: 'TotalStatistics', totalActivity: number, totalWatchedAnimes: number, totalWatchedEpisodes: number, totalWatchedSeconds: number } } }, parent?: { __typename?: 'AnimeComment', id: string, author: { __typename?: 'User', name: string } } | null, children: Array<{ __typename?: 'AnimeComment', id: string, createdAt: any, text: string, html: string, json: string, animeId: string, likes: { __typename?: 'AnimeCommentLikeConnection', data: Array<{ __typename?: 'AnimeCommentLike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, dislikes: { __typename?: 'AnimeCommentDislikeConnection', data: Array<{ __typename?: 'AnimeCommentDislike', userId: string }>, pageInfo: { __typename?: 'PageInfo', totalCount: number } }, parent?: { __typename?: 'AnimeComment', id: string, author: { __typename?: 'User', name: string } } | null, author: { __typename?: 'User', role: UserRole, name: string, avatar?: string | null, login: string } }> }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
 
 export type AnimeGenreFragment = { __typename?: 'AnimeGenre', id: string, name: string, image?: string | null };
 
@@ -1436,14 +1436,16 @@ export type AnimeGenresQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type AnimeGenresQuery = { __typename?: 'Query', genres: Array<{ __typename?: 'AnimeGenre', id: string, name: string, image?: string | null }> };
 
-export type AnimeListEntryFragment = { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null }, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null };
+export type AnimeListEntryFragment = { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null };
+
+export type AnimeListEntryWithAnimeFragment = { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null } | null }, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null };
 
 export type AnimeListQueryVariables = Exact<{
   userId: Scalars['String']['input'];
 }>;
 
 
-export type AnimeListQuery = { __typename?: 'Query', animeList: { __typename?: 'AnimeList', list: Array<{ __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null }, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null }> } };
+export type AnimeListQuery = { __typename?: 'Query', animeList: { __typename?: 'AnimeList', list: Array<{ __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null } | null }, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null }> } };
 
 export type AnimeRatingDistributionQueryVariables = Exact<{
   animeId: Scalars['String']['input'];
@@ -1455,7 +1457,7 @@ export type AnimeRatingDistributionQuery = { __typename?: 'Query', animeRatingDi
 export type AnimeSchedulesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AnimeSchedulesQuery = { __typename?: 'Query', animeSchedules: Array<{ __typename?: 'AnimeSchedule', dayOfWeek: DayOfWeek, nextEpisodeDate: any, previousEpisodeDate: any, animeId: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null } }> };
+export type AnimeSchedulesQuery = { __typename?: 'Query', animeSchedules: Array<{ __typename?: 'AnimeSchedule', dayOfWeek: DayOfWeek, nextEpisodeDate: any, previousEpisodeDate: any, animeId: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null } | null } }> };
 
 export type AnimeStudioFragment = { __typename?: 'AnimeStudio', id: string, name: string };
 
@@ -1490,7 +1492,7 @@ export type AnimesQueryVariables = Exact<{
 }>;
 
 
-export type AnimesQuery = { __typename?: 'Query', animes: { __typename?: 'AnimeConnection', data: Array<{ __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
+export type AnimesQuery = { __typename?: 'Query', animes: { __typename?: 'AnimeConnection', data: Array<{ __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null } | null }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
 
 export type CharacterQueryVariables = Exact<{
   characterId?: InputMaybe<Scalars['String']['input']>;
@@ -1499,7 +1501,7 @@ export type CharacterQueryVariables = Exact<{
 }>;
 
 
-export type CharacterQuery = { __typename?: 'Query', character: { __typename?: 'Character', about?: string | null, aboutEn?: string | null, id: string, image: string, malId: number, name: string, nameEn: string, nameKanji?: string | null, pictures: Array<string>, isFavorite?: boolean | null, participation: Array<{ __typename?: 'CharacterParticipation', role: CharacterRole, animeId: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null } }> } };
+export type CharacterQuery = { __typename?: 'Query', character: { __typename?: 'Character', about?: string | null, aboutEn?: string | null, id: string, image: string, malId: number, name: string, nameEn: string, nameKanji?: string | null, pictures: Array<string>, isFavorite?: boolean | null, participation: Array<{ __typename?: 'CharacterParticipation', role: CharacterRole, animeId: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null } | null } }> } };
 
 export type CharactersQueryVariables = Exact<{
   animeUrl: Scalars['String']['input'];
@@ -1590,7 +1592,7 @@ export type LastWatchedEpisodeQueryVariables = Exact<{
 
 export type LastWatchedEpisodeQuery = { __typename?: 'Query', lastWatchedEpisode?: { __typename?: 'LastWatchedEpisode', id: string, animeId: string, episodeId: string, translationId: number, userId: string } | null };
 
-export type ContinueWatchingFragment = { __typename?: 'LastWatchedEpisode', id: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null }, episode: { __typename?: 'Episode', id: string, number: number, duration?: number | null, progress?: { __typename?: 'EpisodeProgress', id: string, timing: number } | null } };
+export type ContinueWatchingFragment = { __typename?: 'LastWatchedEpisode', id: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null } | null }, episode: { __typename?: 'Episode', id: string, number: number, duration?: number | null, progress?: { __typename?: 'EpisodeProgress', id: string, timing: number } | null } };
 
 export type LastWatchedEpisodesQueryVariables = Exact<{
   userId: Scalars['String']['input'];
@@ -1599,7 +1601,7 @@ export type LastWatchedEpisodesQueryVariables = Exact<{
 }>;
 
 
-export type LastWatchedEpisodesQuery = { __typename?: 'Query', lastWatchedEpisodes?: { __typename?: 'LastWatchedEpisodeConnection', data: Array<{ __typename?: 'LastWatchedEpisode', id: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null }, episode: { __typename?: 'Episode', id: string, number: number, duration?: number | null, progress?: { __typename?: 'EpisodeProgress', id: string, timing: number } | null } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } | null };
+export type LastWatchedEpisodesQuery = { __typename?: 'Query', lastWatchedEpisodes?: { __typename?: 'LastWatchedEpisodeConnection', data: Array<{ __typename?: 'LastWatchedEpisode', id: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null } | null }, episode: { __typename?: 'Episode', id: string, number: number, duration?: number | null, progress?: { __typename?: 'EpisodeProgress', id: string, timing: number } | null } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } | null };
 
 export type ProfileQueryVariables = Exact<{
   login: Scalars['String']['input'];
@@ -1622,7 +1624,7 @@ export type RelatedAnimesQueryVariables = Exact<{
 }>;
 
 
-export type RelatedAnimesQuery = { __typename?: 'Query', relatedAnimes: { __typename?: 'RelatedAnimeConnection', data: Array<{ __typename?: 'RelatedAnime', type: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
+export type RelatedAnimesQuery = { __typename?: 'Query', relatedAnimes: { __typename?: 'RelatedAnimeConnection', data: Array<{ __typename?: 'RelatedAnime', type: string, anime: { __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null } | null } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
 
 export type SimilarAnimesQueryVariables = Exact<{
   animeId: Scalars['String']['input'];
@@ -1631,7 +1633,7 @@ export type SimilarAnimesQueryVariables = Exact<{
 }>;
 
 
-export type SimilarAnimesQuery = { __typename?: 'Query', similarAnimes: { __typename?: 'AnimeConnection', data: Array<{ __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, status: AnimeListStatus } | null }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
+export type SimilarAnimesQuery = { __typename?: 'Query', similarAnimes: { __typename?: 'AnimeConnection', data: Array<{ __typename?: 'Anime', id: string, url: string, title: string, episodesAired: number, season: AnimeSeason, episodesCount?: number | null, status: AnimeStatus, ratingMpa: string, rating: number, accentColor: string, year: number, type: AnimeType, minimalAge: number, image: { __typename?: 'AnimeImage', cover?: string | null, medium?: string | null }, studios: Array<{ __typename?: 'AnimeStudio', id: string, name: string }>, genres: Array<{ __typename?: 'AnimeGenre', image?: string | null, name: string, id: string }>, userRating?: { __typename?: 'AnimeRating', id: string, rating: number } | null, animeListEntry?: { __typename?: 'AnimeListEntry', id: string, userId: string, animeId: string, endedAt?: any | null, episodesWatched?: number | null, startedAt?: any | null, updatedAt: any, status: AnimeListStatus, rating?: { __typename?: 'AnimeRating', id: string, rating: number } | null } | null }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, page: number } } };
 
 export type UserStatisticsQueryVariables = Exact<{
   userId: Scalars['String']['input'];
@@ -1759,10 +1761,7 @@ export const AnimeCommentFragmentDoc = gql`
     }
   }
   author {
-    role
-    name
-    avatar
-    login
+    ...UserLite
   }
   parent {
     id
@@ -1807,12 +1806,28 @@ export const AnimeCommentFragmentDoc = gql`
     }
   }
 }
-    `;
+    ${UserLiteFragmentDoc}`;
 export const AnimeGenreFragmentDoc = gql`
     fragment AnimeGenre on AnimeGenre {
   id
   name
   image
+}
+    `;
+export const AnimeListEntryFragmentDoc = gql`
+    fragment AnimeListEntry on AnimeListEntry {
+  id
+  userId
+  animeId
+  endedAt
+  episodesWatched
+  startedAt
+  updatedAt
+  status
+  rating {
+    id
+    rating
+  }
 }
     `;
 export const AnimeLiteFragmentDoc = gql`
@@ -1842,7 +1857,17 @@ export const AnimeLiteFragmentDoc = gql`
   }
   animeListEntry {
     id
+    userId
+    animeId
+    endedAt
+    episodesWatched
+    startedAt
+    updatedAt
     status
+    rating {
+      id
+      rating
+    }
   }
   status
   ratingMpa
@@ -1853,8 +1878,8 @@ export const AnimeLiteFragmentDoc = gql`
   minimalAge
 }
     `;
-export const AnimeListEntryFragmentDoc = gql`
-    fragment AnimeListEntry on AnimeListEntry {
+export const AnimeListEntryWithAnimeFragmentDoc = gql`
+    fragment AnimeListEntryWithAnime on AnimeListEntry {
   id
   userId
   animeId
@@ -2954,11 +2979,11 @@ export const AnimeListDocument = gql`
     query AnimeList($userId: String!) {
   animeList(userId: $userId) {
     list {
-      ...AnimeListEntry
+      ...AnimeListEntryWithAnime
     }
   }
 }
-    ${AnimeListEntryFragmentDoc}`;
+    ${AnimeListEntryWithAnimeFragmentDoc}`;
 
 /**
  * __useAnimeListQuery__

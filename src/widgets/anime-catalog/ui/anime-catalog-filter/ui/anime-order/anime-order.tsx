@@ -6,6 +6,7 @@ import {
 } from '@tabler/icons-react'
 import { clsx } from 'clsx'
 
+import { MAP_ANIME_ORDER_LABEL } from '@/common/const/translate'
 import {
   AnimeOrder as AnimeOrderVariants,
   SortOrder
@@ -68,7 +69,7 @@ export const AnimeOrder = () => {
             )}
             key={orderOption}
           >
-            <p>{orderOption}</p>
+            <p>{MAP_ANIME_ORDER_LABEL[orderOption]}</p>
           </UnstyledButton>
         ))}
       </div>

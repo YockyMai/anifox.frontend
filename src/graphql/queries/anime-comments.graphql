@@ -22,10 +22,7 @@ fragment AnimeComment on AnimeComment {
     }
   }
   author {
-    role
-    name
-    avatar
-    login
+    ...UserLite
   }
   parent {
     id

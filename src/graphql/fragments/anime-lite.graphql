@@ -24,7 +24,17 @@ fragment AnimeLite on Anime {
   }
   animeListEntry {
     id
+    userId
+    animeId
+    endedAt
+    episodesWatched
+    startedAt
+    updatedAt
     status
+    rating {
+      id
+      rating
+    }
   }
   status
   ratingMpa

@@ -12,7 +12,9 @@ export const MinimalAge = () => {
 
   const value = useMemo(
     () =>
-      MINIMAL_AGE_OPTIONS.find(({ value }) => value === minimalAge?.toString()),
+      MINIMAL_AGE_OPTIONS.find(
+        ({ value }) => value === minimalAge?.toString()
+      ) ?? null,
     [minimalAge]
   )
 

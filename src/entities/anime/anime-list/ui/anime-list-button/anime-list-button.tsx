@@ -19,7 +19,7 @@ export const AnimeListButton = ({
   animeUrl,
   withoutTitle,
   openDelay,
-  currentAnimeListStatus,
+  animeListEntry,
   onlyContent
 }: AnimeListButtonProps) => {
   const isAuth = useIsAuth()
@@ -53,7 +53,7 @@ export const AnimeListButton = ({
           {
             query: AnimeListDocument,
             variables: {
-              status: currentAnimeListStatus,
+              status: animeListEntry?.status,
               userId: viewer.id
             }
           }
@@ -68,14 +68,14 @@ export const AnimeListButton = ({
         setProcessedTrackStatus(null)
       },
       refetchQueries: () => {
-        if (!viewer || !currentAnimeListStatus) {
+        if (!viewer || !animeListEntry?.status) {
           return []
         }
 
         return [
           {
             query: AnimeListDocument,
-            variables: { userId: viewer.id, status: currentAnimeListStatus }
+            variables: { userId: viewer.id, status: animeListEntry.status }
           },
           {
             query: AnimeDocument,
@@ -104,10 +104,10 @@ export const AnimeListButton = ({
   }
 
   const onRemoveAnimeListEntry = () => {
-    if (!currentAnimeListStatus) {
+    if (!animeListEntry?.status) {
       return
     }
-    setProcessedTrackStatus(currentAnimeListStatus)
+    setProcessedTrackStatus(animeListEntry.status)
     removeAnimeListEntry()
   }
 
@@ -119,7 +119,7 @@ export const AnimeListButton = ({
           isLoading={removeAnimeListEntryLoading || saveAnimeListEntryLoading}
           saveAnimeListEntry={onSaveAnimeListEntry}
           removeAnimeListEntry={onRemoveAnimeListEntry}
-          currentAnimeListStatus={currentAnimeListStatus}
+          currentAnimeListStatus={animeListEntry?.status}
         />
       ) : (
         <HoverCard
@@ -131,7 +131,7 @@ export const AnimeListButton = ({
             <div>
               <Trigger
                 withoutTitle={withoutTitle}
-                currentTrackStatus={currentAnimeListStatus}
+                currentTrackStatus={animeListEntry?.status}
               />
             </div>
           }
@@ -141,7 +141,7 @@ export const AnimeListButton = ({
             isLoading={removeAnimeListEntryLoading || saveAnimeListEntryLoading}
             saveAnimeListEntry={onSaveAnimeListEntry}
             removeAnimeListEntry={onRemoveAnimeListEntry}
-            currentAnimeListStatus={currentAnimeListStatus}
+            currentAnimeListStatus={animeListEntry?.status}
           />
         </HoverCard>
       )}

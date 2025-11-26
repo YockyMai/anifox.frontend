@@ -1,8 +1,10 @@
 import {
   Badge,
   Button,
+  HoverCard,
   Image,
   RichTextEditor,
+  Tooltip,
   UnstyledButton
 } from '@anifox/ui'
 import { IconCornerUpLeft } from '@tabler/icons-react'
@@ -10,7 +12,7 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router'
 
 import { formatDateDistance } from '@/common/lib/dayjs/format-date-distance'
-import { DEFAULT_USER_AVATAR } from '@/entities/user'
+import { DEFAULT_USER_AVATAR, UserCard } from '@/entities/user'
 import { ROUTES } from '@/screens/pages.routes'
 
 import { $commentInput } from '../../store/comment-input.store'
@@ -48,10 +50,18 @@ export const UserComment = ({ comment }: UserCommentProps) => {
   return (
     <div className='grid grid-cols-[50px_auto] gap-x-3'>
       <Link to={ROUTES.PROFILE.ROOT(comment.author.login)}>
-        <Image
-          className='h-[50px] w-[50px] rounded-full'
-          src={comment.author.avatar ?? DEFAULT_USER_AVATAR}
-        />
+        <Tooltip
+          label={
+            <div className='w-[400px]'>
+              <UserCard user={comment.author} />
+            </div>
+          }
+        >
+          <Image
+            className='h-[50px] w-[50px] rounded-full'
+            src={comment.author.avatar ?? DEFAULT_USER_AVATAR}
+          />
+        </Tooltip>
       </Link>
 
       <div>

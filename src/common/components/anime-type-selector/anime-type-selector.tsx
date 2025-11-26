@@ -9,7 +9,7 @@ export const AnimeTypeSelector = ({
   onChangeType,
   type
 }: AnimeTypeSelectorProps) => {
-  const value = TYPE_OPTIONS.find((option) => option.value === type)
+  const value = TYPE_OPTIONS.find((option) => option.value === type) ?? null
 
   return (
     <Select

@@ -38,7 +38,7 @@ export const FavoriteAnimes = () => {
       image: anime.image.medium ?? '',
       key: animeId,
       title: anime.title,
-      to: ROUTES.CHARACTER.ROOT(anime.url)
+      to: ROUTES.CATALOG.ANIME.ROOT(anime.id, anime.url)
     })) ?? []
 
   return (

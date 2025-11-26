@@ -1,7 +1,7 @@
-import { AnimeListEntryFragment } from '@/graphql/generated/output'
+import { AnimeListEntryWithAnimeFragment } from '@/graphql/generated/output'
 
 export type AnimeStatusCardProps = {
-  animeListEntry: AnimeListEntryFragment
+  animeListEntry: AnimeListEntryWithAnimeFragment
   onDeleteButtonClick?: (animeUrl: string) => void
   onEditButtonClick?: (animeUrl: string) => void
 }

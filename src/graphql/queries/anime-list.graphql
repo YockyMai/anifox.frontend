@@ -2,6 +2,21 @@ fragment AnimeListEntry on AnimeListEntry {
   id
   userId
   animeId
+  endedAt
+  episodesWatched
+  startedAt
+  updatedAt
+  status
+  rating {
+    id
+    rating
+  }
+}
+
+fragment AnimeListEntryWithAnime on AnimeListEntry {
+  id
+  userId
+  animeId
   anime {
     ...AnimeLite
   }
@@ -15,11 +30,10 @@ fragment AnimeListEntry on AnimeListEntry {
     rating
   }
 }
-
 query AnimeList($userId: String!) {
   animeList(userId: $userId) {
     list {
-      ...AnimeListEntry
+      ...AnimeListEntryWithAnime
     }
   }
 }

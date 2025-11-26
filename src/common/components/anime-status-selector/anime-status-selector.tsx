@@ -12,7 +12,7 @@ export const AnimeStatusSelector = ({
   customLabel
 }: AnimeStatusSelectorProps) => {
   const value = useMemo(
-    () => STATUS_OPTIONS.find((option) => option.value === status),
+    () => STATUS_OPTIONS.find((option) => option.value === status) ?? null,
     [status]
   )
 

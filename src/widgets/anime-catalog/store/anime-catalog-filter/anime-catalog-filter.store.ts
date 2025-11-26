@@ -24,6 +24,9 @@ export const createAnimeCatalogFilterStore = (
     setGenres: (state, genres: string[]) => {
       state.genres = genres
     },
+    removeGenre: (state, genre: string) => {
+      state.genres = state.genres.filter((item) => item !== genre)
+    },
     setMinimalAge: (state, minimalAge: number | null) => {
       state.minimalAge = minimalAge
     },
@@ -39,8 +42,16 @@ export const createAnimeCatalogFilterStore = (
     setYears: (state, years: number[]) => {
       state.years = years
     },
+    removeYear: (state, year: number) => {
+      state.years = state.years.filter((item) => item !== year)
+    },
     setTranslations: (state, translations: string[]) => {
       state.translations = translations
+    },
+    removeTranslation: (state, translation: string) => {
+      state.translations = state.translations.filter(
+        (item) => item !== translation
+      )
     },
     setStudio: (state, studio: string | null) => {
       state.studio = studio
@@ -50,6 +61,20 @@ export const createAnimeCatalogFilterStore = (
     },
     setOrder: (state, order: AnimeOrder | null) => {
       state.order = order
+    },
+    resetFilters: (state) => {
+      state.status = null
+      state.search = ''
+      state.genres = []
+      state.minimalAge = null
+      state.ratingMpa = null
+      state.season = null
+      state.type = null
+      state.years = []
+      state.translations = []
+      state.studio = null
+      state.sort = null
+      state.order = null
     }
   })
 }
