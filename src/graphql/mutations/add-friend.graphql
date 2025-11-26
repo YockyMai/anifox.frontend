@@ -1,16 +1,3 @@
-fragment Friendship on Friendship {
-  id
-  status
-  friendId
-  userId
-  user {
-    ...UserLite
-  }
-  friend {
-    ...UserLite
-  }
-}
-
 mutation addFriend($friendId: ID!) {
   addFriend(friendId: $friendId) {
     ...Friendship

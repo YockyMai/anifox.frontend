@@ -1,34 +1,21 @@
-import { Button } from '@anifox/ui'
+import { Button, toast } from '@anifox/ui'
 import { IconUserPlus } from '@tabler/icons-react'
+import { useState } from 'react'
 
-import {
-  FriendshipFragmentDoc,
-  useAddFriendMutation
-} from '@/graphql/generated/output'
+import { useAddFriendMutation } from '@/graphql/generated/output'
 
 import { AddFriendButtonProps } from './add-friend-button.interface'
 
 export const AddFriendButton = ({ friendId }: AddFriendButtonProps) => {
+  const [requestSent, setRequestSent] = useState(false)
+
   const [addFriendMutation] = useAddFriendMutation({
     variables: {
       friendId
     },
-    update: (cache, { data }) => {
-      if (data) {
-        // add data to cache array
-        cache.modify({
-          fields: {
-            friends: (existingFriends) => {
-              const newFriendRef = cache.writeFragment({
-                data: data.addFriend,
-                fragment: FriendshipFragmentDoc
-              })
-
-              return [newFriendRef, ...existingFriends]
-            }
-          }
-        })
-      }
+    onCompleted: () => {
+      setRequestSent(true)
+      toast.success('Заявка отправлена')
     }
   })
 
@@ -40,8 +27,9 @@ export const AddFriendButton = ({ friendId }: AddFriendButtonProps) => {
       color='purple'
       size='sm'
       fullWidth
+      disabled={requestSent}
     >
-      Добавить в друзья
+      {requestSent ? 'Заявка отправлена' : 'Добавить в друзья'}
     </Button>
   )
 }

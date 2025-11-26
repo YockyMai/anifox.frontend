@@ -116,8 +116,16 @@ export const client = new ApolloClient({
             keyArgs: ['animeUrl'],
             ...pageBasedPaginationPolicy
           },
-          friendships: {
-            keyArgs: ['userId', 'status', 'search'],
+          friends: {
+            keyArgs: ['userId', 'search'],
+            ...pageBasedPaginationPolicy
+          },
+          friendRequests: {
+            keyArgs: ['userId', 'search'],
+            ...pageBasedPaginationPolicy
+          },
+          friendInvitations: {
+            keyArgs: ['userId', 'search'],
             ...pageBasedPaginationPolicy
           },
           animeComments: {

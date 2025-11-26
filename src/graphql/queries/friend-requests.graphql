@@ -1,0 +1,16 @@
+query FriendRequests(
+  $userId: String!
+  $search: String
+  $limit: Int
+  $page: Int
+) {
+  friendRequests(userId: $userId, search: $search, limit: $limit, page: $page) {
+    data {
+      ...Friendship
+    }
+    pageInfo {
+      hasNextPage
+      page
+    }
+  }
+}
